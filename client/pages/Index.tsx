@@ -356,37 +356,13 @@ export default function Index() {
 
           {/* Bottom Input Section */}
           <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
-            {/* Control buttons */}
-            <div className="flex justify-center mb-3 md:mb-4">
-              <div className="bg-gray-800 rounded-full p-1.5 md:p-2 flex gap-1.5 md:gap-2">
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-pink-accent rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs md:text-sm">●</span>
-                </div>
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-gray-600 rounded-full"></div>
-              </div>
-            </div>
-
-            {/* Input field */}
-            <div className="relative">
-              <div className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2">
-                <Plus className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
-              </div>
-              <Input
-                placeholder="Ask me anything..."
-                className="w-full pl-10 md:pl-12 pr-16 md:pr-20 py-3 md:py-4 bg-input-bg border-0 rounded-full text-gray-800 placeholder:text-gray-400 text-sm md:text-lg"
-              />
-              <div className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1.5 md:gap-2">
-                <Button
-                  size="sm"
-                  className="bg-purple-accent hover:bg-purple-accent/80 rounded-full w-6 h-6 md:w-8 md:h-8 p-0"
-                >
-                  <Mic className="w-3 h-3 md:w-4 md:h-4" />
-                </Button>
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-purple-accent rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs md:text-sm">→</span>
-                </div>
-              </div>
-            </div>
+            <ChatInputBox
+              placeholder="Ask me anything..."
+              onSendMessage={(message) =>
+                console.log("Sending message:", message)
+              }
+              onAddAttachment={() => console.log("Add attachment clicked")}
+            />
           </div>
         </div>
       </div>
