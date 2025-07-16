@@ -65,17 +65,78 @@ export default function Index() {
       <div className="flex h-[calc(100vh-80px)]">
         {/* Left Sidebar */}
         <div className="w-12 md:w-16 flex flex-col items-center py-4 md:py-6 gap-3 md:gap-4">
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-accent rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-            <span className="text-white text-lg md:text-xl">!</span>
+          {/* Imagine */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb384d84e1df642dfa4d274ede8768a82?format=webp&width=800"
+              alt="Imagine"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-chat-bubble rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-bunny-green rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-yellow-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-pink-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden sm:block"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden md:block"></div>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden lg:block"></div>
+          {/* Play */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc2571e7f678d413eb9a1bd06ea66f8e0?format=webp&width=800"
+              alt="Play"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Create */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F1d2408e75472446e89e1c722cc60c5bc?format=webp&width=800"
+              alt="Create"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Store */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F7ce4cb9686ab4c8883ffd924942ba7ce?format=webp&width=800"
+              alt="Store"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Reflect */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9d8d266fb1d04ad69bf3010bc8af2640?format=webp&width=800"
+              alt="Reflect"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Reward */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc4d8103edd924d3a815299efddcbb19f?format=webp&width=800"
+              alt="Reward"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Mood */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform hidden sm:block">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc729f16c9d3149d881a210498aef88fe?format=webp&width=800"
+              alt="Mood"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Friends */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform hidden md:block">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800"
+              alt="Friends"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Tree */}
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform hidden lg:block">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F62ae7a5b66d24b6db76a5ce77f234122?format=webp&width=800"
+              alt="Tree"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Center Content Area */}
