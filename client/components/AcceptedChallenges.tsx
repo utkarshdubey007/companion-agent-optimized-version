@@ -125,7 +125,9 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
         {/* Main Panel */}
         <div
           className={`${
-            isCollapsed ? "w-0 opacity-0" : "w-80 lg:w-96 opacity-100"
+            isCollapsed
+              ? "w-0 opacity-0"
+              : "w-80 sm:w-96 lg:w-[28rem] xl:w-[32rem] opacity-100"
           } transition-all duration-700 ease-out overflow-hidden`}
         >
           <div
