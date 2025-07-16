@@ -204,3 +204,13 @@
     transform: translateX(-10px) translateY(-50%) scale(0.8);
   }
 }
+
+/* Tooltip floating animation utility classes */
+.tooltip-float {
+  animation: floatTooltip 2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.group:hover .tooltip-float {
+  animation-play-state: running;
+}
