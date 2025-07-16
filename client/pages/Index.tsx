@@ -51,6 +51,8 @@ export default function Index() {
   const handleMenuItemClick = (itemAlt: string) => {
     if (itemAlt === "Create") {
       setShowAcceptedChallenges(!showAcceptedChallenges);
+    } else if (itemAlt === "Reflect") {
+      setShowCreationsPanel(!showCreationsPanel);
     }
   };
 
