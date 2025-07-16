@@ -15,6 +15,7 @@ interface DualSidebarProps {
   showBottomWaveEffect: boolean;
   toggleTopSidebar: () => void;
   toggleBottomSidebar: () => void;
+  onMenuItemClick?: (itemAlt: string) => void;
 }
 
 export function DualSidebar({
@@ -26,6 +27,7 @@ export function DualSidebar({
   showBottomWaveEffect,
   toggleTopSidebar,
   toggleBottomSidebar,
+  onMenuItemClick,
 }: DualSidebarProps) {
   return (
     <div className="flex flex-col gap-4 ml-4 my-4 relative h-[calc(100vh-120px)]">
@@ -93,6 +95,7 @@ export function DualSidebar({
                     : "none",
                   transform: showTopWaveEffect ? "scale(1)" : "scale(0)",
                 }}
+                onClick={() => onMenuItemClick?.(item.alt)}
               >
                 <img
                   src={item.src}
@@ -181,6 +184,7 @@ export function DualSidebar({
                     : "none",
                   transform: showBottomWaveEffect ? "scale(1)" : "scale(0)",
                 }}
+                onClick={() => onMenuItemClick?.(item.alt)}
               >
                 <img
                   src={item.src}
