@@ -79,14 +79,19 @@ export default function Index() {
 
   const bottomMenuItems = [
     {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc729f16c9d3149d881a210498aef88fe?format=webp&width=800",
+      alt: "Mood",
+      delay: 0,
+    },
+    {
       src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800",
       alt: "Friends",
-      delay: 600,
+      delay: 100,
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F62ae7a5b66d24b6db76a5ce77f234122?format=webp&width=800",
       alt: "Tree",
-      delay: 700,
+      delay: 200,
     },
   ];
 
