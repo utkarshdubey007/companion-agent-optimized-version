@@ -313,54 +313,6 @@ export default function Index() {
             </svg>
           </div>
 
-          {/* Landscape Elements */}
-          <div className="absolute bottom-0 left-0 right-0 h-48">
-            {/* Ground/Hills */}
-            <svg viewBox="0 0 1200 200" className="w-full h-full">
-              <defs>
-                <linearGradient
-                  id="groundGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#FFD700" />
-                  <stop offset="100%" stopColor="#FFA500" />
-                </linearGradient>
-              </defs>
-
-              {/* Golden ground */}
-              <path
-                d="M 0 120 Q 300 100 600 120 T 1200 130 L 1200 200 L 0 200 Z"
-                fill="url(#groundGradient)"
-              />
-
-              {/* Trees */}
-              <g>
-                {/* Tree 1 */}
-                <ellipse cx="100" cy="130" rx="25" ry="30" fill="#32CD32" />
-                <ellipse cx="90" cy="135" rx="20" ry="25" fill="#228B22" />
-                <ellipse cx="110" cy="135" rx="20" ry="25" fill="#228B22" />
-
-                {/* Tree 2 */}
-                <ellipse cx="300" cy="125" rx="30" ry="35" fill="#32CD32" />
-                <ellipse cx="285" cy="130" rx="25" ry="30" fill="#228B22" />
-                <ellipse cx="315" cy="130" rx="25" ry="30" fill="#228B22" />
-
-                {/* Tree 3 */}
-                <ellipse cx="900" cy="135" rx="35" ry="40" fill="#32CD32" />
-                <ellipse cx="880" cy="140" rx="28" ry="35" fill="#228B22" />
-                <ellipse cx="920" cy="140" rx="28" ry="35" fill="#228B22" />
-
-                {/* Smaller bushes */}
-                <ellipse cx="500" cy="145" rx="15" ry="20" fill="#228B22" />
-                <ellipse cx="700" cy="140" rx="20" ry="25" fill="#32CD32" />
-                <ellipse cx="1100" cy="145" rx="18" ry="22" fill="#228B22" />
-              </g>
-            </svg>
-          </div>
-
           {/* Bottom Input Section */}
           <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
             {/* Control buttons */}
