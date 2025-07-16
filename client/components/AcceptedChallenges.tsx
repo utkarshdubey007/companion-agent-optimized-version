@@ -39,9 +39,11 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
   const ChallengeCard = ({
     challenge,
     isCompact = false,
+    isCollapsedView = false,
   }: {
     challenge: Challenge;
     isCompact?: boolean;
+    isCollapsedView?: boolean;
   }) => (
     <div
       className={`bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 shadow-lg ${
