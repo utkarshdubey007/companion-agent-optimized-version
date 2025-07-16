@@ -59,7 +59,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
         <img
           src={challenge.image}
           alt={challenge.title}
-          className={`w-full ${isCompact ? "h-24" : "h-32"} object-cover rounded-xl border border-white/30`}
+          className={`w-full ${isCompact ? "h-24" : isCollapsedView ? "h-28" : "h-32"} object-cover rounded-xl border border-white/30`}
         />
       </div>
 
