@@ -153,7 +153,7 @@ export default function Index() {
             <Button
               onClick={toggleSidebar}
               size="sm"
-              className="w-6 h-6 rounded-full bg-gray-800 hover:bg-gray-700 border border-white/20 p-0"
+              className="w-6 h-6 rounded-full bg-gray-800 hover:bg-gray-700 border border-white/20 p-0 transition-all duration-300"
             >
               {sidebarCollapsed ? (
                 <ChevronRight className="w-3 h-3 text-white" />
