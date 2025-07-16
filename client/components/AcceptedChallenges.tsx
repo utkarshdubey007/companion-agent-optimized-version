@@ -88,9 +88,9 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
       </div>
 
       {/* Chat Button */}
-      <div className="mt-auto flex-shrink-0">
+      <div className="mt-auto flex-shrink-0 px-1">
         <Button
-          className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-105 text-white border-0`}
+          className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-[1.02] text-white border-0`}
           style={{ backgroundColor: challenge.chatColor }}
         >
           <span className="flex items-center justify-center gap-2">
@@ -127,7 +127,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
           className={`${
             isCollapsed
               ? "w-0 opacity-0"
-              : "w-80 sm:w-96 lg:w-[28rem] xl:w-[32rem] opacity-100"
+              : "w-fit min-w-[20rem] max-w-[95vw] opacity-100"
           } transition-all duration-700 ease-out overflow-hidden`}
         >
           <div
