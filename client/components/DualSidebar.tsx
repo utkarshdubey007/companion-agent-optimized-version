@@ -86,7 +86,7 @@ export function DualSidebar({
             {topMenuItems.map((item, index) => (
               <div
                 key={item.alt}
-                className="w-12 h-12 rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative"
                 style={{
                   animation: showTopWaveEffect
                     ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
@@ -174,7 +174,7 @@ export function DualSidebar({
             {bottomMenuItems.map((item, index) => (
               <div
                 key={item.alt}
-                className="w-12 h-12 rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative"
                 style={{
                   animation: showBottomWaveEffect
                     ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
