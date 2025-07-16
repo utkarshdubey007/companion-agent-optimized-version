@@ -146,8 +146,8 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
               className="p-6 overflow-y-auto"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex flex-col gap-6">
-                {challenges.map((challenge) => (
+              <div className="flex gap-4 overflow-x-auto">
+                {challenges.slice(0, 3).map((challenge) => (
                   <ChallengeCard key={challenge.id} challenge={challenge} />
                 ))}
               </div>
