@@ -141,30 +141,60 @@ export default function Index() {
         {/* Left Sidebar */}
         <div
           className={`${
-            sidebarCollapsed ? "w-4" : "w-16 md:w-20"
-          } bg-gray-900/30 backdrop-blur-sm border-r border-white/10 flex flex-col transition-all duration-700 ease-out relative overflow-hidden`}
+            sidebarCollapsed ? "w-4" : "w-20 md:w-20"
+          } flex flex-col transition-all duration-700 ease-out relative overflow-visible ml-4 my-6`}
           style={{
             transform: sidebarCollapsed ? "translateX(-80%)" : "translateX(0%)",
             transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           {/* Collapse Toggle */}
-          <div className="absolute -right-3 top-4 z-20">
+          <div className="absolute -right-4 top-4 z-20">
             <Button
               onClick={toggleSidebar}
               size="sm"
-              className="w-6 h-6 rounded-full bg-gray-800 hover:bg-gray-700 border border-white/20 p-0 transition-all duration-300"
+              className="w-8 h-8 rounded-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 p-0 transition-all duration-300 shadow-lg"
+              style={{
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              }}
             >
-              {sidebarCollapsed ? (
-                <ChevronRight className="w-3 h-3 text-white" />
-              ) : (
-                <ChevronLeft className="w-3 h-3 text-white" />
-              )}
+              {/* Minimize/Expand Icon */}
+              <svg
+                className="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                {sidebarCollapsed ? (
+                  // Expand icon (three lines)
+                  <>
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                  </>
+                ) : (
+                  // Minimize icon (two lines)
+                  <>
+                    <line x1="6" y1="9" x2="18" y2="9" />
+                    <line x1="6" y1="15" x2="18" y2="15" />
+                  </>
+                )}
+              </svg>
             </Button>
           </div>
 
           {/* Top Section */}
-          <div className="flex flex-col items-center py-6 gap-4 border-b border-white/10">
+          <div
+            className="flex flex-col items-center py-6 gap-4 relative rounded-t-[20px] rounded-b-none"
+            style={{
+              background: "#1C2051",
+              border: "1px solid rgba(255, 252, 252, 0.2)",
+              borderBottom: "none",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              minHeight: "307px",
+            }}
+          >
             {topMenuItems.map((item, index) => (
               <div
                 key={item.alt}
@@ -209,7 +239,16 @@ export default function Index() {
           </div>
 
           {/* Bottom Section */}
-          <div className="flex flex-col items-center py-6 gap-4 flex-1 justify-end">
+          <div
+            className="flex flex-col items-center py-6 gap-4 justify-end relative rounded-b-[20px] rounded-t-none"
+            style={{
+              background: "#1C2051",
+              border: "1px solid rgba(255, 252, 252, 0.2)",
+              borderTop: "none",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              minHeight: "166px",
+            }}
+          >
             {/* Avatar/Profile */}
             <div
               className={`${
