@@ -81,7 +81,7 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
           } transition-all duration-700 ease-out overflow-hidden`}
         >
           <div
-            className="bg-[#4C1D95] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl relative"
+            className="bg-[#1C2051] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl relative"
             style={{
               boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
               height: "400px",
