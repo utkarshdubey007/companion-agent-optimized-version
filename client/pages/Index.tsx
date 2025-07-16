@@ -140,7 +140,13 @@ export default function Index() {
       <div className="flex h-[calc(100vh-80px)]">
         {/* Left Sidebar */}
         <div
-          className={`${sidebarCollapsed ? "w-12" : "w-16 md:w-20"} bg-gray-900/30 backdrop-blur-sm border-r border-white/10 flex flex-col transition-all duration-300 ease-in-out relative`}
+          className={`${
+            sidebarCollapsed ? "w-4" : "w-16 md:w-20"
+          } bg-gray-900/30 backdrop-blur-sm border-r border-white/10 flex flex-col transition-all duration-700 ease-out relative overflow-hidden`}
+          style={{
+            transform: sidebarCollapsed ? "translateX(-80%)" : "translateX(0%)",
+            transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
         >
           {/* Collapse Toggle */}
           <div className="absolute -right-3 top-4 z-20">
