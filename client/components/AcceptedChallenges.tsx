@@ -199,6 +199,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
                 <ChallengeCard
                   key={selectedChallenge.id}
                   challenge={selectedChallenge}
+                  isCollapsedView={true}
                 />
               </div>
             </div>
