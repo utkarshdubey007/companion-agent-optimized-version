@@ -142,8 +142,11 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
             </div>
 
             {/* Content */}
-            <div className="p-6 h-full overflow-y-auto">
-              <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            <div
+              className="p-6 overflow-y-auto"
+              style={{ height: "calc(100% - 80px)" }}
+            >
+              <div className="flex flex-col gap-6">
                 {challenges.map((challenge) => (
                   <ChallengeCard key={challenge.id} challenge={challenge} />
                 ))}
