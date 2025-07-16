@@ -165,105 +165,42 @@ export default function Index() {
 
           {/* Top Section */}
           <div className="flex flex-col items-center py-6 gap-4 border-b border-white/10">
-            {/* Imagine */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb384d84e1df642dfa4d274ede8768a82?format=webp&width=800"
-                alt="Imagine"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Imagine
-                </div>
-              )}
-            </div>
-
-            {/* Play */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc2571e7f678d413eb9a1bd06ea66f8e0?format=webp&width=800"
-                alt="Play"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Play
-                </div>
-              )}
-            </div>
-
-            {/* Create */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F1d2408e75472446e89e1c722cc60c5bc?format=webp&width=800"
-                alt="Create"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Create
-                </div>
-              )}
-            </div>
-
-            {/* Store */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F7ce4cb9686ab4c8883ffd924942ba7ce?format=webp&width=800"
-                alt="Store"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Store
-                </div>
-              )}
-            </div>
-
-            {/* Reflect */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9d8d266fb1d04ad69bf3010bc8af2640?format=webp&width=800"
-                alt="Reflect"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Reflect
-                </div>
-              )}
-            </div>
-
-            {/* Reward */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc4d8103edd924d3a815299efddcbb19f?format=webp&width=800"
-                alt="Reward"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Reward
-                </div>
-              )}
-            </div>
+            {topMenuItems.map((item, index) => (
+              <div
+                key={item.alt}
+                className={`${
+                  sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"
+                } rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative`}
+                style={{
+                  animation: showWaveEffect
+                    ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
+                    : "none",
+                  transform: showWaveEffect ? "scale(1)" : "scale(0)",
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover"
+                />
+                {!sidebarCollapsed && (
+                  <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30">
+                    {item.alt}
+                  </div>
+                )}
+              </div>
+            ))}
 
             {/* Menu Lines */}
             {!sidebarCollapsed && (
-              <div className="flex flex-col gap-1 mt-2">
+              <div
+                className="flex flex-col gap-1 mt-2"
+                style={{
+                  animation: showWaveEffect
+                    ? "fadeInUp 0.5s ease-out 1.2s both"
+                    : "none",
+                }}
+              >
                 <div className="w-4 h-0.5 bg-white/40"></div>
                 <div className="w-4 h-0.5 bg-white/40"></div>
                 <div className="w-4 h-0.5 bg-white/40"></div>
@@ -275,55 +212,66 @@ export default function Index() {
           <div className="flex flex-col items-center py-6 gap-4 flex-1 justify-end">
             {/* Avatar/Profile */}
             <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
+              className={`${
+                sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"
+              } rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative`}
+              style={{
+                animation: showWaveEffect
+                  ? "popIn 0.6s ease-out 800ms both, wave 2s ease-in-out 1.4s both"
+                  : "none",
+                transform: showWaveEffect ? "scale(1)" : "scale(0)",
+              }}
             >
               <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
                 <User
-                  className={`${sidebarCollapsed ? "w-3 h-3" : "w-5 h-5 md:w-6 md:h-6"} text-white`}
+                  className={`${
+                    sidebarCollapsed ? "w-3 h-3" : "w-5 h-5 md:w-6 md:h-6"
+                  } text-white`}
                 />
               </div>
               {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30">
                   Profile
                 </div>
               )}
             </div>
 
-            {/* Friends */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800"
-                alt="Friends"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Friends
-                </div>
-              )}
-            </div>
-
-            {/* Tree */}
-            <div
-              className={`${sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"} rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-all duration-200 group relative`}
-            >
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F62ae7a5b66d24b6db76a5ce77f234122?format=webp&width=800"
-                alt="Tree"
-                className="w-full h-full object-cover"
-              />
-              {!sidebarCollapsed && (
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  Tree
-                </div>
-              )}
-            </div>
+            {bottomMenuItems.map((item, index) => (
+              <div
+                key={item.alt}
+                className={`${
+                  sidebarCollapsed ? "w-6 h-6" : "w-10 h-10 md:w-12 md:h-12"
+                } rounded-full overflow-hidden cursor-pointer hover:scale-125 hover:rotate-6 transition-all duration-300 group relative`}
+                style={{
+                  animation: showWaveEffect
+                    ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
+                    : "none",
+                  transform: showWaveEffect ? "scale(1)" : "scale(0)",
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover"
+                />
+                {!sidebarCollapsed && (
+                  <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30">
+                    {item.alt}
+                  </div>
+                )}
+              </div>
+            ))}
 
             {/* Menu Lines */}
             {!sidebarCollapsed && (
-              <div className="flex flex-col gap-1 mt-2">
+              <div
+                className="flex flex-col gap-1 mt-2"
+                style={{
+                  animation: showWaveEffect
+                    ? "fadeInUp 0.5s ease-out 1.5s both"
+                    : "none",
+                }}
+              >
                 <div className="w-4 h-0.5 bg-white/40"></div>
                 <div className="w-4 h-0.5 bg-white/40"></div>
                 <div className="w-4 h-0.5 bg-white/40"></div>
