@@ -12,23 +12,35 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 
 export default function Index() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
-  const [hasAutoExpanded, setHasAutoExpanded] = useState(false);
-  const [showWaveEffect, setShowWaveEffect] = useState(false);
+  const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
+  const [bottomSidebarCollapsed, setBottomSidebarCollapsed] = useState(true);
+  const [showTopWaveEffect, setShowTopWaveEffect] = useState(false);
+  const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(false);
 
-  // Auto-expand on page load
+  // Auto-expand on page load - top first, then bottom
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSidebarCollapsed(false);
-      setHasAutoExpanded(true);
-      setShowWaveEffect(true);
+    const topTimer = setTimeout(() => {
+      setTopSidebarCollapsed(false);
+      setShowTopWaveEffect(true);
     }, 500);
 
-    return () => clearTimeout(timer);
+    const bottomTimer = setTimeout(() => {
+      setBottomSidebarCollapsed(false);
+      setShowBottomWaveEffect(true);
+    }, 1200);
+
+    return () => {
+      clearTimeout(topTimer);
+      clearTimeout(bottomTimer);
+    };
   }, []);
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
+  const toggleTopSidebar = () => {
+    setTopSidebarCollapsed(!topSidebarCollapsed);
+  };
+
+  const toggleBottomSidebar = () => {
+    setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
   // Menu items data for easier mapping
@@ -67,14 +79,19 @@ export default function Index() {
 
   const bottomMenuItems = [
     {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc729f16c9d3149d881a210498aef88fe?format=webp&width=800",
+      alt: "Mood",
+      delay: 0,
+    },
+    {
       src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800",
       alt: "Friends",
-      delay: 600,
+      delay: 100,
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F62ae7a5b66d24b6db76a5ce77f234122?format=webp&width=800",
       alt: "Tree",
-      delay: 700,
+      delay: 200,
     },
   ];
 
