@@ -46,7 +46,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
     <div
       className={`bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 shadow-lg ${
         challenge.isSelected ? "ring-2 ring-purple-400" : ""
-      } ${isCompact ? "w-full" : "min-w-[200px]"} relative`}
+      } ${isCompact ? "w-full" : "flex-1 max-w-[200px]"} relative`}
       style={{
         boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
       }}
