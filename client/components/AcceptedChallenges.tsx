@@ -53,7 +53,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
       }}
     >
       {/* Challenge Image */}
-      <div className="relative mb-4">
+      <div className="relative mb-3 flex-shrink-0">
         <img
           src={challenge.image}
           alt={challenge.title}
@@ -63,42 +63,44 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
 
       {/* Challenge Title */}
       <h3
-        className={`text-white font-semibold ${isCompact ? "text-sm" : "text-base"} mb-2 text-center`}
+        className={`text-white font-semibold ${isCompact ? "text-sm" : "text-base"} mb-2 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center`}
       >
         {challenge.title}
       </h3>
 
       {/* Motivational Message */}
       <p
-        className={`text-white/80 ${isCompact ? "text-xs" : "text-sm"} mb-3 text-center`}
+        className={`text-white/80 ${isCompact ? "text-xs" : "text-sm"} mb-3 text-center flex-shrink-0 min-h-[2.5rem] flex items-center justify-center`}
       >
         {challenge.motivationalMessage}
       </p>
 
       {/* Progress Bar */}
-      <div className="mb-3">
+      <div className="mb-3 flex-shrink-0">
         <ProgressBar progress={challenge.progress} />
       </div>
 
       {/* Timer */}
       <div
-        className={`text-green-400 font-mono ${isCompact ? "text-xs" : "text-sm"} mb-4 text-center`}
+        className={`text-green-400 font-mono ${isCompact ? "text-xs" : "text-sm"} mb-4 text-center flex-shrink-0 min-h-[1.5rem] flex items-center justify-center`}
       >
         {challenge.timeLeft}
       </div>
 
       {/* Chat Button */}
-      <Button
-        className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-105 text-white border-0`}
-        style={{ backgroundColor: challenge.chatColor }}
-      >
-        <span className="flex items-center justify-center gap-2">
-          Chat with
-          <span className={`${isCompact ? "text-lg" : "text-xl"}`}>
-            {challenge.companionIcon}
+      <div className="mt-auto flex-shrink-0">
+        <Button
+          className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-105 text-white border-0`}
+          style={{ backgroundColor: challenge.chatColor }}
+        >
+          <span className="flex items-center justify-center gap-2">
+            Chat with
+            <span className={`${isCompact ? "text-lg" : "text-xl"}`}>
+              {challenge.companionIcon}
+            </span>
           </span>
-        </span>
-      </Button>
+        </Button>
+      </div>
     </div>
   );
 
