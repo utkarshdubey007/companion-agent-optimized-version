@@ -104,7 +104,7 @@ export function DualSidebar({
                 />
                 {!topSidebarCollapsed && (
                   <div
-                    className="absolute -right-16 top-1/2 text-white px-3 py-2 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out whitespace-nowrap z-30 pointer-events-none"
+                    className="absolute -right-16 top-1/2 text-white px-3 py-2 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out whitespace-nowrap z-30 pointer-events-none tooltip-float"
                     style={{
                       background: "#1C2051",
                       border: "1px solid rgba(255, 252, 252, 0.2)",
@@ -112,15 +112,7 @@ export function DualSidebar({
                       transform: "translateY(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        animation: "floatTooltip 2s ease-in-out infinite",
-                        animationPlayState: "paused",
-                      }}
-                      className="group-hover:[animation-play-state:running]"
-                    >
-                      {item.alt}
-                    </div>
+                    {item.alt}
                   </div>
                 )}
               </div>
