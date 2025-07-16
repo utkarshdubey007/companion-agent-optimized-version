@@ -44,16 +44,16 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
     isCompact?: boolean;
   }) => (
     <div
-      className={`bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20 ${
-        challenge.isSelected ? "ring-2 ring-white/30" : ""
-      } ${isCompact ? "w-full" : "min-w-[200px]"}`}
+      className={`bg-transparent rounded-2xl p-4 ${
+        challenge.isSelected ? "ring-2 ring-purple-400" : ""
+      } ${isCompact ? "w-full" : "min-w-[200px]"} relative`}
     >
       {/* Challenge Image */}
       <div className="relative mb-4">
         <img
           src={challenge.image}
           alt={challenge.title}
-          className={`w-full ${isCompact ? "h-24" : "h-32"} object-cover rounded-xl`}
+          className={`w-full ${isCompact ? "h-24" : "h-32"} object-cover rounded-xl border border-white/30`}
         />
       </div>
 
@@ -85,7 +85,7 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
 
       {/* Chat Button */}
       <Button
-        className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-105`}
+        className={`w-full rounded-full ${isCompact ? "py-2 text-xs" : "py-3"} font-medium transition-all duration-200 hover:scale-105 text-white border-0`}
         style={{ backgroundColor: challenge.chatColor }}
       >
         <span className="flex items-center justify-center gap-2">
