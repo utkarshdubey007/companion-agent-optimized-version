@@ -117,3 +117,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations for sidebar */
+@keyframes popIn {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scale(1) translateY(0px);
+  }
+  25% {
+    transform: scale(1.05) translateY(-2px);
+  }
+  50% {
+    transform: scale(1) translateY(0px);
+  }
+  75% {
+    transform: scale(1.05) translateY(2px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
