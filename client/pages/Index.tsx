@@ -395,6 +395,9 @@ export default function Index() {
           </div>
         </div>
       </div>
+
+      {/* Accepted Challenges Component */}
+      <AcceptedChallenges challenges={challenges} />
     </div>
   );
 }
