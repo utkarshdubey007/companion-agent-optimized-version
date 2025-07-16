@@ -79,7 +79,7 @@ export function DualSidebar({
               background: "#1C2051",
               border: "1px solid rgba(255, 252, 252, 0.2)",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              minHeight: "307px",
+              minHeight: "100px",
             }}
           >
             {topMenuItems.map((item, index) => (
