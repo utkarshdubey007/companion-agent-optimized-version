@@ -214,7 +214,14 @@ export default function Index() {
                   className="w-full h-full object-cover"
                 />
                 {!sidebarCollapsed && (
-                  <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30">
+                  <div
+                    className="absolute -right-16 top-1/2 transform -translate-y-1/2 text-white px-3 py-2 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30"
+                    style={{
+                      background: "#1C2051",
+                      border: "1px solid rgba(255, 252, 252, 0.2)",
+                      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
                     {item.alt}
                   </div>
                 )}
@@ -294,7 +301,14 @@ export default function Index() {
                   className="w-full h-full object-cover"
                 />
                 {!sidebarCollapsed && (
-                  <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30">
+                  <div
+                    className="absolute -right-16 top-1/2 transform -translate-y-1/2 text-white px-3 py-2 rounded-lg text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap z-30"
+                    style={{
+                      background: "#1C2051",
+                      border: "1px solid rgba(255, 252, 252, 0.2)",
+                      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
                     {item.alt}
                   </div>
                 )}
