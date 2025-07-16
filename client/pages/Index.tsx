@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { DualSidebar } from "@/components/DualSidebar";
+import { AcceptedChallenges } from "@/components/AcceptedChallenges";
 
 export default function Index() {
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
