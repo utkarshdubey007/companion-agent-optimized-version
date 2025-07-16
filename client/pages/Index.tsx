@@ -389,6 +389,9 @@ export default function Index() {
 
       {/* Accepted Challenges Component - Show only when Create is clicked */}
       {showAcceptedChallenges && <AcceptedChallenges challenges={challenges} />}
+
+      {/* Creations Panel Component */}
+      <CreationsPanel creations={creations} />
     </div>
   );
 }
