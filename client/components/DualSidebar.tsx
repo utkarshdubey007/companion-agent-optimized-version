@@ -162,12 +162,13 @@ export function DualSidebar({
           }`}
         >
           <div
-            className="flex flex-col items-center py-6 gap-4 rounded-[20px]"
+            className="flex flex-col items-center py-4 gap-3 rounded-[20px] flex-1"
             style={{
               background: "#1C2051",
               border: "1px solid rgba(255, 252, 252, 0.2)",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              minHeight: "200px",
+              maxHeight: "35vh",
+              overflowY: "auto",
             }}
           >
             {bottomMenuItems.map((item, index) => (
