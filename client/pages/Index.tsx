@@ -12,23 +12,35 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 
 export default function Index() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
-  const [hasAutoExpanded, setHasAutoExpanded] = useState(false);
-  const [showWaveEffect, setShowWaveEffect] = useState(false);
+  const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
+  const [bottomSidebarCollapsed, setBottomSidebarCollapsed] = useState(true);
+  const [showTopWaveEffect, setShowTopWaveEffect] = useState(false);
+  const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(false);
 
-  // Auto-expand on page load
+  // Auto-expand on page load - top first, then bottom
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSidebarCollapsed(false);
-      setHasAutoExpanded(true);
-      setShowWaveEffect(true);
+    const topTimer = setTimeout(() => {
+      setTopSidebarCollapsed(false);
+      setShowTopWaveEffect(true);
     }, 500);
 
-    return () => clearTimeout(timer);
+    const bottomTimer = setTimeout(() => {
+      setBottomSidebarCollapsed(false);
+      setShowBottomWaveEffect(true);
+    }, 1200);
+
+    return () => {
+      clearTimeout(topTimer);
+      clearTimeout(bottomTimer);
+    };
   }, []);
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
+  const toggleTopSidebar = () => {
+    setTopSidebarCollapsed(!topSidebarCollapsed);
+  };
+
+  const toggleBottomSidebar = () => {
+    setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
   // Menu items data for easier mapping
