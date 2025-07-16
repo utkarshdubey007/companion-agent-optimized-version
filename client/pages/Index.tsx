@@ -97,6 +97,46 @@ export default function Index() {
     },
   ];
 
+  // Sample challenges data
+  const challenges = [
+    {
+      id: "1",
+      title: "Style your name!",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fac9225ba31de444ea69e2ee963f3f976?format=webp&width=800",
+      motivationalMessage: "Go for it!",
+      progress: 65,
+      timeLeft: "6d 22h 39m 21s",
+      chatColor: "#FF9500",
+      companionIcon: "😊",
+      isSelected: false,
+    },
+    {
+      id: "2",
+      title: "Everyday Imagination",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc1f47f5b06164bf3bc1fc7a1e8e5e060?format=webp&width=800",
+      motivationalMessage: "You got this!",
+      progress: 80,
+      timeLeft: "3d 10h 24m 12s",
+      chatColor: "#FF4757",
+      companionIcon: "😡",
+      isSelected: false,
+    },
+    {
+      id: "3",
+      title: "Design a Game",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd3c553ca967e497fbddf23e326153dea?format=webp&width=800",
+      motivationalMessage: "You can do it!",
+      progress: 45,
+      timeLeft: "1d 22h 10m 00s",
+      chatColor: "#FF6B9D",
+      companionIcon: "😈",
+      isSelected: true,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-space-bg relative overflow-hidden">
       {/* Floating geometric shapes */}
