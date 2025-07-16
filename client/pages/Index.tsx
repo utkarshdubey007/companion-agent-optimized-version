@@ -138,7 +138,15 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-space-bg relative overflow-hidden">
+    <div
+      className="min-h-screen bg-space-bg relative overflow-hidden"
+      style={{
+        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb05ebce3ebe54ebeaa6fe5297c022bd3?format=webp&width=800')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Floating geometric shapes */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Various geometric shapes scattered around */}
