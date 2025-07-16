@@ -145,6 +145,34 @@ export default function Index() {
     },
   ];
 
+  // Sample creations data
+  const creations = [
+    {
+      id: "1",
+      title: "Monster Character",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fac9225ba31de444ea69e2ee963f3f976?format=webp&width=800",
+      ],
+    },
+    {
+      id: "2",
+      title: "Fantasy Landscape",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc1f47f5b06164bf3bc1fc7a1e8e5e060?format=webp&width=800",
+      ],
+    },
+    {
+      id: "3",
+      title: "Game Design",
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd3c553ca967e497fbddf23e326153dea?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fac9225ba31de444ea69e2ee963f3f976?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc1f47f5b06164bf3bc1fc7a1e8e5e060?format=webp&width=800",
+      ],
+    },
+  ];
+
   return (
     <div
       className="min-h-screen bg-space-bg relative overflow-hidden"
