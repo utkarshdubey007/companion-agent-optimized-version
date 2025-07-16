@@ -46,12 +46,12 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
     isCollapsedView?: boolean;
   }) => (
     <div
-      className={`bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 shadow-lg ${
+      className={`bg-white/10 backdrop-blur-sm rounded-2xl ${isCollapsedView ? "p-3" : "p-4"} border border-white/20 shadow-lg ${
         challenge.isSelected ? "ring-2 ring-purple-400" : ""
       } ${isCompact ? "w-full" : "flex-1 min-w-[200px] max-w-[220px]"} relative flex flex-col`}
       style={{
         boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-        height: isCompact ? "auto" : "320px",
+        height: isCompact ? "auto" : isCollapsedView ? "300px" : "320px",
       }}
     >
       {/* Challenge Image */}
