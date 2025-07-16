@@ -18,33 +18,33 @@ export default function Index() {
       </div>
 
       {/* Top Header */}
-      <header className="relative z-10 flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-6">
+      <header className="relative z-10 flex items-center justify-between px-4 md:px-6 py-4">
+        <div className="flex items-center gap-3 md:gap-6">
           {/* Builder.io Logo */}
           <div className="w-8 h-8 bg-chat-bubble rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">B</span>
           </div>
 
           {/* Search Bar */}
-          <div className="relative">
+          <div className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
               placeholder="Search branches, treehouses..."
-              className="pl-10 w-72 bg-white/10 border-white/20 text-white placeholder:text-gray-300"
+              className="pl-10 w-48 md:w-72 bg-white/10 border-white/20 text-white placeholder:text-gray-300"
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           {/* Icon buttons */}
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <div className="w-8 h-8 bg-orange-accent rounded-lg"></div>
             <div className="w-8 h-8 bg-bunny-green rounded-lg"></div>
             <div className="w-8 h-8 bg-yellow-accent rounded-lg"></div>
           </div>
 
           {/* Night Mode Toggle */}
-          <div className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+          <div className="hidden lg:flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
             <span className="text-white text-sm">Night Mode</span>
             <div className="w-8 h-4 bg-white/20 rounded-full relative">
               <div className="w-3 h-3 bg-white rounded-full absolute left-0.5 top-0.5"></div>
@@ -56,7 +56,7 @@ export default function Index() {
             <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
               <User className="w-4 h-4 text-gray-600" />
             </div>
-            <span className="text-white">John</span>
+            <span className="text-white hidden sm:inline">John</span>
           </div>
         </div>
       </header>
@@ -64,31 +64,31 @@ export default function Index() {
       {/* Main Content */}
       <div className="flex h-[calc(100vh-80px)]">
         {/* Left Sidebar */}
-        <div className="w-16 flex flex-col items-center py-6 gap-4">
-          <div className="w-10 h-10 bg-orange-accent rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-            <span className="text-white text-xl">!</span>
+        <div className="w-12 md:w-16 flex flex-col items-center py-4 md:py-6 gap-3 md:gap-4">
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-accent rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+            <span className="text-white text-lg md:text-xl">!</span>
           </div>
-          <div className="w-10 h-10 bg-chat-bubble rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-bunny-green rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-yellow-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-purple-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-pink-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
-          <div className="w-10 h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-chat-bubble rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-bunny-green rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-yellow-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-pink-accent rounded-full cursor-pointer hover:scale-110 transition-transform"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden sm:block"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden md:block"></div>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full cursor-pointer hover:scale-110 transition-transform hidden lg:block"></div>
         </div>
 
         {/* Center Content Area */}
-        <div className="flex-1 relative flex flex-col items-center justify-center">
+        <div className="flex-1 relative flex flex-col items-center justify-center px-4">
           {/* Dialogue with Lexicb Badge */}
-          <div className="absolute top-12 bg-orange-accent text-white px-4 py-2 rounded-full text-sm font-medium">
+          <div className="absolute top-8 md:top-12 bg-orange-accent text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">
             Dialogue with Lexicb
           </div>
 
           {/* Chat Bubble */}
-          <div className="absolute top-32 left-1/2 transform -translate-x-1/2 max-w-md">
-            <div className="bg-chat-bubble text-white p-4 rounded-2xl rounded-bl-sm relative">
-              <p className="text-sm leading-relaxed">
+          <div className="absolute top-20 md:top-32 left-1/2 transform -translate-x-1/2 max-w-xs md:max-w-md px-4">
+            <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm relative">
+              <p className="text-xs md:text-sm leading-relaxed">
                 Let's make some fun art together. What if the world was a
                 peaceful place, let's start creating!
               </p>
@@ -96,12 +96,12 @@ export default function Index() {
           </div>
 
           {/* Green Bunny Character */}
-          <div className="mt-24">
+          <div className="mt-16 md:mt-24">
             <svg
-              width="120"
-              height="120"
+              width="80"
+              height="80"
               viewBox="0 0 120 120"
-              className="drop-shadow-lg"
+              className="drop-shadow-lg md:w-[120px] md:h-[120px]"
             >
               <g>
                 {/* Bunny body */}
@@ -229,35 +229,35 @@ export default function Index() {
           </div>
 
           {/* Bottom Input Section */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-6">
+          <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
             {/* Control buttons */}
-            <div className="flex justify-center mb-4">
-              <div className="bg-gray-800 rounded-full p-2 flex gap-2">
-                <div className="w-8 h-8 bg-pink-accent rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">●</span>
+            <div className="flex justify-center mb-3 md:mb-4">
+              <div className="bg-gray-800 rounded-full p-1.5 md:p-2 flex gap-1.5 md:gap-2">
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-pink-accent rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs md:text-sm">●</span>
                 </div>
-                <div className="w-8 h-8 bg-gray-600 rounded-full"></div>
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-gray-600 rounded-full"></div>
               </div>
             </div>
 
             {/* Input field */}
             <div className="relative">
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                <Plus className="w-5 h-5 text-gray-400" />
+              <div className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2">
+                <Plus className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
               </div>
               <Input
                 placeholder="Ask me anything..."
-                className="w-full pl-12 pr-12 py-4 bg-input-bg border-0 rounded-full text-gray-800 placeholder:text-gray-400 text-lg"
+                className="w-full pl-10 md:pl-12 pr-16 md:pr-20 py-3 md:py-4 bg-input-bg border-0 rounded-full text-gray-800 placeholder:text-gray-400 text-sm md:text-lg"
               />
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
+              <div className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1.5 md:gap-2">
                 <Button
                   size="sm"
-                  className="bg-purple-accent hover:bg-purple-accent/80 rounded-full w-8 h-8 p-0"
+                  className="bg-purple-accent hover:bg-purple-accent/80 rounded-full w-6 h-6 md:w-8 md:h-8 p-0"
                 >
-                  <Mic className="w-4 h-4" />
+                  <Mic className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
-                <div className="w-8 h-8 bg-purple-accent rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">→</span>
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-purple-accent rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs md:text-sm">→</span>
                 </div>
               </div>
             </div>
