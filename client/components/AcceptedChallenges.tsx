@@ -54,6 +54,13 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
         height: isCompact ? "auto" : isCollapsedView ? "300px" : "320px",
       }}
     >
+      {/* Challenge Title */}
+      <h3
+        className={`text-white font-semibold ${isCompact ? "text-sm" : "text-base"} mb-3 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center`}
+      >
+        {challenge.title}
+      </h3>
+
       {/* Challenge Image */}
       <div className="relative mb-3 flex-shrink-0">
         <img
@@ -62,20 +69,6 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
           className={`w-full ${isCompact ? "h-24" : isCollapsedView ? "h-28" : "h-32"} object-cover rounded-xl border border-white/30`}
         />
       </div>
-
-      {/* Challenge Title */}
-      <h3
-        className={`text-white font-semibold ${isCompact ? "text-sm" : "text-base"} mb-2 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center`}
-      >
-        {challenge.title}
-      </h3>
-
-      {/* Motivational Message */}
-      <p
-        className={`text-white/80 ${isCompact ? "text-xs" : "text-sm"} mb-3 text-center flex-shrink-0 min-h-[2.5rem] flex items-center justify-center`}
-      >
-        {challenge.motivationalMessage}
-      </p>
 
       {/* Progress Bar */}
       <div className="mb-3 flex-shrink-0">
