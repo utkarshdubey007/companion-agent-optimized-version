@@ -149,10 +149,10 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
 
             {/* Content */}
             <div
-              className="p-6 flex items-center"
+              className="p-4 sm:p-6 flex items-center"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex gap-4 justify-center w-full">
+              <div className="flex gap-3 sm:gap-4 justify-center w-full overflow-visible">
                 {challenges.slice(0, 3).map((challenge) => (
                   <ChallengeCard key={challenge.id} challenge={challenge} />
                 ))}
