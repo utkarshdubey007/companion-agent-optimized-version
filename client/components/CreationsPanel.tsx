@@ -62,7 +62,7 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
         {/* Toggle Button */}
         <Button
           onClick={toggleCollapse}
-          className="w-8 h-12 rounded-l-lg bg-[#4C1D95] hover:bg-[#5B21B6] border border-white/20 border-r-0 p-0 transition-all duration-300 shadow-lg"
+          className="w-8 h-12 rounded-l-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-r-0 p-0 transition-all duration-300 shadow-lg"
           style={{
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           }}
