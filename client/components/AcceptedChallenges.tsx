@@ -131,12 +131,13 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
           } transition-all duration-700 ease-out overflow-hidden`}
         >
           <div
-            className="bg-[#1C2051] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl"
+            className="bg-[#1C2051] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl relative"
             style={{
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
               height: "calc(100vh - 200px)",
               maxHeight: "600px",
               minHeight: "400px",
+              zIndex: 60,
             }}
           >
             {/* Header */}
