@@ -168,27 +168,38 @@ export function AcceptedChallenges({ challenges }: AcceptedChallengesProps) {
         {/* Collapsed View - Single Challenge */}
         <div
           className={`${
-            isCollapsed ? "w-64 opacity-100" : "w-0 opacity-0"
+            isCollapsed ? "w-[240px] opacity-100" : "w-0 opacity-0"
           } transition-all duration-700 ease-out overflow-hidden`}
         >
           <div
-            className="bg-[#1C2051] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl p-4"
+            className="bg-[#1C2051] rounded-l-[20px] border border-white/20 border-r-0 shadow-2xl relative"
             style={{
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
               height: "calc(100vh - 200px)",
               maxHeight: "600px",
               minHeight: "400px",
+              zIndex: 60,
             }}
           >
             {/* Header */}
-            <div className="mb-4">
-              <h2 className="text-white text-lg font-semibold">
+            <div className="p-6 border-b border-white/20">
+              <h2 className="text-white text-xl font-semibold">
                 Accepted Challenges
               </h2>
             </div>
 
-            {/* Selected Challenge - Compact */}
-            <ChallengeCard challenge={selectedChallenge} isCompact={true} />
+            {/* Content */}
+            <div
+              className="p-4 sm:p-6 flex items-center"
+              style={{ height: "calc(100% - 80px)" }}
+            >
+              <div className="flex justify-center w-full overflow-visible">
+                <ChallengeCard
+                  key={selectedChallenge.id}
+                  challenge={selectedChallenge}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
