@@ -336,12 +336,6 @@ export default function Index() {
                 fill="url(#groundGradient)"
               />
 
-              {/* Green hills background */}
-              <path
-                d="M 0 140 Q 200 120 400 130 Q 600 125 800 135 Q 1000 130 1200 140 L 1200 200 L 0 200 Z"
-                fill="#228B22"
-              />
-
               {/* Trees */}
               <g>
                 {/* Tree 1 */}
