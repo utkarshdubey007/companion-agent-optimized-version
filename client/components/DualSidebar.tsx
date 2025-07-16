@@ -28,7 +28,7 @@ export function DualSidebar({
   toggleBottomSidebar,
 }: DualSidebarProps) {
   return (
-    <div className="flex flex-col gap-6 ml-4 my-6 relative">
+    <div className="flex flex-col gap-4 ml-4 my-4 relative h-[calc(100vh-120px)]">
       {/* Top Sidebar Section */}
       <div className="relative">
         {/* Top Section Toggle Button */}
