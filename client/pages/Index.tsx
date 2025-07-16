@@ -18,6 +18,7 @@ export default function Index() {
   const [bottomSidebarCollapsed, setBottomSidebarCollapsed] = useState(true);
   const [showTopWaveEffect, setShowTopWaveEffect] = useState(false);
   const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(false);
+  const [showAcceptedChallenges, setShowAcceptedChallenges] = useState(false);
 
   // Auto-expand on page load - top first, then bottom
   useEffect(() => {
@@ -43,6 +44,12 @@ export default function Index() {
 
   const toggleBottomSidebar = () => {
     setBottomSidebarCollapsed(!bottomSidebarCollapsed);
+  };
+
+  const handleMenuItemClick = (itemAlt: string) => {
+    if (itemAlt === "Create") {
+      setShowAcceptedChallenges(!showAcceptedChallenges);
+    }
   };
 
   // Menu items data for easier mapping
@@ -215,6 +222,7 @@ export default function Index() {
           showBottomWaveEffect={showBottomWaveEffect}
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
+          onMenuItemClick={handleMenuItemClick}
         />
 
         {/* Center Content Area */}
@@ -350,8 +358,8 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Accepted Challenges Component */}
-      <AcceptedChallenges challenges={challenges} />
+      {/* Accepted Challenges Component - Show only when Create is clicked */}
+      {showAcceptedChallenges && <AcceptedChallenges challenges={challenges} />}
     </div>
   );
 }
