@@ -45,6 +45,9 @@ export function ChatContainer({
   onAcceptChallenge,
   onRegenerateChallenge,
   onChatMore,
+  showImageCarousel = false,
+  carouselImages = [],
+  onCloseCarousel = () => {},
 }: ChatContainerProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
