@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MultiImageUploadCard from "./MultiImageUploadCard";
+import CompactKidImageCard from "./CompactKidImageCard";
 
 interface KidMediaMessageProps {
   images?: string[];
