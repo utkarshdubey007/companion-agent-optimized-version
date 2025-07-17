@@ -95,20 +95,45 @@ export default function KidImageCarousel({
     },
   };
 
+  // Responsive styles based on window width
+  const getResponsiveStyles = () => {
+    const width = window.innerWidth;
+
+    if (width <= 480) {
+      return {
+        width: "calc(100vw - 16px)",
+        maxWidth: "280px",
+        right: "8px",
+      };
+    } else if (width <= 768) {
+      return {
+        width: "calc(100vw - 32px)",
+        maxWidth: "320px",
+        right: "16px",
+      };
+    } else {
+      return {
+        width: "280px",
+        maxWidth: "90vw",
+        right: "16px",
+      };
+    }
+  };
+
+  const responsiveStyles = getResponsiveStyles();
+
   return (
     <motion.div
-      className={`kid-carousel-container ${className}`}
+      className={className}
       style={{
         position: "fixed",
-        right: "16px",
         top: "50%",
         transform: "translateY(-50%)",
         zIndex: 30,
-        width: "280px",
-        maxWidth: "90vw",
         borderRadius: "16px",
         overflow: "hidden",
         ...carouselStyles.container,
+        ...responsiveStyles,
       }}
       initial={{ opacity: 0, x: 50, scale: 0.95 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
