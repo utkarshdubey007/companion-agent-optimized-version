@@ -410,9 +410,6 @@ export default function Index() {
               onAcceptChallenge={handleAcceptChallenge}
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
-              showImageCarousel={showImageCarousel}
-              carouselImages={carouselImages}
-              onCloseCarousel={() => setShowImageCarousel(false)}
               onShowCarousel={handleShowCarousel}
               className="flex-1 min-h-0"
             />
