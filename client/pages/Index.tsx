@@ -88,7 +88,7 @@ export default function Index() {
               msg.id === moodMessage.id
                 ? {
                     ...msg,
-                    type: "text",
+                    type: "text" as const,
                     content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
                   }
                 : msg,
