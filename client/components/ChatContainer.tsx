@@ -187,15 +187,18 @@ export function ChatContainer({
 
     if (message.type === "system") {
       return (
-        <div key={message.id} className="flex justify-start w-full mb-4">
-          {/* AI Avatar for system messages */}
-          <div className="flex items-start gap-3 max-w-sm">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg">🐰</span>
-              </div>
-            </div>
-
+        <CompanionChatMessage
+          key={message.id}
+          showCompanion={true}
+          alignment="left"
+          centerCompanion={true}
+          companionProps={{
+            size: "proportional",
+            animated: true,
+            maxWidthPercent: 12,
+          }}
+        >
+          <div className="flex justify-start w-full mb-4">
             {/* Message bubble */}
             <div className="max-w-xs">
               <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
@@ -211,7 +214,7 @@ export function ChatContainer({
               </div>
             </div>
           </div>
-        </div>
+        </CompanionChatMessage>
       );
     }
 
