@@ -345,25 +345,6 @@ export default function KidImageCarousel({
           ))}
         </div>
       )}
-
-      {/* Mobile responsiveness styles */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .kid-carousel-container {
-            width: calc(100vw - 32px) !important;
-            max-width: 320px !important;
-            right: 16px !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .kid-carousel-container {
-            width: calc(100vw - 16px) !important;
-            max-width: 280px !important;
-            right: 8px !important;
-          }
-        }
-      `}</style>
     </motion.div>
   );
 }
