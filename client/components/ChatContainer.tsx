@@ -92,6 +92,16 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   const renderMessage = (message: ChatMessage) => {
+    if (message.type === "carousel") {
+      return (
+        <KidImageCarousel
+          key={message.id}
+          images={message.images || []}
+          timestamp={message.timestamp}
+        />
+      );
+    }
+
     if (message.type === "mood") {
       return (
         <MoodMessage
