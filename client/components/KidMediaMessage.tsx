@@ -6,6 +6,7 @@ import CompactKidImageCard from "./CompactKidImageCard";
 interface KidMediaMessageProps {
   images?: string[];
   onImagesUpdate?: (images: string[]) => void;
+  onShareCreation?: (images: string[]) => void;
   timestamp?: Date;
   className?: string;
   mode?: "upload" | "display"; // New prop to control display mode
