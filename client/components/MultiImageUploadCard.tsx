@@ -446,6 +446,31 @@ export default function MultiImageUploadCard({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Share My Creation Button */}
+      <AnimatePresence>
+        {images.length > 0 && (
+          <motion.button
+            onClick={() => onShareCreation(images)}
+            className={`w-full mt-4 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white shadow-lg`}
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 8px 20px rgba(168, 85, 247, 0.4)",
+            }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="flex items-center justify-center gap-2">
+              <span>🎨</span>
+              <span>Share My Creation!</span>
+              <span>✨</span>
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
