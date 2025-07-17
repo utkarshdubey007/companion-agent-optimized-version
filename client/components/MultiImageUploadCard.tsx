@@ -245,12 +245,16 @@ export default function MultiImageUploadCard({
           {images.length > 1 && (
             <div className="flex justify-center gap-2 mt-4">
               {images.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                    index === selectedIndex ? "bg-blue-400" : "bg-white/30"
+                  className={`w-3 h-3 rounded-full transition-all duration-200 border ${
+                    index === selectedIndex
+                      ? "bg-blue-400 border-blue-300 shadow-lg"
+                      : "bg-white/20 border-white/40 hover:bg-white/30"
                   }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
             </div>
