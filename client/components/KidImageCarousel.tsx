@@ -14,6 +14,7 @@ export default function KidImageCarousel({
   images,
   className = "",
   theme = "auto",
+  timestamp = new Date(),
 }: KidImageCarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
