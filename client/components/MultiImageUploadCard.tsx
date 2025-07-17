@@ -400,14 +400,14 @@ export default function MultiImageUploadCard({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mt-6 space-y-3"
+            className="mt-4 space-y-2"
           >
             {/* Progress Bar */}
             <div
-              className={`w-full ${isDarkTheme ? "bg-gray-700" : "bg-gray-200"} rounded-full h-2`}
+              className={`w-full ${isDarkTheme ? "bg-gray-700" : "bg-gray-200"} rounded-full h-1.5`}
             >
               <motion.div
-                className={`h-2 rounded-full ${isDarkTheme ? "bg-blue-500" : "bg-blue-600"}`}
+                className={`h-1.5 rounded-full ${isDarkTheme ? "bg-blue-500" : "bg-blue-600"}`}
                 initial={{ width: 0 }}
                 animate={{ width: `${(images.length / maxImages) * 100}%` }}
                 transition={{ duration: 0.5 }}
@@ -416,7 +416,7 @@ export default function MultiImageUploadCard({
 
             {/* Status Text */}
             <div className="flex justify-between items-center">
-              <p className={`text-sm ${themeStyles.textSecondary}`}>
+              <p className={`text-xs ${themeStyles.textSecondary}`}>
                 {images.length === maxImages ? (
                   <span
                     className={
@@ -433,11 +433,11 @@ export default function MultiImageUploadCard({
               {canAddMore && (
                 <motion.button
                   onClick={openFileDialog}
-                  className={`text-sm px-3 py-1 rounded-lg ${isDarkTheme ? "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30" : "bg-blue-50 text-blue-600 hover:bg-blue-100"} transition-colors duration-200`}
+                  className={`w-6 h-6 rounded-md ${isDarkTheme ? "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30" : "bg-blue-50 text-blue-600 hover:bg-blue-100"} transition-colors duration-200 flex items-center justify-center`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Add More
+                  <Plus className="w-4 h-4" />
                 </motion.button>
               )}
             </div>
