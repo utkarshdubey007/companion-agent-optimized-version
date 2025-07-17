@@ -1,129 +1,124 @@
-import { useState, useEffect } from "react";
+import React from "react";
 
-export function CompanionCharacter() {
-  const [isVisible, setIsVisible] = useState(false);
+interface CompanionCharacterProps {
+  /** Size of the companion character - controls both width and height */
+  size?: "small" | "medium" | "large" | number;
+  /** Position adjustment from the left edge */
+  position?: "near" | "far" | "auto";
+  /** Custom className for additional styling */
+  className?: string;
+  /** Whether the character should be animated */
+  animated?: boolean;
+  /** Custom image URL - defaults to the provided companion character */
+  imageUrl?: string;
+  /** Alt text for accessibility */
+  alt?: string;
+}
 
-  useEffect(() => {
-    // Animate in after a short delay
-    setTimeout(() => setIsVisible(true), 300);
-  }, []);
+export function CompanionCharacter({
+  size = "medium",
+  position = "auto",
+  className = "",
+  animated = true,
+  imageUrl = "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
+  alt = "Companion character",
+}: CompanionCharacterProps) {
+  // Size configurations
+  const getSizeClasses = () => {
+    if (typeof size === "number") {
+      return {
+        width: `${size}px`,
+        height: `${size}px`,
+      };
+    }
+
+    switch (size) {
+      case "small":
+        return "w-12 h-12 sm:w-14 sm:h-14";
+      case "large":
+        return "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
+      case "medium":
+      default:
+        return "w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20";
+    }
+  };
+
+  // Position configurations
+  const getPositionClasses = () => {
+    switch (position) {
+      case "near":
+        return "ml-2 sm:ml-3";
+      case "far":
+        return "ml-6 sm:ml-8 md:ml-10";
+      case "auto":
+      default:
+        return "ml-3 sm:ml-4 md:ml-6";
+    }
+  };
+
+  const sizeClasses = getSizeClasses();
+  const positionClasses = getPositionClasses();
 
   return (
     <div
-      className={`fixed left-4 bottom-20 z-20 transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"
-      }`}
-      style={{
-        animation: isVisible
-          ? "companionFloat 4s ease-in-out infinite"
-          : "none",
-      }}
+      className={`
+        flex-shrink-0 
+        ${typeof size === "number" ? "" : sizeClasses}
+        ${positionClasses}
+        ${animated ? "transition-all duration-300 hover:scale-105" : ""}
+        ${className}
+      `}
+      style={typeof size === "number" ? sizeClasses : undefined}
     >
-      {/* Companion Character - Blue creature */}
-      <div className="relative">
-        <svg
-          width="120"
-          height="140"
-          viewBox="0 0 120 140"
-          className="drop-shadow-lg"
-        >
-          {/* Main body */}
-          <ellipse
-            cx="60"
-            cy="90"
-            rx="45"
-            ry="40"
-            fill="#4F7CFF"
-            className="animate-pulse"
-          />
+      <img
+        src={imageUrl}
+        alt={alt}
+        className={`
+          w-full h-full object-contain rounded-full
+          ${animated ? "transition-transform duration-300" : ""}
+          filter drop-shadow-sm
+        `}
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
-          {/* Head */}
-          <ellipse cx="60" cy="55" rx="35" ry="30" fill="#6B8EFF" />
+// Companion wrapper for chat messages
+interface CompanionChatWrapperProps {
+  children: React.ReactNode;
+  showCompanion?: boolean;
+  companionProps?: CompanionCharacterProps;
+  alignment?: "left" | "right";
+}
 
-          {/* Left ear */}
-          <ellipse
-            cx="40"
-            cy="30"
-            rx="12"
-            ry="25"
-            fill="#4F7CFF"
-            transform="rotate(-20 40 30)"
-          />
-
-          {/* Right ear */}
-          <ellipse
-            cx="80"
-            cy="30"
-            rx="12"
-            ry="25"
-            fill="#4F7CFF"
-            transform="rotate(20 80 30)"
-          />
-
-          {/* Inner ears */}
-          <ellipse
-            cx="40"
-            cy="33"
-            rx="6"
-            ry="15"
-            fill="#8BA7FF"
-            transform="rotate(-20 40 33)"
-          />
-          <ellipse
-            cx="80"
-            cy="33"
-            rx="6"
-            ry="15"
-            fill="#8BA7FF"
-            transform="rotate(20 80 33)"
-          />
-
-          {/* Eyes */}
-          <circle cx="48" cy="50" r="8" fill="white" />
-          <circle cx="72" cy="50" r="8" fill="white" />
-          <circle cx="48" cy="50" r="5" fill="#2D3748" />
-          <circle cx="72" cy="50" r="5" fill="#2D3748" />
-
-          {/* Eye shine */}
-          <circle cx="50" cy="48" r="2" fill="white" opacity="0.8" />
-          <circle cx="74" cy="48" r="2" fill="white" opacity="0.8" />
-
-          {/* Nose */}
-          <ellipse cx="60" cy="62" rx="3" ry="2" fill="#3D5CFF" />
-
-          {/* Mouth */}
-          <path
-            d="M 54 68 Q 60 72 66 68"
-            stroke="#3D5CFF"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-
-          {/* Arms */}
-          <ellipse cx="25" cy="75" rx="12" ry="20" fill="#4F7CFF" />
-          <ellipse cx="95" cy="75" rx="12" ry="20" fill="#4F7CFF" />
-
-          {/* Legs */}
-          <ellipse cx="45" cy="115" rx="10" ry="18" fill="#4F7CFF" />
-          <ellipse cx="75" cy="115" rx="10" ry="18" fill="#4F7CFF" />
-
-          {/* Decorative spots */}
-          <circle cx="35" cy="85" r="4" fill="#6B8EFF" opacity="0.7" />
-          <circle cx="85" cy="70" r="3" fill="#8BA7FF" opacity="0.6" />
-          <circle cx="60" cy="100" r="5" fill="#8BA7FF" opacity="0.5" />
-        </svg>
-
-        {/* Floating sparkles around companion */}
-        <div className="absolute -top-2 -right-2 animate-bounce">
-          <span className="text-yellow-300 text-lg">✨</span>
+export function CompanionChatWrapper({
+  children,
+  showCompanion = true,
+  companionProps = {},
+  alignment = "left",
+}: CompanionChatWrapperProps) {
+  if (alignment === "right") {
+    return (
+      <div className="flex items-start gap-2 sm:gap-3 md:gap-4 justify-end">
+        <div className="flex-1 max-w-[80%] sm:max-w-[70%] md:max-w-[60%]">
+          {children}
         </div>
-        <div className="absolute top-1/2 -left-3 animate-pulse">
-          <span className="text-blue-300 text-sm">💫</span>
-        </div>
-        <div className="absolute bottom-4 -right-4 animate-ping">
-          <span className="text-purple-300 text-xs">⭐</span>
-        </div>
+        {showCompanion && (
+          <CompanionCharacter
+            {...companionProps}
+            className={`mr-3 sm:mr-4 md:mr-6 ${companionProps.className || ""}`}
+          />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+      {showCompanion && <CompanionCharacter {...companionProps} />}
+      <div className="flex-1 max-w-[80%] sm:max-w-[70%] md:max-w-[60%]">
+        {children}
       </div>
     </div>
   );
