@@ -65,6 +65,7 @@ export default function Index() {
   };
 
   const handleMenuItemClick = (itemAlt: string) => {
+    console.log("Menu item clicked:", itemAlt); // Debug log
     if (itemAlt === "Create") {
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
@@ -72,6 +73,7 @@ export default function Index() {
     } else if (itemAlt === "Imagine") {
       setShowMagicalCard(!showMagicalCard);
     } else if (itemAlt === "Mood") {
+      console.log("Mood button clicked - creating mood message"); // Debug log
       // Add mood selector message
       const moodMessage = {
         id: Date.now().toString(),
