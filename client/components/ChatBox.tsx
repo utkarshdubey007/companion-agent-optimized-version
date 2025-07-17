@@ -46,9 +46,15 @@ interface ChatBoxProps {
   className?: string;
 }
 
-export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProps) {
+export function ChatBox({
+  messages,
+  onSendMessage,
+  className = "",
+}: ChatBoxProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [animatingMessages, setAnimatingMessages] = useState<Set<string>>(new Set());
+  const [animatingMessages, setAnimatingMessages] = useState<Set<string>>(
+    new Set(),
+  );
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -62,9 +68,9 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
   useEffect(() => {
     const latestMessage = messages[messages.length - 1];
     if (latestMessage) {
-      setAnimatingMessages(prev => new Set([...prev, latestMessage.id]));
+      setAnimatingMessages((prev) => new Set([...prev, latestMessage.id]));
       setTimeout(() => {
-        setAnimatingMessages(prev => {
+        setAnimatingMessages((prev) => {
           const newSet = new Set(prev);
           newSet.delete(latestMessage.id);
           return newSet;
@@ -77,7 +83,7 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
     <div className="flex items-start gap-3 mb-4 animate-slide-in-left">
       {/* AI Avatar */}
       <div className="flex-shrink-0">
-        <div 
+        <div
           className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg"
           style={{
             animation: "avatarFloat 3s ease-in-out infinite",
@@ -86,13 +92,14 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
           <span className="text-white text-lg">🧙‍♂️</span>
         </div>
       </div>
-      
+
       {/* Message bubble */}
       <div className="max-w-sm">
-        <div 
+        <div
           className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl rounded-bl-lg p-4 shadow-lg border border-purple-100"
           style={{
-            boxShadow: "0 8px 25px rgba(147, 51, 234, 0.15), 0 0 0 1px rgba(147, 51, 234, 0.1)",
+            boxShadow:
+              "0 8px 25px rgba(147, 51, 234, 0.15), 0 0 0 1px rgba(147, 51, 234, 0.1)",
           }}
         >
           {message.header && (
@@ -110,7 +117,10 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
           )}
         </div>
         <div className="text-xs text-gray-400 mt-1 ml-2">
-          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {message.timestamp.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
       </div>
     </div>
@@ -120,7 +130,7 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
     <div className="flex items-start gap-3 mb-6 animate-slide-in-left">
       {/* AI Avatar */}
       <div className="flex-shrink-0">
-        <div 
+        <div
           className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg"
           style={{
             animation: "avatarFloat 3s ease-in-out infinite",
@@ -129,7 +139,7 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
           <span className="text-white text-lg">🧙‍♂️</span>
         </div>
       </div>
-      
+
       {/* Challenge card */}
       <div className="max-w-sm">
         <MagicalChallengeCard
@@ -143,7 +153,10 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
           isVisible={true}
         />
         <div className="text-xs text-gray-400 mt-2 ml-2">
-          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {message.timestamp.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
       </div>
     </div>
@@ -159,10 +172,13 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
           </p>
         </div>
         <div className="text-xs text-gray-400 mt-1 mr-2 text-right">
-          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {message.timestamp.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
       </div>
-      
+
       {/* Kid Avatar */}
       <div className="flex-shrink-0">
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-orange-400 flex items-center justify-center shadow-lg">
@@ -175,29 +191,33 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
   const renderKidFileMessage = (message: FileMessage) => {
     const getFileIcon = () => {
       switch (message.fileType) {
-        case "image": return <Image className="w-5 h-5" />;
-        case "video": return <Video className="w-5 h-5" />;
-        default: return <FileText className="w-5 h-5" />;
+        case "image":
+          return <Image className="w-5 h-5" />;
+        case "video":
+          return <Video className="w-5 h-5" />;
+        default:
+          return <FileText className="w-5 h-5" />;
       }
     };
 
-    const isMediaFile = message.fileType === "image" || message.fileType === "video";
+    const isMediaFile =
+      message.fileType === "image" || message.fileType === "video";
 
     return (
       <div className="flex items-start gap-3 mb-4 justify-end animate-slide-in-right">
         {/* File message bubble */}
         <div className="max-w-sm">
           <div className="bg-gradient-to-br from-green-400 to-blue-400 rounded-3xl rounded-br-lg p-4 shadow-lg">
-            {isMediaFile && message.fileUrl ? (
+            {isMediaFile && message.fileUrl && (
               <div className="mb-3">
                 {message.fileType === "image" ? (
-                  <img 
-                    src={message.fileUrl} 
+                  <img
+                    src={message.fileUrl}
                     alt={message.fileName}
                     className="w-full max-w-xs rounded-xl"
                   />
                 ) : (
-                  <video 
+                  <video
                     src={message.fileUrl}
                     controls
                     className="w-full max-w-xs rounded-xl"
@@ -205,19 +225,15 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
                 )}
               </div>
             )}
-            
+
             <div className="flex items-center gap-3">
-              <div className="text-white">
-                {getFileIcon()}
-              </div>
+              <div className="text-white">{getFileIcon()}</div>
               <div className="flex-1">
                 <p className="text-white text-sm font-medium">
                   {message.fileName}
                 </p>
                 {message.fileSize && (
-                  <p className="text-white/80 text-xs">
-                    {message.fileSize}
-                  </p>
+                  <p className="text-white/80 text-xs">{message.fileSize}</p>
                 )}
               </div>
               <Button
@@ -229,10 +245,13 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
             </div>
           </div>
           <div className="text-xs text-gray-400 mt-1 mr-2 text-right">
-            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {message.timestamp.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </div>
         </div>
-        
+
         {/* Kid Avatar */}
         <div className="flex-shrink-0">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-orange-400 flex items-center justify-center shadow-lg">
@@ -244,12 +263,9 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
   };
 
   const renderMessage = (message: Message) => {
-    const isAnimating = animatingMessages.has(message.id);
-    const animationClass = isAnimating ? (message.sender === "ai" ? "animate-slide-in-left" : "animate-slide-in-right") : "";
-
     switch (message.type) {
       case "text":
-        return message.sender === "ai" 
+        return message.sender === "ai"
           ? renderAITextMessage(message)
           : renderKidTextMessage(message);
       case "challenge":
@@ -272,14 +288,13 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
               Welcome to your magical adventure!
             </h3>
             <p className="text-gray-600 max-w-sm">
-              Your friendly AI companion is here to help you create, learn, and explore amazing things together!
+              Your friendly AI companion is here to help you create, learn, and
+              explore amazing things together!
             </p>
           </div>
         ) : (
           messages.map((message) => (
-            <div key={message.id}>
-              {renderMessage(message)}
-            </div>
+            <div key={message.id}>{renderMessage(message)}</div>
           ))
         )}
         <div ref={messagesEndRef} />
@@ -287,3 +302,6 @@ export function ChatBox({ messages, onSendMessage, className = "" }: ChatBoxProp
     </div>
   );
 }
+
+// Export the types for external use
+export type { Message, TextMessage, ChallengeMessage, FileMessage };
