@@ -307,7 +307,7 @@ export default function Index() {
           {/* Chat Container */}
           <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6">
             <ChatContainer
-              messages={[]}
+              messages={chatMessages}
               showMagicalCard={showMagicalCard}
               onAcceptChallenge={handleAcceptChallenge}
               onRegenerateChallenge={handleRegenerateChallenge}
@@ -321,10 +321,41 @@ export default function Index() {
             <div className="max-w-2xl mx-auto px-4 md:px-6">
               <ChatInputBox
                 placeholder="Ask me anything..."
-                onSendMessage={(message) =>
-                  console.log("Sending message:", message)
-                }
-                onAddAttachment={() => console.log("Add attachment clicked")}
+                onSendMessage={(message) => {
+                  // Add kid message
+                  const kidMessage = {
+                    id: Date.now().toString(),
+                    type: "text",
+                    sender: "Kid",
+                    content: message,
+                    timestamp: new Date(),
+                  };
+                  setChatMessages((prev) => [...prev, kidMessage]);
+
+                  // Simulate AI response after a delay
+                  setTimeout(() => {
+                    const aiMessage = {
+                      id: (Date.now() + 1).toString(),
+                      type: "text",
+                      sender: "AI",
+                      content:
+                        "That's a great idea! I love your creativity! ✨ Let me think of something fun we can do with that...",
+                      timestamp: new Date(),
+                    };
+                    setChatMessages((prev) => [...prev, aiMessage]);
+                  }, 1500);
+                }}
+                onAddAttachment={() => {
+                  // Simulate file upload
+                  const fileMessage = {
+                    id: Date.now().toString(),
+                    type: "text",
+                    sender: "Kid",
+                    content: "📎 I've uploaded a file for you to see!",
+                    timestamp: new Date(),
+                  };
+                  setChatMessages((prev) => [...prev, fileMessage]);
+                }}
               />
             </div>
           </div>
