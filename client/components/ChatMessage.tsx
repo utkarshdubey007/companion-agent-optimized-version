@@ -85,7 +85,7 @@ export function ChatMessage({
       {timestamp && (
         <div
           className={`text-xs text-gray-400 mt-1 ${
-            isAI ? "text-right mr-10" : "text-left ml-10"
+            isAI ? "text-left ml-10" : "text-right mr-10"
           }`}
         >
           {timestamp.toLocaleTimeString([], {
