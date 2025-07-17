@@ -35,6 +35,7 @@ export default function KidMediaMessage({
             <MultiImageUploadCard
               initialImages={images}
               onImagesUpdate={onImagesUpdate}
+              onShareCreation={onShareCreation}
               maxImages={6}
               className="mb-2"
             />
