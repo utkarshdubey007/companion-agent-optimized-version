@@ -194,7 +194,7 @@ export default function MultiImageUploadCard({
 
   return (
     <motion.div
-      className={`${themeStyles.background} rounded-2xl border ${themeStyles.border} shadow-2xl p-6 max-w-2xl mx-auto ${className}`}
+      className={`${themeStyles.background} rounded-xl border ${themeStyles.border} shadow-xl p-4 max-w-2xl mx-auto ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -204,7 +204,7 @@ export default function MultiImageUploadCard({
       onDrop={handleDrop}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div
             className={`p-2 rounded-xl ${isDarkTheme ? "bg-blue-500/20" : "bg-blue-50"}`}
