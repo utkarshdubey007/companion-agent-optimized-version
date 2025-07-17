@@ -16,7 +16,8 @@ interface ChatMessage {
     | "ai_challenge"
     | "system"
     | "media"
-    | "image_display";
+    | "image_display"
+    | "mood";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
@@ -31,6 +32,8 @@ interface ChatMessage {
   // For media messages
   images?: string[];
   onImagesUpdate?: (images: string[]) => void;
+  // For mood messages
+  onMoodSubmit?: (mood: any) => void;
 }
 
 interface ChatContainerProps {
