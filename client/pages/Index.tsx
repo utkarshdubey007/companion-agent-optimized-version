@@ -27,6 +27,11 @@ export default function Index() {
   const [showMagicalCard, setShowMagicalCard] = useState(false);
   const [showImageCarousel, setShowImageCarousel] = useState(false);
   const [carouselImages, setCarouselImages] = useState<string[]>([]);
+
+  const handleShowCarousel = (images: string[]) => {
+    setCarouselImages(images);
+    setShowImageCarousel(true);
+  };
   const [chatMessages, setChatMessages] = useState<any[]>([
     {
       id: "ai-welcome",
