@@ -29,7 +29,7 @@ export function ChatMessage({
     >
       <div
         className={`flex max-w-xs md:max-w-sm lg:max-w-md items-end gap-2 ${
-          isAI ? "flex-row-reverse" : "flex-row"
+          isAI ? "flex-row" : "flex-row-reverse"
         }`}
       >
         {/* Avatar */}
