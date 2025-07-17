@@ -108,15 +108,13 @@ export default function KidImageCarousel({
 
   // Responsive styles based on window width
   const getResponsiveStyles = () => {
-    const width = window.innerWidth;
-
-    if (width <= 480) {
+    if (windowWidth <= 480) {
       return {
         width: "calc(100vw - 16px)",
         maxWidth: "280px",
         right: "8px",
       };
-    } else if (width <= 768) {
+    } else if (windowWidth <= 768) {
       return {
         width: "calc(100vw - 32px)",
         maxWidth: "320px",
