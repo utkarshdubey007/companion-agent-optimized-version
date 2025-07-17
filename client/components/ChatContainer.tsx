@@ -170,19 +170,16 @@ export function ChatContainer({
         <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
 
-          {/* Magical Challenge Card - Show when Imagine is clicked */}
+          {/* Additional Compact Challenge Card - Show when Imagine is clicked */}
           {showMagicalCard && (
             <div className="flex justify-start w-full mb-6">
-              <div className="max-w-sm mr-auto">
-                <MagicalChallengeCard
+              <div className="mr-auto">
+                <CompactChallengeCard
                   title="Today's Magical Mission!"
                   description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
-                  mediaUrl="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800"
-                  mediaType="image"
                   onAccept={onAcceptChallenge}
                   onRegenerate={onRegenerateChallenge}
                   onChatMore={onChatMore}
-                  isVisible={true}
                 />
               </div>
             </div>
