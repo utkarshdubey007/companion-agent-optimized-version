@@ -148,11 +148,14 @@ export function ChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
-      {/* Scrollable Messages Container with proper spacing for companion */}
+      {/* Scrollable Messages Container */}
       <div
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto hide-scrollbar pb-20 px-4"
-        style={{ paddingLeft: "140px" }} // Space for companion character
+        className="flex-1 overflow-y-auto hide-scrollbar px-4 pb-24"
+        style={{
+          height: "100%",
+          maxHeight: "calc(100vh - 200px)",
+        }}
       >
         {/* Default Challenge Card - Always visible */}
         <div className="flex justify-start w-full mb-6 mt-4">
