@@ -7,7 +7,7 @@ import AIChallengeMessage from "./AIChallengeMessage";
 
 interface ChatMessage {
   id: string;
-  type: "text" | "challenge" | "system";
+  type: "text" | "challenge" | "ai_challenge" | "system";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
