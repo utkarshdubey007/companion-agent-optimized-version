@@ -46,6 +46,7 @@ interface ChatContainerProps {
   showImageCarousel?: boolean;
   carouselImages?: string[];
   onCloseCarousel?: () => void;
+  onShowCarousel?: (images: string[]) => void;
 }
 
 export function ChatContainer({
