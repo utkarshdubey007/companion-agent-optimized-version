@@ -217,20 +217,26 @@ export default function MultiImageUploadCard({
             <>
               <motion.button
                 onClick={scrollPrev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200"
-                whileHover={{ scale: 1.1 }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600/80 hover:bg-blue-500/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border-2 border-white/20"
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
+                }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronLeft className="w-5 h-5 text-white" />
+                <ChevronLeft className="w-6 h-6 text-white drop-shadow-sm" />
               </motion.button>
 
               <motion.button
                 onClick={scrollNext}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200"
-                whileHover={{ scale: 1.1 }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600/80 hover:bg-blue-500/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border-2 border-white/20"
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
+                }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronRight className="w-5 h-5 text-white" />
+                <ChevronRight className="w-6 h-6 text-white drop-shadow-sm" />
               </motion.button>
             </>
           )}
