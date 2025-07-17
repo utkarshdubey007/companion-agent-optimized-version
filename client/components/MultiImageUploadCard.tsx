@@ -14,6 +14,7 @@ import {
 interface MultiImageUploadCardProps {
   initialImages?: string[];
   onChange?: (images: string[]) => void;
+  onShareCreation?: (images: string[]) => void;
   maxImages?: number;
   className?: string;
   title?: string;
