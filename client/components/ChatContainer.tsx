@@ -33,6 +33,9 @@ interface ChatContainerProps {
   onAcceptChallenge?: () => void;
   onRegenerateChallenge?: () => void;
   onChatMore?: () => void;
+  showImageCarousel?: boolean;
+  carouselImages?: string[];
+  onCloseCarousel?: () => void;
 }
 
 export function ChatContainer({
