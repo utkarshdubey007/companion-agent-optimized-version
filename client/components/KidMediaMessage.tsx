@@ -28,13 +28,17 @@ export default function KidMediaMessage({
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          {/* Upload Card */}
-          <MultiImageUploadCard
-            initialImages={images}
-            onImagesUpdate={onImagesUpdate}
-            maxImages={6}
-            className="mb-2"
-          />
+          {/* Conditional rendering based on mode */}
+          {mode === "upload" ? (
+            <MultiImageUploadCard
+              initialImages={images}
+              onImagesUpdate={onImagesUpdate}
+              maxImages={6}
+              className="mb-2"
+            />
+          ) : (
+            <CompactKidImageCard images={images} className="mb-2" />
+          )}
 
           {/* Timestamp */}
           <div className="text-xs text-gray-400 mt-1 mr-2 text-right">
