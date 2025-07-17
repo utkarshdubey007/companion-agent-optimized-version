@@ -29,8 +29,28 @@ export default function Index() {
   const [carouselImages, setCarouselImages] = useState<string[]>([]);
 
   const handleShowCarousel = (images: string[]) => {
-    setCarouselImages(images);
-    setShowImageCarousel(true);
+    // Create a carousel message in the chat
+    const carouselMessage = {
+      id: Date.now().toString(),
+      type: "carousel" as const,
+      sender: "Kid" as const,
+      content: `Shared my creation gallery! 🎨`,
+      timestamp: new Date(),
+      images: images,
+    };
+    setChatMessages((prev) => [...prev, carouselMessage]);
+
+    // Add AI response
+    setTimeout(() => {
+      const aiResponse = {
+        id: (Date.now() + 1).toString(),
+        type: "text" as const,
+        sender: "AI" as const,
+        content: `Wow! What a beautiful collection! 🌟 I can see you've put so much creativity and heart into these. Each image tells its own special story! Would you like to tell me more about your favorite one? ✨`,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+    }, 1500);
   };
   const [chatMessages, setChatMessages] = useState<any[]>([
     {
