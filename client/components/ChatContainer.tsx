@@ -199,6 +199,15 @@ export function ChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
+      {/* Image Carousel Overlay */}
+      {showImageCarousel && carouselImages.length > 0 && (
+        <KidImageCarousel
+          images={carouselImages}
+          onClose={onCloseCarousel}
+          showCloseButton={true}
+        />
+      )}
+
       {/* Scrollable Messages Container */}
       <div
         ref={chatContainerRef}
