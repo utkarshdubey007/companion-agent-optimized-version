@@ -141,7 +141,6 @@ export function ChatContainer({
           timestamp={message.timestamp}
           onReply={() => console.log("Reply to AI message")}
           onRegenerate={() => console.log("Regenerate AI message")}
-          onLike={() => console.log("Like AI message")}
         />
       );
     }
