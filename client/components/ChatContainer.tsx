@@ -149,8 +149,8 @@ export function ChatContainer({
         ref={chatContainerRef}
         className="flex-1 overflow-y-auto hide-scrollbar px-4 pb-24"
         style={{
-          height: "100%",
-          maxHeight: "calc(100vh - 200px)",
+          minHeight: "0",
+          overflowY: "auto",
         }}
       >
         {/* Default Challenge Card - Always visible */}
