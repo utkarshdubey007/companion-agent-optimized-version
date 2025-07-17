@@ -290,30 +290,30 @@ export default function MultiImageUploadCard({
               <>
                 <motion.button
                   onClick={scrollPrev}
-                  className={`absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border`}
+                  className={`absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-md border`}
                   whileHover={{
                     scale: 1.1,
                     boxShadow: isDarkTheme
-                      ? "0 8px 25px rgba(59, 130, 246, 0.4)"
-                      : "0 8px 25px rgba(59, 130, 246, 0.3)",
+                      ? "0 6px 20px rgba(59, 130, 246, 0.4)"
+                      : "0 6px 20px rgba(59, 130, 246, 0.3)",
                   }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <ChevronLeft className="w-6 h-6 text-white" />
+                  <ChevronLeft className="w-5 h-5 text-white" />
                 </motion.button>
 
                 <motion.button
                   onClick={scrollNext}
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border`}
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-md border`}
                   whileHover={{
                     scale: 1.1,
                     boxShadow: isDarkTheme
-                      ? "0 8px 25px rgba(59, 130, 246, 0.4)"
-                      : "0 8px 25px rgba(59, 130, 246, 0.3)",
+                      ? "0 6px 20px rgba(59, 130, 246, 0.4)"
+                      : "0 6px 20px rgba(59, 130, 246, 0.3)",
                   }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-5 h-5 text-white" />
                 </motion.button>
               </>
             )}
