@@ -376,7 +376,7 @@ export default function Index() {
 
           {/* Magical Challenge Card - Show when Imagine is clicked */}
           {showMagicalCard && (
-            <div className="mt-8 md:mt-12">
+            <div className="mt-8 md:mt-12 flex justify-center">
               <MagicalChallengeCard
                 title="Today's Magical Mission!"
                 description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
@@ -387,13 +387,6 @@ export default function Index() {
                 onChatMore={handleChatMore}
                 isVisible={showMagicalCard}
               />
-            </div>
-          )}
-
-          {/* Chat Interface - Show when Play is clicked */}
-          {showChatInterface && (
-            <div className="mt-8 md:mt-12 w-full max-w-md mx-auto h-96">
-              <ChatInterface isVisible={showChatInterface} />
             </div>
           )}
 
