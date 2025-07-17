@@ -265,8 +265,8 @@ export default function MultiImageUploadCard({
         <motion.div
           className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-colors duration-200 ${
             isDragActive
-              ? "border-blue-400 bg-blue-400/10"
-              : "border-white/30 hover:border-white/50"
+              ? "border-blue-400 bg-blue-400/20"
+              : "border-white/40 hover:border-white/60 bg-slate-700/30"
           }`}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
