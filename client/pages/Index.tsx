@@ -77,8 +77,8 @@ export default function Index() {
       // Add mood selector message
       const moodMessage = {
         id: Date.now().toString(),
-        type: "mood",
-        sender: "Kid",
+        type: "mood" as const,
+        sender: "Kid" as const,
         content: "",
         timestamp: new Date(),
         onMoodSubmit: (mood: any) => {
