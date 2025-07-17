@@ -279,127 +279,31 @@ export default function Index() {
           onMenuItemClick={handleMenuItemClick}
         />
 
-        {/* Center Content Area */}
-        <div className="flex-1 relative flex flex-col items-center justify-center px-4">
-          {/* Dialogue with Lexicb Badge */}
-          <div className="absolute top-8 md:top-12 bg-orange-accent text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium">
-            Dialogue with Lexicb
+        {/* Center Content Area - Chat Interface */}
+        <div className="flex-1 relative flex flex-col">
+          {/* Chat Container */}
+          <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6">
+            <ChatContainer
+              messages={[]}
+              showMagicalCard={showMagicalCard}
+              onAcceptChallenge={handleAcceptChallenge}
+              onRegenerateChallenge={handleRegenerateChallenge}
+              onChatMore={handleChatMore}
+              className="flex-1"
+            />
           </div>
 
-          {/* Chat Bubble */}
-          <div className="absolute top-20 md:top-32 left-1/2 transform -translate-x-1/2 max-w-xs md:max-w-md px-4">
-            <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm relative">
-              <p className="text-xs md:text-sm leading-relaxed">
-                Let's make some fun art together. What if the world was a
-                peaceful place, let's start creating!
-              </p>
-            </div>
-          </div>
-
-          {/* Green Bunny Character */}
-          <div className="mt-16 md:mt-24">
-            <svg
-              width="80"
-              height="80"
-              viewBox="0 0 120 120"
-              className="drop-shadow-lg md:w-[120px] md:h-[120px]"
-            >
-              <g>
-                {/* Bunny body */}
-                <ellipse cx="60" cy="75" rx="35" ry="30" fill="#00ff7f" />
-
-                {/* Bunny head */}
-                <circle cx="60" cy="45" r="25" fill="#00ff7f" />
-
-                {/* Bunny ears */}
-                <ellipse
-                  cx="50"
-                  cy="25"
-                  rx="8"
-                  ry="20"
-                  fill="#00ff7f"
-                  transform="rotate(-20 50 25)"
-                />
-                <ellipse
-                  cx="70"
-                  cy="25"
-                  rx="8"
-                  ry="20"
-                  fill="#00ff7f"
-                  transform="rotate(20 70 25)"
-                />
-
-                {/* Inner ears */}
-                <ellipse
-                  cx="50"
-                  cy="28"
-                  rx="4"
-                  ry="12"
-                  fill="#00d65f"
-                  transform="rotate(-20 50 28)"
-                />
-                <ellipse
-                  cx="70"
-                  cy="28"
-                  rx="4"
-                  ry="12"
-                  fill="#00d65f"
-                  transform="rotate(20 70 28)"
-                />
-
-                {/* Eyes */}
-                <circle cx="52" cy="42" r="4" fill="white" />
-                <circle cx="68" cy="42" r="4" fill="white" />
-                <circle cx="52" cy="42" r="2" fill="black" />
-                <circle cx="68" cy="42" r="2" fill="black" />
-
-                {/* Nose */}
-                <ellipse cx="60" cy="50" rx="2" ry="1" fill="#00d65f" />
-
-                {/* Mouth */}
-                <path
-                  d="M 58 53 Q 60 55 62 53"
-                  stroke="#00d65f"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-
-                {/* Arms */}
-                <ellipse cx="35" cy="65" rx="10" ry="18" fill="#00ff7f" />
-                <ellipse cx="85" cy="65" rx="10" ry="18" fill="#00ff7f" />
-
-                {/* Legs */}
-                <ellipse cx="48" cy="95" rx="8" ry="15" fill="#00ff7f" />
-                <ellipse cx="72" cy="95" rx="8" ry="15" fill="#00ff7f" />
-              </g>
-            </svg>
-          </div>
-
-          {/* Magical Challenge Card - Show when Imagine is clicked */}
-          {showMagicalCard && (
-            <div className="mt-8 md:mt-12 flex justify-center">
-              <MagicalChallengeCard
-                title="Today's Magical Mission!"
-                description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
-                mediaUrl="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800"
-                mediaType="image"
-                onAccept={handleAcceptChallenge}
-                onRegenerate={handleRegenerateChallenge}
-                onChatMore={handleChatMore}
-                isVisible={showMagicalCard}
+          {/* Fixed Input Box at Bottom */}
+          <div className="flex-shrink-0 sticky bottom-0 bg-gradient-to-t from-space-bg via-space-bg/90 to-transparent pt-6 pb-4">
+            <div className="max-w-2xl mx-auto px-4 md:px-6">
+              <ChatInputBox
+                placeholder="Ask me anything..."
+                onSendMessage={(message) =>
+                  console.log("Sending message:", message)
+                }
+                onAddAttachment={() => console.log("Add attachment clicked")}
               />
             </div>
-          )}
-
-          {/* Bottom Input Section */}
-          <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
-            <ChatInputBox
-              placeholder="Ask me anything..."
-              onSendMessage={(message) =>
-                console.log("Sending message:", message)
-              }
-              onAddAttachment={() => console.log("Add attachment clicked")}
-            />
           </div>
         </div>
       </div>
