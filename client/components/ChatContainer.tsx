@@ -1,0 +1,202 @@
+import { useState, useRef, useEffect, ReactNode } from "react";
+import { MagicalChallengeCard } from "./MagicalChallengeCard";
+import { ChatMessage } from "./ChatMessage";
+
+interface ChatMessage {
+  id: string;
+  type: "text" | "challenge" | "system";
+  sender: "AI" | "Kid";
+  content?: string;
+  timestamp: Date;
+  // For challenge messages
+  title?: string;
+  description?: string;
+  mediaUrl?: string;
+  mediaType?: "image" | "video";
+  onAccept?: () => void;
+  onRegenerate?: () => void;
+  onChatMore?: () => void;
+}
+
+interface ChatContainerProps {
+  messages: ChatMessage[];
+  className?: string;
+  showMagicalCard?: boolean;
+  onAcceptChallenge?: () => void;
+  onRegenerateChallenge?: () => void;
+  onChatMore?: () => void;
+}
+
+export function ChatContainer({
+  messages,
+  className = "",
+  showMagicalCard = false,
+  onAcceptChallenge,
+  onRegenerateChallenge,
+  onChatMore,
+}: ChatContainerProps) {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to bottom when new messages arrive
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, showMagicalCard]);
+
+  // Initial messages for the chat
+  const initialMessages: ChatMessage[] = [
+    {
+      id: "welcome-1",
+      type: "system",
+      sender: "AI",
+      content:
+        "Let's make some fun art together. What if the world was a peaceful place, let's start creating!",
+      timestamp: new Date(Date.now() - 300000),
+    },
+  ];
+
+  const allMessages = messages.length > 0 ? messages : initialMessages;
+
+  const renderMessage = (message: ChatMessage) => {
+    if (message.type === "challenge") {
+      return (
+        <div
+          key={message.id}
+          className={`flex w-full mb-6 ${
+            message.sender === "AI" ? "justify-start" : "justify-end"
+          }`}
+        >
+          <div
+            className={`max-w-sm ${message.sender === "AI" ? "mr-auto" : "ml-auto"}`}
+          >
+            <MagicalChallengeCard
+              title={message.title || "Magical Challenge!"}
+              description={
+                message.description ||
+                "Let's create something amazing together!"
+              }
+              mediaUrl={message.mediaUrl}
+              mediaType={message.mediaType}
+              onAccept={message.onAccept}
+              onRegenerate={message.onRegenerate}
+              onChatMore={message.onChatMore}
+              isVisible={true}
+            />
+            <div
+              className={`text-xs text-gray-400 mt-2 ${
+                message.sender === "AI" ? "text-left ml-2" : "text-right mr-2"
+              }`}
+            >
+              {message.timestamp.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (message.type === "system") {
+      return (
+        <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI Avatar for system messages */}
+          <div className="flex items-start gap-3 max-w-sm">
+            <div className="flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
+                <span className="text-white text-lg">🐰</span>
+              </div>
+            </div>
+
+            {/* Message bubble */}
+            <div className="max-w-xs">
+              <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
+                <p className="text-xs md:text-sm leading-relaxed">
+                  {message.content}
+                </p>
+              </div>
+              <div className="text-xs text-gray-400 mt-1 ml-2">
+                {message.timestamp.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Regular text messages
+    return (
+      <ChatMessage
+        key={message.id}
+        role={message.sender}
+        content={message.content || ""}
+        timestamp={message.timestamp}
+      />
+    );
+  };
+
+  return (
+    <div className={`flex flex-col h-full relative ${className}`}>
+      {/* Chat Header */}
+      <div className="flex-shrink-0 bg-orange-accent text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 mx-auto">
+        Dialogue with Lexicb
+      </div>
+
+      {/* Scrollable Messages Container */}
+      <div
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto pb-24 px-4"
+        style={{
+          /* Hide scrollbars */
+          scrollbarWidth: "none" /* Firefox */,
+          msOverflowStyle: "none" /* IE and Edge */,
+        }}
+      >
+        {/* Hide webkit scrollbars */}
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+
+        {/* Messages */}
+        <div className="space-y-4">
+          {allMessages.map((message) => renderMessage(message))}
+
+          {/* Magical Challenge Card - Show when Imagine is clicked */}
+          {showMagicalCard && (
+            <div className="flex justify-start w-full mb-6">
+              <div className="max-w-sm mr-auto">
+                <MagicalChallengeCard
+                  title="Today's Magical Mission!"
+                  description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
+                  mediaUrl="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800"
+                  mediaType="image"
+                  onAccept={onAcceptChallenge}
+                  onRegenerate={onRegenerateChallenge}
+                  onChatMore={onChatMore}
+                  isVisible={true}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Scroll anchor */}
+        <div ref={messagesEndRef} />
+      </div>
+    </div>
+  );
+}
+
+export type { ChatMessage };
