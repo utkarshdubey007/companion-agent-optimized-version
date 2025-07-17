@@ -23,6 +23,7 @@ export default function Index() {
   const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(false);
   const [showAcceptedChallenges, setShowAcceptedChallenges] = useState(false);
   const [showCreationsPanel, setShowCreationsPanel] = useState(false);
+  const [showMagicalCard, setShowMagicalCard] = useState(false);
 
   // Auto-expand on page load - top first, then bottom
   useEffect(() => {
