@@ -6,6 +6,7 @@ import { AITextMessage } from "./AITextMessage";
 import AIChallengeMessage from "./AIChallengeMessage";
 import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
+import MoodMessage from "./MoodMessage";
 
 interface ChatMessage {
   id: string;
