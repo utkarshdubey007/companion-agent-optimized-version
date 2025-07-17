@@ -68,6 +68,24 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   const renderMessage = (message: ChatMessage) => {
+    if (message.type === "ai_challenge") {
+      return (
+        <AIChallengeMessage
+          key={message.id}
+          title={message.title || "Today's Challenge!"}
+          description={
+            message.description ||
+            "Help the forest creatures clean their magical village!"
+          }
+          mediaUrl={message.mediaUrl}
+          mediaType={message.mediaType}
+          onAccept={message.onAccept}
+          onRegenerate={message.onRegenerate}
+          onChatMore={message.onChatMore}
+        />
+      );
+    }
+
     if (message.type === "challenge") {
       return (
         <div
