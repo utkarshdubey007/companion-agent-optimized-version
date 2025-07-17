@@ -8,6 +8,7 @@ interface KidMediaMessageProps {
   onImagesUpdate?: (images: string[]) => void;
   timestamp?: Date;
   className?: string;
+  mode?: "upload" | "display"; // New prop to control display mode
 }
 
 export default function KidMediaMessage({
