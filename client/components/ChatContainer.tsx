@@ -134,19 +134,30 @@ export function ChatContainer({
 
     if (message.type === "ai_challenge") {
       return (
-        <AIChallengeMessage
+        <CompanionChatMessage
           key={message.id}
-          title={message.title || "Today's Challenge!"}
-          description={
-            message.description ||
-            "Help the forest creatures clean their magical village!"
-          }
-          mediaUrl={message.mediaUrl}
-          mediaType={message.mediaType}
-          onAccept={message.onAccept}
-          onRegenerate={message.onRegenerate}
-          onChatMore={message.onChatMore}
-        />
+          showCompanion={true}
+          alignment="left"
+          centerCompanion={true}
+          companionProps={{
+            size: "proportional",
+            animated: true,
+            maxWidthPercent: 12,
+          }}
+        >
+          <AIChallengeMessage
+            title={message.title || "Today's Challenge!"}
+            description={
+              message.description ||
+              "Help the forest creatures clean their magical village!"
+            }
+            mediaUrl={message.mediaUrl}
+            mediaType={message.mediaType}
+            onAccept={message.onAccept}
+            onRegenerate={message.onRegenerate}
+            onChatMore={message.onChatMore}
+          />
+        </CompanionChatMessage>
       );
     }
 
