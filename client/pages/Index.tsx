@@ -65,18 +65,40 @@ export default function Index() {
 
   const handleAcceptChallenge = () => {
     console.log("Challenge accepted! 🎉");
+    // Add kid message accepting the challenge
+    const newMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content:
+        "Yes! I accept this challenge! Let's create something amazing! 🎉",
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, newMessage]);
     setShowMagicalCard(false);
-    // You can add more logic here, like navigating to a challenge page
   };
 
   const handleRegenerateChallenge = () => {
     console.log("Generating new challenge... ✨");
-    // Add logic to generate a new challenge
+    setShowMagicalCard(false);
+    // Simulate a new challenge appearing
+    setTimeout(() => {
+      setShowMagicalCard(true);
+    }, 500);
   };
 
   const handleChatMore = () => {
     console.log("Opening chat... 💬");
-    // Add logic to open chat interface
+    // Add AI message for more info
+    const newMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "AI",
+      content:
+        "I'm here to help you with this challenge! What would you like to know more about? I can give you tips, ideas, or just chat about what you're thinking! ✨",
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, newMessage]);
   };
 
   // Menu items data for easier mapping
