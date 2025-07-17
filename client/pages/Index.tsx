@@ -374,6 +374,22 @@ export default function Index() {
             </svg>
           </div>
 
+          {/* Magical Challenge Card - Show when Imagine is clicked */}
+          {showMagicalCard && (
+            <div className="mt-8 md:mt-12">
+              <MagicalChallengeCard
+                title="Today's Magical Mission!"
+                description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
+                mediaUrl="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800"
+                mediaType="image"
+                onAccept={handleAcceptChallenge}
+                onRegenerate={handleRegenerateChallenge}
+                onChatMore={handleChatMore}
+                isVisible={showMagicalCard}
+              />
+            </div>
+          )}
+
           {/* Bottom Input Section */}
           <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
             <ChatInputBox
