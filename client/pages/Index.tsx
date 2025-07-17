@@ -25,7 +25,16 @@ export default function Index() {
   const [showAcceptedChallenges, setShowAcceptedChallenges] = useState(false);
   const [showCreationsPanel, setShowCreationsPanel] = useState(false);
   const [showMagicalCard, setShowMagicalCard] = useState(false);
-  const [chatMessages, setChatMessages] = useState<any[]>([]);
+  const [chatMessages, setChatMessages] = useState<any[]>([
+    {
+      id: "ai-welcome",
+      type: "text",
+      sender: "AI",
+      content:
+        "Hello there! 👋 I'm your creative AI companion, ready to help you explore amazing ideas and bring your imagination to life! What would you like to create today? 🎨✨",
+      timestamp: new Date(Date.now() - 300000),
+    },
+  ]);
 
   // Auto-expand on page load - top first, then bottom
   useEffect(() => {
