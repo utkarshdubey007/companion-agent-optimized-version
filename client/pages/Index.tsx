@@ -25,6 +25,8 @@ export default function Index() {
   const [showAcceptedChallenges, setShowAcceptedChallenges] = useState(false);
   const [showCreationsPanel, setShowCreationsPanel] = useState(false);
   const [showMagicalCard, setShowMagicalCard] = useState(false);
+  const [showImageCarousel, setShowImageCarousel] = useState(false);
+  const [carouselImages, setCarouselImages] = useState<string[]>([]);
   const [chatMessages, setChatMessages] = useState<any[]>([
     {
       id: "ai-welcome",
