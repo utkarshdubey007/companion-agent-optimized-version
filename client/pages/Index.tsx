@@ -31,7 +31,7 @@ export default function Index() {
       type: "text",
       sender: "AI",
       content:
-        "Hello there! 👋 I'm your creative AI companion, ready to help you explore amazing ideas and bring your imagination to life! What would you like to create today? 🎨✨",
+        "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?",
       timestamp: new Date(Date.now() - 300000),
     },
   ]);
