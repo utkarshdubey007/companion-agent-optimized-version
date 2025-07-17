@@ -5,7 +5,7 @@ import { Check, Heart } from "lucide-react";
 interface Mood {
   id: string;
   name: string;
-  emoji: string;
+  imageUrl: string;
   color: string;
   bgColor: string;
   description: string;
@@ -19,67 +19,75 @@ interface MoodSelectorProps {
 
 const moods: Mood[] = [
   {
+    id: "angry",
+    name: "Angry",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff3cb3591e2a347f58a4d5dca3a13351c?format=webp&width=800",
+    color: "text-red-200",
+    bgColor: "from-red-400 to-orange-500",
+    description: "I feel frustrated or mad",
+  },
+  {
     id: "happy",
     name: "Happy",
-    emoji: "😊",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F1c6fdb5e02c84fe893f529ad90437063?format=webp&width=800",
+    color: "text-pink-200",
+    bgColor: "from-pink-400 to-rose-400",
+    description: "I feel joyful and bright!",
+  },
+  {
+    id: "surprised",
+    name: "Surprised",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F3abc6628aec348ca8e062de7621d55f9?format=webp&width=800",
     color: "text-yellow-200",
     bgColor: "from-yellow-400 to-orange-400",
-    description: "I feel joyful and bright!",
+    description: "Something unexpected happened!",
   },
   {
     id: "excited",
     name: "Excited",
-    emoji: "🤩",
-    color: "text-pink-200",
-    bgColor: "from-pink-400 to-purple-500",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fa25ed776d6464c63aec93966911c95c4?format=webp&width=800",
+    color: "text-green-200",
+    bgColor: "from-green-400 to-emerald-500",
     description: "I'm bursting with energy!",
   },
   {
-    id: "calm",
-    name: "Calm",
-    emoji: "😌",
-    color: "text-green-200",
-    bgColor: "from-green-400 to-teal-500",
-    description: "I feel peaceful and relaxed",
-  },
-  {
-    id: "nervous",
-    name: "Nervous",
-    emoji: "😰",
-    color: "text-orange-200",
-    bgColor: "from-orange-400 to-red-400",
-    description: "I feel a bit worried",
-  },
-  {
-    id: "tired",
-    name: "Tired",
-    emoji: "😴",
-    color: "text-indigo-200",
-    bgColor: "from-indigo-400 to-purple-600",
-    description: "I need some rest",
+    id: "neutral",
+    name: "Neutral",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F8e8ffac16f0a4646983afbc85070eab6?format=webp&width=800",
+    color: "text-gray-200",
+    bgColor: "from-gray-400 to-slate-500",
+    description: "I feel okay, nothing special",
   },
   {
     id: "sad",
     name: "Sad",
-    emoji: "😢",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F644ed687041142b1b691d3c35be3faac?format=webp&width=800",
     color: "text-blue-200",
     bgColor: "from-blue-400 to-blue-600",
     description: "I feel a little down",
   },
   {
-    id: "bored",
-    name: "Bored",
-    emoji: "😑",
-    color: "text-gray-200",
-    bgColor: "from-gray-400 to-gray-600",
-    description: "I want something fun to do",
+    id: "calm",
+    name: "Calm",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9b3911846f5341d7aaee4b8f3bcb0f85?format=webp&width=800",
+    color: "text-teal-200",
+    bgColor: "from-teal-400 to-cyan-500",
+    description: "I feel peaceful and relaxed",
   },
   {
     id: "worried",
     name: "Worried",
-    emoji: "😟",
-    color: "text-amber-200",
-    bgColor: "from-amber-400 to-yellow-500",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F77bf7cdabcfb4d41af9ba5c34bff080f?format=webp&width=800",
+    color: "text-orange-200",
+    bgColor: "from-orange-400 to-amber-500",
     description: "Something is on my mind",
   },
 ];
