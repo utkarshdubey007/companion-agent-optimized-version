@@ -362,15 +362,37 @@ export default function Index() {
                   }, 1500);
                 }}
                 onAddAttachment={() => {
-                  // Simulate file upload
-                  const fileMessage = {
+                  // Create a media upload message
+                  const mediaMessage = {
                     id: Date.now().toString(),
-                    type: "text",
+                    type: "media",
                     sender: "Kid",
-                    content: "📎 I've uploaded a file for you to see!",
+                    content: "",
                     timestamp: new Date(),
+                    images: [],
+                    onImagesUpdate: (images: string[]) => {
+                      setChatMessages((prev) =>
+                        prev.map((msg) =>
+                          msg.id === mediaMessage.id ? { ...msg, images } : msg,
+                        ),
+                      );
+
+                      // Add AI response when images are uploaded
+                      if (images.length > 0) {
+                        setTimeout(() => {
+                          const aiResponse = {
+                            id: (Date.now() + 1).toString(),
+                            type: "text",
+                            sender: "AI",
+                            content: `Wow! ${images.length === 1 ? "That's a beautiful picture" : `Those are ${images.length} amazing pictures`}! 🌟 I love your creativity! Tell me more about ${images.length === 1 ? "it" : "them"} - what inspired you to create ${images.length === 1 ? "this" : "these"}? ✨`,
+                            timestamp: new Date(),
+                          };
+                          setChatMessages((prev) => [...prev, aiResponse]);
+                        }, 1500);
+                      }
+                    },
                   };
-                  setChatMessages((prev) => [...prev, fileMessage]);
+                  setChatMessages((prev) => [...prev, mediaMessage]);
                 }}
               />
             </div>
