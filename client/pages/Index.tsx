@@ -104,7 +104,7 @@ export default function Index() {
       type: "text",
       sender: "AI",
       content:
-        "I'm here to help you with this challenge! What would you like to know more about? I can give you tips, ideas, or just chat about what you're thinking! ✨",
+        "I'm here to help you with this challenge! 🎯\n\nWhat would you like to know more about? I can:\n• Give you creative tips and ideas 💡\n• Help you plan your project step by step 📋\n• Chat about what you're thinking 💭\n• Suggest fun variations to try 🌟\n\nJust let me know how I can assist you! ✨",
       timestamp: new Date(),
     };
     setChatMessages((prev) => [...prev, newMessage]);
