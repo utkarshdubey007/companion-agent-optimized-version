@@ -380,6 +380,39 @@
   }
 }
 
+@keyframes sparkleFormation {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cardMaterialization {
+  0% {
+    transform: perspective(1000px) rotateX(-30deg) rotateY(-30deg) scale(0.7);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  50% {
+    transform: perspective(1000px) rotateX(-15deg) rotateY(-15deg) scale(0.9);
+    opacity: 0.7;
+    border-radius: 40%;
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
+    opacity: 1;
+    border-radius: 1rem;
+  }
+}
+
 @keyframes magicalGlow {
   0%,
   100% {
