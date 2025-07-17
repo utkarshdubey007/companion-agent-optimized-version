@@ -56,7 +56,25 @@ export default function Index() {
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
       setShowCreationsPanel(!showCreationsPanel);
+    } else if (itemAlt === "Imagine") {
+      setShowMagicalCard(!showMagicalCard);
     }
+  };
+
+  const handleAcceptChallenge = () => {
+    console.log("Challenge accepted! 🎉");
+    setShowMagicalCard(false);
+    // You can add more logic here, like navigating to a challenge page
+  };
+
+  const handleRegenerateChallenge = () => {
+    console.log("Generating new challenge... ✨");
+    // Add logic to generate a new challenge
+  };
+
+  const handleChatMore = () => {
+    console.log("Opening chat... 💬");
+    // Add logic to open chat interface
   };
 
   // Menu items data for easier mapping
