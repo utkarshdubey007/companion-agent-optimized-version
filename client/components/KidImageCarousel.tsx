@@ -30,8 +30,8 @@ export default function KidImageCarousel({
       setWindowWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Auto-detect theme
@@ -108,49 +108,27 @@ export default function KidImageCarousel({
     },
   };
 
-  // Responsive styles based on window width
-  const getResponsiveStyles = () => {
-    if (windowWidth <= 480) {
-      return {
-        width: "calc(100vw - 16px)",
-        maxWidth: "280px",
-        right: "8px",
-      };
-    } else if (windowWidth <= 768) {
-      return {
-        width: "calc(100vw - 32px)",
-        maxWidth: "320px",
-        right: "16px",
-      };
-    } else {
-      return {
-        width: "280px",
-        maxWidth: "90vw",
-        right: "16px",
-      };
-    }
-  };
-
-  const responsiveStyles = getResponsiveStyles();
-
-  return (
-    <motion.div
-      className={className}
-      style={{
-        position: "fixed",
-        top: "50%",
-        transform: "translateY(-50%)",
-        zIndex: 30,
-        borderRadius: "16px",
-        overflow: "hidden",
-        ...carouselStyles.container,
-        ...responsiveStyles,
-      }}
-      initial={{ opacity: 0, x: 50, scale: 0.95 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      exit={{ opacity: 0, x: 50, scale: 0.95 }}
-      transition={{ duration: 0.4, ease: "backOut" }}
-    >
+        return (
+    <div className={`flex justify-end mb-4 ${className}`}>
+      <div className="flex items-end gap-3 max-w-md">
+        {/* Message Content */}
+        <motion.div
+          className="max-w-sm"
+          initial={{ opacity: 0, x: 20, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          {/* Carousel Card */}
+          <motion.div
+            style={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              ...carouselStyles.container,
+            }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: "backOut" }}
+          >
       {/* Compact Header */}
       <div
         style={{
@@ -356,6 +334,7 @@ export default function KidImageCarousel({
           ))}
         </div>
       )}
-    </motion.div>
+
+          </motion.div>
   );
 }
