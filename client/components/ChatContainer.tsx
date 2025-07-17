@@ -5,6 +5,7 @@ import { CompactChallengeCard } from "./CompactChallengeCard";
 import { AITextMessage } from "./AITextMessage";
 import AIChallengeMessage from "./AIChallengeMessage";
 import KidMediaMessage from "./KidMediaMessage";
+import KidImageCarousel from "./KidImageCarousel";
 
 interface ChatMessage {
   id: string;
