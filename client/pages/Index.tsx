@@ -393,6 +393,7 @@ export default function Index() {
               showImageCarousel={showImageCarousel}
               carouselImages={carouselImages}
               onCloseCarousel={() => setShowImageCarousel(false)}
+              onShowCarousel={handleShowCarousel}
               className="flex-1 min-h-0"
             />
           </div>
