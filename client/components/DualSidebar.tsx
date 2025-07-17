@@ -35,47 +35,37 @@ export function DualSidebar({
       {/* Container with zero margin, aligned to left edge */}
       <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden">
         {/* Top Sidebar Section - Auto height, no flex-1 */}
-        <div className="relative">
-          {/* Top Section Toggle Button - Connected to left edge */}
-          <div
-            className="absolute z-20 transition-all duration-700"
+        <div className="flex items-center">
+          {/* Top Section Toggle Button - Always visible at left edge */}
+          <Button
+            onClick={toggleTopSidebar}
+            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
             style={{
-              right: topSidebarCollapsed ? "-20px" : "-24px",
-              top: "50%",
-              transform: "translateY(-50%)",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <Button
-              onClick={toggleTopSidebar}
-              size="sm"
-              className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/20 p-0 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              style={{
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-              }}
-            >
-              {topSidebarCollapsed ? (
-                <ChevronRight className="w-5 h-5 text-white" />
-              ) : (
-                <ChevronLeft className="w-5 h-5 text-white" />
-              )}
-            </Button>
-          </div>
+            {topSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white" />
+            )}
+          </Button>
 
           {/* Top Section Content - Content-based height */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
-              topSidebarCollapsed ? "w-0 opacity-0 h-0" : "w-20 opacity-100"
+              topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
             }`}
           >
             <div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg flex flex-col p-4"
+              className="bg-[#1C2051] rounded-r-[20px] border border-white/20 border-l-0 shadow-2xl flex flex-col p-4"
               style={{
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+                boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(60vh)",
               }}
             >
-              {/* Menu Items - Content-based sizing */}
+              {/* Menu Items - Content-based sizing, no labels */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-3">
                   {topMenuItems.map((item, index) => (
@@ -102,10 +92,10 @@ export function DualSidebar({
 
                       {/* Enhanced Tooltip */}
                       {!topSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none tooltip-float">
+                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1C2051] border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none tooltip-float">
                           {item.alt}
                           {/* Tooltip arrow */}
-                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-white/10"></div>
+                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
                         </div>
                       )}
                     </div>
@@ -117,47 +107,37 @@ export function DualSidebar({
         </div>
 
         {/* Bottom Sidebar Section - Independent content-based height */}
-        <div className="relative">
-          {/* Bottom Section Toggle Button - Connected to left edge */}
-          <div
-            className="absolute z-20 transition-all duration-700"
+        <div className="flex items-center">
+          {/* Bottom Section Toggle Button - Always visible at left edge */}
+          <Button
+            onClick={toggleBottomSidebar}
+            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
             style={{
-              right: bottomSidebarCollapsed ? "-20px" : "-24px",
-              top: "50%",
-              transform: "translateY(-50%)",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <Button
-              onClick={toggleBottomSidebar}
-              size="sm"
-              className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/20 p-0 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              style={{
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-              }}
-            >
-              {bottomSidebarCollapsed ? (
-                <ChevronRight className="w-5 h-5 text-white" />
-              ) : (
-                <ChevronLeft className="w-5 h-5 text-white" />
-              )}
-            </Button>
-          </div>
+            {bottomSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white" />
+            )}
+          </Button>
 
           {/* Bottom Section Content - Independent sizing */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
-              bottomSidebarCollapsed ? "w-0 opacity-0 h-0" : "w-20 opacity-100"
+              bottomSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
             }`}
           >
             <div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg flex flex-col p-3"
+              className="bg-[#1C2051] rounded-r-[20px] border border-white/20 border-l-0 shadow-2xl flex flex-col p-3"
               style={{
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+                boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(30vh)",
               }}
             >
-              {/* Menu Items - Content-based layout */}
+              {/* Menu Items - Content-based layout, no labels */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-2">
                   {bottomMenuItems.map((item, index) => (
@@ -186,10 +166,10 @@ export function DualSidebar({
 
                       {/* Enhanced Tooltip */}
                       {!bottomSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none tooltip-float">
+                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1C2051] border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none tooltip-float">
                           {item.alt}
                           {/* Tooltip arrow */}
-                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-white/10"></div>
+                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
                         </div>
                       )}
                     </div>
