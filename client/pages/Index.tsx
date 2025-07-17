@@ -394,6 +394,13 @@ export default function Index() {
             </div>
           )}
 
+          {/* Chat Interface - Show when Play is clicked */}
+          {showChatInterface && (
+            <div className="mt-8 md:mt-12 w-full max-w-md mx-auto h-96">
+              <ChatInterface isVisible={showChatInterface} />
+            </div>
+          )}
+
           {/* Bottom Input Section */}
           <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 md:px-6">
             <ChatInputBox
