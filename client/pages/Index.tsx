@@ -305,6 +305,9 @@ export default function Index() {
 
         {/* Center Content Area - Chat Interface */}
         <div className="flex-1 relative flex flex-col">
+          {/* Companion Character - Fixed position */}
+          <CompanionCharacter />
+
           {/* Chat Container */}
           <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6">
             <ChatContainer
