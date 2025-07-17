@@ -9,7 +9,13 @@ import KidImageCarousel from "./KidImageCarousel";
 
 interface ChatMessage {
   id: string;
-  type: "text" | "challenge" | "ai_challenge" | "system" | "media";
+  type:
+    | "text"
+    | "challenge"
+    | "ai_challenge"
+    | "system"
+    | "media"
+    | "image_display";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
