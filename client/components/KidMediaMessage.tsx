@@ -15,6 +15,7 @@ interface KidMediaMessageProps {
 export default function KidMediaMessage({
   images = [],
   onImagesUpdate = () => {},
+  onShareCreation = () => {},
   timestamp = new Date(),
   className = "",
   mode = "upload",
