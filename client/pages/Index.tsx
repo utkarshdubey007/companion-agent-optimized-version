@@ -71,6 +71,54 @@ export default function Index() {
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
       setShowMagicalCard(!showMagicalCard);
+    } else if (itemAlt === "Mood") {
+      // Add mood selector message
+      const moodMessage = {
+        id: Date.now().toString(),
+        type: "mood",
+        sender: "Kid",
+        content: "",
+        timestamp: new Date(),
+        onMoodSubmit: (mood: any) => {
+          // Update the mood message to show selected mood
+          setChatMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === moodMessage.id
+                ? {
+                    ...msg,
+                    type: "text",
+                    content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
+                  }
+                : msg,
+            ),
+          );
+
+          // Add AI response
+          setTimeout(() => {
+            const aiResponse = {
+              id: (Date.now() + 1).toString(),
+              type: "text",
+              sender: "AI",
+              content: `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${
+                mood.name === "Happy" || mood.name === "Excited"
+                  ? "That's wonderful! Your positive energy is contagious! ✨"
+                  : mood.name === "Calm"
+                    ? "That's beautiful! Peace and calm are such gifts. 🌸"
+                    : mood.name === "Tired"
+                      ? "Rest is so important! Take care of yourself. 💤"
+                      : mood.name === "Sad" || mood.name === "Worried"
+                        ? "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗"
+                        : mood.name === "Nervous"
+                          ? "Feeling nervous is natural! You're braver than you know. 💪"
+                          : "Every feeling is valid and important. What would help you feel better today? 🌈"
+              }`,
+              timestamp: new Date(),
+            };
+            setChatMessages((prev) => [...prev, aiResponse]);
+          }, 1500);
+        },
+      };
+      setChatMessages((prev) => [...prev, moodMessage]);
     }
   };
 
