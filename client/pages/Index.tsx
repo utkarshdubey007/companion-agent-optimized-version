@@ -98,14 +98,21 @@ export default function Index() {
 
   const handleChatMore = () => {
     console.log("Opening chat... 💬");
-    // Add AI message for more info
+    // Add magical AI challenge message instead of regular text
     const newMessage = {
       id: Date.now().toString(),
-      type: "text",
+      type: "ai_challenge",
       sender: "AI",
-      content:
-        "I'm here to help you with this challenge! 🎯\n\nWhat would you like to know more about? I can:\n• Give you creative tips and ideas 💡\n• Help you plan your project step by step 📋\n• Chat about what you're thinking 💭\n• Suggest fun variations to try 🌟\n\nJust let me know how I can assist you! ✨",
+      title: "Enchanted Forest Adventure! 🌟",
+      description:
+        "Help the forest creatures organize a magical birthday party for the wise old owl! Create colorful decorations, plan fun games, and make magical treats that will make this the most wonderful celebration ever! ✨🦉🎂",
+      mediaUrl:
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
+      mediaType: "image",
       timestamp: new Date(),
+      onAccept: handleAcceptChallenge,
+      onRegenerate: handleRegenerateChallenge,
+      onChatMore: () => console.log("Chat more about challenge"),
     };
     setChatMessages((prev) => [...prev, newMessage]);
   };
