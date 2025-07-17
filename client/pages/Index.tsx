@@ -120,7 +120,12 @@ export default function Index() {
           }, 1500);
         },
       };
-      setChatMessages((prev) => [...prev, moodMessage]);
+      console.log("Adding mood message to chat:", moodMessage); // Debug log
+      setChatMessages((prev) => {
+        const updated = [...prev, moodMessage];
+        console.log("Updated chat messages:", updated); // Debug log
+        return updated;
+      });
     }
   };
 
