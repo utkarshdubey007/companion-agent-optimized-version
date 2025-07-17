@@ -15,11 +15,22 @@ export default function KidImageCarousel({
   theme = "auto",
 }: KidImageCarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     align: "center",
     containScroll: "trimSnaps",
   });
+
+  // Handle window resize for responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Auto-detect theme
   const isDarkTheme =
