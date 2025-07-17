@@ -345,28 +345,28 @@ export default function MultiImageUploadCard({
       ) : (
         /* Upload Area */
         <motion.div
-          className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all duration-300 ${themeStyles.dragArea}`}
+          className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-all duration-300 ${themeStyles.dragArea}`}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
             animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
             transition={{ duration: 0.2 }}
-            className="space-y-4"
+            className="space-y-3"
           >
             <div
-              className={`w-16 h-16 mx-auto rounded-2xl ${isDarkTheme ? "bg-blue-500/20" : "bg-blue-50"} flex items-center justify-center`}
+              className={`w-12 h-12 mx-auto rounded-xl ${isDarkTheme ? "bg-blue-500/20" : "bg-blue-50"} flex items-center justify-center`}
             >
               <Upload
-                className={`w-8 h-8 ${isDarkTheme ? "text-blue-400" : "text-blue-600"}`}
+                className={`w-6 h-6 ${isDarkTheme ? "text-blue-400" : "text-blue-600"}`}
               />
             </div>
 
             <div>
-              <h4 className={`text-xl font-semibold ${themeStyles.text} mb-2`}>
+              <h4 className={`text-lg font-semibold ${themeStyles.text} mb-1`}>
                 {isDragActive ? "Drop your images here!" : "Upload your images"}
               </h4>
-              <p className={`${themeStyles.textSecondary} mb-4`}>
+              <p className={`${themeStyles.textSecondary} mb-2`}>
                 Drag and drop images here, or{" "}
                 <button
                   onClick={openFileDialog}
