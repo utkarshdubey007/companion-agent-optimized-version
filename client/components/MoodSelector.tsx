@@ -95,7 +95,7 @@ const moods: Mood[] = [
 export default function MoodSelector({
   onMoodSubmit = () => {},
   className = "",
-  title = "How are you feeling today?",
+  title = "How are you feeling?",
 }: MoodSelectorProps) {
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -119,38 +119,36 @@ export default function MoodSelector({
 
   return (
     <motion.div
-      className={`bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl p-6 max-w-md mx-auto ${className}`}
+      className={`bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl p-4 max-w-sm mx-auto ${className}`}
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "backOut" }}
     >
-      {/* Header */}
+      {/* Compact Header */}
       <motion.div
-        className="text-center mb-6"
+        className="text-center mb-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Heart className="w-6 h-6 text-pink-400" />
-          <h2 className="text-xl font-bold text-white">{title}</h2>
-          <Heart className="w-6 h-6 text-pink-400" />
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <Heart className="w-4 h-4 text-pink-400" />
+          <h3 className="text-lg font-bold text-white">{title}</h3>
+          <Heart className="w-4 h-4 text-pink-400" />
         </div>
-        <p className="text-sm text-gray-300">
-          Pick the mood that matches your heart! ✨
-        </p>
+        <p className="text-xs text-gray-300">Tap your mood! ✨</p>
       </motion.div>
 
-      {/* Mood Grid */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
+      {/* Compact Mood Grid - 4 columns */}
+      <div className="grid grid-cols-4 gap-2 mb-4">
         {moods.map((mood, index) => (
           <motion.button
             key={mood.id}
             onClick={() => handleMoodSelect(mood)}
-            className={`relative p-4 rounded-2xl border-2 transition-all duration-300 min-h-[100px] ${
+            className={`relative p-2 rounded-xl border-2 transition-all duration-300 aspect-square ${
               selectedMood?.id === mood.id
-                ? "border-white scale-105 shadow-lg"
-                : "border-white/20 hover:border-white/40 hover:scale-102"
+                ? "border-white scale-110 shadow-lg"
+                : "border-white/20 hover:border-white/40 hover:scale-105"
             }`}
             style={{
               background:
@@ -161,13 +159,13 @@ export default function MoodSelector({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
-              delay: index * 0.1,
-              duration: 0.4,
+              delay: index * 0.05,
+              duration: 0.3,
               ease: "backOut",
             }}
             whileHover={{
-              scale: selectedMood?.id === mood.id ? 1.05 : 1.02,
-              transition: { duration: 0.2 },
+              scale: selectedMood?.id === mood.id ? 1.1 : 1.05,
+              transition: { duration: 0.15 },
             }}
             whileTap={{ scale: 0.95 }}
           >
@@ -175,35 +173,35 @@ export default function MoodSelector({
             <AnimatePresence>
               {selectedMood?.id === mood.id && (
                 <motion.div
-                  className="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-lg"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Check className="w-4 h-4 text-green-600" />
+                  <Check className="w-2.5 h-2.5 text-green-600" />
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Mood Content */}
-            <div className="flex flex-col items-center gap-2">
-              <motion.span
-                className="text-3xl"
+            {/* Mood SVG Image */}
+            <div className="flex flex-col items-center justify-center h-full">
+              <motion.img
+                src={mood.imageUrl}
+                alt={mood.name}
+                className="w-8 h-8 object-contain"
                 animate={
                   selectedMood?.id === mood.id
                     ? {
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 10, -10, 0],
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 5, -5, 0],
                       }
                     : {}
                 }
-                transition={{ duration: 0.5 }}
-              >
-                {mood.emoji}
-              </motion.span>
+                transition={{ duration: 0.4 }}
+              />
               <span
-                className={`font-semibold text-sm ${
+                className={`font-medium text-xs mt-1 ${
                   selectedMood?.id === mood.id ? "text-white" : mood.color
                 }`}
               >
@@ -213,8 +211,11 @@ export default function MoodSelector({
 
             {/* Background gradient for selected mood */}
             {selectedMood?.id === mood.id && (
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${mood.bgColor} opacity-80 rounded-2xl -z-10`}
+              <motion.div
+                className={`absolute inset-0 bg-gradient-to-br ${mood.bgColor} opacity-80 rounded-xl -z-10`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.8 }}
+                transition={{ duration: 0.3 }}
               />
             )}
           </motion.button>
