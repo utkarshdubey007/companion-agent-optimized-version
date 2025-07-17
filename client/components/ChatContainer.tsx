@@ -133,6 +133,20 @@ export function ChatContainer({
     }
 
     // Regular text messages
+    if (message.sender === "AI") {
+      return (
+        <AITextMessage
+          key={message.id}
+          content={message.content || ""}
+          timestamp={message.timestamp}
+          onReply={() => console.log("Reply to AI message")}
+          onRegenerate={() => console.log("Regenerate AI message")}
+          onLike={() => console.log("Like AI message")}
+        />
+      );
+    }
+
+    // Kid messages use regular ChatMessage
     return (
       <ChatMessage
         key={message.id}
