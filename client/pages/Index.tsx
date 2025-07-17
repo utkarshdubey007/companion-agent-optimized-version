@@ -379,8 +379,11 @@ export default function Index() {
                         ),
                       );
 
-                      // Add AI response when images are uploaded
+                      // Add AI response and show carousel when images are uploaded
                       if (images.length > 0) {
+                        setCarouselImages(images);
+                        setShowImageCarousel(true);
+
                         setTimeout(() => {
                           const aiResponse = {
                             id: (Date.now() + 1).toString(),
