@@ -25,6 +25,7 @@ export default function Index() {
   const [showAcceptedChallenges, setShowAcceptedChallenges] = useState(false);
   const [showCreationsPanel, setShowCreationsPanel] = useState(false);
   const [showMagicalCard, setShowMagicalCard] = useState(false);
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
 
   // Auto-expand on page load - top first, then bottom
   useEffect(() => {
