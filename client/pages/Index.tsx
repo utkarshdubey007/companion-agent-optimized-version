@@ -330,6 +330,9 @@ export default function Index() {
               onAcceptChallenge={handleAcceptChallenge}
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
+              showImageCarousel={showImageCarousel}
+              carouselImages={carouselImages}
+              onCloseCarousel={() => setShowImageCarousel(false)}
               className="flex-1 min-h-0"
             />
           </div>
