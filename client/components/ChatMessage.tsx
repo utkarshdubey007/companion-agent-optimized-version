@@ -47,13 +47,13 @@ export function ChatMessage({
         <div
           className={`relative px-4 py-3 rounded-2xl shadow-sm max-w-full break-words ${
             isAI
-              ? "bg-gradient-to-br from-pink-100 to-purple-100 text-purple-800 rounded-br-md"
-              : "bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-800 rounded-bl-md"
+              ? "bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-800 rounded-bl-md"
+              : "bg-gradient-to-br from-pink-100 to-purple-100 text-purple-800 rounded-br-md"
           }`}
           style={{
             boxShadow: isAI
-              ? "0 4px 12px rgba(236, 72, 153, 0.15)"
-              : "0 4px 12px rgba(59, 130, 246, 0.15)",
+              ? "0 4px 12px rgba(59, 130, 246, 0.15)"
+              : "0 4px 12px rgba(236, 72, 153, 0.15)",
           }}
         >
           {/* Message content */}
