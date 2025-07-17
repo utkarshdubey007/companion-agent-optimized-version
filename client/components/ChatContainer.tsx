@@ -85,6 +85,18 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   const renderMessage = (message: ChatMessage) => {
+    if (message.type === "image_display") {
+      return (
+        <KidMediaMessage
+          key={message.id}
+          images={message.images}
+          onImagesUpdate={message.onImagesUpdate}
+          timestamp={message.timestamp}
+          mode="display"
+        />
+      );
+    }
+
     if (message.type === "media") {
       return (
         <KidMediaMessage
@@ -92,6 +104,7 @@ export function ChatContainer({
           images={message.images}
           onImagesUpdate={message.onImagesUpdate}
           timestamp={message.timestamp}
+          mode="upload"
         />
       );
     }
