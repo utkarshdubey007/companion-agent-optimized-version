@@ -7,6 +7,7 @@ interface KidImageCarouselProps {
   images: string[];
   className?: string;
   theme?: "light" | "dark" | "auto";
+  timestamp?: Date;
 }
 
 export default function KidImageCarousel({
