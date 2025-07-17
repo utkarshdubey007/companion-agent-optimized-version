@@ -218,13 +218,24 @@ export function ChatContainer({
     // Regular text messages
     if (message.sender === "AI") {
       return (
-        <AITextMessage
+        <CompanionChatMessage
           key={message.id}
-          content={message.content || ""}
-          timestamp={message.timestamp}
-          onReply={() => console.log("Reply to AI message")}
-          onRegenerate={() => console.log("Regenerate AI message")}
-        />
+          showCompanion={true}
+          alignment="left"
+          centerCompanion={true}
+          companionProps={{
+            size: "proportional",
+            animated: true,
+            maxWidthPercent: 12,
+          }}
+        >
+          <AITextMessage
+            content={message.content || ""}
+            timestamp={message.timestamp}
+            onReply={() => console.log("Reply to AI message")}
+            onRegenerate={() => console.log("Regenerate AI message")}
+          />
+        </CompanionChatMessage>
       );
     }
 
