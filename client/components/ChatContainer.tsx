@@ -89,6 +89,16 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   const renderMessage = (message: ChatMessage) => {
+    if (message.type === "mood") {
+      return (
+        <MoodMessage
+          key={message.id}
+          onMoodSubmit={message.onMoodSubmit}
+          timestamp={message.timestamp}
+        />
+      );
+    }
+
     if (message.type === "image_display") {
       return (
         <KidMediaMessage
