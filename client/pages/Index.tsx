@@ -58,8 +58,6 @@ export default function Index() {
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
       setShowMagicalCard(!showMagicalCard);
-    } else if (itemAlt === "Play") {
-      setShowChatInterface(!showChatInterface);
     }
   };
 
