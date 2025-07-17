@@ -305,14 +305,14 @@ export default function Index() {
         {/* Center Content Area - Chat Interface */}
         <div className="flex-1 relative flex flex-col">
           {/* Chat Container */}
-          <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6">
+          <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6 min-h-0">
             <ChatContainer
               messages={chatMessages}
               showMagicalCard={showMagicalCard}
               onAcceptChallenge={handleAcceptChallenge}
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
-              className="flex-1"
+              className="flex-1 min-h-0"
             />
           </div>
 
