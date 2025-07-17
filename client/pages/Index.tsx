@@ -15,6 +15,7 @@ import { AcceptedChallenges } from "@/components/AcceptedChallenges";
 import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
 import { MagicalChallengeCard } from "@/components/MagicalChallengeCard";
+import { ChatInterface } from "@/components/ChatInterface";
 
 export default function Index() {
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
