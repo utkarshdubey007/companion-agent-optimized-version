@@ -32,11 +32,11 @@ export function DualSidebar({
 }: DualSidebarProps) {
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
-      {/* Container with proper spacing from edges */}
-      <div className="flex flex-col gap-3 ml-4 my-4 h-[calc(100vh-2rem)] max-h-screen">
+      {/* Container aligned to left edge with no margin */}
+      <div className="flex flex-col gap-3 py-4 h-screen max-h-screen">
         {/* Top Sidebar Section */}
         <div className="relative flex-1 min-h-0">
-          {/* Top Section Toggle Button - AcceptedChallenge exact style */}
+          {/* Top Section Toggle Button */}
           <div
             className="absolute z-20 transition-all duration-700"
             style={{
@@ -61,7 +61,7 @@ export function DualSidebar({
             </Button>
           </div>
 
-          {/* Top Section Content - AcceptedChallenge exact styling */}
+          {/* Top Section Content */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden h-full ${
               topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
@@ -73,12 +73,7 @@ export function DualSidebar({
                 boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
               }}
             >
-              {/* Header */}
-              <h3 className="text-white font-semibold text-sm mb-3 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center">
-                Tools
-              </h3>
-
-              {/* Scrollable Menu Items */}
+              {/* Menu Items - No header label */}
               <div className="flex-1 overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-3">
                   {topMenuItems.map((item, index) => (
@@ -119,9 +114,9 @@ export function DualSidebar({
           </div>
         </div>
 
-        {/* Bottom Sidebar Section - Compact with no extra padding */}
+        {/* Bottom Sidebar Section */}
         <div className="relative">
-          {/* Bottom Section Toggle Button - AcceptedChallenge exact style */}
+          {/* Bottom Section Toggle Button */}
           <div
             className="absolute z-20 transition-all duration-700"
             style={{
@@ -146,7 +141,7 @@ export function DualSidebar({
             </Button>
           </div>
 
-          {/* Bottom Section Content - Compact and clean */}
+          {/* Bottom Section Content */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
               bottomSidebarCollapsed ? "w-0 opacity-0 h-0" : "w-20 opacity-100"
@@ -159,12 +154,7 @@ export function DualSidebar({
                 height: "auto",
               }}
             >
-              {/* Header - Compact */}
-              <h3 className="text-white font-semibold text-sm mb-3 text-center flex-shrink-0 min-h-[1.5rem] flex items-center justify-center">
-                Social
-              </h3>
-
-              {/* Menu Items - Compact layout */}
+              {/* Menu Items - No header label */}
               <div className="flex flex-col items-center gap-2">
                 {bottomMenuItems.map((item, index) => (
                   <div
