@@ -24,7 +24,7 @@ export function ChatMessage({
   return (
     <div
       className={`flex w-full mb-4 animate-slide-in ${
-        isAI ? "justify-end" : "justify-start"
+        isAI ? "justify-start" : "justify-end"
       } ${className}`}
     >
       <div
