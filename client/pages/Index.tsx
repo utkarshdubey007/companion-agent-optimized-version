@@ -14,6 +14,7 @@ import { DualSidebar } from "@/components/DualSidebar";
 import { AcceptedChallenges } from "@/components/AcceptedChallenges";
 import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
+import { MagicalChallengeCard } from "@/components/MagicalChallengeCard";
 
 export default function Index() {
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
