@@ -24,6 +24,7 @@ interface MultiImageUploadCardProps {
 export default function MultiImageUploadCard({
   initialImages = [],
   onChange = () => {},
+  onShareCreation = () => {},
   maxImages = 10,
   className = "",
   title = "Upload Images",
