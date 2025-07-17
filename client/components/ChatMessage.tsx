@@ -69,13 +69,13 @@ export function ChatMessage({
           <div
             className={`absolute bottom-0 w-3 h-3 ${
               isAI
-                ? "right-0 transform translate-x-1 bg-gradient-to-br from-pink-100 to-purple-100"
-                : "left-0 transform -translate-x-1 bg-gradient-to-br from-blue-50 to-cyan-50"
+                ? "left-0 transform -translate-x-1 bg-gradient-to-br from-blue-50 to-cyan-50"
+                : "right-0 transform translate-x-1 bg-gradient-to-br from-pink-100 to-purple-100"
             }`}
             style={{
               clipPath: isAI
-                ? "polygon(0 0, 100% 100%, 0 100%)"
-                : "polygon(100% 0, 100% 100%, 0 100%)",
+                ? "polygon(100% 0, 100% 100%, 0 100%)"
+                : "polygon(0 0, 100% 100%, 0 100%)",
             }}
           />
         </div>
