@@ -99,8 +99,8 @@ export default function Index() {
           setTimeout(() => {
             const aiResponse = {
               id: (Date.now() + 1).toString(),
-              type: "text",
-              sender: "AI",
+              type: "text" as const,
+              sender: "AI" as const,
               content: `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${
                 mood.name === "Happy" || mood.name === "Excited"
                   ? "That's wonderful! Your positive energy is contagious! ✨"
