@@ -92,7 +92,7 @@ export function AITextMessage({
             </div>
 
             {/* 3. Footer Message */}
-            <div className="relative px-3 py-2 text-center">
+            <div className="relative px-3 py-2 text-left">
               <div
                 className="text-white/90 text-xs font-medium"
                 style={{
@@ -106,7 +106,7 @@ export function AITextMessage({
 
             {/* 4. Footer Buttons */}
             <div className="relative px-3 py-2 border-t border-white/10">
-              <div className="flex justify-center gap-2">
+              <div className="flex justify-start gap-2">
                 <Button
                   onClick={onReply}
                   size="sm"
