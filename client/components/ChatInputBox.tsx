@@ -41,7 +41,7 @@ export function ChatInputBox({
   return (
     <div className="w-full max-w-2xl mx-auto px-4">
       <div
-        className="flex items-center gap-0.5 bg-white rounded-full shadow-lg border border-gray-100 p-2"
+        className="flex items-center gap-2 bg-white rounded-full shadow-lg border border-gray-100 px-2 pt-2 pb-1"
         style={{
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
         }}
