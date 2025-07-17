@@ -70,13 +70,9 @@ export function ChatContainer({
       return (
         <div
           key={message.id}
-          className={`flex w-full mb-6 ${
-            message.sender === "AI" ? "justify-start" : "justify-end"
-          }`}
+          className="flex w-full mb-6 justify-start" // Always left for AI challenges
         >
-          <div
-            className={`max-w-sm ${message.sender === "AI" ? "mr-auto" : "ml-auto"}`}
-          >
+          <div className="max-w-sm mr-auto">
             <MagicalChallengeCard
               title={message.title || "Magical Challenge!"}
               description={
@@ -112,7 +108,7 @@ export function ChatContainer({
           <div className="flex items-start gap-3 max-w-sm">
             <div className="flex-shrink-0">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg">🐰</span>
+                <span className="text-white text-lg">���</span>
               </div>
             </div>
 
