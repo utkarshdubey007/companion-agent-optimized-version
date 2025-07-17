@@ -243,7 +243,7 @@ export default function MultiImageUploadCard({
                 {images.map((image, index) => (
                   <motion.div
                     key={`${image}-${index}`}
-                    className="flex-[0_0_300px] min-w-0 relative group"
+                    className="flex-[0_0_250px] min-w-0 relative group"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
@@ -253,7 +253,7 @@ export default function MultiImageUploadCard({
                       <img
                         src={image}
                         alt={`Upload ${index + 1}`}
-                        className="w-full h-48 object-cover rounded-xl shadow-lg"
+                        className="w-full h-40 object-cover rounded-lg shadow-md"
                         loading="lazy"
                       />
 
