@@ -382,10 +382,21 @@ export default function Index() {
                         ),
                       );
 
-                      // Add AI response and show carousel when images are uploaded
+                      // Create a display message when images are uploaded
                       if (images.length > 0) {
-                        setCarouselImages(images);
-                        setShowImageCarousel(true);
+                        // Replace upload message with display message
+                        setChatMessages((prev) =>
+                          prev.map((msg) =>
+                            msg.id === mediaMessage.id
+                              ? {
+                                  ...msg,
+                                  type: "image_display",
+                                  images: images,
+                                  content: `Shared ${images.length} picture${images.length > 1 ? "s" : ""}! 📸`,
+                                }
+                              : msg,
+                          ),
+                        );
 
                         setTimeout(() => {
                           const aiResponse = {
