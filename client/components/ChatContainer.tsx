@@ -8,7 +8,7 @@ import KidMediaMessage from "./KidMediaMessage";
 
 interface ChatMessage {
   id: string;
-  type: "text" | "challenge" | "ai_challenge" | "system";
+  type: "text" | "challenge" | "ai_challenge" | "system" | "media";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
@@ -20,6 +20,9 @@ interface ChatMessage {
   onAccept?: () => void;
   onRegenerate?: () => void;
   onChatMore?: () => void;
+  // For media messages
+  images?: string[];
+  onImagesUpdate?: (images: string[]) => void;
 }
 
 interface ChatContainerProps {
