@@ -26,9 +26,6 @@ export function ChatMessage({
       className={`flex w-full mb-4 animate-slide-in ${
         isAI ? "justify-end" : "justify-start"
       } ${className}`}
-      style={{
-        marginLeft: isAI ? "0" : "-120px", // Negative margin to offset companion space for AI messages
-      }}
     >
       <div
         className={`flex max-w-xs md:max-w-sm lg:max-w-md items-end gap-2 ${
