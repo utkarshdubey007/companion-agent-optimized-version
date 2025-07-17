@@ -366,3 +366,155 @@
     transform: translateY(-12px) rotate(-1deg);
   }
 }
+
+/* AI Challenge Message Animations */
+@keyframes challengeSparkleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes magicalGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 105, 180, 0.3),
+      0 0 40px rgba(138, 43, 226, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(255, 105, 180, 0.5),
+      0 0 60px rgba(138, 43, 226, 0.4);
+  }
+}
+
+@keyframes buttonBounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes wandGlow {
+  0%,
+  100% {
+    filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+  }
+}
+
+/* Challenge sparkle positioning and animations */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: challengeSparkleFloat 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 0.5s;
+}
+
+.sparkle-3 {
+  top: 60%;
+  left: 20%;
+  animation-delay: 1s;
+}
+
+.sparkle-4 {
+  top: 70%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.sparkle-5 {
+  top: 45%;
+  left: 50%;
+  animation-delay: 2s;
+}
+
+/* Magical Challenge Card Styles */
+.magical-challenge-card {
+  animation: magicalGlow 2s ease-in-out infinite;
+}
+
+.magical-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.magical-button:hover {
+  animation: buttonBounce 0.6s ease-in-out;
+}
+
+.magical-button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.magical-button:hover:before {
+  left: 100%;
+}
+
+.accept-button:hover {
+  background: linear-gradient(to right, #10b981, #059669) !important;
+  animation: wandGlow 1s ease-in-out infinite;
+}
+
+.regenerate-button:hover {
+  background: linear-gradient(to right, #f97316, #ec4899) !important;
+  animation: wandGlow 1s ease-in-out infinite;
+}
+
+.chat-button:hover {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+  animation: wandGlow 1s ease-in-out infinite;
+}
+
+/* Sparkle container for avatar */
+.sparkle-container {
+  position: relative;
+}
+
+.sparkle-animation {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: challengeSparkleFloat 2s ease-in-out infinite;
+  top: 2px;
+  right: 2px;
+}
