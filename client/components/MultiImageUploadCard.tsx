@@ -8,36 +8,51 @@ import {
   Plus,
   ChevronLeft,
   ChevronRight,
+  Camera,
 } from "lucide-react";
 
 interface MultiImageUploadCardProps {
   initialImages?: string[];
-  onImagesUpdate?: (images: string[]) => void;
+  onChange?: (images: string[]) => void;
   maxImages?: number;
   className?: string;
+  title?: string;
+  theme?: "light" | "dark" | "auto";
 }
 
 export default function MultiImageUploadCard({
   initialImages = [],
-  onImagesUpdate = () => {},
+  onChange = () => {},
   maxImages = 10,
   className = "",
+  title = "Upload Images",
+  theme = "auto",
 }: MultiImageUploadCardProps) {
   const [images, setImages] = useState<string[]>(initialImages);
   const [isDragActive, setIsDragActive] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [dragCounter, setDragCounter] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     align: "center",
     containScroll: "trimSnaps",
+    dragFree: true,
   });
+
+  // Detect theme based on background or use prop
+  const isDarkTheme =
+    theme === "auto"
+      ? window.getComputedStyle(document.body).backgroundColor ===
+          "rgb(6, 23, 61)" ||
+        document.documentElement.classList.contains("dark")
+      : theme === "dark";
 
   // Update parent when images change
   useEffect(() => {
-    onImagesUpdate(images);
-  }, [images, onImagesUpdate]);
+    onChange(images);
+  }, [images, onChange]);
 
   // Update selected index when embla API changes
   useEffect(() => {
@@ -59,26 +74,23 @@ export default function MultiImageUploadCard({
     (files: FileList | null) => {
       if (!files) return;
 
-      const newImages: string[] = [];
       const fileArray = Array.from(files);
+      const validFiles = fileArray.filter(
+        (file) => file.type.startsWith("image/") && images.length < maxImages,
+      );
 
-      fileArray.forEach((file) => {
-        if (
-          file.type.startsWith("image/") &&
-          images.length + newImages.length < maxImages
-        ) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            if (e.target?.result) {
-              const imageUrl = e.target.result as string;
-              setImages((prev) => {
-                const updated = [...prev, imageUrl];
-                return updated;
-              });
-            }
-          };
-          reader.readAsDataURL(file);
-        }
+      validFiles.forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            const imageUrl = e.target.result as string;
+            setImages((prev) => {
+              const newImages = [...prev, imageUrl];
+              return newImages.slice(0, maxImages);
+            });
+          }
+        };
+        reader.readAsDataURL(file);
       });
     },
     [images.length, maxImages],
@@ -87,13 +99,20 @@ export default function MultiImageUploadCard({
   const handleDragEnter = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setDragCounter((prev) => prev + 1);
     setIsDragActive(true);
   }, []);
 
   const handleDragLeave = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragActive(false);
+    setDragCounter((prev) => {
+      const newCounter = prev - 1;
+      if (newCounter === 0) {
+        setIsDragActive(false);
+      }
+      return newCounter;
+    });
   }, []);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -106,6 +125,7 @@ export default function MultiImageUploadCard({
       e.preventDefault();
       e.stopPropagation();
       setIsDragActive(false);
+      setDragCounter(0);
 
       const files = e.dataTransfer.files;
       handleFileUpload(files);
@@ -125,10 +145,7 @@ export default function MultiImageUploadCard({
 
   const removeImage = useCallback(
     (indexToRemove: number) => {
-      setImages((prev) => {
-        const updated = prev.filter((_, index) => index !== indexToRemove);
-        return updated;
-      });
+      setImages((prev) => prev.filter((_, index) => index !== indexToRemove));
 
       // Adjust selected index if needed
       if (indexToRemove <= selectedIndex && selectedIndex > 0) {
@@ -152,106 +169,172 @@ export default function MultiImageUploadCard({
 
   const canAddMore = images.length < maxImages;
 
+  // Theme-based styles
+  const themeStyles = {
+    background: isDarkTheme
+      ? "bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-md"
+      : "bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-md",
+    border: isDarkTheme ? "border-white/20" : "border-gray-200",
+    text: isDarkTheme ? "text-white" : "text-gray-900",
+    textSecondary: isDarkTheme ? "text-gray-300" : "text-gray-600",
+    dragArea: isDragActive
+      ? isDarkTheme
+        ? "border-blue-400 bg-blue-400/20"
+        : "border-blue-500 bg-blue-50"
+      : isDarkTheme
+        ? "border-white/30 hover:border-white/50 bg-slate-700/30"
+        : "border-gray-300 hover:border-gray-400 bg-gray-50",
+    button: isDarkTheme
+      ? "bg-blue-600/80 hover:bg-blue-500/90 border-white/20"
+      : "bg-blue-500/90 hover:bg-blue-600 border-gray-200",
+    removeButton: isDarkTheme
+      ? "bg-red-500/90 hover:bg-red-600"
+      : "bg-red-500 hover:bg-red-600",
+  };
+
   return (
     <motion.div
-      className={`bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-xl ${className}`}
+      className={`${themeStyles.background} rounded-2xl border ${themeStyles.border} shadow-2xl p-6 max-w-2xl mx-auto ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <ImageIcon className="w-5 h-5 text-blue-400" />
-          <h3 className="text-lg font-semibold text-white">My Pictures</h3>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div
+            className={`p-2 rounded-xl ${isDarkTheme ? "bg-blue-500/20" : "bg-blue-50"}`}
+          >
+            <Camera
+              className={`w-6 h-6 ${isDarkTheme ? "text-blue-400" : "text-blue-600"}`}
+            />
+          </div>
+          <div>
+            <h3 className={`text-xl font-bold ${themeStyles.text}`}>{title}</h3>
+            <p className={`text-sm ${themeStyles.textSecondary}`}>
+              {images.length}/{maxImages} images
+            </p>
+          </div>
         </div>
-        <div className="text-sm text-gray-300">
-          {images.length}/{maxImages}
-        </div>
+
+        {canAddMore && (
+          <motion.button
+            onClick={openFileDialog}
+            className={`px-4 py-2 rounded-xl font-medium transition-all duration-200 flex items-center gap-2 ${themeStyles.button} text-white border`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Plus className="w-4 h-4" />
+            Add Images
+          </motion.button>
+        )}
       </div>
 
-      {/* Image Carousel or Upload Area */}
+      {/* Image Display Area */}
       {images.length > 0 ? (
-        <div className="relative">
+        <div className="space-y-4">
           {/* Carousel Container */}
-          <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-            <div className="flex">
-              {images.map((image, index) => (
-                <motion.div
-                  key={index}
-                  className="flex-[0_0_100%] min-w-0 relative"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative group">
-                    <img
-                      src={image}
-                      alt={`Uploaded ${index + 1}`}
-                      className="w-full h-64 object-cover rounded-xl"
-                    />
+          <div className="relative">
+            <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+              <div className="flex gap-4">
+                {images.map((image, index) => (
+                  <motion.div
+                    key={`${image}-${index}`}
+                    className="flex-[0_0_300px] min-w-0 relative group"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <div className="relative">
+                      <img
+                        src={image}
+                        alt={`Upload ${index + 1}`}
+                        className="w-full h-48 object-cover rounded-xl shadow-lg"
+                        loading="lazy"
+                      />
 
-                    {/* Remove Button */}
-                    <motion.button
-                      onClick={() => removeImage(index)}
-                      className="absolute top-3 right-3 w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </motion.button>
+                      {/* Remove Button */}
+                      <motion.button
+                        onClick={() => removeImage(index)}
+                        className={`absolute top-3 right-3 w-8 h-8 ${themeStyles.removeButton} rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                      >
+                        <X className="w-4 h-4 text-white" />
+                      </motion.button>
 
-                    {/* Image Number Badge */}
-                    <div className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
-                      {index + 1} of {images.length}
+                      {/* Image Index */}
+                      <div
+                        className={`absolute bottom-3 left-3 px-2 py-1 rounded-md text-xs font-medium text-white ${isDarkTheme ? "bg-black/60" : "bg-black/50"} backdrop-blur-sm`}
+                      >
+                        {index + 1} of {images.length}
+                      </div>
+
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl pointer-events-none" />
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
+
+            {/* Navigation Buttons */}
+            {images.length > 1 && (
+              <>
+                <motion.button
+                  onClick={scrollPrev}
+                  className={`absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border`}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: isDarkTheme
+                      ? "0 8px 25px rgba(59, 130, 246, 0.4)"
+                      : "0 8px 25px rgba(59, 130, 246, 0.3)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </motion.button>
+
+                <motion.button
+                  onClick={scrollNext}
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 ${themeStyles.button} backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border`}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: isDarkTheme
+                      ? "0 8px 25px rgba(59, 130, 246, 0.4)"
+                      : "0 8px 25px rgba(59, 130, 246, 0.3)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </motion.button>
+              </>
+            )}
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Dot Indicators */}
           {images.length > 1 && (
-            <>
-              <motion.button
-                onClick={scrollPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600/80 hover:bg-blue-500/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border-2 border-white/20"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
-                }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="w-6 h-6 text-white drop-shadow-sm" />
-              </motion.button>
-
-              <motion.button
-                onClick={scrollNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600/80 hover:bg-blue-500/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 shadow-lg border-2 border-white/20"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.4)",
-                }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-6 h-6 text-white drop-shadow-sm" />
-              </motion.button>
-            </>
-          )}
-
-          {/* Dots Indicator */}
-          {images.length > 1 && (
-            <div className="flex justify-center gap-2 mt-4">
+            <div className="flex justify-center gap-2">
               {images.map((_, index) => (
                 <motion.button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 border ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === selectedIndex
-                      ? "bg-blue-400 border-blue-300 shadow-lg"
-                      : "bg-white/20 border-white/40 hover:bg-white/30"
+                      ? isDarkTheme
+                        ? "bg-blue-400 w-6"
+                        : "bg-blue-500 w-6"
+                      : isDarkTheme
+                        ? "bg-white/30 hover:bg-white/50"
+                        : "bg-gray-400 hover:bg-gray-500"
                   }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -261,57 +344,44 @@ export default function MultiImageUploadCard({
           )}
         </div>
       ) : (
-        /* Empty State - Upload Area */
+        /* Upload Area */
         <motion.div
-          className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-colors duration-200 ${
-            isDragActive
-              ? "border-blue-400 bg-blue-400/20"
-              : "border-white/40 hover:border-white/60 bg-slate-700/30"
-          }`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
+          className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all duration-300 ${themeStyles.dragArea}`}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
             animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
             transition={{ duration: 0.2 }}
+            className="space-y-4"
           >
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h4 className="text-lg font-medium text-white mb-2">
-              {isDragActive
-                ? "Drop your pictures here!"
-                : "Upload your pictures"}
-            </h4>
-            <p className="text-gray-300 text-sm mb-4">
-              Drag and drop images here, or{" "}
-              <button
-                onClick={openFileDialog}
-                className="text-blue-400 hover:text-blue-300 underline"
-              >
-                browse files
-              </button>
-            </p>
-            <p className="text-xs text-gray-400">
-              Supports JPG, PNG, GIF • Max {maxImages} images
-            </p>
+            <div
+              className={`w-16 h-16 mx-auto rounded-2xl ${isDarkTheme ? "bg-blue-500/20" : "bg-blue-50"} flex items-center justify-center`}
+            >
+              <Upload
+                className={`w-8 h-8 ${isDarkTheme ? "text-blue-400" : "text-blue-600"}`}
+              />
+            </div>
+
+            <div>
+              <h4 className={`text-xl font-semibold ${themeStyles.text} mb-2`}>
+                {isDragActive ? "Drop your images here!" : "Upload your images"}
+              </h4>
+              <p className={`${themeStyles.textSecondary} mb-4`}>
+                Drag and drop images here, or{" "}
+                <button
+                  onClick={openFileDialog}
+                  className={`${isDarkTheme ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"} underline font-medium`}
+                >
+                  browse files
+                </button>
+              </p>
+              <p className={`text-xs ${themeStyles.textSecondary}`}>
+                Supports JPG, PNG, GIF • Max {maxImages} images
+              </p>
+            </div>
           </motion.div>
         </motion.div>
-      )}
-
-      {/* Add More Button (when images exist and can add more) */}
-      {images.length > 0 && canAddMore && (
-        <motion.button
-          onClick={openFileDialog}
-          className="w-full mt-4 py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Plus className="w-4 h-4" />
-          Add More Pictures ({images.length}/{maxImages})
-        </motion.button>
       )}
 
       {/* Hidden File Input */}
@@ -324,24 +394,54 @@ export default function MultiImageUploadCard({
         className="hidden"
       />
 
-      {/* Fun Motivational Message */}
+      {/* Progress/Status Bar */}
       <AnimatePresence>
         {images.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mt-4 text-center"
+            className="mt-6 space-y-3"
           >
-            <p className="text-sm text-blue-300">
-              {images.length === 1
-                ? "Great start! 🌟 Add more pictures to tell your story!"
-                : images.length < 3
-                  ? "Looking good! ✨ Keep adding more amazing pictures!"
-                  : images.length < 5
-                    ? "Awesome collection! 🎨 You're creating something special!"
-                    : "Wow! 🤩 You've got an amazing gallery going!"}
-            </p>
+            {/* Progress Bar */}
+            <div
+              className={`w-full ${isDarkTheme ? "bg-gray-700" : "bg-gray-200"} rounded-full h-2`}
+            >
+              <motion.div
+                className={`h-2 rounded-full ${isDarkTheme ? "bg-blue-500" : "bg-blue-600"}`}
+                initial={{ width: 0 }}
+                animate={{ width: `${(images.length / maxImages) * 100}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+
+            {/* Status Text */}
+            <div className="flex justify-between items-center">
+              <p className={`text-sm ${themeStyles.textSecondary}`}>
+                {images.length === maxImages ? (
+                  <span
+                    className={
+                      isDarkTheme ? "text-yellow-400" : "text-yellow-600"
+                    }
+                  >
+                    Maximum images reached
+                  </span>
+                ) : (
+                  `${maxImages - images.length} more images can be added`
+                )}
+              </p>
+
+              {canAddMore && (
+                <motion.button
+                  onClick={openFileDialog}
+                  className={`text-sm px-3 py-1 rounded-lg ${isDarkTheme ? "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30" : "bg-blue-50 text-blue-600 hover:bg-blue-100"} transition-colors duration-200`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Add More
+                </motion.button>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
