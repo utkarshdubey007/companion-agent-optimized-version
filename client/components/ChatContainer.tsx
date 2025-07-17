@@ -72,6 +72,17 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   const renderMessage = (message: ChatMessage) => {
+    if (message.type === "media") {
+      return (
+        <KidMediaMessage
+          key={message.id}
+          images={message.images}
+          onImagesUpdate={message.onImagesUpdate}
+          timestamp={message.timestamp}
+        />
+      );
+    }
+
     if (message.type === "ai_challenge") {
       return (
         <AIChallengeMessage
