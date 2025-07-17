@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, ReactNode } from "react";
 import { MagicalChallengeCard } from "./MagicalChallengeCard";
 import { ChatMessage } from "./ChatMessage";
+import { CompactChallengeCard } from "./CompactChallengeCard";
 
 interface ChatMessage {
   id: string;
