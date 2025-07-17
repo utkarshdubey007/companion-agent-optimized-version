@@ -235,11 +235,11 @@ export default function MultiImageUploadCard({
 
       {/* Image Display Area */}
       {images.length > 0 ? (
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* Carousel Container */}
           <div className="relative">
-            <div className="overflow-hidden rounded-xl" ref={emblaRef}>
-              <div className="flex gap-4">
+            <div className="overflow-hidden rounded-lg" ref={emblaRef}>
+              <div className="flex gap-3">
                 {images.map((image, index) => (
                   <motion.div
                     key={`${image}-${index}`}
