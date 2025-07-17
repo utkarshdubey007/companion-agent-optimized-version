@@ -3,6 +3,7 @@ import { MagicalChallengeCard } from "./MagicalChallengeCard";
 import { ChatMessage } from "./ChatMessage";
 import { CompactChallengeCard } from "./CompactChallengeCard";
 import { AITextMessage } from "./AITextMessage";
+import AIChallengeMessage from "./AIChallengeMessage";
 
 interface ChatMessage {
   id: string;
