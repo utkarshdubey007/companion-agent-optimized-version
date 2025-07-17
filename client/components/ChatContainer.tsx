@@ -155,20 +155,8 @@ export function ChatContainer({
       {/* Scrollable Messages Container */}
       <div
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto pb-24 px-4"
-        style={{
-          /* Hide scrollbars */
-          scrollbarWidth: "none" /* Firefox */,
-          msOverflowStyle: "none" /* IE and Edge */,
-        }}
+        className="flex-1 overflow-y-auto hide-scrollbar pb-6 px-4"
       >
-        {/* Hide webkit scrollbars */}
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
-
         {/* Messages */}
         <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
