@@ -222,33 +222,41 @@ export default function MoodSelector({
         ))}
       </div>
 
-      {/* Selected Mood Display */}
+      {/* Compact Selected Mood Display */}
       <AnimatePresence>
         {selectedMood && !isSubmitted && (
           <motion.div
-            className="text-center mb-4 p-4 bg-white/10 rounded-xl border border-white/20"
+            className="text-center mb-3 p-3 bg-white/10 rounded-xl border border-white/20"
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.9 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-2xl">{selectedMood.emoji}</span>
-              <span className="text-lg font-semibold text-white">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <img
+                src={selectedMood.imageUrl}
+                alt={selectedMood.name}
+                className="w-6 h-6 object-contain"
+              />
+              <span className="text-base font-semibold text-white">
                 Feeling {selectedMood.name}
               </span>
-              <span className="text-2xl">{selectedMood.emoji}</span>
+              <img
+                src={selectedMood.imageUrl}
+                alt={selectedMood.name}
+                className="w-6 h-6 object-contain"
+              />
             </div>
-            <p className="text-sm text-gray-300">{selectedMood.description}</p>
+            <p className="text-xs text-gray-300">{selectedMood.description}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Submit Button */}
+      {/* Compact Submit Button */}
       <motion.button
         onClick={handleSubmit}
         disabled={!selectedMood || isSubmitted}
-        className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 ${
+        className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all duration-300 ${
           selectedMood && !isSubmitted
             ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg"
             : "bg-gray-600 text-gray-400 cursor-not-allowed"
@@ -257,14 +265,14 @@ export default function MoodSelector({
           selectedMood && !isSubmitted
             ? {
                 scale: 1.02,
-                boxShadow: "0 10px 25px rgba(16, 185, 129, 0.4)",
+                boxShadow: "0 8px 20px rgba(16, 185, 129, 0.4)",
               }
             : {}
         }
         whileTap={selectedMood && !isSubmitted ? { scale: 0.98 } : {}}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.3 }}
       >
         {isSubmitted ? (
           <motion.div
@@ -297,13 +305,13 @@ export default function MoodSelector({
       <AnimatePresence>
         {isSubmitted && (
           <motion.div
-            className="absolute inset-0 flex items-center justify-center bg-green-500/20 rounded-3xl"
+            className="absolute inset-0 flex items-center justify-center bg-green-500/20 rounded-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="text-6xl"
+              className="text-4xl"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.5, ease: "backOut" }}
