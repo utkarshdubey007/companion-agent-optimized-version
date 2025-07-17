@@ -148,16 +148,24 @@ export function ChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
-      {/* Chat Header */}
-      <div className="flex-shrink-0 bg-orange-accent text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 mx-auto">
-        Dialogue with Lexicb
-      </div>
-
-      {/* Scrollable Messages Container */}
+      {/* Scrollable Messages Container with proper spacing for companion */}
       <div
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto hide-scrollbar pb-6 px-4"
+        className="flex-1 overflow-y-auto hide-scrollbar pb-20 px-4"
+        style={{ paddingLeft: "140px" }} // Space for companion character
       >
+        {/* Default Challenge Card - Always visible */}
+        <div className="flex justify-start w-full mb-6 mt-4">
+          <div className="mr-auto">
+            <CompactChallengeCard
+              title="Welcome back, gentle dreamer! ⭐"
+              description="Let's dive back into our heartfelt story or begin a new one filled with kindness and imagination. What loving adventure shall we explore today?"
+              onAccept={onAcceptChallenge}
+              onRegenerate={onRegenerateChallenge}
+              onChatMore={onChatMore}
+            />
+          </div>
+        </div>
         {/* Messages */}
         <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
