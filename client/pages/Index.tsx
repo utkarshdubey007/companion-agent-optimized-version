@@ -416,7 +416,7 @@ export default function Index() {
           </div>
 
           {/* Fixed Input Box at Bottom */}
-          <div className="flex-shrink-0 sticky bottom-0 bg-gradient-to-t from-space-bg via-space-bg/90 to-transparent pt-6 pb-4">
+          <div className="flex-shrink-0 sticky bottom-0 pt-6 pb-4">
             <div className="max-w-2xl mx-auto px-4 md:px-6">
               <ChatInputBox
                 placeholder="Ask me anything..."
