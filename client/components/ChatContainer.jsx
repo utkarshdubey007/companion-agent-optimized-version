@@ -94,6 +94,20 @@ export function ChatContainer({
       );
     }
 
+    if (message.type === "reflection") {
+      return (
+        <KidReflectionStorybookCard
+          key={message.id}
+          imageUrl={message.imageUrl}
+          reflection={message.reflection}
+          badgeTitle={message.badgeTitle}
+          aiAvatarUrl={message.aiAvatarUrl}
+          reactionsEnabled={true}
+          index={message.index || 0}
+        />
+      );
+    }
+
     if (message.type === "ai_challenge") {
       return (
         <CompanionChatMessage
