@@ -168,8 +168,11 @@ const CompanionOrb = ({
         scale: isSelected ? 2.5 : isOtherSelected ? 0.6 : 1,
         x: isSelected ? 0 : x,
         y: isSelected ? 0 : y,
-        zIndex: isSelected ? 50 : 10,
+        zIndex: isSelected ? 90 : 20,
         rotate: isSelected ? [0, 360] : 0,
+      }}
+      style={{
+        zIndex: isSelected ? 90 : 20,
       }}
       whileHover={{
         scale: isSelected ? 2.5 : isOtherSelected ? 0.6 : 1.2,
