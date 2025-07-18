@@ -619,7 +619,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             color={selectedCompanion?.color || "#ffffff"}
           />
 
-          {/* Companion orbs */}
+                    {/* Companion orbs */}
           {companions.map((companion, index) => (
             <CompanionOrb
               key={companion.id}
@@ -634,24 +634,21 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             />
           ))}
 
-          {/* Center crystal orb (cancel button) */}
-          <motion.button
-            className="absolute w-20 h-20 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30"
-            onClick={handleClose}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            animate={{
-              boxShadow: [
-                "0 0 30px rgba(147, 51, 234, 0.6)",
-                "0 0 50px rgba(236, 72, 153, 0.8)",
-                "0 0 30px rgba(147, 51, 234, 0.6)",
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-            }}
-          >
+                    {/* Center crystal orb (cancel button) */}
+          {!selectedCompanion && (
+            <motion.button
+              className="absolute w-20 h-20 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30"
+              onClick={handleClose}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{
+                scale: { delay: 1, duration: 0.5, type: "spring" },
+                opacity: { delay: 1, duration: 0.5 }
+              }}
+            >
             <motion.div
               animate={{
                 rotate: [0, 360],
