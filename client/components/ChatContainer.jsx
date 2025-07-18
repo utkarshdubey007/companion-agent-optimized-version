@@ -8,6 +8,7 @@ import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
+import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 
 export function ChatContainer({
   messages,
@@ -16,7 +17,7 @@ export function ChatContainer({
   onAcceptChallenge,
   onRegenerateChallenge,
   onChatMore,
-  onShowCarousel = () => { },
+  onShowCarousel = () => {},
 }) {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
