@@ -10,6 +10,7 @@ import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 import StorybookReflectionCard from "./StorybookReflectionCard";
+import FlippableStorybookCard from "./FlippableStorybookCard";
 
 export function ChatContainer({
   messages,
