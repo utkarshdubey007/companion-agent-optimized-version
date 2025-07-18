@@ -9,6 +9,7 @@ import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
+import StorybookReflectionCard from "./StorybookReflectionCard";
 
 export function ChatContainer({
   messages,
