@@ -306,6 +306,7 @@ const PortalRing = ({ isVisible, color }) => (
 );
 
 const CompanionSelector = ({ onSelect, onClose }) => {
+  console.log("CompanionSelector component rendered!");
   const [selectedCompanion, setSelectedCompanion] = useState(null);
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
@@ -326,6 +327,10 @@ const CompanionSelector = ({ onSelect, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      {/* Debug indicator */}
+      <div className="absolute top-2 left-2 bg-green-500 text-white p-2 rounded z-[100] text-sm">
+        CompanionSelector Active
+      </div>
       {/* Magical background */}
       <motion.div
         className="absolute inset-0 overflow-hidden"
