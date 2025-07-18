@@ -627,6 +627,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               index={index}
               totalCompanions={companions.length}
               isSelected={selectedCompanion?.id === companion.id}
+              selectedCompanion={selectedCompanion}
               onSelect={handleSelect}
               isHovered={hoveredCompanion}
               onHover={setHoveredCompanion}
