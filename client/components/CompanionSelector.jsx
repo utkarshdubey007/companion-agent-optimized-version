@@ -435,6 +435,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        onClick={handleClose}
       >
         {/* Magical nebula background */}
         <motion.div
