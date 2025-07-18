@@ -2,44 +2,45 @@
 export const menuItemsData = {
   top: [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb384d84e1df642dfa4d274ede8768a82?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F1d2408e75472446e89e1c722cc60c5bc?format=webp&width=800",
       alt: "Imagine",
       delay: 0,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc2571e7f678d413eb9a1bd06ea66f8e0?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9d8d266fb1d04ad69bf3010bc8af2640?format=webp&width=800",
       alt: "Play",
       delay: 100,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F1d2408e75472446e89e1c722cc60c5bc?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb384d84e1df642dfa4d274ede8768a82?format=webp&width=800",
       alt: "Create",
       delay: 200,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F7ce4cb9686ab4c8883ffd924942ba7ce?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800",
       alt: "Store",
       delay: 300,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9d8d266fb1d04ad69bf3010bc8af2640?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc4d8103edd924d3a815299efddcbb19f?format=webp&width=800",
       alt: "Reflect",
       delay: 400,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc4d8103edd924d3a815299efddcbb19f?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc729f16c9d3149d881a210498aef88fe?format=webp&width=800",
       alt: "Reward",
       delay: 500,
     },
+
   ],
   bottom: [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc729f16c9d3149d881a210498aef88fe?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F7ce4cb9686ab4c8883ffd924942ba7ce?format=webp&width=800",
       alt: "Mood",
       delay: 0,
     },
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F883c9f12ab684706a3a77d529ef2b3bb?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc2571e7f678d413eb9a1bd06ea66f8e0?format=webp&width=800",
       alt: "Friends",
       delay: 100,
     },

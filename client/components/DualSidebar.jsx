@@ -17,8 +17,23 @@ export function DualSidebar({
       {/* Container with zero margin, aligned to left edge */}
       <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden">
         {/* Top Sidebar Section - Auto height, no flex-1 */}
-        <div className="relative flex items-center">
-          {/* Top Section Content - Flush with left edge when expanded */}
+        <div className="flex items-center">
+          {/* Top Section Toggle Button - Always visible at left edge */}
+          <Button
+            onClick={toggleTopSidebar}
+            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
+            style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}
+          >
+            {topSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white" />
+            )}
+          </Button>
+
+          {/* Top Section Content - Content-based height */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
               topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
@@ -30,7 +45,6 @@ export function DualSidebar({
                 boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(60vh)",
-                marginLeft: "0", // Flush with left edge
               }}
             >
               {/* Menu Items - Content-based sizing, no labels */}
@@ -72,31 +86,26 @@ export function DualSidebar({
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Top Section Toggle Button - Positioned based on sidebar state */}
+        {/* Bottom Sidebar Section - Independent from top */}
+        <div className="flex items-center">
+          {/* Bottom Section Toggle Button - Always visible at left edge */}
           <Button
-            onClick={toggleTopSidebar}
-            className={`w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 p-0 transition-all duration-700 shadow-lg flex-shrink-0 ${
-              topSidebarCollapsed
-                ? "rounded-r-lg border-l-0 absolute left-0" // Flush with left edge when collapsed
-                : "rounded-l-lg border-r-0 relative" // Connected to right edge when expanded
-            }`}
+            onClick={toggleBottomSidebar}
+            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
             style={{
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              ...(topSidebarCollapsed ? { left: 0 } : { marginLeft: "0px" }),
             }}
           >
-            {topSidebarCollapsed ? (
+            {bottomSidebarCollapsed ? (
               <ChevronRight className="w-4 h-4 text-white" />
             ) : (
               <ChevronLeft className="w-4 h-4 text-white" />
             )}
           </Button>
-        </div>
 
-        {/* Bottom Sidebar Section - Independent from top */}
-        <div className="relative flex items-center">
-          {/* Bottom Section Content - Flush with left edge when expanded */}
+          {/* Bottom Section Content - Content-based height */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
               bottomSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
@@ -108,7 +117,6 @@ export function DualSidebar({
                 boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(40vh)",
-                marginLeft: "0", // Flush with left edge
               }}
             >
               {/* Menu Items - Content-based sizing, no labels */}
@@ -152,26 +160,6 @@ export function DualSidebar({
               </div>
             </div>
           </div>
-
-          {/* Bottom Section Toggle Button - Positioned based on sidebar state */}
-          <Button
-            onClick={toggleBottomSidebar}
-            className={`w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 p-0 transition-all duration-700 shadow-lg flex-shrink-0 ${
-              bottomSidebarCollapsed
-                ? "rounded-r-lg border-l-0 absolute left-0" // Flush with left edge when collapsed
-                : "rounded-l-lg border-r-0 relative" // Connected to right edge when expanded
-            }`}
-            style={{
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              ...(bottomSidebarCollapsed ? { left: 0 } : { marginLeft: "0px" }),
-            }}
-          >
-            {bottomSidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-white" />
-            ) : (
-              <ChevronLeft className="w-4 h-4 text-white" />
-            )}
-          </Button>
         </div>
       </div>
     </div>

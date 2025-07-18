@@ -16,7 +16,7 @@ export function ChatContainer({
   onAcceptChallenge,
   onRegenerateChallenge,
   onChatMore,
-  onShowCarousel = () => {},
+  onShowCarousel = () => { },
 }) {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -122,41 +122,6 @@ export function ChatContainer({
       );
     }
 
-    if (message.type === "challenge") {
-      return (
-        <div
-          key={message.id}
-          className="flex w-full mb-6 justify-start" // Always left for AI challenges
-        >
-          <div className="max-w-sm mr-auto">
-            <MagicalChallengeCard
-              title={message.title || "Magical Challenge!"}
-              description={
-                message.description ||
-                "Let's create something amazing together!"
-              }
-              mediaUrl={message.mediaUrl}
-              mediaType={message.mediaType}
-              onAccept={message.onAccept}
-              onRegenerate={message.onRegenerate}
-              onChatMore={message.onChatMore}
-              isVisible={true}
-            />
-            <div
-              className={`text-xs text-gray-400 mt-2 ${
-                message.sender === "AI" ? "text-left ml-2" : "text-right mr-2"
-              }`}
-            >
-              {message.timestamp.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     if (message.type === "system") {
       return (
         <CompanionChatMessage
@@ -236,19 +201,6 @@ export function ChatContainer({
           overflowY: "auto",
         }}
       >
-        {/* Default Challenge Card - Always visible */}
-        <div className="flex justify-start w-full mb-6 mt-4">
-          <div className="mr-auto">
-            <CompactChallengeCard
-              title="Welcome back, gentle dreamer! ⭐"
-              description="Let's dive back into our heartfelt story or begin a new one filled with kindness and imagination. What loving adventure shall we explore today?"
-              onAccept={onAcceptChallenge}
-              onRegenerate={onRegenerateChallenge}
-              onChatMore={onChatMore}
-            />
-          </div>
-        </div>
-        {/* Messages */}
         <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
 

@@ -36,7 +36,7 @@ export function AcceptedChallenges({ challenges }) {
     >
       {/* Challenge Title */}
       <h3
-        className={`text-white font-semibold ${isCompact ? "text-sm" : "text-base"} mb-3 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center`}
+        className={`text-white ${isCompact ? "text-sm" : "text-base"} mb-3 text-center flex-shrink-0 min-h-[2rem] flex items-center justify-center`}
       >
         {challenge.title}
       </h3>
@@ -121,7 +121,7 @@ export function AcceptedChallenges({ challenges }) {
           >
             {/* Header */}
             <div className="p-6 border-b border-white/20">
-              <h2 className="text-white text-xl font-semibold">
+              <h2 className="text-white text-xl">
                 Accepted Challenges
               </h2>
             </div>
@@ -158,7 +158,7 @@ export function AcceptedChallenges({ challenges }) {
           >
             {/* Header */}
             <div className="p-6 border-b border-white/20">
-              <h2 className="text-white text-xl font-semibold">
+              <h2 className="text-white text-xl">
                 Accepted Challenges
               </h2>
             </div>

@@ -79,13 +79,14 @@ export default function Index() {
   // Menu item click handler
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
-
-    if (itemAlt === "Create") {
+    if (itemAlt === "Play") {
+      handleChatMore()
+    } else if (itemAlt === "Create") {
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
-      setShowMagicalCard(!showMagicalCard);
+      handleSendMessage()
     } else if (itemAlt === "Mood") {
       console.log("Mood button clicked - creating mood message");
 
@@ -100,10 +101,10 @@ export default function Index() {
             prev.map((msg) =>
               msg.id === moodMessage.id
                 ? {
-                    ...msg,
-                    type: "text",
-                    content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
-                  }
+                  ...msg,
+                  type: "text",
+                  content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
+                }
                 : msg,
             ),
           );
@@ -122,6 +123,8 @@ export default function Index() {
       };
 
       setChatMessages((prev) => [...prev, moodMessage]);
+    }else if (itemAlt === "Store") {
+      handleAddAttachment()
     }
   };
 
@@ -140,10 +143,9 @@ export default function Index() {
         "Every feeling is valid and important. What would help you feel better today? 🌈",
     };
 
-    return `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${
-      responses[mood.name] ||
+    return `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${responses[mood.name] ||
       "Every feeling is valid and important. What would help you feel better today? 🌈"
-    }`;
+      }`;
   };
 
   return (
