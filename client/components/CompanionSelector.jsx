@@ -514,6 +514,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             stiffness: 200,
             damping: 25,
           }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Magical title */}
           <motion.div
