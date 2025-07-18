@@ -177,15 +177,13 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                       transformStyle: "preserve-3d",
                     }}
                   >
-                    {/* Reuse KidReflectionStorybookCard for exact same design */}
+                    {/* Custom storybook page layout */}
                     <div className="transform-gpu">
-                      <KidReflectionStorybookCard
+                      <StorybookPage
                         imageUrl={pages[currentPage].imageUrl}
                         reflection={pages[currentPage].reflection}
                         badgeTitle={pages[currentPage].badgeTitle}
                         aiAvatarUrl={pages[currentPage].aiAvatarUrl}
-                        reactionsEnabled={true}
-                        index={0} // Always 0 since we control the animation at this level
                       />
                     </div>
                   </motion.div>
