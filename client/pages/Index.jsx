@@ -72,6 +72,68 @@ export default function Index() {
     setShowBottomWaveEffect,
   ]);
 
+  // Add sample reflection messages for demonstration
+  useEffect(() => {
+    const addSampleReflections = () => {
+      const sampleReflections = [
+        {
+          id: "reflection-1",
+          type: "reflection",
+          sender: "Kid",
+          imageUrl:
+            "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
+          reflection:
+            "Wow! I can see a beautiful rainbow painting! The colors are so bright and cheerful - red, orange, yellow, green, blue, and purple all dancing together. It makes me feel happy and excited, like there's magic in the air! ✨",
+          badgeTitle: "Rainbow Master!",
+          aiAvatarUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
+          timestamp: new Date(Date.now() - 240000),
+          index: 0,
+        },
+        {
+          id: "reflection-2",
+          type: "reflection",
+          sender: "Kid",
+          imageUrl:
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+          reflection:
+            "Look at this amazing cat drawing! I love how you made the whiskers so long and the eyes so big and sparkly. The cat looks so friendly and playful - I bet it would love to chase butterflies in a sunny garden! 🐱",
+          badgeTitle: "Animal Artist!",
+          aiAvatarUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800",
+          timestamp: new Date(Date.now() - 180000),
+          index: 1,
+        },
+        {
+          id: "reflection-3",
+          type: "reflection",
+          sender: "Kid",
+          imageUrl:
+            "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=400&h=300&fit=crop",
+          reflection:
+            "This space adventure drawing is incredible! I can see rockets flying to distant planets with stars twinkling all around. The astronaut looks so brave and ready for an amazing journey through the galaxy! 🚀",
+          badgeTitle: "Space Explorer!",
+          aiAvatarUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F408758d5b0f24a8ab1fe3ac5b8489720?format=webp&width=800",
+          timestamp: new Date(Date.now() - 120000),
+          index: 2,
+        },
+      ];
+
+      // Add reflections with staggered timing
+      sampleReflections.forEach((reflection, index) => {
+        setTimeout(() => {
+          setChatMessages((prev) => [...prev, reflection]);
+        }, index * 2000); // 2 second delay between each card
+      });
+    };
+
+    // Start adding sample reflections after initial setup
+    const reflectionTimer = setTimeout(addSampleReflections, 3000);
+
+    return () => clearTimeout(reflectionTimer);
+  }, [setChatMessages]);
+
   // Sidebar toggle handlers
   const toggleTopSidebar = () => {
     setTopSidebarCollapsed(!topSidebarCollapsed);
