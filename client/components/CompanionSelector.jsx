@@ -452,7 +452,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
       <motion.div
         className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: isClosing ? 0 : 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
         onClick={handleClose}
