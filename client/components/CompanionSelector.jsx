@@ -128,34 +128,42 @@ const CompanionOrb = ({
   isHovered,
   onHover,
   totalCompanions,
+  selectedCompanion,
 }) => {
   const angle = ((index * 360) / totalCompanions) * (Math.PI / 180);
-  const radius = 160;
+  const radius = 180;
   const x = Math.cos(angle) * radius;
   const y = Math.sin(angle) * radius;
+
+  const isOtherSelected =
+    selectedCompanion && selectedCompanion.id !== companion.id;
 
   return (
     <motion.div
       className="absolute cursor-pointer"
       initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
       animate={{
-        opacity: 1,
-        scale: isSelected ? 1.4 : 1,
+        opacity: isOtherSelected ? 0.3 : 1,
+        scale: isSelected ? 2 : isOtherSelected ? 0.8 : 1,
         x: isSelected ? 0 : x,
         y: isSelected ? 0 : y,
         zIndex: isSelected ? 50 : 10,
+        rotate: isSelected ? [0, 360] : 0,
       }}
-      whileHover={{ scale: isSelected ? 1.4 : 1.3 }}
+      whileHover={{
+        scale: isSelected ? 2 : isOtherSelected ? 0.8 : 1.2,
+        y: isSelected ? 0 : isOtherSelected ? y : y - 10,
+      }}
       transition={{
-        duration: 0.8,
-        delay: index * 0.15,
+        duration: isSelected ? 1.2 : 0.8,
+        delay: isSelected ? 0 : index * 0.1,
         type: "spring",
         stiffness: 200,
         damping: 20,
       }}
-      onMouseEnter={() => onHover(companion.id)}
+      onMouseEnter={() => !selectedCompanion && onHover(companion.id)}
       onMouseLeave={() => onHover(null)}
-      onClick={() => onSelect(companion)}
+      onClick={() => !selectedCompanion && onSelect(companion)}
     >
       {/* Floating animation container */}
       <motion.div
