@@ -237,6 +237,12 @@ export default function Index() {
         <AcceptedChallenges challenges={challengesData} />
       )}
       {showCreationsPanel && <CreationsPanel creations={creationsData} />}
+      {showCompanionSelector && (
+        <CompanionSelector
+          onSelect={handleCompanionSelect}
+          onClose={handleCompanionClose}
+        />
+      )}
     </div>
   );
 }
