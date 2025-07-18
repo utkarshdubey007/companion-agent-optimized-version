@@ -412,20 +412,40 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const [selectedCompanion, setSelectedCompanion] = useState(null);
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleSelect = (companion) => {
     setSelectedCompanion(companion);
     setShowMessage(true);
+
+    // Auto-close after selection animation
     setTimeout(() => {
-      onSelect?.(companion);
-    }, 2000);
+      setIsClosing(true);
+      setTimeout(() => {
+        onSelect?.(companion);
+      }, 500);
+    }, 1500);
   };
 
   const handleClose = () => {
-    setSelectedCompanion(null);
-    setShowMessage(false);
-    onClose?.();
+    setIsClosing(true);
+    setTimeout(() => {
+      setSelectedCompanion(null);
+      setShowMessage(false);
+      onClose?.();
+    }, 300);
   };
+
+  // Handle ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
     <AnimatePresence>
