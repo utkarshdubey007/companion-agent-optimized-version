@@ -100,37 +100,72 @@ const KidReflectionStorybookCard = ({
               }}
               layout
             >
-              {/* Decorative corner elements */}
-              <div className="absolute top-2 left-2">
+              {/* Book Binding Edge */}
+              <div
+                className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-b from-amber-200 via-orange-200 to-amber-300"
+                style={{
+                  backgroundImage: `
+                    repeating-linear-gradient(
+                      0deg,
+                      transparent,
+                      transparent 8px,
+                      rgba(139, 69, 19, 0.1) 8px,
+                      rgba(139, 69, 19, 0.1) 10px
+                    )
+                  `,
+                  boxShadow: "inset -2px 0 4px rgba(139, 69, 19, 0.2)",
+                }}
+              />
+
+              {/* Page Number */}
+              <div className="absolute top-4 right-6">
                 <motion.div
-                  animate={{
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
+                  className="text-amber-700 text-sm font-bold opacity-60"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.6 }}
+                  transition={{ delay: 0.8 }}
+                  style={{
+                    fontFamily: '"Times New Roman", serif',
+                    textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
                   }}
                 >
-                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  {Math.floor(Math.random() * 50) + 12}
                 </motion.div>
               </div>
 
-              <div className="absolute top-2 right-2">
+              {/* Decorative corner flourishes */}
+              <div className="absolute top-6 left-8">
                 <motion.div
+                  className="text-amber-600 text-lg opacity-40"
                   animate={{
-                    rotate: [0, -10, 10, 0],
-                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.05, 1],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 1,
                   }}
                 >
-                  <Sparkles className="w-4 h-4 text-purple-400 fill-current" />
+                  ❦
+                </motion.div>
+              </div>
+
+              <div className="absolute bottom-6 right-8">
+                <motion.div
+                  className="text-amber-600 text-lg opacity-40"
+                  animate={{
+                    rotate: [0, -5, 5, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2,
+                  }}
+                >
+                  ❦
                 </motion.div>
               </div>
 
