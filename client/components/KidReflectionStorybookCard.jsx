@@ -1,0 +1,348 @@
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Heart, Smile, Sparkles, Volume2, Star, Award } from "lucide-react";
+
+const KidReflectionStorybookCard = ({
+  imageUrl,
+  reflection,
+  badgeTitle = "Amazing Creation!",
+  reactionsEnabled = true,
+  aiAvatarUrl,
+  index = 0,
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedReaction, setSelectedReaction] = useState(null);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  // Stagger animation entrance
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, index * 300);
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  const reactions = [
+    { icon: "❤️", label: "Love it!", color: "#FF6B6B" },
+    { icon: "😃", label: "So fun!", color: "#4ECDC4" },
+    { icon: "✨", label: "Magical!", color: "#9333EA" },
+    { icon: "🌟", label: "Amazing!", color: "#F39C12" },
+  ];
+
+  const handleReactionClick = (reaction) => {
+    setSelectedReaction(reaction);
+    // Add sparkle animation effect
+    setTimeout(() => setSelectedReaction(null), 2000);
+  };
+
+  const handleAudioPlay = () => {
+    setIsAudioPlaying(true);
+    // Simulate audio playback
+    setTimeout(() => setIsAudioPlaying(false), 3000);
+  };
+
+  return (
+    <div className="flex justify-end w-full mb-6 px-4">
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            className="max-w-sm w-full"
+            initial={{ opacity: 0, x: 50, rotateY: -20 }}
+            animate={{ opacity: 1, x: 0, rotateY: 0 }}
+            exit={{ opacity: 0, x: 50, rotateY: 20 }}
+            transition={{
+              duration: 0.8,
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+            }}
+          >
+            {/* Storybook Card Container */}
+            <motion.div
+              className="relative bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 rounded-3xl shadow-lg border-4 border-white overflow-hidden"
+              style={{
+                fontFamily: '"Comic Neue", "Fredoka One", cursive, sans-serif',
+                filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.1))",
+              }}
+              whileHover={{
+                scale: 1.02,
+                rotateZ: 1,
+                transition: { duration: 0.3 },
+              }}
+              layout
+            >
+              {/* Decorative corner elements */}
+              <div className="absolute top-2 left-2">
+                <motion.div
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                </motion.div>
+              </div>
+
+              <div className="absolute top-2 right-2">
+                <motion.div
+                  animate={{
+                    rotate: [0, -10, 10, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                >
+                  <Sparkles className="w-4 h-4 text-purple-400 fill-current" />
+                </motion.div>
+              </div>
+
+              {/* Badge Title */}
+              <div className="relative pt-6 px-6">
+                <motion.div
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-md"
+                  initial={{ scale: 0, rotate: -10 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  <Award className="w-4 h-4" />
+                  {badgeTitle}
+                </motion.div>
+              </div>
+
+              {/* Image Section */}
+              <div className="px-6 pt-4">
+                <motion.div
+                  className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-white"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                  <img
+                    src={imageUrl}
+                    alt="Kid's creation"
+                    className="w-full h-48 object-cover"
+                  />
+
+                  {/* Magical overlay effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                    animate={{
+                      x: [-100, 100],
+                      opacity: [0, 0.6, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* AI Reflection Message */}
+              <div className="px-6 pt-4">
+                <motion.div
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-md border border-purple-100"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
+                >
+                  {/* AI Avatar & Header */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {aiAvatarUrl && (
+                      <motion.div
+                        className="w-8 h-8 rounded-full overflow-hidden border-2 border-purple-200"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        <img
+                          src={aiAvatarUrl}
+                          alt="AI Companion"
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-bold text-purple-600">
+                        Your AI Buddy says:
+                      </span>
+                      {/* Voice playback button */}
+                      <motion.button
+                        onClick={handleAudioPlay}
+                        className="p-1 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Volume2
+                          className={`w-3 h-3 text-purple-600 ${
+                            isAudioPlaying ? "animate-pulse" : ""
+                          }`}
+                        />
+                      </motion.button>
+                    </div>
+                  </div>
+
+                  {/* Reflection Text with Typewriter Effect */}
+                  <motion.p
+                    className="text-gray-700 text-sm leading-relaxed font-medium"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 1 }}
+                  >
+                    {reflection}
+                  </motion.p>
+                </motion.div>
+              </div>
+
+              {/* Reaction Icons */}
+              {reactionsEnabled && (
+                <div className="px-6 py-4">
+                  <motion.div
+                    className="flex items-center justify-center gap-3"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2, duration: 0.5 }}
+                  >
+                    {reactions.map((reaction, idx) => (
+                      <motion.button
+                        key={idx}
+                        onClick={() => handleReactionClick(reaction)}
+                        className="relative p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+                        whileHover={{
+                          scale: 1.2,
+                          rotate: [0, -10, 10, 0],
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        style={{
+                          backgroundColor:
+                            selectedReaction?.icon === reaction.icon
+                              ? reaction.color + "20"
+                              : "white",
+                        }}
+                      >
+                        <span className="text-lg">{reaction.icon}</span>
+
+                        {/* Reaction feedback */}
+                        <AnimatePresence>
+                          {selectedReaction?.icon === reaction.icon && (
+                            <motion.div
+                              className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap"
+                              initial={{ opacity: 0, y: 10, scale: 0.5 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: -10, scale: 0.5 }}
+                            >
+                              {reaction.label}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                </div>
+              )}
+
+              {/* Magical sparkle effects */}
+              <AnimatePresence>
+                {selectedReaction && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 rounded-full"
+                        style={{
+                          backgroundColor: selectedReaction.color,
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                        }}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{
+                          scale: [0, 1, 0],
+                          opacity: [0, 1, 0],
+                          y: [0, -50],
+                          x: [0, (Math.random() - 0.5) * 50],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          delay: i * 0.1,
+                          ease: "easeOut",
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </AnimatePresence>
+
+              {/* Page curl effect for storybook feel */}
+              <div className="absolute bottom-0 right-0 w-8 h-8">
+                <motion.div
+                  className="w-full h-full bg-gradient-to-tl from-gray-200 to-transparent rounded-tl-xl"
+                  style={{
+                    clipPath: "polygon(100% 0, 0 100%, 100% 100%)",
+                  }}
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Floating hearts animation on reaction */}
+            <AnimatePresence>
+              {selectedReaction && (
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute text-2xl"
+                      style={{
+                        left: `${50 + (Math.random() - 0.5) * 40}%`,
+                        top: `${50 + (Math.random() - 0.5) * 40}%`,
+                      }}
+                      initial={{ scale: 0, opacity: 0, y: 0 }}
+                      animate={{
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0],
+                        y: [0, -100],
+                        rotate: [0, 360],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.2,
+                        ease: "easeOut",
+                      }}
+                    >
+                      {selectedReaction.icon}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default KidReflectionStorybookCard;
