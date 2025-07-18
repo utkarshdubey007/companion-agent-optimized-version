@@ -587,20 +587,20 @@ const CompanionSelector = ({ onSelect, onClose }) => {
 
           {/* Outer orbit rings */}
           <motion.div
-            className="absolute w-[500px] h-[500px] border-2 border-dashed border-white border-opacity-20 rounded-full"
+            className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-10 rounded-full z-[5]"
             animate={{ rotate: 360 }}
             transition={{
-              duration: 50,
+              duration: 60,
               repeat: Infinity,
               ease: "linear",
             }}
           />
 
           <motion.div
-            className="absolute w-[450px] h-[450px] border border-white border-opacity-10 rounded-full"
+            className="absolute w-[450px] h-[450px] border border-white border-opacity-5 rounded-full z-[5]"
             animate={{ rotate: -360 }}
             transition={{
-              duration: 40,
+              duration: 50,
               repeat: Infinity,
               ease: "linear",
             }}
@@ -722,7 +722,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.6 }}
                   >
-                    Let the magic begin! 🌟
+                    Let the magic begin! ����
                   </motion.p>
                 </motion.div>
               </motion.div>
