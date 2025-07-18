@@ -121,6 +121,16 @@ export function ChatContainer({
       );
     }
 
+    if (message.type === "flippable_storybook") {
+      return (
+        <FlippableStorybookCard
+          key={message.id}
+          pages={message.pages}
+          index={message.index || 0}
+        />
+      );
+    }
+
     if (message.type === "ai_challenge") {
       return (
         <CompanionChatMessage
