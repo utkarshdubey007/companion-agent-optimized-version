@@ -537,7 +537,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             isolation: "isolate",
           }}
         >
-          {/* Magical title */}
+          {/* Magical title - REMOVED
           <motion.div
             className="absolute -top-36 left-1/2 transform -translate-x-1/2 text-center z-[100]"
             initial={{ opacity: 0, y: -50 }}
@@ -584,6 +584,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               Select a friend to join your enchanted journey!
             </motion.p>
           </motion.div>
+          */}
 
           {/* Outer orbit rings */}
           <motion.div
