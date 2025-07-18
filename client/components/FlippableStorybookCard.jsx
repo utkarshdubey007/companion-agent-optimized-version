@@ -114,21 +114,8 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                 </motion.button>
               </div>
 
-              {/* Page Number Overlay */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
-                <div
-                  className="bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full text-amber-800 text-sm font-medium shadow-md"
-                  style={{
-                    fontFamily: '"Times New Roman", serif',
-                    border: "1px solid rgba(212, 175, 55, 0.3)",
-                  }}
-                >
-                  Page {currentPage + 1} of {pages.length}
-                </div>
-              </div>
-
-              {/* Page Dots Indicator */}
-              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
+              {/* Page Dots Indicator - moved above page number */}
+              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
                 <div className="flex gap-2">
                   {pages.map((_, idx) => (
                     <motion.button
@@ -149,6 +136,19 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                       whileTap={{ scale: 0.8 }}
                     />
                   ))}
+                </div>
+              </div>
+
+              {/* Page Number - positioned at bottom-right corner */}
+              <div className="absolute bottom-2 right-4 z-30 pointer-events-none">
+                <div
+                  className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-amber-800 text-xs font-medium shadow-sm"
+                  style={{
+                    fontFamily: '"Times New Roman", serif',
+                    border: "1px solid rgba(212, 175, 55, 0.2)",
+                  }}
+                >
+                  {currentPage + 1} / {pages.length}
                 </div>
               </div>
 
