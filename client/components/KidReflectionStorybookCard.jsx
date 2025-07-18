@@ -383,31 +383,40 @@ const KidReflectionStorybookCard = ({
                 </motion.div>
               </div>
 
-              {/* Reaction Icons */}
+              {/* Storybook Reactions */}
               {reactionsEnabled && (
-                <div className="px-6 py-4">
+                <div className="px-8 pb-6">
                   <motion.div
-                    className="flex items-center justify-center gap-3"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.2, duration: 0.5 }}
+                    className="flex items-center justify-center gap-4 pt-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2, duration: 0.6 }}
                   >
+                    <div className="text-xs text-amber-700 opacity-60 font-medium mr-2">
+                      How does this make you feel?
+                    </div>
                     {reactions.map((reaction, idx) => (
                       <motion.button
                         key={idx}
                         onClick={() => handleReactionClick(reaction)}
-                        className="relative p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+                        className="relative p-2 rounded-full transition-all duration-300"
+                        style={{
+                          background:
+                            selectedReaction?.icon === reaction.icon
+                              ? `linear-gradient(135deg, ${reaction.color}20, ${reaction.color}10)`
+                              : "linear-gradient(135deg, rgba(245, 245, 220, 0.8), rgba(255, 248, 220, 0.9))",
+                          border: "1px solid rgba(212, 175, 55, 0.3)",
+                          boxShadow:
+                            selectedReaction?.icon === reaction.icon
+                              ? `0 4px 12px ${reaction.color}40, inset 0 1px 2px rgba(255,255,255,0.8)`
+                              : "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.8)",
+                        }}
                         whileHover={{
                           scale: 1.2,
-                          rotate: [0, -10, 10, 0],
+                          y: -2,
+                          transition: { duration: 0.2 },
                         }}
                         whileTap={{ scale: 0.9 }}
-                        style={{
-                          backgroundColor:
-                            selectedReaction?.icon === reaction.icon
-                              ? reaction.color + "20"
-                              : "white",
-                        }}
                       >
                         <span className="text-lg">{reaction.icon}</span>
 
@@ -415,7 +424,11 @@ const KidReflectionStorybookCard = ({
                         <AnimatePresence>
                           {selectedReaction?.icon === reaction.icon && (
                             <motion.div
-                              className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap"
+                              className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-amber-800 text-yellow-100 text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium"
+                              style={{
+                                boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                                border: "1px solid rgba(212, 175, 55, 0.5)",
+                              }}
                               initial={{ opacity: 0, y: 10, scale: 0.5 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
                               exit={{ opacity: 0, y: -10, scale: 0.5 }}
