@@ -59,29 +59,46 @@ const companions = [
   },
 ];
 
-const MagicalParticle = ({ delay = 0, color = "#ffffff" }) => (
-  <motion.div
-    className="absolute w-1 h-1 bg-white rounded-full opacity-80"
-    style={{
-      backgroundColor: color,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-    }}
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{
-      opacity: [0, 1, 0],
-      scale: [0, 2, 0],
-      y: [0, -100],
-    }}
-    transition={{
-      duration: 4,
-      delay,
-      repeat: Infinity,
-      repeatDelay: Math.random() * 3,
-      ease: "easeOut",
-    }}
-  />
-);
+const MagicalParticle = ({ delay = 0, color = "#ffffff" }) => {
+  // Avoid the center area where companions are located
+  const isEdgeArea = Math.random() > 0.6;
+  const left = isEdgeArea
+    ? Math.random() > 0.5
+      ? Math.random() * 20
+      : 80 + Math.random() * 20
+    : Math.random() * 100;
+  const top = isEdgeArea
+    ? Math.random() > 0.5
+      ? Math.random() * 25
+      : 75 + Math.random() * 25
+    : Math.random() * 100;
+
+  return (
+    <motion.div
+      className="absolute w-1 h-1 bg-white rounded-full opacity-60 pointer-events-none"
+      style={{
+        backgroundColor: color,
+        left: `${left}%`,
+        top: `${top}%`,
+        zIndex: 1,
+      }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: [0, 0.8, 0],
+        scale: [0, 1.5, 0],
+        y: [0, -120],
+        x: [0, (Math.random() - 0.5) * 50],
+      }}
+      transition={{
+        duration: 5,
+        delay,
+        repeat: Infinity,
+        repeatDelay: Math.random() * 4,
+        ease: "easeOut",
+      }}
+    />
+  );
+};
 
 const SparkleTrail = ({ isHovered, color }) => (
   <AnimatePresence>
