@@ -156,6 +156,27 @@ export default function Index() {
     }`;
   };
 
+  // Companion selector handlers
+  const handleCompanionSelect = (companion) => {
+    setSelectedCompanion(companion);
+    setShowCompanionSelector(false);
+
+    // Add a magical message to the chat
+    const companionMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "AI",
+      content: `✨ Welcome to our magical adventure! You've chosen ${companion.name} as your companion. ${companion.description} Let's explore together! 🌟`,
+      timestamp: new Date(),
+    };
+
+    setChatMessages((prev) => [...prev, companionMessage]);
+  };
+
+  const handleCompanionClose = () => {
+    setShowCompanionSelector(false);
+  };
+
   return (
     <div
       className="min-h-screen bg-space-bg relative overflow-hidden"
