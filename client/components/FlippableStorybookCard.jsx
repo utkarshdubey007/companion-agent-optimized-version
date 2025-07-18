@@ -97,15 +97,21 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
           {/* Content Container */}
           <div className="relative flex flex-col h-full pt-8 px-8 pb-8">
             {/* Badge Title - positioned with proper spacing */}
-            <div className="relative mb-6">
-              <motion.div
-                className="text-center"
+            <div className="relative mb-6 z-20">
+              <motion.button
+                className="text-center w-full cursor-pointer group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  console.log("Badge clicked:", badgeTitle);
+                  // Add badge interaction here
+                }}
               >
                 <h2
-                  className="text-lg font-bold text-amber-800 mb-2"
+                  className="text-lg font-bold text-amber-800 mb-2 group-hover:text-amber-900 transition-colors"
                   style={{
                     fontFamily: '"Kalam", cursive',
                     textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
@@ -115,8 +121,8 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                 >
                   "{badgeTitle || "Amazing Creation!"}"
                 </h2>
-                <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto" />
-              </motion.div>
+                <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto group-hover:via-amber-500 transition-colors" />
+              </motion.button>
             </div>
 
             {/* Image Section - with proper spacing */}
