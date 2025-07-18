@@ -524,12 +524,16 @@ const CompanionSelector = ({ onSelect, onClose }) => {
 
         {/* Main selector container */}
         <motion.div
-          className="relative w-[500px] h-[500px] flex items-center justify-center"
+          className="relative w-[600px] h-[600px] flex items-center justify-center"
           initial={{ scale: 0, opacity: 0, rotate: -180 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          animate={{
+            scale: isClosing ? 0.8 : 1,
+            opacity: isClosing ? 0 : 1,
+            rotate: isClosing ? 180 : 0,
+          }}
           exit={{ scale: 0, opacity: 0, rotate: 180 }}
           transition={{
-            duration: 1,
+            duration: isClosing ? 0.5 : 1,
             type: "spring",
             stiffness: 200,
             damping: 25,
