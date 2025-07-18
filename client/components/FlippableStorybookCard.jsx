@@ -562,9 +562,9 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                 )}
               </AnimatePresence>
 
-              {/* Swipe gesture area for mobile */}
+              {/* Swipe gesture area for mobile - only on sides */}
               <div
-                className="absolute inset-0 z-10 pointer-events-auto"
+                className="absolute inset-y-0 left-0 w-16 z-5 pointer-events-auto"
                 onTouchStart={(e) => {
                   const touch = e.touches[0];
                   const startX = touch.clientX;
@@ -578,7 +578,29 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                       // Minimum swipe distance
                       if (deltaX > 0 && currentPage > 0) {
                         prevPage(); // Swipe right = previous page
-                      } else if (deltaX < 0 && currentPage < pages.length - 1) {
+                      }
+                    }
+
+                    document.removeEventListener("touchend", handleTouchEnd);
+                  };
+
+                  document.addEventListener("touchend", handleTouchEnd);
+                }}
+              />
+              <div
+                className="absolute inset-y-0 right-0 w-16 z-5 pointer-events-auto"
+                onTouchStart={(e) => {
+                  const touch = e.touches[0];
+                  const startX = touch.clientX;
+
+                  const handleTouchEnd = (endEvent) => {
+                    const endTouch = endEvent.changedTouches[0];
+                    const endX = endTouch.clientX;
+                    const deltaX = endX - startX;
+
+                    if (Math.abs(deltaX) > 50) {
+                      // Minimum swipe distance
+                      if (deltaX < 0 && currentPage < pages.length - 1) {
                         nextPage(); // Swipe left = next page
                       }
                     }
