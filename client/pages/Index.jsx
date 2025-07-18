@@ -72,14 +72,11 @@ export default function Index() {
     setShowBottomWaveEffect,
   ]);
 
-  // Add sample reflection messages for demonstration
+  // Add sample storybook with multiple reflections
   useEffect(() => {
-    const addSampleReflections = () => {
+    const addStorybookReflections = () => {
       const sampleReflections = [
         {
-          id: "reflection-1",
-          type: "reflection",
-          sender: "Kid",
           imageUrl:
             "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
           reflection:
@@ -87,13 +84,8 @@ export default function Index() {
           badgeTitle: "Rainbow Master!",
           aiAvatarUrl:
             "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
-          timestamp: new Date(Date.now() - 240000),
-          index: 0,
         },
         {
-          id: "reflection-2",
-          type: "reflection",
-          sender: "Kid",
           imageUrl:
             "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
           reflection:
@@ -101,13 +93,8 @@ export default function Index() {
           badgeTitle: "Animal Artist!",
           aiAvatarUrl:
             "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800",
-          timestamp: new Date(Date.now() - 180000),
-          index: 1,
         },
         {
-          id: "reflection-3",
-          type: "reflection",
-          sender: "Kid",
           imageUrl:
             "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=400&h=300&fit=crop",
           reflection:
@@ -115,23 +102,51 @@ export default function Index() {
           badgeTitle: "Space Explorer!",
           aiAvatarUrl:
             "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F408758d5b0f24a8ab1fe3ac5b8489720?format=webp&width=800",
-          timestamp: new Date(Date.now() - 120000),
-          index: 2,
+        },
+        {
+          imageUrl:
+            "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+          reflection:
+            "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! 🌸",
+          badgeTitle: "Garden Wizard!",
+          aiAvatarUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
+        },
+        {
+          imageUrl:
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+          reflection:
+            "I love this underwater world you've created! The fish are swimming in such beautiful patterns, and the coral looks like a magical castle. I can almost hear the gentle sound of the ocean waves! 🌊",
+          badgeTitle: "Ocean Dreamer!",
+          aiAvatarUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd477fa3ace324c9aafc5275df782584f?format=webp&width=800",
         },
       ];
 
-      // Add reflections with staggered timing
-      sampleReflections.forEach((reflection, index) => {
-        setTimeout(() => {
-          setChatMessages((prev) => [...prev, reflection]);
-        }, index * 2000); // 2 second delay between each card
-      });
+      const storybookMessage = {
+        id: "storybook-1",
+        type: "storybook",
+        sender: "Kid",
+        reflections: sampleReflections,
+        timestamp: new Date(Date.now() - 120000),
+        onReactionClick: (reaction, reflection) => {
+          console.log(
+            "Reaction clicked:",
+            reaction,
+            "for reflection:",
+            reflection,
+          );
+        },
+        index: 0,
+      };
+
+      setChatMessages((prev) => [...prev, storybookMessage]);
     };
 
-    // Start adding sample reflections after initial setup
-    const reflectionTimer = setTimeout(addSampleReflections, 3000);
+    // Start adding storybook after initial setup
+    const storybookTimer = setTimeout(addStorybookReflections, 3000);
 
-    return () => clearTimeout(reflectionTimer);
+    return () => clearTimeout(storybookTimer);
   }, [setChatMessages]);
 
   // Sidebar toggle handlers
