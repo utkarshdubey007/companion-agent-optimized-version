@@ -252,7 +252,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
             </div>
 
             {/* Emoji Reactions - properly positioned at bottom */}
-            <div className="relative">
+            <div className="relative z-20">
               <motion.div
                 className="flex justify-center items-center gap-3 pt-2"
                 initial={{ opacity: 0, y: 20 }}
