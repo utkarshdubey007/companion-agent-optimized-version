@@ -287,24 +287,65 @@ const KidReflectionStorybookCard = ({
                 </motion.div>
               </div>
 
-              {/* AI Reflection Message */}
-              <div className="px-6 pt-4">
+              {/* Storybook Text */}
+              <div className="px-8 pt-6 pb-4">
                 <motion.div
-                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-md border border-purple-100"
+                  className="relative"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.6 }}
+                  transition={{ delay: 1, duration: 0.8 }}
                 >
-                  {/* AI Avatar & Header */}
-                  <div className="flex items-center gap-3 mb-3">
+                  {/* Decorative initial letter */}
+                  <motion.div
+                    className="float-left mr-3 mb-1"
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
+                  >
+                    <div
+                      className="w-12 h-12 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg flex items-center justify-center text-2xl font-bold text-amber-800 shadow-lg"
+                      style={{
+                        fontFamily: '"Times New Roman", serif',
+                        textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                        border: "2px solid #d4af37",
+                      }}
+                    >
+                      {reflection.charAt(0).toUpperCase()}
+                    </div>
+                  </motion.div>
+
+                  {/* Story Text */}
+                  <motion.div
+                    className="text-amber-900 leading-relaxed"
+                    style={{
+                      fontFamily: '"Kalam", "Comic Neue", cursive',
+                      fontSize: "15px",
+                      textAlign: "justify",
+                      textShadow: "1px 1px 2px rgba(255,255,255,0.5)",
+                      lineHeight: "1.6",
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.3, duration: 1.2 }}
+                  >
+                    {reflection.substring(1)}
+                  </motion.div>
+
+                  {/* AI Companion signature */}
+                  <motion.div
+                    className="flex items-center justify-end gap-2 mt-4 opacity-70"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 0.7, x: 0 }}
+                    transition={{ delay: 1.8, duration: 0.6 }}
+                  >
                     {aiAvatarUrl && (
                       <motion.div
-                        className="w-8 h-8 rounded-full overflow-hidden border-2 border-purple-200"
+                        className="w-6 h-6 rounded-full overflow-hidden border border-amber-400"
                         animate={{
-                          scale: [1, 1.1, 1],
+                          scale: [1, 1.05, 1],
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                           ease: "easeInOut",
                         }}
@@ -316,35 +357,29 @@ const KidReflectionStorybookCard = ({
                         />
                       </motion.div>
                     )}
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-purple-600">
-                        Your AI Buddy says:
-                      </span>
-                      {/* Voice playback button */}
-                      <motion.button
-                        onClick={handleAudioPlay}
-                        className="p-1 rounded-full bg-purple-100 hover:bg-purple-200 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <Volume2
-                          className={`w-3 h-3 text-purple-600 ${
-                            isAudioPlaying ? "animate-pulse" : ""
-                          }`}
-                        />
-                      </motion.button>
-                    </div>
-                  </div>
-
-                  {/* Reflection Text with Typewriter Effect */}
-                  <motion.p
-                    className="text-gray-700 text-sm leading-relaxed font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 1 }}
-                  >
-                    {reflection}
-                  </motion.p>
+                    <span
+                      className="text-xs text-amber-700 italic font-medium"
+                      style={{
+                        fontFamily: '"Times New Roman", serif',
+                        textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                      }}
+                    >
+                      - Your Magical Friend
+                    </span>
+                    {/* Voice playback button */}
+                    <motion.button
+                      onClick={handleAudioPlay}
+                      className="p-1 rounded-full bg-amber-100 hover:bg-amber-200 transition-colors opacity-60 hover:opacity-100"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Volume2
+                        className={`w-3 h-3 text-amber-700 ${
+                          isAudioPlaying ? "animate-pulse" : ""
+                        }`}
+                      />
+                    </motion.button>
+                  </motion.div>
                 </motion.div>
               </div>
 
