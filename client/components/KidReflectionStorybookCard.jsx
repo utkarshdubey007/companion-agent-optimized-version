@@ -169,16 +169,42 @@ const KidReflectionStorybookCard = ({
                 </motion.div>
               </div>
 
-              {/* Badge Title */}
-              <div className="relative pt-6 px-6">
+              {/* Storybook Title */}
+              <div className="relative pt-8 px-8">
                 <motion.div
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-bold shadow-md"
-                  initial={{ scale: 0, rotate: -10 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  className="text-center mb-6"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                  <Award className="w-4 h-4" />
-                  {badgeTitle}
+                  <motion.h2
+                    className="text-xl font-bold text-amber-800 mb-2"
+                    style={{
+                      fontFamily: '"Kalam", "Comic Neue", cursive',
+                      textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
+                      letterSpacing: "0.5px",
+                    }}
+                    animate={{
+                      textShadow: [
+                        "2px 2px 4px rgba(255,255,255,0.8)",
+                        "2px 2px 8px rgba(255,215,0,0.3)",
+                        "2px 2px 4px rgba(255,255,255,0.8)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    "{badgeTitle}"
+                  </motion.h2>
+                  <motion.div
+                    className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                  />
                 </motion.div>
               </div>
 
