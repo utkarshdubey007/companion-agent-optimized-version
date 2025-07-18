@@ -183,6 +183,377 @@ const SparkleTrail = ({ isHovered, color }) => (
   </AnimatePresence>
 );
 
+// Character-specific animation components
+const CharacterAnimations = ({ companion, isHovered, isSelected }) => {
+  const { name, color, animations } = companion;
+
+  // Cody - Red fox coder (Digital flicker/glitch)
+  if (name === "Cody") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Digital matrix effect */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute text-xs text-green-400 font-mono opacity-70"
+                style={{
+                  left: `${Math.random() * 80}%`,
+                  top: `${Math.random() * 80}%`,
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0],
+                  y: [0, -20],
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                }}
+              >
+                {["01", "10", "11", "00"][Math.floor(Math.random() * 4)]}
+              </motion.div>
+            ))}
+            {/* Glitch effect overlay */}
+            {isSelected && (
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"
+                animate={{
+                  x: [-100, 100],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: 0.3,
+                  repeat: 3,
+                  repeatDelay: 0.2,
+                }}
+              />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // Doma - Speedy lizard (Zoom trail/slide-in)
+  if (name === "Doma") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Speed trail effect */}
+            {[...Array(4)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute inset-0 rounded-full border-2"
+                style={{
+                  borderColor: color,
+                  opacity: 0.3 - i * 0.1,
+                }}
+                initial={{ scale: 1, x: 0 }}
+                animate={{
+                  scale: [1, 1.2, 1],
+                  x: isSelected ? [0, -20, 0] : [0, -10, 0],
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                }}
+              />
+            ))}
+            {/* Blur trail on selection */}
+            {isSelected && (
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
+                  filter: "blur(8px)",
+                }}
+                animate={{
+                  x: [-50, 50],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: 2,
+                }}
+              />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // Letsgo - Energetic bunny (Bounce + light burst)
+  if (name === "Letsgo") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Glowing trail particles */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  backgroundColor: color,
+                  boxShadow: `0 0 10px ${color}`,
+                  left: `${45 + Math.random() * 10}%`,
+                  top: `${45 + Math.random() * 10}%`,
+                }}
+                animate={{
+                  y: [0, -30, -60],
+                  x: [0, (Math.random() - 0.5) * 40],
+                  scale: [0, 1, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 1.2,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 0.8,
+                }}
+              />
+            ))}
+            {/* Light burst on selection */}
+            {isSelected && (
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `radial-gradient(circle, ${color}80, transparent)`,
+                }}
+                initial={{ scale: 0, opacity: 1 }}
+                animate={{
+                  scale: [0, 2, 0],
+                  opacity: [1, 0.5, 0],
+                }}
+                transition={{
+                  duration: 0.8,
+                  repeat: 2,
+                  repeatDelay: 0.3,
+                }}
+              />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // Rooty - Wise bear (Soft rotation + tool particles)
+  if (name === "Rooty") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Floating tool particles */}
+            {["⚙️", "🔧", "⚡", "🛠️"].map((tool, i) => (
+              <motion.div
+                key={i}
+                className="absolute text-xs"
+                style={{
+                  left: `${20 + i * 15}%`,
+                  top: `${20 + i * 15}%`,
+                }}
+                animate={{
+                  rotate: [0, 360],
+                  y: [0, -10, 0],
+                  opacity: [0.6, 1, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: i * 0.3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                {tool}
+              </motion.div>
+            ))}
+            {/* Welding spark effect on selection */}
+            {isSelected && (
+              <motion.div className="absolute inset-0">
+                {[...Array(12)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-yellow-400 rounded-full"
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                    }}
+                    animate={{
+                      x: [0, Math.cos((i * 30 * Math.PI) / 180) * 40],
+                      y: [0, Math.sin((i * 30 * Math.PI) / 180) * 40],
+                      scale: [0, 1, 0],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      delay: i * 0.05,
+                      repeat: 2,
+                    }}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // Rushmore - Clumsy cat chef (Wobble + sparkle smoke)
+  if (name === "Rushmore") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Cooking smoke particles */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-3 h-3 bg-gray-300 rounded-full opacity-40"
+                style={{
+                  left: `${40 + i * 5}%`,
+                  top: `${30 + i * 5}%`,
+                }}
+                animate={{
+                  y: [0, -40],
+                  x: [0, (Math.random() - 0.5) * 20],
+                  scale: [0.5, 1.5, 0],
+                  opacity: [0.4, 0.2, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: i * 0.2,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                }}
+              />
+            ))}
+            {/* Sparkle effect on selection */}
+            {isSelected && (
+              <motion.div className="absolute inset-0">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute text-yellow-300"
+                    style={{
+                      left: `${Math.random() * 80 + 10}%`,
+                      top: `${Math.random() * 80 + 10}%`,
+                      fontSize: "8px",
+                    }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      rotate: [0, 180, 360],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 1,
+                      delay: i * 0.1,
+                      repeat: 2,
+                    }}
+                  >
+                    ✨
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  // Uni - Space explorer (Soft glow + star field)
+  if (name === "Uni") {
+    return (
+      <AnimatePresence>
+        {(isHovered || isSelected) && (
+          <motion.div className="absolute inset-0 pointer-events-none">
+            {/* Floating stars */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute text-white"
+                style={{
+                  left: `${20 + i * 12}%`,
+                  top: `${25 + i * 10}%`,
+                  fontSize: "6px",
+                }}
+                animate={{
+                  scale: [0, 1, 0],
+                  opacity: [0, 1, 0],
+                  rotate: [0, 180],
+                }}
+                transition={{
+                  duration: 2,
+                  delay: i * 0.2,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                }}
+              >
+                ⭐
+              </motion.div>
+            ))}
+            {/* Helmet reflection effect */}
+            {isSelected && (
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `conic-gradient(from 0deg, transparent, ${color}40, transparent, ${color}20, transparent)`,
+                }}
+                animate={{
+                  rotate: [0, 360],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            )}
+            {/* Space particles */}
+            {isSelected && (
+              <motion.div className="absolute inset-0">
+                {[...Array(10)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-purple-300 rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 0.8, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      delay: i * 0.1,
+                      repeat: 2,
+                    }}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  return null;
+};
+
 const CompanionOrb = ({
   companion,
   index,
