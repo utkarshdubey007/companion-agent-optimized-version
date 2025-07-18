@@ -14,29 +14,16 @@ export function DualSidebar({
 }) {
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
-      {/* Container with zero margin, aligned to left edge */}
+      {/* Container aligned to left edge */}
       <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden">
-        {/* Top Sidebar Section - Auto height, no flex-1 */}
-        <div className="flex items-center">
-          {/* Top Section Toggle Button - Always visible at left edge */}
-          <Button
-            onClick={toggleTopSidebar}
-            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
-            style={{
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-            }}
-          >
-            {topSidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-white" />
-            ) : (
-              <ChevronLeft className="w-4 h-4 text-white" />
-            )}
-          </Button>
-
-          {/* Top Section Content - Content-based height */}
+        {/* Top Sidebar Section */}
+        <div className="relative">
+          {/* Top Section Content - Attached to left edge when expanded */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
-              topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+              topSidebarCollapsed
+                ? "w-0 opacity-0 translate-x-0"
+                : "w-20 opacity-100 translate-x-0"
             }`}
           >
             <div
@@ -45,9 +32,10 @@ export function DualSidebar({
                 boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(60vh)",
+                marginLeft: "0", // Flush with left edge
               }}
             >
-              {/* Menu Items - Content-based sizing, no labels */}
+              {/* Menu Items */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-3">
                   {topMenuItems.map((item, index) => (
@@ -86,29 +74,36 @@ export function DualSidebar({
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Sidebar Section - Independent from top */}
-        <div className="flex items-center">
-          {/* Bottom Section Toggle Button - Always visible at left edge */}
+          {/* Top Section Toggle Button - Positioned based on sidebar state */}
           <Button
-            onClick={toggleBottomSidebar}
-            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
+            onClick={toggleTopSidebar}
+            className={`w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 p-0 transition-all duration-700 shadow-lg flex-shrink-0 absolute top-0 ${
+              topSidebarCollapsed
+                ? "left-0 rounded-r-lg border-l-0" // At left edge when collapsed
+                : "left-20 rounded-l-lg border-r-0" // At right edge of sidebar when expanded
+            }`}
             style={{
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              zIndex: 10,
             }}
           >
-            {bottomSidebarCollapsed ? (
+            {topSidebarCollapsed ? (
               <ChevronRight className="w-4 h-4 text-white" />
             ) : (
               <ChevronLeft className="w-4 h-4 text-white" />
             )}
           </Button>
+        </div>
 
-          {/* Bottom Section Content - Content-based height */}
+        {/* Bottom Sidebar Section */}
+        <div className="relative">
+          {/* Bottom Section Content - Attached to left edge when expanded */}
           <div
             className={`transition-all duration-700 ease-out overflow-hidden ${
-              bottomSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+              bottomSidebarCollapsed
+                ? "w-0 opacity-0 translate-x-0"
+                : "w-20 opacity-100 translate-x-0"
             }`}
           >
             <div
@@ -117,9 +112,10 @@ export function DualSidebar({
                 boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(40vh)",
+                marginLeft: "0", // Flush with left edge
               }}
             >
-              {/* Menu Items - Content-based sizing, no labels */}
+              {/* Menu Items */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-3">
                   {bottomMenuItems.map((item, index) => (
@@ -160,6 +156,26 @@ export function DualSidebar({
               </div>
             </div>
           </div>
+
+          {/* Bottom Section Toggle Button - Positioned based on sidebar state */}
+          <Button
+            onClick={toggleBottomSidebar}
+            className={`w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 p-0 transition-all duration-700 shadow-lg flex-shrink-0 absolute top-0 ${
+              bottomSidebarCollapsed
+                ? "left-0 rounded-r-lg border-l-0" // At left edge when collapsed
+                : "left-20 rounded-l-lg border-r-0" // At right edge of sidebar when expanded
+            }`}
+            style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              zIndex: 10,
+            }}
+          >
+            {bottomSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white" />
+            )}
+          </Button>
         </div>
       </div>
     </div>
