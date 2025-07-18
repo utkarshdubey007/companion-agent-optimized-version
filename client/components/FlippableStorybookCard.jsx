@@ -67,9 +67,9 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
 
           {/* AI Avatar - positioned at top-left */}
           {aiAvatarUrl && (
-            <div className="absolute top-4 left-8 z-10">
-              <motion.div
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 shadow-md bg-white p-0.5"
+            <div className="absolute top-4 left-8 z-20">
+              <motion.button
+                className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 shadow-md bg-white p-0.5 cursor-pointer"
                 animate={{
                   scale: [1, 1.05, 1],
                 }}
@@ -78,13 +78,19 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  console.log("AI Avatar clicked!");
+                  // Add avatar interaction here
+                }}
               >
                 <img
                   src={aiAvatarUrl}
                   alt="AI Companion"
                   className="w-full h-full object-cover rounded-full"
                 />
-              </motion.div>
+              </motion.button>
             </div>
           )}
 
