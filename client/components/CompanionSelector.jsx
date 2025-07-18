@@ -1,106 +1,117 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 
 const companions = [
   {
     id: 1,
-    name: "Coral",
+    name: "Luna",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F35220f9f55544852b19a81d8a56b8220?format=webp&width=800",
-    color: "#FF6B6B",
-    description: "Warm and caring, loves to give hugs!",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=150&h=150&fit=crop&crop=face",
+    color: "#9333EA",
+    description: "Wise moonlight guardian who loves stargazing!",
+    element: "🌙",
   },
   {
     id: 2,
-    name: "Aqua",
+    name: "Coral",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F7472980b08d046459e557bbc6990c7cc?format=webp&width=800",
-    color: "#4ECDC4",
-    description: "Calm and wise, loves ocean adventures!",
+      "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=150&h=150&fit=crop&crop=face",
+    color: "#F59E0B",
+    description: "Warm ocean spirit who brings joy and laughter!",
+    element: "🌊",
   },
   {
     id: 3,
     name: "Sage",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F210198687221480a987ca5ac689a2bea?format=webp&width=800",
-    color: "#45B7D1",
-    description: "Curious and clever, loves to explore!",
+      "https://images.unsplash.com/photo-1570824104453-508955ab713e?w=150&h=150&fit=crop&crop=face",
+    color: "#10B981",
+    description: "Forest keeper who knows all the woodland secrets!",
+    element: "🌿",
   },
   {
     id: 4,
-    name: "Sunny",
+    name: "Blaze",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F49bf6cb669044cec87b405ab6fd50f52?format=webp&width=800",
-    color: "#F39C12",
-    description: "Cheerful and bright, spreads joy everywhere!",
+      "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=150&h=150&fit=crop&crop=face",
+    color: "#EF4444",
+    description: "Fiery dragon friend with a heart of gold!",
+    element: "🔥",
   },
   {
     id: 5,
-    name: "Sky",
+    name: "Frost",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F4f45c0ea499b45568107c6d6167d121f?format=webp&width=800",
-    color: "#3498DB",
-    description: "Dreamy and imaginative, loves to fly!",
+      "https://images.unsplash.com/photo-1574231164645-d6f0e8553590?w=150&h=150&fit=crop&crop=face",
+    color: "#3B82F6",
+    description: "Snow fairy who creates magical ice crystals!",
+    element: "❄️",
   },
   {
     id: 6,
-    name: "Rose",
+    name: "Petal",
     image:
-      "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F44dd8103edd046d8afa8f4b2ff627a5a?format=webp&width=800",
-    color: "#E91E63",
-    description: "Sweet and gentle, loves magical flowers!",
+      "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=150&h=150&fit=crop&crop=face",
+    color: "#EC4899",
+    description: "Flower spirit who makes gardens bloom!",
+    element: "🌸",
   },
 ];
 
-const MagicalParticle = ({ delay = 0 }) => (
+const MagicalParticle = ({ delay = 0, color = "#ffffff" }) => (
   <motion.div
-    className="absolute w-1 h-1 bg-white rounded-full"
+    className="absolute w-1 h-1 bg-white rounded-full opacity-80"
+    style={{ backgroundColor: color }}
     initial={{ opacity: 0, scale: 0 }}
     animate={{
       opacity: [0, 1, 0],
-      scale: [0, 1, 0],
-      x: [0, Math.random() * 100 - 50],
-      y: [0, Math.random() * 100 - 50],
+      scale: [0, 1.5, 0],
+      x: [0, Math.random() * 200 - 100],
+      y: [0, Math.random() * 200 - 100],
     }}
     transition={{
-      duration: 2,
+      duration: 3,
       delay,
       repeat: Infinity,
       repeatDelay: Math.random() * 2,
+      ease: "easeOut",
     }}
   />
 );
 
-const SparkleTrail = ({ isHovered, color }) => (
+const SparkleTrail = ({ isHovered, color, position }) => (
   <AnimatePresence>
     {isHovered && (
       <motion.div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute pointer-events-none"
+        style={{ left: position.x, top: position.y }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        {[...Array(8)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               backgroundColor: color,
-              boxShadow: `0 0 10px ${color}`,
+              boxShadow: `0 0 6px ${color}`,
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{
               scale: [0, 1, 0],
               opacity: [0, 1, 0],
-              x: [0, (Math.random() - 0.5) * 60],
-              y: [0, (Math.random() - 0.5) * 60],
+              x: [0, (Math.random() - 0.5) * 80],
+              y: [0, (Math.random() - 0.5) * 80],
+              rotate: [0, 360],
             }}
             transition={{
-              duration: 1,
-              delay: i * 0.1,
+              duration: 1.5,
+              delay: i * 0.05,
               repeat: Infinity,
-              repeatDelay: 0.5,
+              repeatDelay: 0.8,
+              ease: "easeOut",
             }}
           />
         ))}
@@ -116,95 +127,126 @@ const CompanionOrb = ({
   onSelect,
   isHovered,
   onHover,
+  totalCompanions,
 }) => {
-  const angle = index * 60 * (Math.PI / 180);
-  const radius = 140;
+  const angle = ((index * 360) / totalCompanions) * (Math.PI / 180);
+  const radius = 160;
   const x = Math.cos(angle) * radius;
   const y = Math.sin(angle) * radius;
 
   return (
     <motion.div
       className="absolute cursor-pointer"
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
       animate={{
         opacity: 1,
-        scale: 1,
+        scale: isSelected ? 1.4 : 1,
         x: isSelected ? 0 : x,
         y: isSelected ? 0 : y,
         zIndex: isSelected ? 50 : 10,
       }}
-      whileHover={{ scale: 1.2, rotate: 5 }}
+      whileHover={{ scale: isSelected ? 1.4 : 1.3 }}
       transition={{
         duration: 0.8,
-        delay: index * 0.1,
+        delay: index * 0.15,
         type: "spring",
-        stiffness: 260,
+        stiffness: 200,
         damping: 20,
       }}
       onMouseEnter={() => onHover(companion.id)}
       onMouseLeave={() => onHover(null)}
       onClick={() => onSelect(companion)}
     >
-      {/* Floating animation */}
+      {/* Floating animation container */}
       <motion.div
         animate={{
-          y: [0, -8, 0],
-          rotate: [0, 2, 0, -2, 0],
+          y: [0, -12, 0],
+          rotate: [0, 3, 0, -3, 0],
         }}
         transition={{
-          duration: 3,
+          duration: 4,
           repeat: Infinity,
-          delay: index * 0.5,
+          delay: index * 0.7,
+          ease: "easeInOut",
         }}
       >
-        {/* Aura effect */}
+        {/* Outer aura glow */}
         <motion.div
-          className="absolute inset-0 rounded-full blur-sm"
+          className="absolute inset-0 rounded-full blur-lg"
           style={{
             backgroundColor: companion.color,
-            filter: `blur(4px)`,
+            width: "100px",
+            height: "100px",
+            left: "-10px",
+            top: "-10px",
           }}
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 2,
-            repeat: Infinity,
-            delay: index * 0.2,
-          }}
-        />
-
-        {/* Glowing border */}
-        <motion.div
-          className="absolute inset-0 rounded-full border-2"
-          style={{
-            borderColor: companion.color,
-            boxShadow: `0 0 20px ${companion.color}`,
-          }}
-          animate={{
-            scale: [1, 1.05, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 2,
+            duration: 2.5,
             repeat: Infinity,
             delay: index * 0.3,
           }}
         />
 
-        {/* Companion image */}
+        {/* Magical ring */}
         <motion.div
-          className="w-20 h-20 rounded-full overflow-hidden relative"
+          className="absolute inset-0 rounded-full border-2 border-dashed"
           style={{
-            backgroundColor: companion.color,
-            boxShadow: `0 8px 32px ${companion.color}40`,
+            borderColor: companion.color,
+            width: "90px",
+            height: "90px",
+            left: "-5px",
+            top: "-5px",
+          }}
+          animate={{
+            rotate: 360,
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: {
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            scale: {
+              duration: 2,
+              repeat: Infinity,
+              delay: index * 0.2,
+            },
+          }}
+        />
+
+        {/* Inner glowing border */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2"
+          style={{
+            borderColor: companion.color,
+            boxShadow: `0 0 20px ${companion.color}`,
+            width: "80px",
+            height: "80px",
           }}
           animate={{
             boxShadow:
               isHovered === companion.id
-                ? `0 8px 40px ${companion.color}80`
-                : `0 8px 32px ${companion.color}40`,
+                ? `0 0 30px ${companion.color}, 0 0 50px ${companion.color}40`
+                : `0 0 20px ${companion.color}`,
+          }}
+        />
+
+        {/* Companion avatar */}
+        <motion.div
+          className="w-20 h-20 rounded-full overflow-hidden relative bg-gradient-to-br from-white to-gray-200"
+          style={{
+            boxShadow: `0 8px 32px ${companion.color}60`,
+          }}
+          animate={{
+            boxShadow:
+              isHovered === companion.id
+                ? `0 12px 40px ${companion.color}80, 0 0 60px ${companion.color}40`
+                : `0 8px 32px ${companion.color}60`,
           }}
         >
           <img
@@ -213,21 +255,64 @@ const CompanionOrb = ({
             className="w-full h-full object-cover"
           />
 
-          {/* Sparkle trail on hover */}
-          <SparkleTrail
-            isHovered={isHovered === companion.id}
-            color={companion.color}
-          />
+          {/* Element overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.span
+              className="text-2xl filter drop-shadow-lg"
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, 0, -10, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: index * 0.4,
+              }}
+            >
+              {companion.element}
+            </motion.span>
+          </div>
+
+          {/* Sparkle effects on hover */}
+          {isHovered === companion.id && (
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    left: `${20 + i * 10}%`,
+                    top: `${20 + i * 10}%`,
+                  }}
+                  animate={{
+                    scale: [0, 1, 0],
+                    rotate: [0, 180, 360],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: i * 0.1,
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                >
+                  <Sparkles className="w-3 h-3 text-white" />
+                </motion.div>
+              ))}
+            </div>
+          )}
         </motion.div>
 
         {/* Name label */}
         <motion.div
-          className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-white text-sm font-bold"
+          className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.5 }}
+          transition={{ delay: index * 0.1 + 0.8 }}
         >
-          {companion.name}
+          <div className="text-white text-sm font-bold drop-shadow-lg">
+            {companion.name}
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>
@@ -242,61 +327,79 @@ const PortalRing = ({ isVisible, color }) => (
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        {/* Outer ring */}
+        {/* Outer portal ring */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full border-4"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border-4 border-dashed"
           style={{
             borderColor: color,
-            borderStyle: "dashed",
-            boxShadow: `0 0 30px ${color}`,
+            boxShadow: `0 0 60px ${color}`,
           }}
-          animate={{ rotate: 360 }}
+          animate={{
+            rotate: 360,
+            scale: [1, 1.1, 1],
+          }}
           transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear",
+            rotate: {
+              duration: 12,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            scale: {
+              duration: 2,
+              repeat: Infinity,
+            },
           }}
         />
 
-        {/* Inner ring */}
+        {/* Inner portal ring */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border-2"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 rounded-full border-2"
           style={{
             borderColor: color,
-            borderStyle: "solid",
-            boxShadow: `0 0 20px ${color}`,
+            boxShadow: `0 0 40px ${color}`,
           }}
-          animate={{ rotate: -360 }}
+          animate={{
+            rotate: -360,
+            opacity: [0.6, 1, 0.6],
+          }}
           transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "linear",
+            rotate: {
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            opacity: {
+              duration: 1.5,
+              repeat: Infinity,
+            },
           }}
         />
 
-        {/* Portal particles */}
-        {[...Array(12)].map((_, i) => (
+        {/* Portal energy particles */}
+        {[...Array(16)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 rounded-full"
             style={{
               backgroundColor: color,
-              boxShadow: `0 0 10px ${color}`,
+              boxShadow: `0 0 8px ${color}`,
               top: "50%",
               left: "50%",
             }}
             animate={{
-              x: [0, Math.cos((i * 30 * Math.PI) / 180) * 70],
-              y: [0, Math.sin((i * 30 * Math.PI) / 180) * 70],
+              x: [0, Math.cos((i * 22.5 * Math.PI) / 180) * 120],
+              y: [0, Math.sin((i * 22.5 * Math.PI) / 180) * 120],
               scale: [0, 1, 0],
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: 2,
+              duration: 2.5,
               delay: i * 0.1,
               repeat: Infinity,
               repeatDelay: 1,
+              ease: "easeOut",
             }}
           />
         ))}
@@ -306,7 +409,6 @@ const PortalRing = ({ isVisible, color }) => (
 );
 
 const CompanionSelector = ({ onSelect, onClose }) => {
-  console.log("CompanionSelector component rendered!");
   const [selectedCompanion, setSelectedCompanion] = useState(null);
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
@@ -316,7 +418,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
     setShowMessage(true);
     setTimeout(() => {
       onSelect?.(companion);
-    }, 2000);
+    }, 2500);
   };
 
   const handleClose = () => {
@@ -326,158 +428,249 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      {/* Debug indicator */}
-      <div className="absolute top-2 left-2 bg-green-500 text-white p-2 rounded z-[100] text-sm">
-        CompanionSelector Active
-      </div>
-      {/* Magical background */}
+    <AnimatePresence>
       <motion.div
-        className="absolute inset-0 overflow-hidden"
+        className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        {/* Floating background particles */}
-        {[...Array(20)].map((_, i) => (
-          <MagicalParticle key={i} delay={i * 0.1} />
-        ))}
-
-        {/* Animated background gradient */}
+        {/* Magical nebula background */}
         <motion.div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 50% 50%, 
-              rgba(147, 51, 234, 0.3) 0%, 
-              rgba(59, 130, 246, 0.2) 30%, 
-              rgba(16, 185, 129, 0.1) 60%, 
-              rgba(0, 0, 0, 0.8) 100%)`,
-          }}
-          animate={{
-            background: [
-              `radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.3) 0%, rgba(59, 130, 246, 0.2) 30%, rgba(16, 185, 129, 0.1) 60%, rgba(0, 0, 0, 0.8) 100%)`,
-              `radial-gradient(circle at 60% 40%, rgba(59, 130, 246, 0.3) 0%, rgba(16, 185, 129, 0.2) 30%, rgba(147, 51, 234, 0.1) 60%, rgba(0, 0, 0, 0.8) 100%)`,
-              `radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.3) 0%, rgba(147, 51, 234, 0.2) 30%, rgba(59, 130, 246, 0.1) 60%, rgba(0, 0, 0, 0.8) 100%)`,
-              `radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.3) 0%, rgba(59, 130, 246, 0.2) 30%, rgba(16, 185, 129, 0.1) 60%, rgba(0, 0, 0, 0.8) 100%)`,
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </motion.div>
-
-      {/* Main selector container */}
-      <motion.div
-        className="relative w-96 h-96 flex items-center justify-center"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-        }}
-      >
-        {/* Title */}
-        <motion.h2
-          className="absolute -top-20 left-1/2 transform -translate-x-1/2 text-3xl font-bold text-white text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          className="absolute inset-0 overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
         >
-          ✨ Choose Your Magical Companion ✨
-        </motion.h2>
-
-        {/* Orbit circle */}
-        <motion.div
-          className="absolute w-80 h-80 border-2 border-dashed border-white border-opacity-30 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-
-        {/* Portal ring for selected companion */}
-        <PortalRing
-          isVisible={selectedCompanion !== null}
-          color={selectedCompanion?.color || "#ffffff"}
-        />
-
-        {/* Companion orbs */}
-        {companions.map((companion, index) => (
-          <CompanionOrb
-            key={companion.id}
-            companion={companion}
-            index={index}
-            isSelected={selectedCompanion?.id === companion.id}
-            onSelect={handleSelect}
-            isHovered={hoveredCompanion}
-            onHover={setHoveredCompanion}
+          {/* Animated gradient background */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(circle at 30% 40%, 
+                rgba(147, 51, 234, 0.4) 0%, 
+                rgba(59, 130, 246, 0.3) 25%, 
+                rgba(16, 185, 129, 0.2) 50%, 
+                rgba(245, 158, 11, 0.1) 75%,
+                rgba(0, 0, 0, 0.9) 100%)`,
+            }}
+            animate={{
+              background: [
+                `radial-gradient(circle at 30% 40%, rgba(147, 51, 234, 0.4) 0%, rgba(59, 130, 246, 0.3) 25%, rgba(16, 185, 129, 0.2) 50%, rgba(245, 158, 11, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)`,
+                `radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.4) 0%, rgba(16, 185, 129, 0.3) 25%, rgba(245, 158, 11, 0.2) 50%, rgba(147, 51, 234, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)`,
+                `radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.4) 0%, rgba(245, 158, 11, 0.3) 25%, rgba(147, 51, 234, 0.2) 50%, rgba(59, 130, 246, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)`,
+                `radial-gradient(circle at 30% 40%, rgba(147, 51, 234, 0.4) 0%, rgba(59, 130, 246, 0.3) 25%, rgba(16, 185, 129, 0.2) 50%, rgba(245, 158, 11, 0.1) 75%, rgba(0, 0, 0, 0.9) 100%)`,
+              ],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "linear",
+            }}
           />
-        ))}
 
-        {/* Center cancel button */}
-        <motion.button
-          className="absolute w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl"
-          onClick={handleClose}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          animate={{
-            boxShadow: [
-              "0 0 20px rgba(147, 51, 234, 0.5)",
-              "0 0 30px rgba(147, 51, 234, 0.8)",
-              "0 0 20px rgba(147, 51, 234, 0.5)",
-            ],
-          }}
+          {/* Floating magical particles */}
+          {[...Array(30)].map((_, i) => (
+            <MagicalParticle
+              key={i}
+              delay={i * 0.2}
+              color={companions[i % companions.length].color}
+            />
+          ))}
+
+          {/* Twinkling stars */}
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 3,
+                delay: Math.random() * 2,
+                repeat: Infinity,
+                repeatDelay: Math.random() * 3,
+              }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Main selector container */}
+        <motion.div
+          className="relative w-[500px] h-[500px] flex items-center justify-center"
+          initial={{ scale: 0, opacity: 0, rotate: -180 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          exit={{ scale: 0, opacity: 0, rotate: 180 }}
           transition={{
-            duration: 2,
-            repeat: Infinity,
+            duration: 1,
+            type: "spring",
+            stiffness: 200,
+            damping: 25,
           }}
         >
-          <X className="w-8 h-8 text-white" />
-        </motion.button>
-
-        {/* Success message */}
-        <AnimatePresence>
-          {showMessage && selectedCompanion && (
-            <motion.div
-              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 text-center"
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.8 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.h3
-                className="text-2xl font-bold text-white mb-2"
+          {/* Magical title */}
+          <motion.div
+            className="absolute -top-24 left-1/2 transform -translate-x-1/2 text-center"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">
+              <motion.span
                 animate={{
                   textShadow: [
-                    `0 0 10px ${selectedCompanion.color}`,
-                    `0 0 20px ${selectedCompanion.color}`,
-                    `0 0 10px ${selectedCompanion.color}`,
+                    "0 0 20px #ffffff",
+                    "0 0 40px #9333EA",
+                    "0 0 20px #ffffff",
                   ],
                 }}
-                transition={{ duration: 1, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity }}
               >
-                ✨ You chose {selectedCompanion.name}! ✨
-              </motion.h3>
-              <motion.p
-                className="text-lg text-white opacity-90"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Let the magic begin! 🌟
-              </motion.p>
+                ✨ Choose Your Magical Companion ✨
+              </motion.span>
+            </h2>
+            <p className="text-lg text-white opacity-90">
+              Select a friend to join your enchanted journey!
+            </p>
+          </motion.div>
+
+          {/* Outer orbit ring */}
+          <motion.div
+            className="absolute w-96 h-96 border-2 border-dashed border-white border-opacity-20 rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          {/* Inner orbit ring */}
+          <motion.div
+            className="absolute w-80 h-80 border border-white border-opacity-10 rounded-full"
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          {/* Portal effects for selected companion */}
+          <PortalRing
+            isVisible={selectedCompanion !== null}
+            color={selectedCompanion?.color || "#ffffff"}
+          />
+
+          {/* Companion orbs */}
+          {companions.map((companion, index) => (
+            <CompanionOrb
+              key={companion.id}
+              companion={companion}
+              index={index}
+              totalCompanions={companions.length}
+              isSelected={selectedCompanion?.id === companion.id}
+              onSelect={handleSelect}
+              isHovered={hoveredCompanion}
+              onHover={setHoveredCompanion}
+            />
+          ))}
+
+          {/* Center crystal orb (cancel button) */}
+          <motion.button
+            className="absolute w-20 h-20 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30"
+            onClick={handleClose}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            animate={{
+              boxShadow: [
+                "0 0 30px rgba(147, 51, 234, 0.6)",
+                "0 0 50px rgba(236, 72, 153, 0.8)",
+                "0 0 30px rgba(147, 51, 234, 0.6)",
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+          >
+            <motion.div
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <X className="w-8 h-8 text-white drop-shadow-lg" />
             </motion.div>
-          )}
-        </AnimatePresence>
+          </motion.button>
+
+          {/* Success message */}
+          <AnimatePresence>
+            {showMessage && selectedCompanion && (
+              <motion.div
+                className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 text-center"
+                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -30, scale: 0.8 }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.div
+                  className="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-30"
+                  animate={{
+                    boxShadow: [
+                      `0 0 30px ${selectedCompanion.color}40`,
+                      `0 0 50px ${selectedCompanion.color}60`,
+                      `0 0 30px ${selectedCompanion.color}40`,
+                    ],
+                  }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <motion.h3
+                    className="text-3xl font-bold text-white mb-2"
+                    animate={{
+                      textShadow: [
+                        `0 0 20px ${selectedCompanion.color}`,
+                        `0 0 40px ${selectedCompanion.color}`,
+                        `0 0 20px ${selectedCompanion.color}`,
+                      ],
+                    }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  >
+                    ✨ You chose {selectedCompanion.name}! ✨
+                  </motion.h3>
+                  <motion.p
+                    className="text-lg text-white opacity-90 mb-3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {selectedCompanion.description}
+                  </motion.p>
+                  <motion.p
+                    className="text-xl text-white font-semibold"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    Let the magic begin! 🌟
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
-    </div>
+    </AnimatePresence>
   );
 };
 
