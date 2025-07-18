@@ -238,13 +238,7 @@ export default function Index() {
         <AcceptedChallenges challenges={challengesData} />
       )}
       {showCreationsPanel && <CreationsPanel creations={creationsData} />}
-      {/* Debug indicator */}
-      {showCompanionSelector && (
-        <div className="fixed top-4 right-4 bg-red-500 text-white p-2 rounded z-50">
-          Companion Selector State: ON
-        </div>
-      )}
-
+      {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector
           onSelect={handleCompanionSelect}
