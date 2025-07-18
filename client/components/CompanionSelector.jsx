@@ -542,28 +542,45 @@ const CompanionSelector = ({ onSelect, onClose }) => {
         >
           {/* Magical title */}
           <motion.div
-            className="absolute -top-24 left-1/2 transform -translate-x-1/2 text-center"
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            className="absolute -top-32 left-1/2 transform -translate-x-1/2 text-center z-10"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{
+              opacity: isClosing ? 0 : 1,
+              y: isClosing ? -30 : 0,
+            }}
+            transition={{
+              delay: isClosing ? 0 : 0.3,
+              duration: 0.8,
+            }}
           >
-            <h2 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">
+            <motion.h2
+              className="text-5xl font-bold text-white mb-3 drop-shadow-lg"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
+            >
               <motion.span
                 animate={{
                   textShadow: [
-                    "0 0 20px #ffffff",
-                    "0 0 40px #9333EA",
-                    "0 0 20px #ffffff",
+                    "0 0 30px #ffffff",
+                    "0 0 50px #9333EA",
+                    "0 0 30px #4ECDC4",
+                    "0 0 30px #ffffff",
                   ],
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Infinity }}
               >
                 ✨ Choose Your Magical Companion ✨
               </motion.span>
-            </h2>
-            <p className="text-lg text-white opacity-90">
+            </motion.h2>
+            <motion.p
+              className="text-xl text-white opacity-90 font-medium"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
               Select a friend to join your enchanted journey!
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Outer orbit ring */}
