@@ -658,10 +658,21 @@ const CompanionSelector = ({ onSelect, onClose }) => {
                 repeat: Infinity,
                 ease: "linear",
               }}
-            >
-              <X className="w-8 h-8 text-white drop-shadow-lg" />
-            </motion.div>
-          </motion.button>
+                        >
+              <motion.div
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <X className="w-8 h-8 text-white drop-shadow-lg" />
+              </motion.div>
+            </motion.button>
+          )}
 
           {/* Success message */}
           <AnimatePresence>
