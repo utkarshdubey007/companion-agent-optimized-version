@@ -716,6 +716,13 @@ const CompanionOrb = ({
             </motion.span>
           </div>
 
+          {/* Character-specific animations */}
+          <CharacterAnimations
+            companion={companion}
+            isHovered={isHovered === companion.id}
+            isSelected={isSelected}
+          />
+
           {/* Sparkle effects */}
           <SparkleTrail
             isHovered={isHovered === companion.id || isSelected}
