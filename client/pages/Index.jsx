@@ -33,6 +33,10 @@ export default function Index() {
     setShowMagicalCard,
   } = usePageState();
 
+  // Companion selector state
+  const [showCompanionSelector, setShowCompanionSelector] = useState(false);
+  const [selectedCompanion, setSelectedCompanion] = useState(null);
+
   // Chat state management
   const {
     chatMessages,
