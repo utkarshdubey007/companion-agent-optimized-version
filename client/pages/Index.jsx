@@ -188,7 +188,7 @@ export default function Index() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <FloatingShapes />
+      {!showCompanionSelector && <FloatingShapes />}
 
       <AppHeader />
 
