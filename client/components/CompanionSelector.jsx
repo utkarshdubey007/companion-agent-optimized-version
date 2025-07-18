@@ -418,7 +418,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
     setShowMessage(true);
     setTimeout(() => {
       onSelect?.(companion);
-    }, 2500);
+    }, 2000);
   };
 
   const handleClose = () => {
