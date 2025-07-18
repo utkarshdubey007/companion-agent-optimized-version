@@ -92,7 +92,7 @@ export default function Index() {
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
       handleSendMessage();
-    } else if (itemAlt === "Companion" || itemAlt === "Friends") {
+    } else if (itemAlt === "Friends") {
       setShowCompanionSelector(true);
     } else if (itemAlt === "Mood") {
       console.log("Mood button clicked - creating mood message");
