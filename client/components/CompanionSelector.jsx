@@ -606,13 +606,36 @@ const CompanionOrb = ({
       <motion.div
         animate={{
           y: isSelected ? [0, -20, 0] : [0, -12, 0],
-          rotate: [0, 3, 0, -3, 0],
+          rotate:
+            companion.name === "Rushmore" && isHovered === companion.id
+              ? [0, 5, -5, 0] // Wobble for clumsy cat
+              : [0, 3, 0, -3, 0],
+          // Character-specific bounce for Letsgo
+          ...(companion.name === "Letsgo" &&
+          (isHovered === companion.id || isSelected)
+            ? {
+                y: [0, -25, 0, -15, 0],
+              }
+            : {}),
+          // Soft rotation for Rooty
+          ...(companion.name === "Rooty" &&
+          (isHovered === companion.id || isSelected)
+            ? {
+                rotate: [0, 10, -10, 0],
+              }
+            : {}),
         }}
         transition={{
-          duration: isSelected ? 2 : 4,
+          duration: isSelected
+            ? 2
+            : companion.name === "Letsgo" && isHovered === companion.id
+              ? 1.5
+              : companion.name === "Rushmore" && isHovered === companion.id
+                ? 2.5
+                : 4,
           repeat: Infinity,
           delay: index * 0.7,
-          ease: "easeInOut",
+          ease: companion.name === "Rushmore" ? "easeInOut" : "easeInOut",
         }}
       >
         {/* Outer magical aura */}
