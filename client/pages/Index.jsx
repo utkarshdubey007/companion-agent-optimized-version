@@ -93,6 +93,7 @@ export default function Index() {
     } else if (itemAlt === "Imagine") {
       handleSendMessage();
     } else if (itemAlt === "Friends") {
+      console.log("Friends button clicked! Opening companion selector...");
       setShowCompanionSelector(true);
     } else if (itemAlt === "Mood") {
       console.log("Mood button clicked - creating mood message");
