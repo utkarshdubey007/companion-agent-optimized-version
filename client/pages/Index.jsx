@@ -9,6 +9,7 @@ import { ChatInputBox } from "@/components/ChatInputBox";
 import { ChatContainer } from "@/components/ChatContainer";
 import { AppHeader } from "@/components/AppHeader";
 import { FloatingShapes } from "@/components/FloatingShapes";
+import CompanionSelector from "@/components/CompanionSelector";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
@@ -80,13 +81,13 @@ export default function Index() {
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
     if (itemAlt === "Play") {
-      handleChatMore()
+      handleChatMore();
     } else if (itemAlt === "Create") {
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
-      handleSendMessage()
+      handleSendMessage();
     } else if (itemAlt === "Mood") {
       console.log("Mood button clicked - creating mood message");
 
@@ -101,10 +102,10 @@ export default function Index() {
             prev.map((msg) =>
               msg.id === moodMessage.id
                 ? {
-                  ...msg,
-                  type: "text",
-                  content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
-                }
+                    ...msg,
+                    type: "text",
+                    content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
+                  }
                 : msg,
             ),
           );
@@ -123,8 +124,8 @@ export default function Index() {
       };
 
       setChatMessages((prev) => [...prev, moodMessage]);
-    }else if (itemAlt === "Store") {
-      handleAddAttachment()
+    } else if (itemAlt === "Store") {
+      handleAddAttachment();
     }
   };
 
@@ -143,9 +144,10 @@ export default function Index() {
         "Every feeling is valid and important. What would help you feel better today? 🌈",
     };
 
-    return `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${responses[mood.name] ||
+    return `Thank you for sharing that you're feeling ${mood.name.toLowerCase()}! ${mood.emoji} ${
+      responses[mood.name] ||
       "Every feeling is valid and important. What would help you feel better today? 🌈"
-      }`;
+    }`;
   };
 
   return (
