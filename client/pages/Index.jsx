@@ -72,10 +72,10 @@ export default function Index() {
     setShowBottomWaveEffect,
   ]);
 
-  // Add sample storybook with multiple reflections
+  // Add sample flippable storybook with multiple reflections
   useEffect(() => {
-    const addStorybookReflections = () => {
-      const sampleReflections = [
+    const addFlippableStorybook = () => {
+      const samplePages = [
         {
           imageUrl:
             "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
@@ -123,28 +123,20 @@ export default function Index() {
         },
       ];
 
-      const storybookMessage = {
-        id: "storybook-1",
-        type: "storybook",
+      const flippableStorybookMessage = {
+        id: "flippable-storybook-1",
+        type: "flippable_storybook",
         sender: "Kid",
-        reflections: sampleReflections,
+        pages: samplePages,
         timestamp: new Date(Date.now() - 120000),
-        onReactionClick: (reaction, reflection) => {
-          console.log(
-            "Reaction clicked:",
-            reaction,
-            "for reflection:",
-            reflection,
-          );
-        },
         index: 0,
       };
 
-      setChatMessages((prev) => [...prev, storybookMessage]);
+      setChatMessages((prev) => [...prev, flippableStorybookMessage]);
     };
 
-    // Start adding storybook after initial setup
-    const storybookTimer = setTimeout(addStorybookReflections, 3000);
+    // Start adding flippable storybook after initial setup
+    const storybookTimer = setTimeout(addFlippableStorybook, 3000);
 
     return () => clearTimeout(storybookTimer);
   }, [setChatMessages]);
