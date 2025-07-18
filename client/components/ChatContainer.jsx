@@ -109,6 +109,17 @@ export function ChatContainer({
       );
     }
 
+    if (message.type === "storybook") {
+      return (
+        <StorybookReflectionCard
+          key={message.id}
+          reflections={message.reflections}
+          onReactionClick={message.onReactionClick}
+          index={message.index || 0}
+        />
+      );
+    }
+
     if (message.type === "ai_challenge") {
       return (
         <CompanionChatMessage
