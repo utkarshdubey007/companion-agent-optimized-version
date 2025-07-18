@@ -474,22 +474,63 @@ const KidReflectionStorybookCard = ({
                 )}
               </AnimatePresence>
 
-              {/* Page curl effect for storybook feel */}
-              <div className="absolute bottom-0 right-0 w-8 h-8">
+              {/* Realistic Page Curl */}
+              <div className="absolute bottom-0 right-0 w-12 h-12 pointer-events-none">
                 <motion.div
-                  className="w-full h-full bg-gradient-to-tl from-gray-200 to-transparent rounded-tl-xl"
-                  style={{
-                    clipPath: "polygon(100% 0, 0 100%, 100% 100%)",
-                  }}
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                  className="relative w-full h-full"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Main curl */}
+                  <div
+                    className="absolute bottom-0 right-0 w-12 h-12"
+                    style={{
+                      background: `
+                        linear-gradient(
+                          135deg,
+                          rgba(139, 69, 19, 0.1) 0%,
+                          rgba(160, 82, 45, 0.15) 25%,
+                          rgba(210, 180, 140, 0.2) 50%,
+                          rgba(245, 245, 220, 0.8) 75%,
+                          rgba(255, 248, 220, 0.9) 100%
+                        )
+                      `,
+                      clipPath: "polygon(100% 0, 0 100%, 100% 100%)",
+                      transform: "rotateX(15deg) rotateY(-15deg)",
+                      transformOrigin: "bottom right",
+                      filter:
+                        "drop-shadow(-2px -2px 4px rgba(139, 69, 19, 0.2))",
+                    }}
+                  />
+
+                  {/* Under page shadow */}
+                  <div
+                    className="absolute bottom-0 right-0 w-12 h-12"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 70%)",
+                      clipPath: "polygon(70% 0, 0 70%, 100% 100%)",
+                    }}
+                  />
+
+                  {/* Curl highlight */}
+                  <motion.div
+                    className="absolute bottom-0 right-0 w-8 h-8"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%)",
+                      clipPath: "polygon(100% 0, 0 100%, 100% 100%)",
+                    }}
+                    animate={{
+                      opacity: [0.4, 0.7, 0.4],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </motion.div>
               </div>
             </motion.div>
 
