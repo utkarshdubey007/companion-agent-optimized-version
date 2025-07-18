@@ -208,34 +208,82 @@ const KidReflectionStorybookCard = ({
                 </motion.div>
               </div>
 
-              {/* Image Section */}
-              <div className="px-6 pt-4">
+              {/* Storybook Illustration */}
+              <div className="px-8 pt-2">
                 <motion.div
-                  className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-white"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
+                  className="relative"
+                  initial={{ scale: 0.9, opacity: 0, rotateX: 20 }}
+                  animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <img
-                    src={imageUrl}
-                    alt="Kid's creation"
-                    className="w-full h-48 object-cover"
-                  />
+                  {/* Illustration Frame */}
+                  <div
+                    className="relative rounded-lg overflow-hidden"
+                    style={{
+                      border: "3px solid #d4af37",
+                      backgroundImage: `
+                        linear-gradient(45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%)
+                      `,
+                      backgroundSize: "12px 12px",
+                      backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
+                      padding: "8px",
+                      boxShadow: `
+                        inset 0 0 0 1px rgba(212, 175, 55, 0.3),
+                        inset 0 0 8px rgba(255, 215, 0, 0.2),
+                        0 4px 16px rgba(0, 0, 0, 0.1)
+                      `,
+                    }}
+                  >
+                    <div className="relative rounded-md overflow-hidden bg-white p-2">
+                      <img
+                        src={imageUrl}
+                        alt="A magical illustration"
+                        className="w-full h-40 object-cover rounded-sm"
+                        style={{
+                          filter:
+                            "contrast(1.1) saturate(1.2) brightness(1.05)",
+                        }}
+                      />
 
-                  {/* Magical overlay effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
-                    animate={{
-                      x: [-100, 100],
-                      opacity: [0, 0.6, 0],
+                      {/* Vintage photo corners */}
+                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-amber-700 opacity-30" />
+                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 border-amber-700 opacity-30" />
+                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 border-amber-700 opacity-30" />
+                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-amber-700 opacity-30" />
+
+                      {/* Subtle shimmer effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent"
+                        animate={{
+                          x: [-50, 50],
+                          opacity: [0, 0.3, 0],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          repeatDelay: 4,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Illustration Caption */}
+                  <motion.p
+                    className="text-center text-xs text-amber-700 mt-2 italic font-medium opacity-70"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.7 }}
+                    transition={{ delay: 1, duration: 0.6 }}
+                    style={{
+                      fontFamily: '"Times New Roman", serif',
+                      textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
                     }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: "easeInOut",
-                    }}
-                  />
+                  >
+                    "A wonderful creation by our young artist"
+                  </motion.p>
                 </motion.div>
               </div>
 
