@@ -42,32 +42,61 @@ const KidReflectionStorybookCard = ({
   };
 
   return (
-    <div className="flex justify-end w-full mb-6 px-4">
+    <div className="flex justify-end w-full mb-8 px-4">
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="max-w-sm w-full"
-            initial={{ opacity: 0, x: 50, rotateY: -20 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            exit={{ opacity: 0, x: 50, rotateY: 20 }}
+            className="max-w-md w-full"
+            initial={{ opacity: 0, x: 100, rotateY: -15, rotateX: 10 }}
+            animate={{ opacity: 1, x: 0, rotateY: 0, rotateX: 0 }}
+            exit={{ opacity: 0, x: 100, rotateY: 15, rotateX: -10 }}
             transition={{
-              duration: 0.8,
+              duration: 1,
               type: "spring",
-              stiffness: 120,
-              damping: 20,
+              stiffness: 100,
+              damping: 25,
+            }}
+            style={{
+              perspective: "1000px",
             }}
           >
-            {/* Storybook Card Container */}
+            {/* Book Shadow Base */}
             <motion.div
-              className="relative bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 rounded-3xl shadow-lg border-4 border-white overflow-hidden"
+              className="absolute inset-0 bg-gray-800 rounded-r-lg opacity-20"
               style={{
-                fontFamily: '"Comic Neue", "Fredoka One", cursive, sans-serif',
-                filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.1))",
+                transform: "translateX(8px) translateY(8px)",
+                filter: "blur(12px)",
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.2 }}
+              transition={{ delay: 0.3 }}
+            />
+
+            {/* Storybook Page Container */}
+            <motion.div
+              className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-r-2xl shadow-2xl overflow-hidden"
+              style={{
+                fontFamily:
+                  '"Kalam", "Comic Neue", "Fredoka One", cursive, sans-serif',
+                backgroundImage: `
+                  radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+                  radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.02) 0%, transparent 50%),
+                  linear-gradient(90deg, rgba(139, 69, 19, 0.05) 0%, transparent 2%),
+                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(139, 69, 19, 0.01) 21px, rgba(139, 69, 19, 0.01) 22px)
+                `,
+                boxShadow: `
+                  inset 4px 0 8px rgba(139, 69, 19, 0.1),
+                  0 0 0 1px rgba(139, 69, 19, 0.1),
+                  0 8px 32px rgba(0, 0, 0, 0.15),
+                  0 4px 16px rgba(0, 0, 0, 0.1)
+                `,
+                minHeight: "420px",
+                aspectRatio: "3/4",
               }}
               whileHover={{
-                scale: 1.02,
-                rotateZ: 1,
-                transition: { duration: 0.3 },
+                rotateY: -5,
+                rotateX: 2,
+                transition: { duration: 0.4 },
               }}
               layout
             >
