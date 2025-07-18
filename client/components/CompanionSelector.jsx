@@ -420,12 +420,16 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+        className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[9999]"
         initial={{ opacity: 0 }}
         animate={{ opacity: isClosing ? 0 : 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
         onClick={handleClose}
+        style={{
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+        }}
       >
         {/* Magical nebula background */}
         <motion.div
@@ -461,10 +465,10 @@ const CompanionSelector = ({ onSelect, onClose }) => {
           />
 
           {/* Floating magical particles */}
-          {[...Array(40)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <MagicalParticle
               key={i}
-              delay={i * 0.1}
+              delay={i * 0.15}
               color={companions[i % companions.length].color}
             />
           ))}
@@ -494,7 +498,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
 
         {/* Main selector container */}
         <motion.div
-          className="relative w-[700px] h-[700px] flex items-center justify-center"
+          className="relative w-[700px] h-[700px] flex items-center justify-center z-[50]"
           initial={{ scale: 0, opacity: 0, rotate: -180 }}
           animate={{
             scale: isClosing ? 0.5 : 1,
@@ -509,10 +513,13 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             damping: 25,
           }}
           onClick={(e) => e.stopPropagation()}
+          style={{
+            isolation: "isolate",
+          }}
         >
           {/* Magical title */}
           <motion.div
-            className="absolute -top-36 left-1/2 transform -translate-x-1/2 text-center z-10"
+            className="absolute -top-36 left-1/2 transform -translate-x-1/2 text-center z-[100]"
             initial={{ opacity: 0, y: -50 }}
             animate={{
               opacity: isClosing ? 0 : 1,
@@ -521,6 +528,11 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             transition={{
               delay: isClosing ? 0 : 0.3,
               duration: 0.8,
+            }}
+            style={{
+              pointerEvents: "none",
+              position: "absolute",
+              zIndex: 100,
             }}
           >
             <motion.h2
