@@ -829,17 +829,14 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const [showMessage, setShowMessage] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
-  const handleSelect = (companion) => {
+    const handleSelect = (companion) => {
     setSelectedCompanion(companion);
-    setShowMessage(true);
 
-    // Auto-close after selection animation
+    // Immediate selection and close
+    setIsClosing(true);
     setTimeout(() => {
-      setIsClosing(true);
-      setTimeout(() => {
-        onSelect?.(companion);
-      }, 500);
-    }, 1500);
+      onSelect?.(companion);
+    }, 300);
   };
 
   const handleClose = () => {
