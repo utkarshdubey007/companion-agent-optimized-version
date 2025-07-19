@@ -1100,7 +1100,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             )}
           </AnimatePresence>
 
-          {/* Success message */}
           <AnimatePresence>
             {showMessage && selectedCompanion && (
               <motion.div
