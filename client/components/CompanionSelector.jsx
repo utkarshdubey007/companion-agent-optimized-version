@@ -104,27 +104,47 @@ const CharacterHoverAnimations = ({ companion, isHovered }) => {
     );
   }
 
-  // Doma - Speedy lizard (Speed trail)
+  // Doma - Speedy lizard (Dash effect)
   if (name === "Doma") {
     return (
       <motion.div className="absolute inset-0 pointer-events-none">
-        {[...Array(4)].map((_, i) => (
+        {/* Dash streak effect */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${color}60, transparent)`,
+          }}
+          animate={{
+            x: [-80, 80, -80],
+            opacity: [0, 1, 0],
+            scaleX: [0.5, 2, 0.5],
+          }}
+          transition={{
+            duration: 0.6,
+            repeat: Infinity,
+            repeatDelay: 0.4,
+            ease: "easeInOut",
+          }}
+        />
+        {/* Speed lines */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute inset-0 rounded-full border-2"
+            className="absolute w-8 h-0.5 rounded-full"
             style={{
-              borderColor: color,
-              opacity: 0.3 - i * 0.1,
+              backgroundColor: color,
+              left: "10%",
+              top: `${30 + i * 15}%`,
             }}
             animate={{
-              scale: [1, 1.3, 1],
-              x: [-5, -15, -5],
+              x: [0, 60, 0],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 0.5,
+              duration: 0.4,
               delay: i * 0.1,
               repeat: Infinity,
-              repeatDelay: 0.5,
+              repeatDelay: 0.6,
             }}
           />
         ))}
@@ -132,31 +152,49 @@ const CharacterHoverAnimations = ({ companion, isHovered }) => {
     );
   }
 
-  // Letsgo - Energetic bunny (Bounce with glowing trail)
+  // Letsgo - Energetic bunny (Bounce effect)
   if (name === "Letsgo") {
     return (
       <motion.div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {/* Main bounce indicator */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2"
+          style={{
+            borderColor: color,
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            y: [0, -8, 0],
+            borderWidth: ["2px", "4px", "2px"],
+          }}
+          transition={{
+            duration: 0.6,
+            repeat: Infinity,
+            ease: "easeOut",
+          }}
+        />
+        {/* Bounce trail particles */}
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               backgroundColor: color,
-              boxShadow: `0 0 10px ${color}`,
-              left: `${45 + Math.random() * 10}%`,
-              top: `${45 + Math.random() * 10}%`,
+              left: "50%",
+              top: "50%",
+              boxShadow: `0 0 8px ${color}`,
             }}
             animate={{
-              y: [0, -30, -60],
-              x: [0, (Math.random() - 0.5) * 40],
-              scale: [0, 1, 0],
-              opacity: [0, 1, 0],
+              y: [0, -20, -35],
+              x: [(i - 2) * 5, (i - 2) * 10],
+              scale: [1, 0.5, 0],
+              opacity: [0.8, 0.4, 0],
             }}
             transition={{
-              duration: 1.2,
+              duration: 0.8,
               delay: i * 0.1,
               repeat: Infinity,
-              repeatDelay: 0.8,
+              ease: "easeOut",
             }}
           />
         ))}
@@ -283,7 +321,7 @@ const CompanionOrb = ({
       initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
       animate={{
         opacity: hasSelection ? (isSelected ? 1 : 0) : 1,
-        scale: isSelected ? 1.8 : hasSelection ? 0.8 : 1,
+        scale: isSelected ? 1 : hasSelection ? 0.8 : 1,
         x: isSelected ? 0 : x,
         y: isSelected ? 0 : y,
         zIndex: isSelected ? 70 : 20,
@@ -309,18 +347,26 @@ const CompanionOrb = ({
     >
       {/* Floating animation container */}
       <motion.div
+        layoutId={`companion-${companion.id}`}
         animate={{
-          y: [0, -12, 0],
+          y:
+            companion.name === "Letsgo" && isHovered === companion.id
+              ? [0, -15, 0] // Enhanced bounce for Letsgo
+              : [0, -12, 0],
           rotate:
-            companion.name === "Rushmore" && isHovered
+            companion.name === "Rushmore" && isHovered === companion.id
               ? [0, 5, -5, 0] // Wobble for clumsy cat
               : [0, 3, 0, -3, 0],
         }}
         transition={{
-          duration: companion.name === "Letsgo" && isHovered ? 1.5 : 4,
+          duration:
+            companion.name === "Letsgo" && isHovered === companion.id ? 0.6 : 4,
           repeat: Infinity,
           delay: index * 0.7,
-          ease: "easeInOut",
+          ease:
+            companion.name === "Letsgo" && isHovered === companion.id
+              ? "easeOut"
+              : "easeInOut",
         }}
       >
         {/* Outer magical aura */}
@@ -381,13 +427,22 @@ const CompanionOrb = ({
         {/* Companion avatar - only the image, no symbolic overlays */}
         <motion.div
           className="rounded-full overflow-hidden relative"
+          layoutId={isSelected ? `companion-avatar-${companion.id}` : undefined}
           style={{
             backgroundColor: companion.color,
             boxShadow: isSelected
               ? `0 12px 48px ${companion.color}80`
               : `0 8px 32px ${companion.color}60`,
-            width: isSelected ? "120px" : "80px",
-            height: isSelected ? "120px" : "80px",
+            width: isSelected ? "160px" : "80px",
+            height: isSelected ? "160px" : "80px",
+          }}
+          animate={{
+            scale: isSelected ? [0.8, 1.2, 1] : [1],
+          }}
+          transition={{
+            duration: isSelected ? 1.5 : 0,
+            delay: isSelected ? 0.3 : 0,
+            ease: "easeOut",
           }}
         >
           <img
@@ -577,6 +632,66 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               ease: "linear",
             }}
           />
+
+          {/* Center ring for selected companion */}
+          <AnimatePresence>
+            {selectedCompanion && (
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[60]"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                {/* Center ring with pulsing glow */}
+                <motion.div
+                  className="w-[200px] h-[200px] rounded-full border-4 flex items-center justify-center"
+                  style={{
+                    borderColor: selectedCompanion.color,
+                    background: `radial-gradient(circle, ${selectedCompanion.color}20 0%, transparent 70%)`,
+                    boxShadow: `0 0 60px ${selectedCompanion.color}40, inset 0 0 60px ${selectedCompanion.color}20`,
+                  }}
+                  animate={{
+                    borderWidth: ["4px", "8px", "4px"],
+                    boxShadow: [
+                      `0 0 60px ${selectedCompanion.color}40, inset 0 0 60px ${selectedCompanion.color}20`,
+                      `0 0 100px ${selectedCompanion.color}60, inset 0 0 80px ${selectedCompanion.color}30`,
+                      `0 0 60px ${selectedCompanion.color}40, inset 0 0 60px ${selectedCompanion.color}20`,
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  {/* Particle aura inside ring */}
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 rounded-full"
+                      style={{
+                        backgroundColor: selectedCompanion.color,
+                        boxShadow: `0 0 6px ${selectedCompanion.color}`,
+                      }}
+                      animate={{
+                        x: Math.cos((i * 45 * Math.PI) / 180) * 80,
+                        y: Math.sin((i * 45 * Math.PI) / 180) * 80,
+                        scale: [0, 1, 0],
+                        opacity: [0, 0.8, 0],
+                      }}
+                      transition={{
+                        duration: 3,
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Companion orbs */}
           {companions.map((companion, index) => (
