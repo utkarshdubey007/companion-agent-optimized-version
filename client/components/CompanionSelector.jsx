@@ -1100,8 +1100,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             )}
           </AnimatePresence>
 
-          <AnimatePresence>
-            {showMessage && selectedCompanion && (
+          
               <motion.div
                 className="absolute -bottom-40 left-1/2 transform -translate-x-1/2 text-center"
                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
