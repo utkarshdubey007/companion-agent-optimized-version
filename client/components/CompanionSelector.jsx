@@ -408,13 +408,19 @@ const CompanionOrb = ({
 const CompanionSelector = ({ onSelect, onClose }) => {
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
+  const [selectedCompanion, setSelectedCompanion] = useState(null);
 
   const handleSelect = (companion) => {
-    // Immediate selection and close
-    setIsClosing(true);
+    // Set selected companion for animation
+    setSelectedCompanion(companion);
+
+    // After showing selection animation, close and complete selection
     setTimeout(() => {
-      onSelect?.(companion);
-    }, 300);
+      setIsClosing(true);
+      setTimeout(() => {
+        onSelect?.(companion);
+      }, 300);
+    }, 2000); // 2 seconds to show the selection animation and label
   };
 
   const handleClose = () => {
@@ -557,8 +563,107 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               onSelect={handleSelect}
               isHovered={hoveredCompanion}
               onHover={setHoveredCompanion}
+              selectedCompanion={selectedCompanion}
             />
           ))}
+
+          {/* Selected companion label - appears above the centered companion */}
+          <AnimatePresence>
+            {selectedCompanion && (
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[90]"
+                initial={{ opacity: 0, scale: 0, y: 50 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: -120, // Position above the companion image
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  delay: 1, // Delay to let the companion zoom in first
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 200,
+                }}
+              >
+                <div className="text-center">
+                  <motion.div
+                    className="text-white font-bold text-2xl mb-2"
+                    style={{
+                      textShadow: `0 0 20px ${selectedCompanion.color}, 0 0 40px ${selectedCompanion.color}`,
+                      filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
+                    }}
+                    animate={{
+                      textShadow: [
+                        `0 0 20px ${selectedCompanion.color}, 0 0 40px ${selectedCompanion.color}`,
+                        `0 0 30px ${selectedCompanion.color}, 0 0 60px ${selectedCompanion.color}`,
+                        `0 0 20px ${selectedCompanion.color}, 0 0 40px ${selectedCompanion.color}`,
+                      ],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    {selectedCompanion.name}
+                  </motion.div>
+                  <motion.div
+                    className="text-white text-sm opacity-90"
+                    style={{
+                      textShadow: "0 0 10px rgba(255,255,255,0.8)",
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.9 }}
+                    transition={{ delay: 1.3 }}
+                  >
+                    You have selected {selectedCompanion.name}!
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Selection sparkles effect */}
+          <AnimatePresence>
+            {selectedCompanion && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-[85]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                {[...Array(12)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-white rounded-full"
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                      boxShadow: `0 0 15px ${selectedCompanion.color}`,
+                    }}
+                    initial={{
+                      scale: 0,
+                      x: 0,
+                      y: 0,
+                      opacity: 1,
+                    }}
+                    animate={{
+                      scale: [0, 1.5, 0],
+                      x: Math.cos((i * 30 * Math.PI) / 180) * 150,
+                      y: Math.sin((i * 30 * Math.PI) / 180) * 150,
+                      opacity: [1, 0.8, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: 0.5 + i * 0.1,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Center crystal orb (cancel button) */}
           <AnimatePresence>
