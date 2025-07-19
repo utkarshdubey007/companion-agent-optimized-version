@@ -1,553 +1,259 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles } from "lucide-react";
+import { X } from "lucide-react";
 
 const companions = [
   {
     id: 1,
     name: "Cody",
-    originalName: "Coral",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff0fe601417514f438f5ace1c12450f30?format=webp&width=800",
     color: "#FF6B6B",
     description: "Red fox coder who loves programming adventures!",
-    element: "🦊",
     type: "Red fox coder",
     traits: ["Digital", "Smart", "Innovative"],
-    animations: {
-      hover: "glitch",
-      select: "digitalFlicker",
-    },
   },
   {
     id: 2,
     name: "Doma",
-    originalName: "Aqua",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
     color: "#4ECDC4",
     description: "Speedy lizard who races through adventures!",
-    element: "🦎",
     type: "Speedy lizard",
     traits: ["Fast", "Agile", "Adventurous"],
-    animations: {
-      hover: "zoomTrail",
-      select: "slideIn",
-    },
   },
   {
     id: 3,
     name: "Letsgo",
-    originalName: "Sage",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800",
     color: "#45B7D1",
     description: "Energetic bunny leader, creative and helpful!",
-    element: "🐰",
     type: "Energetic bunny",
     traits: ["Leader", "Creative", "Helpful"],
-    animations: {
-      hover: "bounce",
-      select: "lightBurst",
-    },
   },
   {
     id: 4,
     name: "Rooty",
-    originalName: "Sunny",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
     color: "#F39C12",
     description: "Wise and gentle bear with magical tools!",
-    element: "🐻",
     type: "Wise gentle bear",
     traits: ["Wise", "Gentle", "Crafty"],
-    animations: {
-      hover: "softRotation",
-      select: "weldingSpark",
-    },
   },
   {
     id: 5,
     name: "Rushmore",
-    originalName: "Sky",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd477fa3ace324c9aafc5275df782584f?format=webp&width=800",
     color: "#3498DB",
     description: "Clumsy house cat chef, always cooking up fun!",
-    element: "🐱",
     type: "Clumsy house cat chef",
     traits: ["Funny", "Clumsy", "Creative"],
-    animations: {
-      hover: "wobble",
-      select: "sparkleSmoke",
-    },
   },
   {
     id: 6,
     name: "Uni",
-    originalName: "Rose",
     image:
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F408758d5b0f24a8ab1fe3ac5b8489720?format=webp&width=800",
     color: "#E91E63",
     description: "Space explorer, curious and empathetic!",
-    element: "👽",
     type: "Space explorer",
     traits: ["Curious", "Empathetic", "Mysterious"],
-    animations: {
-      hover: "softGlow",
-      select: "starField",
-    },
   },
 ];
 
-const MagicalParticle = ({ delay = 0, color = "#ffffff" }) => {
-  // Avoid the center area where companions are located
-  const isEdgeArea = Math.random() > 0.6;
-  const left = isEdgeArea
-    ? Math.random() > 0.5
-      ? Math.random() * 20
-      : 80 + Math.random() * 20
-    : Math.random() * 100;
-  const top = isEdgeArea
-    ? Math.random() > 0.5
-      ? Math.random() * 25
-      : 75 + Math.random() * 25
-    : Math.random() * 100;
+// Character-specific hover animations
+const CharacterHoverAnimations = ({ companion, isHovered }) => {
+  const { name, color } = companion;
 
-  return (
-    <motion.div
-      className="absolute w-1 h-1 bg-white rounded-full opacity-60 pointer-events-none"
-      style={{
-        backgroundColor: color,
-        left: `${left}%`,
-        top: `${top}%`,
-        zIndex: 1,
-      }}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: [0, 0.8, 0],
-        scale: [0, 1.5, 0],
-        y: [0, -120],
-        x: [0, (Math.random() - 0.5) * 50],
-      }}
-      transition={{
-        duration: 5,
-        delay,
-        repeat: Infinity,
-        repeatDelay: Math.random() * 4,
-        ease: "easeOut",
-      }}
-    />
-  );
-};
+  if (!isHovered) return null;
 
-const SparkleTrail = ({ isHovered, color }) => (
-  <AnimatePresence>
-    {isHovered && (
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {[...Array(8)].map((_, i) => (
+  // Cody - Red fox coder (Digital glitch effect)
+  if (name === "Cody") {
+    return (
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {/* Digital matrix effect */}
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full"
+            className="absolute text-xs text-green-400 font-mono opacity-70"
             style={{
-              backgroundColor: color,
-              boxShadow: `0 0 6px ${color}`,
-              left: `${30 + i * 5}%`,
-              top: `${30 + i * 5}%`,
+              left: `${Math.random() * 80}%`,
+              top: `${Math.random() * 80}%`,
             }}
-            initial={{ scale: 0, opacity: 0 }}
+            initial={{ opacity: 0, scale: 0 }}
             animate={{
-              scale: [0, 1, 0],
               opacity: [0, 1, 0],
-              x: [0, (Math.random() - 0.5) * 60],
-              y: [0, (Math.random() - 0.5) * 60],
-              rotate: [0, 360],
+              scale: [0, 1, 0],
+              y: [0, -20],
             }}
             transition={{
-              duration: 1.5,
+              duration: 0.8,
               delay: i * 0.1,
               repeat: Infinity,
               repeatDelay: 1,
-              ease: "easeOut",
+            }}
+          >
+            {["01", "10", "11", "00"][Math.floor(Math.random() * 4)]}
+          </motion.div>
+        ))}
+      </motion.div>
+    );
+  }
+
+  // Doma - Speedy lizard (Speed trail)
+  if (name === "Doma") {
+    return (
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute inset-0 rounded-full border-2"
+            style={{
+              borderColor: color,
+              opacity: 0.3 - i * 0.1,
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              x: [-5, -15, -5],
+            }}
+            transition={{
+              duration: 0.5,
+              delay: i * 0.1,
+              repeat: Infinity,
+              repeatDelay: 0.5,
             }}
           />
         ))}
       </motion.div>
-    )}
-  </AnimatePresence>
-);
-
-// Character-specific animation components
-const CharacterAnimations = ({ companion, isHovered, isSelected }) => {
-  const { name, color, animations } = companion;
-
-  // Cody - Red fox coder (Digital flicker/glitch)
-  if (name === "Cody") {
-    return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Digital matrix effect */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute text-xs text-green-400 font-mono opacity-70"
-                style={{
-                  left: `${Math.random() * 80}%`,
-                  top: `${Math.random() * 80}%`,
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{
-                  opacity: [0, 1, 0],
-                  scale: [0, 1, 0],
-                  y: [0, -20],
-                }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                }}
-              >
-                {["01", "10", "11", "00"][Math.floor(Math.random() * 4)]}
-              </motion.div>
-            ))}
-            {/* Glitch effect overlay */}
-            {isSelected && (
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-30"
-                animate={{
-                  x: [-100, 100],
-                  opacity: [0, 0.6, 0],
-                }}
-                transition={{
-                  duration: 0.3,
-                  repeat: 3,
-                  repeatDelay: 0.2,
-                }}
-              />
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
     );
   }
 
-  // Doma - Speedy lizard (Zoom trail/slide-in)
-  if (name === "Doma") {
-    return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Speed trail effect */}
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute inset-0 rounded-full border-2"
-                style={{
-                  borderColor: color,
-                  opacity: 0.3 - i * 0.1,
-                }}
-                initial={{ scale: 1, x: 0 }}
-                animate={{
-                  scale: [1, 1.2, 1],
-                  x: isSelected ? [0, -20, 0] : [0, -10, 0],
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-            ))}
-            {/* Blur trail on selection */}
-            {isSelected && (
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: `linear-gradient(90deg, transparent, ${color}40, transparent)`,
-                  filter: "blur(8px)",
-                }}
-                animate={{
-                  x: [-50, 50],
-                  opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                  duration: 0.6,
-                  repeat: 2,
-                }}
-              />
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    );
-  }
-
-  // Letsgo - Energetic bunny (Bounce + light burst)
+  // Letsgo - Energetic bunny (Bounce with glowing trail)
   if (name === "Letsgo") {
     return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Glowing trail particles */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 rounded-full"
-                style={{
-                  backgroundColor: color,
-                  boxShadow: `0 0 10px ${color}`,
-                  left: `${45 + Math.random() * 10}%`,
-                  top: `${45 + Math.random() * 10}%`,
-                }}
-                animate={{
-                  y: [0, -30, -60],
-                  x: [0, (Math.random() - 0.5) * 40],
-                  scale: [0, 1, 0],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 1.2,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  repeatDelay: 0.8,
-                }}
-              />
-            ))}
-            {/* Light burst on selection */}
-            {isSelected && (
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: `radial-gradient(circle, ${color}80, transparent)`,
-                }}
-                initial={{ scale: 0, opacity: 1 }}
-                animate={{
-                  scale: [0, 2, 0],
-                  opacity: [1, 0.5, 0],
-                }}
-                transition={{
-                  duration: 0.8,
-                  repeat: 2,
-                  repeatDelay: 0.3,
-                }}
-              />
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full"
+            style={{
+              backgroundColor: color,
+              boxShadow: `0 0 10px ${color}`,
+              left: `${45 + Math.random() * 10}%`,
+              top: `${45 + Math.random() * 10}%`,
+            }}
+            animate={{
+              y: [0, -30, -60],
+              x: [0, (Math.random() - 0.5) * 40],
+              scale: [0, 1, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 1.2,
+              delay: i * 0.1,
+              repeat: Infinity,
+              repeatDelay: 0.8,
+            }}
+          />
+        ))}
+      </motion.div>
     );
   }
 
-  // Rooty - Wise bear (Soft rotation + tool particles)
+  // Rooty - Wise bear (Tool particles)
   if (name === "Rooty") {
     return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Floating tool particles */}
-            {["⚙️", "🔧", "⚡", "🛠️"].map((tool, i) => (
-              <motion.div
-                key={i}
-                className="absolute text-xs"
-                style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${20 + i * 15}%`,
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  y: [0, -10, 0],
-                  opacity: [0.6, 1, 0.6],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: i * 0.3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                {tool}
-              </motion.div>
-            ))}
-            {/* Welding spark effect on selection */}
-            {isSelected && (
-              <motion.div className="absolute inset-0">
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-                    style={{
-                      left: "50%",
-                      top: "50%",
-                    }}
-                    animate={{
-                      x: [0, Math.cos((i * 30 * Math.PI) / 180) * 40],
-                      y: [0, Math.sin((i * 30 * Math.PI) / 180) * 40],
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      delay: i * 0.05,
-                      repeat: 2,
-                    }}
-                  />
-                ))}
-              </motion.div>
-            )}
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {["⚙️", "🔧", "⚡", "🛠️"].map((tool, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-xs"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${20 + i * 15}%`,
+            }}
+            animate={{
+              rotate: [0, 360],
+              y: [0, -10, 0],
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 2,
+              delay: i * 0.3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            {tool}
           </motion.div>
-        )}
-      </AnimatePresence>
+        ))}
+      </motion.div>
     );
   }
 
-  // Rushmore - Clumsy cat chef (Wobble + sparkle smoke)
+  // Rushmore - Clumsy cat chef (Cooking smoke)
   if (name === "Rushmore") {
     return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Cooking smoke particles */}
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-3 h-3 bg-gray-300 rounded-full opacity-40"
-                style={{
-                  left: `${40 + i * 5}%`,
-                  top: `${30 + i * 5}%`,
-                }}
-                animate={{
-                  y: [0, -40],
-                  x: [0, (Math.random() - 0.5) * 20],
-                  scale: [0.5, 1.5, 0],
-                  opacity: [0.4, 0.2, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: i * 0.2,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                }}
-              />
-            ))}
-            {/* Sparkle effect on selection */}
-            {isSelected && (
-              <motion.div className="absolute inset-0">
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute text-yellow-300"
-                    style={{
-                      left: `${Math.random() * 80 + 10}%`,
-                      top: `${Math.random() * 80 + 10}%`,
-                      fontSize: "8px",
-                    }}
-                    animate={{
-                      scale: [0, 1, 0],
-                      rotate: [0, 180, 360],
-                      opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 1,
-                      delay: i * 0.1,
-                      repeat: 2,
-                    }}
-                  >
-                    ✨
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-3 h-3 bg-gray-300 rounded-full opacity-40"
+            style={{
+              left: `${40 + i * 5}%`,
+              top: `${30 + i * 5}%`,
+            }}
+            animate={{
+              y: [0, -40],
+              x: [0, (Math.random() - 0.5) * 20],
+              scale: [0.5, 1.5, 0],
+              opacity: [0.4, 0.2, 0],
+            }}
+            transition={{
+              duration: 2,
+              delay: i * 0.2,
+              repeat: Infinity,
+              repeatDelay: 1,
+            }}
+          />
+        ))}
+      </motion.div>
     );
   }
 
-  // Uni - Space explorer (Soft glow + star field)
+  // Uni - Space explorer (Floating stars)
   if (name === "Uni") {
     return (
-      <AnimatePresence>
-        {(isHovered || isSelected) && (
-          <motion.div className="absolute inset-0 pointer-events-none">
-            {/* Floating stars */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute text-white"
-                style={{
-                  left: `${20 + i * 12}%`,
-                  top: `${25 + i * 10}%`,
-                  fontSize: "6px",
-                }}
-                animate={{
-                  scale: [0, 1, 0],
-                  opacity: [0, 1, 0],
-                  rotate: [0, 180],
-                }}
-                transition={{
-                  duration: 2,
-                  delay: i * 0.2,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                }}
-              >
-                ⭐
-              </motion.div>
-            ))}
-            {/* Helmet reflection effect */}
-            {isSelected && (
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: `conic-gradient(from 0deg, transparent, ${color}40, transparent, ${color}20, transparent)`,
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  opacity: [0.3, 0.7, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            )}
-            {/* Space particles */}
-            {isSelected && (
-              <motion.div className="absolute inset-0">
-                {[...Array(10)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-purple-300 rounded-full"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 0.8, 0],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      delay: i * 0.1,
-                      repeat: 2,
-                    }}
-                  />
-                ))}
-              </motion.div>
-            )}
+      <motion.div className="absolute inset-0 pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-white"
+            style={{
+              left: `${20 + i * 12}%`,
+              top: `${25 + i * 10}%`,
+              fontSize: "6px",
+            }}
+            animate={{
+              scale: [0, 1, 0],
+              opacity: [0, 1, 0],
+              rotate: [0, 180],
+            }}
+            transition={{
+              duration: 2,
+              delay: i * 0.2,
+              repeat: Infinity,
+              repeatDelay: 1,
+            }}
+          >
+            ⭐
           </motion.div>
-        )}
-      </AnimatePresence>
+        ))}
+      </motion.div>
     );
   }
 
@@ -557,85 +263,56 @@ const CharacterAnimations = ({ companion, isHovered, isSelected }) => {
 const CompanionOrb = ({
   companion,
   index,
-  isSelected,
   onSelect,
   isHovered,
   onHover,
   totalCompanions,
-  selectedCompanion,
 }) => {
   const angle = ((index * 360) / totalCompanions) * (Math.PI / 180);
   const radius = 200;
   const x = Math.cos(angle) * radius;
   const y = Math.sin(angle) * radius;
 
-  const isOtherSelected =
-    selectedCompanion && selectedCompanion.id !== companion.id;
-
   return (
     <motion.div
       className="absolute cursor-pointer"
       initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
       animate={{
-        opacity: isOtherSelected ? 0.2 : 1,
-        scale: isSelected ? 2.5 : isOtherSelected ? 0.6 : 1,
-        x: isSelected ? 0 : x,
-        y: isSelected ? 0 : y,
-        zIndex: isSelected ? 90 : 20,
-        rotate: isSelected ? [0, 360] : 0,
-      }}
-      style={{
-        zIndex: isSelected ? 90 : 20,
+        opacity: 1,
+        scale: 1,
+        x: x,
+        y: y,
+        zIndex: 20,
       }}
       whileHover={{
-        scale: isSelected ? 2.5 : isOtherSelected ? 0.6 : 1.2,
-        y: isSelected ? 0 : isOtherSelected ? y : y - 15,
+        scale: 1.2,
+        y: y - 15,
       }}
       transition={{
-        duration: isSelected ? 1.5 : 0.8,
-        delay: isSelected ? 0 : index * 0.15,
+        duration: 0.8,
+        delay: index * 0.15,
         type: "spring",
         stiffness: 200,
         damping: 20,
       }}
-      onMouseEnter={() => !selectedCompanion && onHover(companion.id)}
+      onMouseEnter={() => onHover(companion.id)}
       onMouseLeave={() => onHover(null)}
-      onClick={() => !selectedCompanion && onSelect(companion)}
+      onClick={() => onSelect(companion)}
     >
       {/* Floating animation container */}
       <motion.div
         animate={{
-          y: isSelected ? [0, -20, 0] : [0, -12, 0],
+          y: [0, -12, 0],
           rotate:
-            companion.name === "Rushmore" && isHovered === companion.id
+            companion.name === "Rushmore" && isHovered
               ? [0, 5, -5, 0] // Wobble for clumsy cat
               : [0, 3, 0, -3, 0],
-          // Character-specific bounce for Letsgo
-          ...(companion.name === "Letsgo" &&
-          (isHovered === companion.id || isSelected)
-            ? {
-                y: [0, -25, 0, -15, 0],
-              }
-            : {}),
-          // Soft rotation for Rooty
-          ...(companion.name === "Rooty" &&
-          (isHovered === companion.id || isSelected)
-            ? {
-                rotate: [0, 10, -10, 0],
-              }
-            : {}),
         }}
         transition={{
-          duration: isSelected
-            ? 2
-            : companion.name === "Letsgo" && isHovered === companion.id
-              ? 1.5
-              : companion.name === "Rushmore" && isHovered === companion.id
-                ? 2.5
-                : 4,
+          duration: companion.name === "Letsgo" && isHovered ? 1.5 : 4,
           repeat: Infinity,
           delay: index * 0.7,
-          ease: companion.name === "Rushmore" ? "easeInOut" : "easeInOut",
+          ease: "easeInOut",
         }}
       >
         {/* Outer magical aura */}
@@ -649,11 +326,11 @@ const CompanionOrb = ({
             top: "-20px",
           }}
           animate={{
-            scale: isSelected ? [1, 1.5, 1] : [1, 1.2, 1],
-            opacity: isSelected ? [0.4, 0.8, 0.4] : [0.2, 0.4, 0.2],
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: isSelected ? 1.5 : 2.5,
+            duration: 2.5,
             repeat: Infinity,
             delay: index * 0.3,
           }}
@@ -669,22 +346,20 @@ const CompanionOrb = ({
             height: "80px",
           }}
           animate={{
-            borderWidth: isSelected
-              ? ["4px", "6px", "4px"]
-              : ["2px", "4px", "2px"],
+            borderWidth: ["2px", "4px", "2px"],
             boxShadow:
-              isHovered === companion.id || isSelected
+              isHovered === companion.id
                 ? `0 0 40px ${companion.color}, 0 0 80px ${companion.color}40`
                 : `0 0 20px ${companion.color}`,
-            scale: isSelected ? [1, 1.1, 1] : [1, 1.05, 1],
+            scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: isSelected ? 1 : 2,
+            duration: 2,
             repeat: Infinity,
           }}
         />
 
-        {/* Companion avatar */}
+        {/* Companion avatar - only the image, no symbolic overlays */}
         <motion.div
           className="w-20 h-20 rounded-full overflow-hidden relative"
           style={{
@@ -698,38 +373,11 @@ const CompanionOrb = ({
             className="w-full h-full object-cover"
           />
 
-          {/* Character-specific animations */}
-          <CharacterAnimations
+          {/* Character-specific hover animations */}
+          <CharacterHoverAnimations
             companion={companion}
             isHovered={isHovered === companion.id}
-            isSelected={isSelected}
           />
-
-          {/* Sparkle effects */}
-          <SparkleTrail
-            isHovered={isHovered === companion.id || isSelected}
-            color={companion.color}
-          />
-
-          {/* Selection glow burst */}
-          {isSelected && (
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: `radial-gradient(circle, ${companion.color}40, transparent)`,
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{
-                scale: [0, 3, 0],
-                opacity: [0, 0.8, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatDelay: 0.5,
-              }}
-            />
-          )}
         </motion.div>
 
         {/* Name label */}
@@ -737,17 +385,16 @@ const CompanionOrb = ({
           className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{
-            opacity: isOtherSelected ? 0.3 : 1,
+            opacity: 1,
             y: 0,
-            scale: isSelected ? 1.2 : 1,
+            scale: 1,
           }}
           transition={{ delay: index * 0.1 + 0.8 }}
         >
           <div
-            className="text-white font-bold drop-shadow-lg"
+            className="text-white font-bold drop-shadow-lg text-sm"
             style={{
-              fontSize: isSelected ? "18px" : "14px",
-              textShadow: isSelected ? `0 0 10px ${companion.color}` : "none",
+              textShadow: `0 0 10px ${companion.color}`,
             }}
           >
             {companion.name}
@@ -758,80 +405,11 @@ const CompanionOrb = ({
   );
 };
 
-const PortalRing = ({ isVisible, color }) => (
-  <AnimatePresence>
-    {isVisible && (
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Outer portal ring */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border-4 border-dashed"
-          style={{
-            borderColor: color,
-            boxShadow: `0 0 60px ${color}`,
-          }}
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            rotate: {
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-            },
-            scale: {
-              duration: 2,
-              repeat: Infinity,
-            },
-          }}
-        />
-
-        {/* Portal energy particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full"
-            style={{
-              backgroundColor: color,
-              boxShadow: `0 0 10px ${color}`,
-              top: "50%",
-              left: "50%",
-            }}
-            animate={{
-              x: [0, Math.cos((i * 18 * Math.PI) / 180) * 150],
-              y: [0, Math.sin((i * 18 * Math.PI) / 180) * 150],
-              scale: [0, 1, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 2,
-              delay: i * 0.1,
-              repeat: Infinity,
-              repeatDelay: 1,
-              ease: "easeOut",
-            }}
-          />
-        ))}
-      </motion.div>
-    )}
-  </AnimatePresence>
-);
-
 const CompanionSelector = ({ onSelect, onClose }) => {
-  const [selectedCompanion, setSelectedCompanion] = useState(null);
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
-  const [showMessage, setShowMessage] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
-    const handleSelect = (companion) => {
-    setSelectedCompanion(companion);
-
+  const handleSelect = (companion) => {
     // Immediate selection and close
     setIsClosing(true);
     setTimeout(() => {
@@ -842,8 +420,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
-      setSelectedCompanion(null);
-      setShowMessage(false);
       onClose?.();
     }, 300);
   };
@@ -906,15 +482,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             }}
           />
 
-          {/* Floating magical particles */}
-          {[...Array(25)].map((_, i) => (
-            <MagicalParticle
-              key={i}
-              delay={i * 0.15}
-              color={companions[i % companions.length].color}
-            />
-          ))}
-
           {/* Twinkling stars */}
           {[...Array(60)].map((_, i) => (
             <motion.div
@@ -959,55 +526,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             isolation: "isolate",
           }}
         >
-          {/* Magical title - REMOVED
-          <motion.div
-            className="absolute -top-36 left-1/2 transform -translate-x-1/2 text-center z-[100]"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{
-              opacity: isClosing ? 0 : 1,
-              y: isClosing ? -30 : 0,
-            }}
-            transition={{
-              delay: isClosing ? 0 : 0.3,
-              duration: 0.8,
-            }}
-            style={{
-              pointerEvents: "none",
-              position: "absolute",
-              zIndex: 100,
-            }}
-          >
-            <motion.h2
-              className="text-6xl font-bold text-white mb-4 drop-shadow-2xl"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-            >
-              <motion.span
-                animate={{
-                  textShadow: [
-                    "0 0 30px #ffffff",
-                    "0 0 60px #9333EA",
-                    "0 0 60px #4ECDC4",
-                    "0 0 30px #ffffff",
-                  ],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                ✨ Choose Your Magical Companion ✨
-              </motion.span>
-            </motion.h2>
-            <motion.p
-              className="text-xl text-white opacity-90 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              Select a friend to join your enchanted journey!
-            </motion.p>
-          </motion.div>
-          */}
-
           {/* Outer orbit rings */}
           <motion.div
             className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-10 rounded-full z-[5]"
@@ -1029,12 +547,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             }}
           />
 
-          {/* Portal effects for selected companion */}
-          <PortalRing
-            isVisible={selectedCompanion !== null}
-            color={selectedCompanion?.color || "#ffffff"}
-          />
-
           {/* Companion orbs */}
           {companions.map((companion, index) => (
             <CompanionOrb
@@ -1042,8 +554,6 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               companion={companion}
               index={index}
               totalCompanions={companions.length}
-              isSelected={selectedCompanion?.id === companion.id}
-              selectedCompanion={selectedCompanion}
               onSelect={handleSelect}
               isHovered={hoveredCompanion}
               onHover={setHoveredCompanion}
@@ -1052,100 +562,48 @@ const CompanionSelector = ({ onSelect, onClose }) => {
 
           {/* Center crystal orb (cancel button) */}
           <AnimatePresence>
-            {!selectedCompanion && (
-              <motion.button
-                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
-                onClick={handleClose}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
-                transition={{
-                  delay: 1.5,
-                  duration: 0.5,
-                  type: "spring",
-                }}
-                style={{
-                  zIndex: 80,
-                }}
-              >
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                    boxShadow: [
-                      "0 0 30px rgba(147, 51, 234, 0.6)",
-                      "0 0 50px rgba(236, 72, 153, 0.8)",
-                      "0 0 30px rgba(147, 51, 234, 0.6)",
-                    ],
-                  }}
-                  transition={{
-                    rotate: {
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "linear",
-                    },
-                    boxShadow: {
-                      duration: 2,
-                      repeat: Infinity,
-                    },
-                  }}
-                >
-                  <X className="w-10 h-10 text-white drop-shadow-lg" />
-                </motion.div>
-              </motion.button>
-            )}
-          </AnimatePresence>
-
-          
+            <motion.button
+              className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
+              onClick={handleClose}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{
+                delay: 1.5,
+                duration: 0.5,
+                type: "spring",
+              }}
+              style={{
+                zIndex: 80,
+              }}
+            >
               <motion.div
-                className="absolute -bottom-40 left-1/2 transform -translate-x-1/2 text-center"
-                initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.8 }}
-                transition={{ duration: 0.8 }}
+                animate={{
+                  rotate: [0, 360],
+                  boxShadow: [
+                    "0 0 30px rgba(147, 51, 234, 0.6)",
+                    "0 0 50px rgba(236, 72, 153, 0.8)",
+                    "0 0 30px rgba(147, 51, 234, 0.6)",
+                  ],
+                }}
+                transition={{
+                  rotate: {
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                  },
+                }}
               >
-                <motion.div
-                  className="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 border border-white border-opacity-30"
-                  animate={{
-                    boxShadow: [
-                      `0 0 30px ${selectedCompanion.color}40`,
-                      `0 0 60px ${selectedCompanion.color}60`,
-                      `0 0 30px ${selectedCompanion.color}40`,
-                    ],
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <motion.h3
-                    className="text-4xl font-bold text-white mb-3"
-                    animate={{
-                      textShadow: [
-                        `0 0 20px ${selectedCompanion.color}`,
-                        `0 0 40px ${selectedCompanion.color}`,
-                        `0 0 20px ${selectedCompanion.color}`,
-                      ],
-                    }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    ✨ You chose {selectedCompanion.name}! ✨
-                  </motion.h3>
-                  <motion.p
-                    className="text-xl text-white opacity-90 mb-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    {selectedCompanion.description}
-                  </motion.p>
-                  <motion.p
-                    className="text-2xl text-white font-semibold"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    Let the magic begin! ����
-                  </motion.p>
-                
+                <X className="w-10 h-10 text-white drop-shadow-lg" />
+              </motion.div>
+            </motion.button>
+          </AnimatePresence>
         </motion.div>
       </motion.div>
     </AnimatePresence>
