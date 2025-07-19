@@ -29,7 +29,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
       <div className="max-w-md w-full">
         {/* Storybook Page Container */}
         <motion.div
-          className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-r-2xl shadow-2xl overflow-hidden"
+          className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-l-2xl shadow-2xl overflow-hidden"
           style={{
             fontFamily: '"Kalam", "Comic Neue", cursive, sans-serif',
             backgroundImage: `
