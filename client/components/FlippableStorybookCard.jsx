@@ -206,14 +206,10 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                       // Hide scrollbar for WebKit browsers
                       scrollbarWidth: "none", // Firefox
                       msOverflowStyle: "none", // IE/Edge
+                      WebkitScrollbar: "none", // WebKit
                     }}
-                    className="pr-2"
+                    className="pr-2 scrollbar-hide"
                   >
-                    <style jsx>{`
-                      div::-webkit-scrollbar {
-                        display: none;
-                      }
-                    `}</style>
                     {reflection.substring(1)}
                   </div>
                 </div>
