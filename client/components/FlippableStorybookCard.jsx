@@ -420,7 +420,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   };
 
   return (
-    <div className="flex justify-end w-full mb-8 px-4">
+    <div className="flex justify-start w-full mb-8 px-4">
       <AnimatePresence>
         {isVisible && (
           <motion.div
