@@ -25,7 +25,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
   };
 
   return (
-    <div className="flex justify-end w-full mb-8 px-4">
+    <div className="flex justify-start w-full mb-8 px-4">
       <div className="max-w-md w-full">
         {/* Storybook Page Container */}
         <motion.div
