@@ -344,6 +344,13 @@ const CompanionOrb = ({
       onMouseEnter={() => !hasSelection && onHover(companion.id)}
       onMouseLeave={() => !hasSelection && onHover(null)}
       onClick={() => !hasSelection && onSelect(companion)}
+      style={{
+        // When selected, position absolutely to center within the ring
+        position: isSelected ? "absolute" : "absolute",
+        top: isSelected ? "50%" : "auto",
+        left: isSelected ? "50%" : "auto",
+        transform: isSelected ? "translate(-50%, -50%)" : "none",
+      }}
     >
       {/* Floating animation container */}
       <motion.div
@@ -433,11 +440,13 @@ const CompanionOrb = ({
             boxShadow: isSelected
               ? `0 12px 48px ${companion.color}80`
               : `0 8px 32px ${companion.color}60`,
-            width: isSelected ? "160px" : "80px",
-            height: isSelected ? "160px" : "80px",
+            width: isSelected ? "180px" : "80px",
+            height: isSelected ? "180px" : "80px",
+            maxWidth: isSelected ? "180px" : "80px",
+            maxHeight: isSelected ? "180px" : "80px",
           }}
           animate={{
-            scale: isSelected ? [0.8, 1.2, 1] : [1],
+            scale: isSelected ? [0.8, 1.1, 1] : [1],
           }}
           transition={{
             duration: isSelected ? 1.5 : 0,
@@ -645,7 +654,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
               >
                 {/* Center ring with pulsing glow */}
                 <motion.div
-                  className="w-[200px] h-[200px] rounded-full border-4 flex items-center justify-center"
+                  className="w-[220px] h-[220px] rounded-full border-4 flex items-center justify-center relative"
                   style={{
                     borderColor: selectedCompanion.color,
                     background: `radial-gradient(circle, ${selectedCompanion.color}20 0%, transparent 70%)`,
@@ -675,8 +684,8 @@ const CompanionSelector = ({ onSelect, onClose }) => {
                         boxShadow: `0 0 6px ${selectedCompanion.color}`,
                       }}
                       animate={{
-                        x: Math.cos((i * 45 * Math.PI) / 180) * 80,
-                        y: Math.sin((i * 45 * Math.PI) / 180) * 80,
+                        x: Math.cos((i * 45 * Math.PI) / 180) * 90,
+                        y: Math.sin((i * 45 * Math.PI) / 180) * 90,
                         scale: [0, 1, 0],
                         opacity: [0, 0.8, 0],
                       }}
@@ -805,49 +814,51 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             )}
           </AnimatePresence>
 
-          {/* Center crystal orb (cancel button) */}
+          {/* Center crystal orb (cancel button) - hide when companion is selected */}
           <AnimatePresence>
-            <motion.button
-              className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
-              onClick={handleClose}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{
-                delay: 1.5,
-                duration: 0.5,
-                type: "spring",
-              }}
-              style={{
-                zIndex: 80,
-              }}
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 360],
-                  boxShadow: [
-                    "0 0 30px rgba(147, 51, 234, 0.6)",
-                    "0 0 50px rgba(236, 72, 153, 0.8)",
-                    "0 0 30px rgba(147, 51, 234, 0.6)",
-                  ],
-                }}
+            {!selectedCompanion && (
+              <motion.button
+                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
+                onClick={handleClose}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
                 transition={{
-                  rotate: {
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  },
-                  boxShadow: {
-                    duration: 2,
-                    repeat: Infinity,
-                  },
+                  delay: 1.5,
+                  duration: 0.5,
+                  type: "spring",
+                }}
+                style={{
+                  zIndex: 80,
                 }}
               >
-                <X className="w-10 h-10 text-white drop-shadow-lg" />
-              </motion.div>
-            </motion.button>
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                    boxShadow: [
+                      "0 0 30px rgba(147, 51, 234, 0.6)",
+                      "0 0 50px rgba(236, 72, 153, 0.8)",
+                      "0 0 30px rgba(147, 51, 234, 0.6)",
+                    ],
+                  }}
+                  transition={{
+                    rotate: {
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "linear",
+                    },
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                    },
+                  }}
+                >
+                  <X className="w-10 h-10 text-white drop-shadow-lg" />
+                </motion.div>
+              </motion.button>
+            )}
           </AnimatePresence>
         </motion.div>
       </motion.div>
