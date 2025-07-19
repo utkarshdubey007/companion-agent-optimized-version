@@ -50,7 +50,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
         >
           {/* Book Binding Edge */}
           <div
-            className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-b from-amber-200 via-orange-200 to-amber-300"
+            className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-b from-amber-200 via-orange-200 to-amber-300"
             style={{
               backgroundImage: `
                 repeating-linear-gradient(
@@ -61,7 +61,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                   rgba(139, 69, 19, 0.1) 10px
                 )
               `,
-              boxShadow: "inset -2px 0 4px rgba(139, 69, 19, 0.2)",
+              boxShadow: "inset 2px 0 4px rgba(139, 69, 19, 0.2)",
             }}
           />
 
