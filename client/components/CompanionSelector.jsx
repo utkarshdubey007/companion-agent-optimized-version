@@ -698,24 +698,6 @@ const CompanionOrb = ({
             className="w-full h-full object-cover"
           />
 
-          {/* Element overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.span
-              className="text-2xl filter drop-shadow-lg"
-              animate={{
-                scale: isSelected ? [1, 1.5, 1] : [1, 1.2, 1],
-                rotate: [0, 10, 0, -10, 0],
-              }}
-              transition={{
-                duration: isSelected ? 1.5 : 3,
-                repeat: Infinity,
-                delay: index * 0.4,
-              }}
-            >
-              {companion.element}
-            </motion.span>
-          </div>
-
           {/* Character-specific animations */}
           <CharacterAnimations
             companion={companion}
