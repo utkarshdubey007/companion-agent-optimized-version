@@ -267,37 +267,45 @@ const CompanionOrb = ({
   isHovered,
   onHover,
   totalCompanions,
+  selectedCompanion,
 }) => {
   const angle = ((index * 360) / totalCompanions) * (Math.PI / 180);
   const radius = 200;
   const x = Math.cos(angle) * radius;
   const y = Math.sin(angle) * radius;
 
+  const isSelected = selectedCompanion?.id === companion.id;
+  const hasSelection = selectedCompanion !== null;
+
   return (
     <motion.div
       className="absolute cursor-pointer"
       initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
       animate={{
-        opacity: 1,
-        scale: 1,
-        x: x,
-        y: y,
-        zIndex: 20,
+        opacity: hasSelection ? (isSelected ? 1 : 0) : 1,
+        scale: isSelected ? 1.8 : hasSelection ? 0.8 : 1,
+        x: isSelected ? 0 : x,
+        y: isSelected ? 0 : y,
+        zIndex: isSelected ? 70 : 20,
       }}
-      whileHover={{
-        scale: 1.2,
-        y: y - 15,
-      }}
+      whileHover={
+        !hasSelection
+          ? {
+              scale: 1.2,
+              y: y - 15,
+            }
+          : {}
+      }
       transition={{
-        duration: 0.8,
-        delay: index * 0.15,
+        duration: hasSelection ? 1.2 : 0.8,
+        delay: hasSelection ? 0 : index * 0.15,
         type: "spring",
         stiffness: 200,
         damping: 20,
       }}
-      onMouseEnter={() => onHover(companion.id)}
-      onMouseLeave={() => onHover(null)}
-      onClick={() => onSelect(companion)}
+      onMouseEnter={() => !hasSelection && onHover(companion.id)}
+      onMouseLeave={() => !hasSelection && onHover(null)}
+      onClick={() => !hasSelection && onSelect(companion)}
     >
       {/* Floating animation container */}
       <motion.div
@@ -320,17 +328,17 @@ const CompanionOrb = ({
           className="absolute inset-0 rounded-full blur-lg"
           style={{
             backgroundColor: companion.color,
-            width: "120px",
-            height: "120px",
-            left: "-20px",
-            top: "-20px",
+            width: isSelected ? "200px" : "120px",
+            height: isSelected ? "200px" : "120px",
+            left: isSelected ? "-60px" : "-20px",
+            top: isSelected ? "-60px" : "-20px",
           }}
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2],
+            scale: isSelected ? [1, 1.4, 1] : [1, 1.2, 1],
+            opacity: isSelected ? [0.4, 0.7, 0.4] : [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 2.5,
+            duration: isSelected ? 1.5 : 2.5,
             repeat: Infinity,
             delay: index * 0.3,
           }}
@@ -341,30 +349,45 @@ const CompanionOrb = ({
           className="absolute inset-0 rounded-full border-4"
           style={{
             borderColor: companion.color,
-            boxShadow: `0 0 30px ${companion.color}`,
-            width: "80px",
-            height: "80px",
+            boxShadow: isSelected
+              ? `0 0 60px ${companion.color}, 0 0 120px ${companion.color}60`
+              : `0 0 30px ${companion.color}`,
+            width: isSelected ? "120px" : "80px",
+            height: isSelected ? "120px" : "80px",
+            left: isSelected ? "-20px" : "0px",
+            top: isSelected ? "-20px" : "0px",
           }}
           animate={{
-            borderWidth: ["2px", "4px", "2px"],
-            boxShadow:
-              isHovered === companion.id
+            borderWidth: isSelected
+              ? ["4px", "6px", "4px"]
+              : ["2px", "4px", "2px"],
+            boxShadow: isSelected
+              ? [
+                  `0 0 60px ${companion.color}, 0 0 120px ${companion.color}60`,
+                  `0 0 80px ${companion.color}, 0 0 160px ${companion.color}80`,
+                  `0 0 60px ${companion.color}, 0 0 120px ${companion.color}60`,
+                ]
+              : isHovered === companion.id
                 ? `0 0 40px ${companion.color}, 0 0 80px ${companion.color}40`
                 : `0 0 20px ${companion.color}`,
-            scale: [1, 1.05, 1],
+            scale: isSelected ? [1, 1.1, 1] : [1, 1.05, 1],
           }}
           transition={{
-            duration: 2,
+            duration: isSelected ? 1.2 : 2,
             repeat: Infinity,
           }}
         />
 
         {/* Companion avatar - only the image, no symbolic overlays */}
         <motion.div
-          className="w-20 h-20 rounded-full overflow-hidden relative"
+          className="rounded-full overflow-hidden relative"
           style={{
             backgroundColor: companion.color,
-            boxShadow: `0 8px 32px ${companion.color}60`,
+            boxShadow: isSelected
+              ? `0 12px 48px ${companion.color}80`
+              : `0 8px 32px ${companion.color}60`,
+            width: isSelected ? "120px" : "80px",
+            height: isSelected ? "120px" : "80px",
           }}
         >
           <img
@@ -380,26 +403,28 @@ const CompanionOrb = ({
           />
         </motion.div>
 
-        {/* Name label */}
-        <motion.div
-          className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          transition={{ delay: index * 0.1 + 0.8 }}
-        >
-          <div
-            className="text-white font-bold drop-shadow-lg text-sm"
-            style={{
-              textShadow: `0 0 10px ${companion.color}`,
+        {/* Name label - only show when not selected (selected name appears above) */}
+        {!hasSelection && (
+          <motion.div
+            className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
             }}
+            transition={{ delay: index * 0.1 + 0.8 }}
           >
-            {companion.name}
-          </div>
-        </motion.div>
+            <div
+              className="text-white font-bold drop-shadow-lg text-sm"
+              style={{
+                textShadow: `0 0 10px ${companion.color}`,
+              }}
+            >
+              {companion.name}
+            </div>
+          </motion.div>
+        )}
       </motion.div>
     </motion.div>
   );
