@@ -1148,10 +1148,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
                   >
                     Let the magic begin! ����
                   </motion.p>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                
         </motion.div>
       </motion.div>
     </AnimatePresence>
