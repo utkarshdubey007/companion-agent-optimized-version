@@ -382,91 +382,98 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
 
       {/* Portal container */}
       <div className="relative">
-        {/* Outer soft diffuse glow - Layer 1 (Largest, most diffuse) */}
+        {/* Soft ambient golden-orange aura - Layer 1 (Wide diffusion) */}
         <div
-          className="absolute inset-0 animate-pulse"
+          className="absolute inset-0"
           style={{
             width: '300px',
             height: '400px',
             background: `
-              radial-gradient(ellipse at center,
-                rgba(255, 215, 0, 0.15) 0%,
-                rgba(255, 179, 0, 0.12) 20%,
-                rgba(255, 167, 38, 0.08) 35%,
+              radial-gradient(ellipse 120% 150% at center 30%,
+                rgba(255, 215, 0, 0.08) 0%,
+                rgba(255, 179, 0, 0.06) 15%,
+                rgba(255, 167, 38, 0.04) 30%,
+                rgba(255, 138, 0, 0.03) 45%,
+                rgba(255, 111, 0, 0.02) 60%,
+                rgba(255, 95, 31, 0.01) 75%,
+                transparent 100%
+              )
+            `,
+            borderRadius: '150px 150px 20px 20px',
+            filter: 'blur(60px)',
+            transform: 'scale(3.5)',
+            opacity: 0.7,
+          }}
+        />
+
+        {/* Warm misty glow - Layer 2 (Medium diffusion) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            width: '300px',
+            height: '400px',
+            background: `
+              radial-gradient(ellipse 100% 120% at center 25%,
+                rgba(255, 215, 0, 0.12) 0%,
+                rgba(255, 179, 0, 0.09) 20%,
+                rgba(255, 167, 38, 0.07) 35%,
                 rgba(255, 138, 0, 0.05) 50%,
-                rgba(255, 111, 0, 0.03) 70%,
+                rgba(255, 111, 0, 0.03) 65%,
                 transparent 100%
               )
             `,
             borderRadius: '150px 150px 20px 20px',
-            filter: 'blur(40px)',
-            transform: 'scale(2.0)',
+            filter: 'blur(45px)',
+            transform: 'scale(2.8)',
+            opacity: 0.6,
+            animation: 'softBreathing 8s ease-in-out infinite',
           }}
         />
 
-        {/* Outer soft diffuse glow - Layer 2 (Medium) */}
+        {/* Dreamy close aura - Layer 3 (Closer to portal) */}
         <div
-          className="absolute inset-0 animate-pulse"
+          className="absolute inset-0"
           style={{
             width: '300px',
             height: '400px',
             background: `
-              radial-gradient(ellipse at center,
-                rgba(255, 215, 0, 0.25) 0%,
-                rgba(255, 179, 0, 0.20) 25%,
-                rgba(255, 167, 38, 0.15) 45%,
-                rgba(255, 138, 0, 0.10) 65%,
+              radial-gradient(ellipse 80% 100% at center 20%,
+                rgba(255, 215, 0, 0.18) 0%,
+                rgba(255, 179, 0, 0.14) 25%,
+                rgba(255, 167, 38, 0.10) 45%,
+                rgba(255, 138, 0, 0.07) 65%,
+                rgba(255, 111, 0, 0.04) 80%,
                 transparent 100%
               )
             `,
             borderRadius: '150px 150px 20px 20px',
-            filter: 'blur(30px)',
-            transform: 'scale(1.6)',
-            animationDelay: '0.5s',
+            filter: 'blur(35px)',
+            transform: 'scale(2.2)',
+            animation: 'softBreathing 6s ease-in-out infinite',
+            animationDelay: '2s',
           }}
         />
 
-        {/* Outer soft diffuse glow - Layer 3 (Closer to portal) */}
+        {/* Organic ambient haze */}
         <div
-          className="absolute inset-0 animate-pulse"
+          className="absolute inset-0"
           style={{
             width: '300px',
             height: '400px',
             background: `
-              radial-gradient(ellipse at center,
-                rgba(255, 215, 0, 0.40) 0%,
-                rgba(255, 179, 0, 0.30) 30%,
-                rgba(255, 167, 38, 0.20) 55%,
-                rgba(255, 138, 0, 0.12) 75%,
+              radial-gradient(ellipse 150% 180% at center 15%,
+                transparent 40%,
+                rgba(255, 215, 0, 0.04) 55%,
+                rgba(255, 179, 0, 0.03) 70%,
+                rgba(255, 167, 38, 0.02) 80%,
+                rgba(255, 138, 0, 0.015) 90%,
                 transparent 100%
               )
             `,
             borderRadius: '150px 150px 20px 20px',
-            filter: 'blur(20px)',
-            transform: 'scale(1.3)',
-            animationDelay: '1s',
-          }}
-        />
-
-        {/* Subtle aura around edges */}
-        <div
-          className="absolute inset-0 animate-pulse"
-          style={{
-            width: '300px',
-            height: '400px',
-            background: `
-              radial-gradient(ellipse at center,
-                transparent 60%,
-                rgba(255, 215, 0, 0.08) 70%,
-                rgba(255, 184, 0, 0.06) 80%,
-                rgba(255, 165, 0, 0.04) 90%,
-                transparent 100%
-              )
-            `,
-            borderRadius: '150px 150px 20px 20px',
-            filter: 'blur(50px)',
-            transform: 'scale(2.5)',
-            animationDelay: '1.5s',
+            filter: 'blur(80px)',
+            transform: 'scale(4.0)',
+            opacity: 0.5,
           }}
         />
 
