@@ -77,6 +77,13 @@ export default function Index() {
   // Add sample flippable storybook with multiple reflections
   useEffect(() => {
     const addFlippableStorybook = () => {
+      // Check if storybook already exists to prevent duplicates
+      const storybookExists = chatMessages.some(
+        (msg) => msg.id === "flippable-storybook-1"
+      );
+
+      if (storybookExists) return;
+
       const samplePages = [
         {
           imageUrl:
@@ -141,7 +148,7 @@ export default function Index() {
     const storybookTimer = setTimeout(addFlippableStorybook, 3000);
 
     return () => clearTimeout(storybookTimer);
-  }, [setChatMessages]);
+  }, [chatMessages, setChatMessages]);
 
   // Sidebar toggle handlers
   const toggleTopSidebar = () => {
