@@ -320,14 +320,45 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
             }}
           />
 
+          {/* Particles outside the outer ring */}
+          {[...Array(16)].map((_, i) => {
+            const angle = (i * 360) / 16;
+            const radius = 55; // % distance from center
+            const x = 50 + Math.cos((angle * Math.PI) / 180) * radius;
+            const y = 15 + Math.sin((angle * Math.PI) / 180) * radius * 0.8; // Elliptical
+
+            return (
+              <motion.div
+                key={`outer-particle-${i}`}
+                className="absolute w-1.5 h-1.5 bg-yellow-300 rounded-full"
+                style={{
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  boxShadow: "0 0 8px rgba(255, 215, 0, 0.9), 0 0 16px rgba(255, 215, 0, 0.5)",
+                }}
+                animate={{
+                  scale: [0.4, 1.3, 0.4],
+                  opacity: [0.3, 1, 0.3],
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  delay: i * 0.3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            );
+          })}
+
           {/* Content area */}
           <div
             className="absolute flex items-center justify-center"
             style={{
-              top: "30px",
-              left: "30px",
-              right: "30px",
-              bottom: "30px",
+              left: "15%",
+              top: "20%",
+              width: "70%",
+              height: "60%",
             }}
           >
             {children}
