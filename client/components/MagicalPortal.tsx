@@ -885,39 +885,33 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
-        @keyframes portalGlow {
+        @keyframes softBreathing {
           0%, 100% {
-            box-shadow:
-              0 0 30px rgba(255, 215, 0, 0.6),
-              0 0 50px rgba(255, 179, 0, 0.4),
-              0 0 80px rgba(255, 167, 38, 0.3);
-            opacity: 0.8;
+            opacity: 0.4;
+            transform: scale(1);
           }
           50% {
-            box-shadow:
-              0 0 40px rgba(255, 215, 0, 0.9),
-              0 0 70px rgba(255, 179, 0, 0.6),
-              0 0 100px rgba(255, 167, 38, 0.4);
-            opacity: 1;
+            opacity: 0.7;
+            transform: scale(1.05);
           }
         }
 
         .portal-main::before {
           content: '';
           position: absolute;
-          top: -8px;
-          left: -8px;
-          right: -8px;
-          bottom: -8px;
-          border-radius: 158px 158px 28px 28px;
+          top: -12px;
+          left: -12px;
+          right: -12px;
+          bottom: -12px;
+          border-radius: 162px 162px 32px 32px;
           background: transparent;
-          border: 2px solid rgba(255, 215, 0, 0.7);
+          border: 1px solid rgba(255, 215, 0, 0.3);
           box-shadow:
-            0 0 40px rgba(255, 215, 0, 0.6),
-            0 0 60px rgba(255, 179, 0, 0.4),
-            0 0 80px rgba(255, 167, 38, 0.2),
-            inset 0 0 20px rgba(255, 215, 0, 0.2);
-          animation: portalGlow 3s ease-in-out infinite;
+            0 0 50px rgba(255, 215, 0, 0.3),
+            0 0 80px rgba(255, 179, 0, 0.2),
+            0 0 120px rgba(255, 167, 38, 0.15);
+          filter: blur(2px);
+          animation: softBreathing 5s ease-in-out infinite;
           pointer-events: none;
           z-index: -1;
         }
@@ -925,20 +919,20 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         .portal-main::after {
           content: '';
           position: absolute;
-          top: -15px;
-          left: -15px;
-          right: -15px;
-          bottom: -15px;
-          border-radius: 165px 165px 35px 35px;
+          top: -25px;
+          left: -25px;
+          right: -25px;
+          bottom: -25px;
+          border-radius: 175px 175px 45px 45px;
           background: transparent;
           box-shadow:
-            0 0 60px rgba(255, 215, 0, 0.5),
-            0 0 90px rgba(255, 179, 0, 0.3),
-            0 0 120px rgba(255, 167, 38, 0.2),
-            0 0 150px rgba(255, 138, 0, 0.1);
-          filter: blur(3px);
-          animation: portalGlow 4s ease-in-out infinite;
-          animation-delay: 1s;
+            0 0 80px rgba(255, 215, 0, 0.2),
+            0 0 120px rgba(255, 179, 0, 0.15),
+            0 0 160px rgba(255, 167, 38, 0.1),
+            0 0 200px rgba(255, 138, 0, 0.05);
+          filter: blur(8px);
+          animation: softBreathing 7s ease-in-out infinite;
+          animation-delay: 2s;
           pointer-events: none;
           z-index: -2;
         }
