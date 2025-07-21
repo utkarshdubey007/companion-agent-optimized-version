@@ -130,7 +130,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
 
       {/* Portal container */}
       <div className="relative">
-        {/* Outer glow effect */}
+        {/* Outer soft diffuse glow - Layer 1 (Largest, most diffuse) */}
         <div
           className="absolute inset-0 animate-pulse"
           style={{
@@ -138,15 +138,83 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             height: '400px',
             background: `
               radial-gradient(ellipse at center,
-                rgba(255, 215, 0, 0.4) 0%,
-                rgba(255, 184, 0, 0.3) 30%,
-                rgba(254, 207, 77, 0.2) 60%,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 184, 0, 0.12) 20%,
+                rgba(255, 165, 0, 0.08) 35%,
+                rgba(254, 207, 77, 0.05) 50%,
+                rgba(255, 140, 0, 0.03) 70%,
+                transparent 100%
+              )
+            `,
+            borderRadius: '150px 150px 20px 20px',
+            filter: 'blur(40px)',
+            transform: 'scale(2.0)',
+          }}
+        />
+
+        {/* Outer soft diffuse glow - Layer 2 (Medium) */}
+        <div
+          className="absolute inset-0 animate-pulse"
+          style={{
+            width: '300px',
+            height: '400px',
+            background: `
+              radial-gradient(ellipse at center,
+                rgba(255, 215, 0, 0.25) 0%,
+                rgba(255, 184, 0, 0.18) 25%,
+                rgba(255, 165, 0, 0.12) 45%,
+                rgba(254, 207, 77, 0.08) 65%,
+                transparent 100%
+              )
+            `,
+            borderRadius: '150px 150px 20px 20px',
+            filter: 'blur(30px)',
+            transform: 'scale(1.6)',
+            animationDelay: '0.5s',
+          }}
+        />
+
+        {/* Outer soft diffuse glow - Layer 3 (Closer to portal) */}
+        <div
+          className="absolute inset-0 animate-pulse"
+          style={{
+            width: '300px',
+            height: '400px',
+            background: `
+              radial-gradient(ellipse at center,
+                rgba(255, 215, 0, 0.35) 0%,
+                rgba(255, 184, 0, 0.25) 30%,
+                rgba(255, 165, 0, 0.15) 55%,
+                rgba(254, 207, 77, 0.1) 75%,
                 transparent 100%
               )
             `,
             borderRadius: '150px 150px 20px 20px',
             filter: 'blur(20px)',
-            transform: 'scale(1.2)',
+            transform: 'scale(1.3)',
+            animationDelay: '1s',
+          }}
+        />
+
+        {/* Subtle aura around edges */}
+        <div
+          className="absolute inset-0 animate-pulse"
+          style={{
+            width: '300px',
+            height: '400px',
+            background: `
+              radial-gradient(ellipse at center,
+                transparent 60%,
+                rgba(255, 215, 0, 0.08) 70%,
+                rgba(255, 184, 0, 0.06) 80%,
+                rgba(255, 165, 0, 0.04) 90%,
+                transparent 100%
+              )
+            `,
+            borderRadius: '150px 150px 20px 20px',
+            filter: 'blur(50px)',
+            transform: 'scale(2.5)',
+            animationDelay: '1.5s',
           }}
         />
 
