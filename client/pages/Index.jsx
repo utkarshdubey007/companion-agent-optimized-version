@@ -248,7 +248,28 @@ export default function Index() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {!showCompanionSelector && <FloatingShapes />}
+            {!showCompanionSelector && <FloatingShapes />}
+
+      {/* Letsgo Character positioned in the landscape */}
+      <div
+        className="absolute z-10 pointer-events-none"
+        style={{
+          bottom: "15%", // Position in lower area of screen
+          left: "35%",   // Center-left position as shown in red box
+          transform: "translateX(-50%)", // Center the character
+          width: "120px",
+          height: "120px",
+        }}
+      >
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9be485c18c984644bef5b66cf06e0cb9?format=webp&width=800"
+          alt="Letsgo Character"
+          className="w-full h-full object-contain animate-gentle-float"
+          style={{
+            filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
+          }}
+        />
+      </div>
 
       <AppHeader />
 
