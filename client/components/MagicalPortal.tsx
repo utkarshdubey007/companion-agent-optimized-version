@@ -954,6 +954,50 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
+        @keyframes outerRingGlow {
+          0%, 100% {
+            box-shadow:
+              inset 0 0 0 2px rgba(255, 215, 0, 0.4),
+              0 0 40px rgba(255, 215, 0, 0.3),
+              0 0 70px rgba(255, 179, 0, 0.25),
+              0 0 100px rgba(255, 167, 38, 0.2),
+              0 0 140px rgba(255, 138, 0, 0.15);
+            opacity: 0.8;
+          }
+          50% {
+            box-shadow:
+              inset 0 0 0 2px rgba(255, 215, 0, 0.6),
+              0 0 60px rgba(255, 215, 0, 0.5),
+              0 0 100px rgba(255, 179, 0, 0.4),
+              0 0 140px rgba(255, 167, 38, 0.3),
+              0 0 180px rgba(255, 138, 0, 0.2);
+            opacity: 1;
+          }
+        }
+
+        @keyframes innerRingGlow {
+          0%, 100% {
+            box-shadow:
+              inset 0 0 0 1px rgba(255, 215, 0, 0.6),
+              inset 0 0 20px rgba(255, 215, 0, 0.2),
+              inset 0 0 40px rgba(255, 179, 0, 0.15),
+              inset 0 0 60px rgba(255, 167, 38, 0.1),
+              0 0 25px rgba(255, 215, 0, 0.4),
+              0 0 50px rgba(255, 179, 0, 0.3);
+            opacity: 0.9;
+          }
+          50% {
+            box-shadow:
+              inset 0 0 0 1px rgba(255, 215, 0, 0.8),
+              inset 0 0 30px rgba(255, 215, 0, 0.3),
+              inset 0 0 60px rgba(255, 179, 0, 0.25),
+              inset 0 0 90px rgba(255, 167, 38, 0.2),
+              0 0 35px rgba(255, 215, 0, 0.6),
+              0 0 70px rgba(255, 179, 0, 0.5);
+            opacity: 1;
+          }
+        }
+
         .portal-main::before {
           content: '';
           position: absolute;
