@@ -110,11 +110,60 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
         {[...Array(28)].map((_, i) => (
           <GoldenSparkle key={`sparkle-${i}`} index={i} />
         ))}
-        
+
         {/* Floating star particles */}
         {[...Array(40)].map((_, i) => (
           <FloatingStarParticle key={`star-particle-${i}`} index={i} />
         ))}
+
+        {/* Large star bursts outside portal (like in reference) */}
+        <motion.div
+          className="absolute"
+          style={{ left: "20%", top: "25%" }}
+          animate={{
+            rotate: 360,
+            scale: [0.8, 1.2, 0.8],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+          }}
+        >
+          <div className="relative w-4 h-4">
+            <div className="absolute w-4 h-0.5 bg-yellow-300 left-0 top-1/2 transform -translate-y-1/2"
+                 style={{ boxShadow: "0 0 12px rgba(255, 215, 0, 1)" }} />
+            <div className="absolute w-0.5 h-4 bg-yellow-300 left-1/2 top-0 transform -translate-x-1/2"
+                 style={{ boxShadow: "0 0 12px rgba(255, 215, 0, 1)" }} />
+            <div className="absolute w-2 h-2 bg-yellow-100 rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                 style={{ boxShadow: "0 0 8px rgba(255, 255, 255, 1)" }} />
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="absolute"
+          style={{ right: "22%", bottom: "28%" }}
+          animate={{
+            rotate: -360,
+            scale: [0.9, 1.1, 0.9],
+            opacity: [0.8, 1, 0.8],
+          }}
+          transition={{
+            rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+            scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+          }}
+        >
+          <div className="relative w-3 h-3">
+            <div className="absolute w-3 h-0.5 bg-yellow-300 left-0 top-1/2 transform -translate-y-1/2"
+                 style={{ boxShadow: "0 0 10px rgba(255, 215, 0, 0.9)" }} />
+            <div className="absolute w-0.5 h-3 bg-yellow-300 left-1/2 top-0 transform -translate-x-1/2"
+                 style={{ boxShadow: "0 0 10px rgba(255, 215, 0, 0.9)" }} />
+            <div className="absolute w-1.5 h-1.5 bg-yellow-100 rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                 style={{ boxShadow: "0 0 6px rgba(255, 255, 255, 0.9)" }} />
+          </div>
+        </motion.div>
 
         {/* Ambient magical glow */}
         <motion.div
