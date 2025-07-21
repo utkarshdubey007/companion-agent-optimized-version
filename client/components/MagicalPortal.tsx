@@ -409,7 +409,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             }}
           />
 
-          {/* Edge illumination from outer glow */}
+          {/* Edge illumination with golden-orange blend */}
           <div
             className="absolute inset-0"
             style={{
@@ -417,10 +417,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               background: `
                 radial-gradient(ellipse at center,
                   transparent 60%,
-                  rgba(255, 215, 0, 0.05) 75%,
-                  rgba(255, 215, 0, 0.08) 85%,
-                  rgba(255, 215, 0, 0.12) 95%,
-                  rgba(255, 215, 0, 0.15) 100%
+                  rgba(255, 215, 0, 0.05) 70%,
+                  rgba(255, 179, 0, 0.08) 80%,
+                  rgba(255, 167, 38, 0.12) 90%,
+                  rgba(255, 138, 0, 0.15) 100%
                 )
               `,
             }}
