@@ -24,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/space-companion" element={<SpaceCompanionDemo />} />
           <Route path="/magical-portal" element={<MagicalPortalDemo />} />
+          <Route path="/arch-portal" element={<ArchPortalDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
