@@ -667,24 +667,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             }}
           />
 
-          {/* Light refraction effect */}
-          <div
-            className="absolute inset-0"
-            style={{
-              borderRadius: '50%',
-              background: `
-                conic-gradient(from 0deg at center,
-                  rgba(255, 215, 0, 0.1) 0deg,
-                  rgba(255, 179, 0, 0.08) 90deg,
-                  rgba(255, 167, 38, 0.06) 180deg,
-                  rgba(255, 138, 0, 0.08) 270deg,
-                  rgba(255, 215, 0, 0.1) 360deg
-                )
-              `,
-              opacity: 0.6,
-              animation: 'lightRefraction 8s linear infinite',
-            }}
-          />
+
           {/* Inner glow gradient - blends with dark fill */}
           <div
             className="absolute inset-2 animate-pulse"
