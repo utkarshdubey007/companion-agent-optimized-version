@@ -250,21 +250,22 @@ export default function Index() {
     >
             {!showCompanionSelector && <FloatingShapes />}
 
-            {/* Letsgo Character positioned to left of chat area */}
+            {/* Letsgo Character positioned left of chat box */}
       <div
-        className="absolute z-10 pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          bottom: "8%",   // Position on the ground level
-          left: "15%",    // Left side aligned with chat area
-          transform: "none", // No centering transform needed
-          width: "180px",  // Maintained size
-          height: "180px", // Maintained size
+          bottom: "12%",  // Position on ground level
+          left: "8%",     // Further left, clear of chat area
+          transform: "none",
+          width: "120px",  // Reduced size to match reference proportions
+          height: "120px", // Reduced size to match reference proportions
+          zIndex: "1",     // Same z-index as other background elements
         }}
       >
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F9be485c18c984644bef5b66cf06e0cb9?format=webp&width=800"
           alt="Letsgo Character"
-          className="w-full h-full object-contain animate-gentle-float"
+          className="w-full h-full object-contain"
           style={{
             filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
           }}
