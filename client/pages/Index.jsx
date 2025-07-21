@@ -164,19 +164,77 @@ export default function Index() {
     setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
+  // Enhanced message sending with companion reactions
+  const handleEnhancedSendMessage = (message) => {
+    // Set companion to thinking state
+    setCompanionState("thinking");
+
+    handleSendMessage(message);
+  };
+
+  // Monitor AI thinking state for companion reactions
+  useEffect(() => {
+    if (isAIThinking) {
+      setCompanionState("thinking");
+    } else if (companionState === "thinking") {
+      // AI finished thinking, show talking state
+      setCompanionState("talking");
+      // Return to idle after talking
+      setTimeout(() => {
+        setCompanionState("idle");
+      }, 3000);
+    }
+  }, [isAIThinking, companionState]);
+
   // Menu item click handler
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
     if (itemAlt === "Play") {
+      // Show playful reaction
+      setCompanionState("reacting");
+      setCompanionEmotions(["🎮", "🎉", "😄"]);
+      setTimeout(() => {
+        setCompanionState("idle");
+        setCompanionEmotions([]);
+      }, 2000);
       handleChatMore();
     } else if (itemAlt === "Create") {
+      // Show creative reaction
+      setCompanionState("reacting");
+      setCompanionEmotions(["🎨", "✨", "💡"]);
+      setTimeout(() => {
+        setCompanionState("idle");
+        setCompanionEmotions([]);
+      }, 2000);
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
+      // Show thoughtful reaction
+      setCompanionState("thinking");
+      setTimeout(() => {
+        setCompanionState("idle");
+      }, 2000);
       setShowCreationsPanel(!showCreationsPanel);
     } else if (itemAlt === "Imagine") {
+      // Show imaginative reaction
+      setCompanionState("reacting");
+      setCompanionEmotions(["💭", "🌟", "🔮"]);
+      setTimeout(() => {
+        setCompanionState("thinking");
+        setTimeout(() => {
+          setCompanionState("idle");
+          setCompanionEmotions([]);
+        }, 3000);
+      }, 1000);
       handleSendMessage();
     } else if (itemAlt === "Friends") {
       console.log("Friends button clicked! Opening companion selector...");
+      // Show excited reaction for friends
+      setCompanionState("reacting");
+      setCompanionEmotions(["👫", "💕", "🤗"]);
+      setTimeout(() => {
+        setCompanionState("idle");
+        setCompanionEmotions([]);
+      }, 2000);
       setShowCompanionSelector(true);
     } else if (itemAlt === "Mood") {
       console.log("Mood button clicked - creating mood message");
@@ -244,6 +302,14 @@ export default function Index() {
   const handleCompanionSelect = (companion) => {
     chatHandleCompanionSelect(companion); // Use the magical chat handler
     setShowCompanionSelector(false);
+
+    // Show excited reaction when companion is selected
+    setCompanionState("reacting");
+    setCompanionEmotions(["🌟", "✨", "💫"]);
+    setTimeout(() => {
+      setCompanionState("idle");
+      setCompanionEmotions([]);
+    }, 3000);
   };
 
   const handleCompanionClose = () => {
@@ -319,7 +385,7 @@ export default function Index() {
             <div className="max-w-2xl mx-auto px-4 md:px-6">
               <ChatInputBox
                 placeholder="Ask me anything..."
-                onSendMessage={handleSendMessage}
+                onSendMessage={handleEnhancedSendMessage}
                 onAddAttachment={handleAddAttachment}
               />
             </div>
