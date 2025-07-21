@@ -1085,6 +1085,43 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
+        @keyframes voidPulse {
+          0%, 100% {
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.02);
+          }
+        }
+
+        @keyframes deepVoidPulse {
+          0%, 100% {
+            opacity: 0.9;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.05);
+          }
+        }
+
+        @keyframes infiniteDepth {
+          0%, 100% {
+            opacity: 0.7;
+            transform: scale(1) translateZ(0);
+          }
+          33% {
+            opacity: 0.9;
+            transform: scale(1.08) translateZ(0);
+          }
+          66% {
+            opacity: 0.8;
+            transform: scale(1.03) translateZ(0);
+          }
+        }
+
         .portal-main::before {
           content: '';
           position: absolute;
