@@ -308,10 +308,10 @@ export const ExactPortalMatch: React.FC<ExactPortalMatchProps> = ({
           <div
             className="absolute flex items-center justify-center"
             style={{
-              left: "15%",
-              top: "20%",
-              width: "70%",
-              height: "60%",
+              left: "10%",
+              top: "15%",
+              width: "80%",
+              height: "70%",
             }}
           >
             {children}
