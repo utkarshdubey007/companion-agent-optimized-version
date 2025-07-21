@@ -15,6 +15,7 @@ import GoldenArchDemo from "./pages/GoldenArchDemo";
 import EtherealPortalDemo from "./pages/EtherealPortalDemo";
 import ExactPortalDemo from "./pages/ExactPortalDemo";
 import VerticalArchDemo from "./pages/VerticalArchDemo";
+import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 
 const queryClient = new QueryClient();
 
