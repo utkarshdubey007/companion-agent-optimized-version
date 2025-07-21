@@ -1002,16 +1002,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
-        @keyframes lightRefraction {
-          0% {
-            transform: rotate(0deg);
-            opacity: 0.6;
-          }
-          100% {
-            transform: rotate(360deg);
-            opacity: 0.6;
-          }
-        }
+
 
         @keyframes softBreathing {
           0%, 100% {
