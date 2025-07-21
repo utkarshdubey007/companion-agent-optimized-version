@@ -358,26 +358,151 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         />
       </div>
 
-      {/* Additional scattered sparkles */}
+      {/* Large number of magical glowing particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Small twinkling particles */}
-        {Array.from({ length: 15 }, (_, i) => (
-          <div
-            key={`twinkle-${i}`}
-            className="absolute rounded-full animate-ping"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: '1px',
-              height: '1px',
-              backgroundColor: '#FECF4D',
-              boxShadow: '0 0 4px #FFD700',
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
+        {/* Dense magical particle field */}
+        {Array.from({ length: 80 }, (_, i) => {
+          const size = Math.random() * 3 + 1; // 1px to 4px
+          const colors = ['#FFD700', '#FFB800', '#FECF4D', '#FF8C00', '#FFA500'];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const animations = ['animate-ping', 'animate-pulse', ''];
+          const animation = animations[Math.floor(Math.random() * animations.length)];
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+
+          return (
+            <div
+              key={`magical-particle-${i}`}
+              className={`absolute rounded-full ${animation}`}
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                backgroundColor: color,
+                boxShadow: `0 0 ${size * 3}px ${color}, 0 0 ${size * 6}px ${color}40`,
+                filter: `blur(${size * 0.2}px)`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.6 + Math.random() * 0.4,
+              }}
+            />
+          );
+        })}
+
+        {/* Extra dense particles inside portal area */}
+        {Array.from({ length: 40 }, (_, i) => {
+          const size = Math.random() * 2.5 + 0.8; // 0.8px to 3.3px
+          const colors = ['#FFD700', '#FFEB3B', '#FFC107', '#FFB800'];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          // Position within portal bounds (roughly center 30% of screen)
+          const x = 35 + Math.random() * 30;
+          const y = 25 + Math.random() * 50;
+
+          return (
+            <div
+              key={`portal-particle-${i}`}
+              className="absolute rounded-full animate-pulse"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                backgroundColor: color,
+                boxShadow: `0 0 ${size * 4}px ${color}80, 0 0 ${size * 8}px ${color}40`,
+                filter: `blur(${size * 0.3}px)`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${1.5 + Math.random() * 2.5}s`,
+                opacity: 0.4 + Math.random() * 0.5,
+              }}
+            />
+          );
+        })}
+
+        {/* Shimmering particles with scale animation */}
+        {Array.from({ length: 35 }, (_, i) => {
+          const size = Math.random() * 2 + 1; // 1px to 3px
+          const colors = ['#FFD700', '#FF8C00', '#FFA500', '#FFAB00'];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+
+          return (
+            <div
+              key={`shimmer-particle-${i}`}
+              className="absolute rounded-full"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                backgroundColor: color,
+                boxShadow: `0 0 ${size * 3}px ${color}90, inset 0 0 ${size}px rgba(255,255,255,0.3)`,
+                filter: `blur(${size * 0.25}px)`,
+                animation: `magicalShimmer ${2 + Math.random() * 2}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 3}s`,
+                opacity: 0.5 + Math.random() * 0.4,
+              }}
+            />
+          );
+        })}
+
+        {/* Twinkling micro particles */}
+        {Array.from({ length: 60 }, (_, i) => {
+          const size = Math.random() * 1.5 + 0.5; // 0.5px to 2px
+          const colors = ['#FFEB3B', '#FFF176', '#FFD54F', '#FFCA28'];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+
+          return (
+            <div
+              key={`twinkle-micro-${i}`}
+              className="absolute rounded-full"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                backgroundColor: color,
+                boxShadow: `0 0 ${size * 2}px ${color}`,
+                animation: `twinkle ${1 + Math.random() * 2}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 4}s`,
+                opacity: 0.3 + Math.random() * 0.6,
+              }}
+            />
+          );
+        })}
       </div>
+
+      {/* Custom keyframe animations */}
+      <style>{`
+        @keyframes magicalShimmer {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scale(1.3);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.2;
+            transform: scale(0.8);
+          }
+          25% {
+            opacity: 0.8;
+            transform: scale(1.1);
+          }
+          75% {
+            opacity: 0.6;
+            transform: scale(0.9);
+          }
+        }
+      `}</style>
     </div>
   );
 };
