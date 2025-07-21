@@ -495,19 +495,19 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(55, 30, 90, 0.75) 100%
               )
             `,
-            border: '4px solid #FFB300',
+            border: '3px solid rgba(255, 179, 0, 0.6)',
             boxShadow: `
-              inset 0 0 0 2px #FFD700,
+              inset 0 0 0 1px rgba(255, 215, 0, 0.8),
               inset 0 0 80px rgba(0, 0, 0, 0.8),
               inset 0 0 120px rgba(0, 0, 0, 0.6),
               inset 20px 20px 60px rgba(0, 0, 0, 0.4),
               inset -20px -20px 60px rgba(0, 0, 0, 0.4),
               inset 0 40px 80px rgba(0, 0, 0, 0.5),
-              0 0 20px rgba(255, 215, 0, 0.9),
-              0 0 40px rgba(255, 179, 0, 0.7),
-              0 0 60px rgba(255, 167, 38, 0.5),
-              0 0 80px rgba(255, 138, 0, 0.3),
-              inset 0 0 30px rgba(255, 215, 0, 0.08)
+              0 0 30px rgba(255, 215, 0, 0.4),
+              0 0 60px rgba(255, 179, 0, 0.3),
+              0 0 90px rgba(255, 167, 38, 0.2),
+              0 0 120px rgba(255, 138, 0, 0.15),
+              inset 0 0 30px rgba(255, 215, 0, 0.05)
             `,
           }}
         >
