@@ -7,8 +7,7 @@ import AIChallengeMessage from "./AIChallengeMessage";
 import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
-import { CompanionChatMessage } from "./CompanionCharacter";
-import { MagicalCompanionChat, AITypingIndicator } from "./MagicalCompanionChat";
+import { AITypingIndicator } from "./MagicalCompanionChat";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 import StorybookReflectionCard from "./StorybookReflectionCard";
 import FlippableStorybookCard from "./FlippableStorybookCard";
@@ -134,22 +133,9 @@ export function ChatContainer({
       );
     }
 
-        if (message.type === "ai_challenge") {
+            if (message.type === "ai_challenge") {
       return (
-        <MagicalCompanionChat
-          key={message.id}
-          showCompanion={true}
-          alignment="left"
-          centerCompanion={true}
-          isAIMessage={true}
-          messageId={message.id}
-          companionProps={{
-            size: 80,
-            color: selectedCompanion?.color || "#FFD700",
-            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
-            maxWidthPercent: 12,
-          }}
-        >
+        <div key={message.id} className="flex justify-start w-full mb-4">
           <AIChallengeMessage
             title={message.title || "Today's Challenge!"}
             description={
@@ -162,70 +148,42 @@ export function ChatContainer({
             onRegenerate={message.onRegenerate}
             onChatMore={message.onChatMore}
           />
-        </MagicalCompanionChat>
+        </div>
       );
     }
 
-        if (message.type === "system") {
+            if (message.type === "system") {
       return (
-        <MagicalCompanionChat
-          key={message.id}
-          showCompanion={true}
-          alignment="left"
-          centerCompanion={true}
-          isAIMessage={true}
-          messageId={message.id}
-          companionProps={{
-            size: 80,
-            color: selectedCompanion?.color || "#FFD700",
-            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
-            maxWidthPercent: 12,
-          }}
-        >
-          <div className="flex justify-start w-full mb-4">
-            {/* Message bubble */}
-            <div className="max-w-xs">
-              <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
-                <p className="text-xs md:text-sm leading-relaxed">
-                  {message.content}
-                </p>
-              </div>
-              <div className="text-xs text-gray-400 mt-1 ml-2">
-                {message.timestamp.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </div>
+        <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* Message bubble */}
+          <div className="max-w-xs">
+            <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
+              <p className="text-xs md:text-sm leading-relaxed">
+                {message.content}
+              </p>
+            </div>
+            <div className="text-xs text-gray-400 mt-1 ml-2">
+              {message.timestamp.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
             </div>
           </div>
-        </MagicalCompanionChat>
+        </div>
       );
     }
 
-        // Regular text messages
+            // Regular text messages
     if (message.sender === "AI") {
       return (
-        <MagicalCompanionChat
-          key={message.id}
-          showCompanion={true}
-          alignment="left"
-          centerCompanion={true}
-          isAIMessage={true}
-          messageId={message.id}
-          companionProps={{
-            size: 80,
-            color: selectedCompanion?.color || "#FFD700",
-            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
-            maxWidthPercent: 12,
-          }}
-        >
+        <div key={message.id} className="flex justify-start w-full mb-4">
           <AITextMessage
             content={message.content || ""}
             timestamp={message.timestamp}
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
           />
-        </MagicalCompanionChat>
+        </div>
       );
     }
 
