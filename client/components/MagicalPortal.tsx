@@ -604,20 +604,42 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             }}
           />
 
-          {/* Edge illumination with golden-orange blend */}
+          {/* Gradient transition between rings - creates nested tunnel effect */}
           <div
             className="absolute inset-0"
             style={{
               borderRadius: '150px 150px 20px 20px',
               background: `
                 radial-gradient(ellipse at center,
-                  transparent 60%,
-                  rgba(255, 215, 0, 0.05) 70%,
-                  rgba(255, 179, 0, 0.08) 80%,
-                  rgba(255, 167, 38, 0.12) 90%,
-                  rgba(255, 138, 0, 0.15) 100%
+                  transparent 50%,
+                  rgba(255, 215, 0, 0.08) 65%,
+                  rgba(255, 179, 0, 0.12) 75%,
+                  rgba(255, 167, 38, 0.15) 85%,
+                  rgba(255, 138, 0, 0.18) 95%,
+                  rgba(255, 111, 0, 0.20) 100%
                 )
               `,
+              animation: 'tunnelGlow 5s ease-in-out infinite',
+              animationDelay: '0.5s',
+            }}
+          />
+
+          {/* Light refraction effect */}
+          <div
+            className="absolute inset-0"
+            style={{
+              borderRadius: '150px 150px 20px 20px',
+              background: `
+                conic-gradient(from 0deg at center,
+                  rgba(255, 215, 0, 0.1) 0deg,
+                  rgba(255, 179, 0, 0.08) 90deg,
+                  rgba(255, 167, 38, 0.06) 180deg,
+                  rgba(255, 138, 0, 0.08) 270deg,
+                  rgba(255, 215, 0, 0.1) 360deg
+                )
+              `,
+              opacity: 0.6,
+              animation: 'lightRefraction 8s linear infinite',
             }}
           />
           {/* Inner glow gradient - blends with dark fill */}
