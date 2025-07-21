@@ -706,16 +706,16 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         @keyframes portalGlow {
           0%, 100% {
             box-shadow:
-              0 0 30px rgba(255, 204, 0, 0.5),
-              0 0 50px rgba(255, 204, 0, 0.3),
-              0 0 80px rgba(255, 204, 0, 0.2);
+              0 0 30px rgba(255, 215, 0, 0.6),
+              0 0 50px rgba(255, 179, 0, 0.4),
+              0 0 80px rgba(255, 167, 38, 0.3);
             opacity: 0.8;
           }
           50% {
             box-shadow:
-              0 0 40px rgba(255, 204, 0, 0.8),
-              0 0 70px rgba(255, 204, 0, 0.5),
-              0 0 100px rgba(255, 204, 0, 0.3);
+              0 0 40px rgba(255, 215, 0, 0.9),
+              0 0 70px rgba(255, 179, 0, 0.6),
+              0 0 100px rgba(255, 167, 38, 0.4);
             opacity: 1;
           }
         }
@@ -729,10 +729,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           bottom: -8px;
           border-radius: 158px 158px 28px 28px;
           background: transparent;
-          border: 2px solid rgba(255, 215, 0, 0.6);
+          border: 2px solid rgba(255, 215, 0, 0.7);
           box-shadow:
-            0 0 40px rgba(255, 204, 0, 0.5),
-            0 0 60px rgba(255, 204, 0, 0.3),
+            0 0 40px rgba(255, 215, 0, 0.6),
+            0 0 60px rgba(255, 179, 0, 0.4),
+            0 0 80px rgba(255, 167, 38, 0.2),
             inset 0 0 20px rgba(255, 215, 0, 0.2);
           animation: portalGlow 3s ease-in-out infinite;
           pointer-events: none;
@@ -749,9 +750,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           border-radius: 165px 165px 35px 35px;
           background: transparent;
           box-shadow:
-            0 0 60px rgba(255, 204, 0, 0.4),
-            0 0 90px rgba(255, 204, 0, 0.2),
-            0 0 120px rgba(255, 204, 0, 0.1);
+            0 0 60px rgba(255, 215, 0, 0.5),
+            0 0 90px rgba(255, 179, 0, 0.3),
+            0 0 120px rgba(255, 167, 38, 0.2),
+            0 0 150px rgba(255, 138, 0, 0.1);
           filter: blur(3px);
           animation: portalGlow 4s ease-in-out infinite;
           animation-delay: 1s;
