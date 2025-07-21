@@ -33,20 +33,22 @@ export default function Index() {
     setShowMagicalCard,
   } = usePageState();
 
-  // Companion selector state
+    // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
-  const [selectedCompanion, setSelectedCompanion] = useState(null);
 
-  // Chat state management
+    // Chat state management
   const {
     chatMessages,
     setChatMessages,
+    isAIThinking,
+    selectedCompanion: chatSelectedCompanion,
     handleShowCarousel,
     handleAcceptChallenge,
     handleRegenerateChallenge,
     handleChatMore,
     handleSendMessage,
     handleAddAttachment,
+    handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
   // Auto-expand sidebars on page load
@@ -226,21 +228,10 @@ export default function Index() {
     }`;
   };
 
-  // Companion selector handlers
+    // Companion selector handlers
   const handleCompanionSelect = (companion) => {
-    setSelectedCompanion(companion);
+    chatHandleCompanionSelect(companion); // Use the magical chat handler
     setShowCompanionSelector(false);
-
-    // Add a magical message to the chat
-    const companionMessage = {
-      id: Date.now().toString(),
-      type: "text",
-      sender: "AI",
-      content: `✨ Welcome to our magical adventure! You've chosen ${companion.name} as your companion. ${companion.description} Let's explore together! 🌟`,
-      timestamp: new Date(),
-    };
-
-    setChatMessages((prev) => [...prev, companionMessage]);
   };
 
   const handleCompanionClose = () => {
@@ -278,13 +269,15 @@ export default function Index() {
         {/* Center Content Area - Chat Interface */}
         <div className="flex-1 relative flex flex-col">
           <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6 min-h-0">
-            <ChatContainer
+                        <ChatContainer
               messages={chatMessages}
               showMagicalCard={showMagicalCard}
               onAcceptChallenge={handleAcceptChallenge}
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
               onShowCarousel={handleShowCarousel}
+              isAIThinking={isAIThinking}
+              selectedCompanion={chatSelectedCompanion}
               className="flex-1 min-h-0"
             />
           </div>
@@ -307,11 +300,11 @@ export default function Index() {
         <AcceptedChallenges challenges={challengesData} />
       )}
       {showCreationsPanel && <CreationsPanel creations={creationsData} />}
-      {/* Companion Selector Modal */}
+            {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector
           onSelect={handleCompanionSelect}
-          onClose={handleCompanionClose}
+          onClose={() => setShowCompanionSelector(false)}
         />
       )}
     </div>
