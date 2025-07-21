@@ -12,6 +12,9 @@ export function useChatState() {
     },
   ]);
 
+  const [isAIThinking, setIsAIThinking] = useState(false);
+  const [selectedCompanion, setSelectedCompanion] = useState(null);
+
   const handleShowCarousel = (images) => {
     // Create a carousel message in the chat
     const carouselMessage = {
@@ -24,8 +27,12 @@ export function useChatState() {
     };
     setChatMessages((prev) => [...prev, carouselMessage]);
 
-    // Add AI response
+        // Show thinking mode then add AI response
+    setIsAIThinking(true);
+
     setTimeout(() => {
+      setIsAIThinking(false);
+
       const aiResponse = {
         id: (Date.now() + 1).toString(),
         type: "text",
@@ -34,7 +41,7 @@ export function useChatState() {
         timestamp: new Date(),
       };
       setChatMessages((prev) => [...prev, aiResponse]);
-    }, 1500);
+    }, 2200);
   };
 
   const handleAcceptChallenge = () => {
@@ -74,7 +81,7 @@ export function useChatState() {
     setChatMessages((prev) => [...prev, newMessage]);
   };
 
-  const handleSendMessage = (message) => {
+    const handleSendMessage = (message) => {
     // Add kid message
     const kidMessage = {
       id: Date.now().toString(),
@@ -85,8 +92,13 @@ export function useChatState() {
     };
     setChatMessages((prev) => [...prev, kidMessage]);
 
-    // Simulate AI response after a delay
+    // Show thinking mode
+    setIsAIThinking(true);
+
+    // Simulate AI response after thinking
     setTimeout(() => {
+      setIsAIThinking(false);
+
       const aiMessage = {
         id: (Date.now() + 1).toString(),
         type: "text",
@@ -96,7 +108,7 @@ export function useChatState() {
         timestamp: new Date(),
       };
       setChatMessages((prev) => [...prev, aiMessage]);
-    }, 1500);
+    }, 2500); // Extended thinking time for magical effect
   };
 
   const handleAddAttachment = () => {
@@ -131,7 +143,12 @@ export function useChatState() {
             ),
           );
 
+                    // Show thinking mode
+          setIsAIThinking(true);
+
           setTimeout(() => {
+            setIsAIThinking(false);
+
             const aiResponse = {
               id: (Date.now() + 1).toString(),
               type: "text",
@@ -140,21 +157,46 @@ export function useChatState() {
               timestamp: new Date(),
             };
             setChatMessages((prev) => [...prev, aiResponse]);
-          }, 1500);
+          }, 2000);
         }
       },
     };
     setChatMessages((prev) => [...prev, mediaMessage]);
   };
 
+    const handleCompanionSelect = (companion) => {
+    setSelectedCompanion(companion);
+
+    // Add a welcome message from the selected companion
+    setIsAIThinking(true);
+
+    setTimeout(() => {
+      setIsAIThinking(false);
+
+      const welcomeMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "AI",
+        content: `Hello there! I'm ${companion.name}! 🌟 ${companion.description} I'm so excited to go on magical adventures with you! What would you like to create together today? ✨`,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, welcomeMessage]);
+    }, 1800);
+  };
+
   return {
     chatMessages,
     setChatMessages,
+    isAIThinking,
+    selectedCompanion,
     handleShowCarousel,
     handleAcceptChallenge,
     handleRegenerateChallenge,
     handleChatMore,
     handleSendMessage,
     handleAddAttachment,
+    handleCompanionSelect,
+    setIsAIThinking,
+    setSelectedCompanion,
   };
 }
