@@ -366,9 +366,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               inset 20px 20px 60px rgba(0, 0, 0, 0.4),
               inset -20px -20px 60px rgba(0, 0, 0, 0.4),
               inset 0 40px 80px rgba(0, 0, 0, 0.5),
-              0 0 20px rgba(255, 204, 0, 0.8),
-              0 0 40px rgba(255, 204, 0, 0.6),
-              0 0 60px rgba(255, 204, 0, 0.4),
+              0 0 20px rgba(255, 215, 0, 0.9),
+              0 0 40px rgba(255, 179, 0, 0.7),
+              0 0 60px rgba(255, 167, 38, 0.5),
+              0 0 80px rgba(255, 138, 0, 0.3),
               inset 0 0 30px rgba(255, 215, 0, 0.08)
             `,
           }}
