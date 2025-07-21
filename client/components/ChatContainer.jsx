@@ -8,6 +8,7 @@ import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
+import { MagicalCompanionChat, AITypingIndicator } from "./MagicalCompanionChat";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 import StorybookReflectionCard from "./StorybookReflectionCard";
 import FlippableStorybookCard from "./FlippableStorybookCard";
@@ -20,6 +21,8 @@ export function ChatContainer({
   onRegenerateChallenge,
   onChatMore,
   onShowCarousel = () => {},
+  isAIThinking = false,
+  selectedCompanion = null,
 }) {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -131,16 +134,19 @@ export function ChatContainer({
       );
     }
 
-    if (message.type === "ai_challenge") {
+        if (message.type === "ai_challenge") {
       return (
-        <CompanionChatMessage
+        <MagicalCompanionChat
           key={message.id}
           showCompanion={true}
           alignment="left"
           centerCompanion={true}
+          isAIMessage={true}
+          messageId={message.id}
           companionProps={{
-            size: "proportional",
-            animated: true,
+            size: 80,
+            color: selectedCompanion?.color || "#FFD700",
+            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
             maxWidthPercent: 12,
           }}
         >
@@ -156,20 +162,23 @@ export function ChatContainer({
             onRegenerate={message.onRegenerate}
             onChatMore={message.onChatMore}
           />
-        </CompanionChatMessage>
+        </MagicalCompanionChat>
       );
     }
 
-    if (message.type === "system") {
+        if (message.type === "system") {
       return (
-        <CompanionChatMessage
+        <MagicalCompanionChat
           key={message.id}
           showCompanion={true}
           alignment="left"
           centerCompanion={true}
+          isAIMessage={true}
+          messageId={message.id}
           companionProps={{
-            size: "proportional",
-            animated: true,
+            size: 80,
+            color: selectedCompanion?.color || "#FFD700",
+            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
             maxWidthPercent: 12,
           }}
         >
@@ -189,21 +198,24 @@ export function ChatContainer({
               </div>
             </div>
           </div>
-        </CompanionChatMessage>
+        </MagicalCompanionChat>
       );
     }
 
-    // Regular text messages
+        // Regular text messages
     if (message.sender === "AI") {
       return (
-        <CompanionChatMessage
+        <MagicalCompanionChat
           key={message.id}
           showCompanion={true}
           alignment="left"
           centerCompanion={true}
+          isAIMessage={true}
+          messageId={message.id}
           companionProps={{
-            size: "proportional",
-            animated: true,
+            size: 80,
+            color: selectedCompanion?.color || "#FFD700",
+            imageUrl: selectedCompanion?.image || "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800",
             maxWidthPercent: 12,
           }}
         >
@@ -213,7 +225,7 @@ export function ChatContainer({
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
           />
-        </CompanionChatMessage>
+        </MagicalCompanionChat>
       );
     }
 
@@ -239,8 +251,16 @@ export function ChatContainer({
           overflowY: "auto",
         }}
       >
-        <div className="space-y-4">
+                <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
+
+          {/* AI Thinking Indicator */}
+          {isAIThinking && (
+            <AITypingIndicator
+              companionColor={selectedCompanion?.color || "#FFD700"}
+              className="ml-4"
+            />
+          )}
 
           {/* Additional Compact Challenge Card - Show when Imagine is clicked */}
           {showMagicalCard && (
