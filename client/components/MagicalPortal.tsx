@@ -361,14 +361,69 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             border: '4px solid #FFB300',
             boxShadow: `
               inset 0 0 0 2px #FFD700,
+              inset 0 0 80px rgba(0, 0, 0, 0.8),
+              inset 0 0 120px rgba(0, 0, 0, 0.6),
+              inset 20px 20px 60px rgba(0, 0, 0, 0.4),
+              inset -20px -20px 60px rgba(0, 0, 0, 0.4),
+              inset 0 40px 80px rgba(0, 0, 0, 0.5),
               0 0 20px rgba(255, 204, 0, 0.8),
               0 0 40px rgba(255, 204, 0, 0.6),
               0 0 60px rgba(255, 204, 0, 0.4),
-              inset 0 0 30px rgba(255, 215, 0, 0.15),
-              inset 0 0 60px rgba(0, 0, 0, 0.6)
+              inset 0 0 30px rgba(255, 215, 0, 0.08)
             `,
           }}
         >
+          {/* Depth enhancement layer */}
+          <div
+            className="absolute inset-0"
+            style={{
+              borderRadius: '150px 150px 20px 20px',
+              background: `
+                radial-gradient(ellipse at center,
+                  transparent 0%,
+                  transparent 20%,
+                  rgba(0, 0, 0, 0.1) 40%,
+                  rgba(0, 0, 0, 0.3) 70%,
+                  rgba(0, 0, 0, 0.5) 90%,
+                  rgba(0, 0, 0, 0.7) 100%
+                )
+              `,
+            }}
+          />
+
+          {/* Tunnel depth illusion */}
+          <div
+            className="absolute inset-4"
+            style={{
+              borderRadius: '146px 146px 16px 16px',
+              background: `
+                radial-gradient(ellipse at center,
+                  transparent 0%,
+                  rgba(0, 0, 0, 0.2) 30%,
+                  rgba(0, 0, 0, 0.4) 60%,
+                  rgba(0, 0, 0, 0.6) 80%,
+                  rgba(0, 0, 0, 0.8) 100%
+                )
+              `,
+            }}
+          />
+
+          {/* Edge illumination from outer glow */}
+          <div
+            className="absolute inset-0"
+            style={{
+              borderRadius: '150px 150px 20px 20px',
+              background: `
+                radial-gradient(ellipse at center,
+                  transparent 60%,
+                  rgba(255, 215, 0, 0.05) 75%,
+                  rgba(255, 215, 0, 0.08) 85%,
+                  rgba(255, 215, 0, 0.12) 95%,
+                  rgba(255, 215, 0, 0.15) 100%
+                )
+              `,
+            }}
+          />
           {/* Inner glow gradient - blends with dark fill */}
           <div
             className="absolute inset-2 animate-pulse"
