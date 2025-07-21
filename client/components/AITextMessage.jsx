@@ -26,7 +26,7 @@ export function AITextMessage({
     ));
   };
 
-    return (
+  return (
     <div className={`flex justify-start w-full mb-4 ${className}`}>
       <div className="max-w-md">
         {/* Compact Message Card */}
@@ -102,7 +102,7 @@ export function AITextMessage({
             </div>
           </div>
 
-                    {/* Compact message tail */}
+          {/* Compact message tail */}
           <div
             className="w-3 h-3 transform -translate-x-1 -mt-3 ml-3"
             style={{

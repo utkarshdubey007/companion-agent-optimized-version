@@ -32,7 +32,8 @@
 }
 
 @keyframes gentleFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   25% {
@@ -47,7 +48,8 @@
 }
 
 @keyframes sparkleTwinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(0.8);
   }
@@ -58,7 +60,8 @@
 }
 
 @keyframes magicalPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     transform: scale(1);
   }
@@ -69,7 +72,8 @@
 }
 
 .magical-glow {
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5))
+    drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
 }
 
 .companion-thinking {
@@ -81,7 +85,8 @@
 }
 
 @keyframes companionThinking {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(-2deg);
   }
   50% {
@@ -90,7 +95,8 @@
 }
 
 @keyframes companionSpeaking {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
   }
   50% {

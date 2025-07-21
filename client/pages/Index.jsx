@@ -33,10 +33,10 @@ export default function Index() {
     setShowMagicalCard,
   } = usePageState();
 
-    // Companion selector state
+  // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
 
-    // Chat state management
+  // Chat state management
   const {
     chatMessages,
     setChatMessages,
@@ -228,7 +228,7 @@ export default function Index() {
     }`;
   };
 
-    // Companion selector handlers
+  // Companion selector handlers
   const handleCompanionSelect = (companion) => {
     chatHandleCompanionSelect(companion); // Use the magical chat handler
     setShowCompanionSelector(false);
@@ -248,18 +248,18 @@ export default function Index() {
         backgroundRepeat: "no-repeat",
       }}
     >
-            {!showCompanionSelector && <FloatingShapes />}
+      {!showCompanionSelector && <FloatingShapes />}
 
-            {/* Letsgo Character positioned left of chat box */}
+      {/* Letsgo Character positioned left of chat box */}
       <div
         className="absolute pointer-events-none"
         style={{
-          bottom: "12%",  // Position on ground level
-          left: "8%",     // Further left, clear of chat area
+          bottom: "12%", // Position on ground level
+          left: "8%", // Further left, clear of chat area
           transform: "none",
-          width: "120px",  // Reduced size to match reference proportions
+          width: "120px", // Reduced size to match reference proportions
           height: "120px", // Reduced size to match reference proportions
-          zIndex: "1",     // Same z-index as other background elements
+          zIndex: "1", // Same z-index as other background elements
         }}
       >
         <img
@@ -291,7 +291,7 @@ export default function Index() {
         {/* Center Content Area - Chat Interface */}
         <div className="flex-1 relative flex flex-col">
           <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6 min-h-0">
-                        <ChatContainer
+            <ChatContainer
               messages={chatMessages}
               showMagicalCard={showMagicalCard}
               onAcceptChallenge={handleAcceptChallenge}
@@ -322,7 +322,7 @@ export default function Index() {
         <AcceptedChallenges challenges={challengesData} />
       )}
       {showCreationsPanel && <CreationsPanel creations={creationsData} />}
-            {/* Companion Selector Modal */}
+      {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector
           onSelect={handleCompanionSelect}

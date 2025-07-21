@@ -6,26 +6,26 @@ import { EnhancedMagicalCompanion } from "./MagicalCompanion";
 export const useAITypingState = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [typingMessage, setTypingMessage] = useState("");
-  
+
   const startTyping = (message = "") => {
     setIsTyping(true);
     setTypingMessage(message);
   };
-  
+
   const stopTyping = () => {
     setIsTyping(false);
     setTypingMessage("");
   };
-  
+
   return { isTyping, typingMessage, startTyping, stopTyping };
 };
 
 // Companion that appears next to AI messages in speaking mode
-export const MessageCompanion = ({ 
-  messageRef, 
+export const MessageCompanion = ({
+  messageRef,
   companionColor = "#FFD700",
   imageUrl,
-  onComplete 
+  onComplete,
 }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
@@ -34,8 +34,8 @@ export const MessageCompanion = ({
     if (messageRef?.current) {
       const messageRect = messageRef.current.getBoundingClientRect();
       const companionX = messageRect.left - 50; // Position to the left of message
-      const companionY = messageRect.top + (messageRect.height / 2) - 20; // Center vertically
-      
+      const companionY = messageRect.top + messageRect.height / 2 - 20; // Center vertically
+
       setPosition({ x: companionX, y: companionY });
       setIsVisible(true);
 
@@ -58,25 +58,25 @@ export const MessageCompanion = ({
             left: position.x,
             top: position.y,
           }}
-          initial={{ 
-            scale: 0, 
+          initial={{
+            scale: 0,
             opacity: 0,
             rotate: -180,
             x: 100,
             y: 50,
           }}
-          animate={{ 
-            scale: 1, 
+          animate={{
+            scale: 1,
             opacity: 1,
             rotate: 0,
             x: 0,
             y: 0,
           }}
-          exit={{ 
-            scale: 0, 
+          exit={{
+            scale: 0,
             opacity: 0,
             rotate: 180,
-            transition: { duration: 0.4 }
+            transition: { duration: 0.4 },
           }}
           transition={{
             type: "spring",
@@ -141,7 +141,7 @@ export const MessageCompanion = ({
                 alt="Speaking Companion"
                 className="w-full h-full object-cover"
               />
-              
+
               {/* Speaking indicator */}
               <motion.div
                 className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-0.5 bg-white rounded-full"
@@ -207,7 +207,8 @@ export const MagicalCompanionChat = ({
 
   // Get companion color from selected companion or default
   const companionColor = companionProps.color || "#FFD700";
-  const companionImage = companionProps.imageUrl || 
+  const companionImage =
+    companionProps.imageUrl ||
     "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F81f9377e132c48c0926c8ead2f63132b?format=webp&width=800";
 
   useEffect(() => {
@@ -216,7 +217,7 @@ export const MagicalCompanionChat = ({
     } else if (isAIMessage) {
       // Start speaking mode
       setCompanionMode("speaking");
-      
+
       // Brief delay before showing message companion
       setTimeout(() => {
         setShowMessageCompanion(true);
@@ -252,9 +253,7 @@ export const MagicalCompanionChat = ({
           ref={chatRef}
           className="flex-1 max-w-[75%] sm:max-w-[70%] md:max-w-[65%]"
         >
-          <div ref={messageRef}>
-            {children}
-          </div>
+          <div ref={messageRef}>{children}</div>
         </div>
         {showCompanion && (
           <div className="flex-shrink-0">
@@ -269,7 +268,7 @@ export const MagicalCompanionChat = ({
             />
           </div>
         )}
-        
+
         {/* Message companion for speaking mode */}
         {showMessageCompanion && (
           <MessageCompanion
@@ -284,7 +283,9 @@ export const MagicalCompanionChat = ({
   }
 
   return (
-    <div className={`flex ${alignmentClasses} gap-2 sm:gap-3 md:gap-4 relative`}>
+    <div
+      className={`flex ${alignmentClasses} gap-2 sm:gap-3 md:gap-4 relative`}
+    >
       {showCompanion && (
         <div className="flex-shrink-0">
           <EnhancedMagicalCompanion
@@ -297,14 +298,12 @@ export const MagicalCompanionChat = ({
           />
         </div>
       )}
-      
+
       <div
         ref={chatRef}
         className="flex-1 max-w-[75%] sm:max-w-[70%] md:max-w-[65%]"
       >
-        <div ref={messageRef}>
-          {children}
-        </div>
+        <div ref={messageRef}>{children}</div>
       </div>
 
       {/* Message companion for speaking mode */}
@@ -321,9 +320,9 @@ export const MagicalCompanionChat = ({
 };
 
 // Typing indicator for when AI is thinking
-export const AITypingIndicator = ({ 
+export const AITypingIndicator = ({
   companionColor = "#FFD700",
-  className = "" 
+  className = "",
 }) => {
   return (
     <motion.div
@@ -353,7 +352,7 @@ export const AITypingIndicator = ({
           />
         ))}
       </div>
-      
+
       <motion.span
         className="text-sm text-gray-500 italic"
         animate={{

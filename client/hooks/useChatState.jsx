@@ -27,7 +27,7 @@ export function useChatState() {
     };
     setChatMessages((prev) => [...prev, carouselMessage]);
 
-        // Show thinking mode then add AI response
+    // Show thinking mode then add AI response
     setIsAIThinking(true);
 
     setTimeout(() => {
@@ -81,7 +81,7 @@ export function useChatState() {
     setChatMessages((prev) => [...prev, newMessage]);
   };
 
-    const handleSendMessage = (message) => {
+  const handleSendMessage = (message) => {
     // Add kid message
     const kidMessage = {
       id: Date.now().toString(),
@@ -143,7 +143,7 @@ export function useChatState() {
             ),
           );
 
-                    // Show thinking mode
+          // Show thinking mode
           setIsAIThinking(true);
 
           setTimeout(() => {
@@ -164,7 +164,7 @@ export function useChatState() {
     setChatMessages((prev) => [...prev, mediaMessage]);
   };
 
-    const handleCompanionSelect = (companion) => {
+  const handleCompanionSelect = (companion) => {
     setSelectedCompanion(companion);
 
     // Add a welcome message from the selected companion

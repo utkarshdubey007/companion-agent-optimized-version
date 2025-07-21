@@ -80,7 +80,7 @@ const MagicalParticles = ({ color = "#FFD700", count = 8, mode = "idle" }) => {
 // Thought bubbles for thinking mode
 const ThoughtBubbles = ({ companionColor }) => {
   const thoughtEmojis = ["💭", "✨", "🌟", "💡", "🎨", "🔮"];
-  
+
   return (
     <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 pointer-events-none">
       {[...Array(3)].map((_, i) => (
@@ -146,7 +146,7 @@ const AmbientEffects = ({ mode }) => {
           }}
         />
       ))}
-      
+
       {/* Gentle light rays */}
       <motion.div
         className="absolute inset-0 bg-gradient-radial from-yellow-200 via-transparent to-transparent"
@@ -181,10 +181,13 @@ export const MagicalCompanion = ({
   // Blinking animation for idle mode
   useEffect(() => {
     if (currentMode === "idle") {
-      const blinkInterval = setInterval(() => {
-        setBlinkState(true);
-        setTimeout(() => setBlinkState(false), 150);
-      }, 3000 + Math.random() * 2000);
+      const blinkInterval = setInterval(
+        () => {
+          setBlinkState(true);
+          setTimeout(() => setBlinkState(false), 150);
+        },
+        3000 + Math.random() * 2000,
+      );
 
       return () => clearInterval(blinkInterval);
     }
@@ -239,9 +242,9 @@ export const MagicalCompanion = ({
     }
   };
 
-  const sizeStyle = miniMode ? 
-    { width: "40px", height: "40px" } : 
-    { width: `${size}px`, height: `${size}px` };
+  const sizeStyle = miniMode
+    ? { width: "40px", height: "40px" }
+    : { width: `${size}px`, height: `${size}px` };
 
   return (
     <motion.div
@@ -251,12 +254,16 @@ export const MagicalCompanion = ({
       initial={miniMode ? { scale: 0, opacity: 0 } : false}
       animate={miniMode ? { scale: 1, opacity: 1 } : false}
       exit={miniMode ? { scale: 0, opacity: 0 } : false}
-      transition={miniMode ? { 
-        type: "spring", 
-        stiffness: 500, 
-        damping: 25,
-        duration: 0.6 
-      } : undefined}
+      transition={
+        miniMode
+          ? {
+              type: "spring",
+              stiffness: 500,
+              damping: 25,
+              duration: 0.6,
+            }
+          : undefined
+      }
       onAnimationComplete={onAnimationComplete}
     >
       {/* Ambient background effects */}
@@ -270,7 +277,8 @@ export const MagicalCompanion = ({
         }}
         animate={{
           scale: currentMode === "speaking" ? [1, 1.3, 1] : [1, 1.1, 1],
-          opacity: currentMode === "thinking" ? [0.3, 0.6, 0.3] : [0.2, 0.4, 0.2],
+          opacity:
+            currentMode === "thinking" ? [0.3, 0.6, 0.3] : [0.2, 0.4, 0.2],
         }}
         transition={{
           duration: currentMode === "speaking" ? 1.5 : 3,
@@ -353,10 +361,10 @@ export const MagicalCompanion = ({
         </motion.div>
 
         {/* Magical particles */}
-        <MagicalParticles 
-          color={companionColor} 
-          count={miniMode ? 4 : 8} 
-          mode={currentMode} 
+        <MagicalParticles
+          color={companionColor}
+          count={miniMode ? 4 : 8}
+          mode={currentMode}
         />
 
         {/* Speaking mode sparkle burst */}
@@ -458,7 +466,7 @@ export const EnhancedMagicalCompanion = ({
     if (mode === "speaking") {
       // Transition to speaking mode
       setCurrentMode("speaking");
-      
+
       // After a brief moment, hide main and show mini
       setTimeout(() => {
         setShowMain(false);
@@ -509,10 +517,10 @@ export const EnhancedMagicalCompanion = ({
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ 
-              scale: 0, 
+            exit={{
+              scale: 0,
               opacity: 0,
-              transition: { duration: 0.3 }
+              transition: { duration: 0.3 },
             }}
             onAnimationComplete={() => {
               // Return main companion after mini disappears

@@ -133,7 +133,7 @@ export function ChatContainer({
       );
     }
 
-            if (message.type === "ai_challenge") {
+    if (message.type === "ai_challenge") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
           <AIChallengeMessage
@@ -152,7 +152,7 @@ export function ChatContainer({
       );
     }
 
-            if (message.type === "system") {
+    if (message.type === "system") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
           {/* Message bubble */}
@@ -173,7 +173,7 @@ export function ChatContainer({
       );
     }
 
-            // Regular text messages
+    // Regular text messages
     if (message.sender === "AI") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
@@ -209,7 +209,7 @@ export function ChatContainer({
           overflowY: "auto",
         }}
       >
-                <div className="space-y-4">
+        <div className="space-y-4">
           {allMessages.map((message) => renderMessage(message))}
 
           {/* AI Thinking Indicator */}

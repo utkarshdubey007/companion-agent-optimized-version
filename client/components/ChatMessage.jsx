@@ -11,7 +11,7 @@ export function ChatMessage({
   // Default avatars
   const defaultAvatar = isAI ? "🤖" : "👧";
 
-    return (
+  return (
     <div
       className={`flex w-full mb-4 animate-slide-in ${
         isAI ? "justify-start" : "justify-end"
@@ -56,7 +56,7 @@ export function ChatMessage({
         </div>
       </div>
 
-            {/* Timestamp */}
+      {/* Timestamp */}
       {timestamp && (
         <div
           className={`text-xs text-gray-400 mt-1 ${
