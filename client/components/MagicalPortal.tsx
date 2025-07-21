@@ -128,6 +128,128 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
       <FourPointedStar x={22} y={35} size={20} />
       <FourPointedStar x={78} y={75} size={18} />
 
+      {/* Large glowing 4-point star sparkles */}
+      {/* Top-left sparkle */}
+      <div
+        className="absolute"
+        style={{
+          left: '20%',
+          top: '20%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <div className="relative">
+          {/* Main diamond star shape */}
+          <div
+            className="absolute animate-pulse transform rotate-45"
+            style={{
+              width: '16px',
+              height: '16px',
+              backgroundColor: '#FFD700',
+              borderRadius: '2px',
+              filter: 'blur(1px)',
+              boxShadow: `
+                0 0 20px #FFD700,
+                0 0 40px #FFD700,
+                0 0 60px rgba(255, 215, 0, 0.5),
+                inset 0 0 8px rgba(255, 255, 255, 0.3)
+              `,
+              animationDuration: '3s',
+            }}
+          />
+          {/* Outer glow effect */}
+          <div
+            className="absolute transform rotate-45"
+            style={{
+              width: '20px',
+              height: '20px',
+              backgroundColor: 'rgba(255, 215, 0, 0.3)',
+              borderRadius: '3px',
+              filter: 'blur(4px)',
+              left: '-2px',
+              top: '-2px',
+              animation: 'starGlow 4s ease-in-out infinite',
+            }}
+          />
+          {/* Center bright point */}
+          <div
+            className="absolute transform rotate-45"
+            style={{
+              width: '8px',
+              height: '8px',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '1px',
+              left: '4px',
+              top: '4px',
+              opacity: '0.8',
+              animation: 'starPulse 2s ease-in-out infinite',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Bottom-right sparkle */}
+      <div
+        className="absolute"
+        style={{
+          right: '22%',
+          bottom: '22%',
+          transform: 'translate(50%, 50%)',
+        }}
+      >
+        <div className="relative">
+          {/* Main diamond star shape */}
+          <div
+            className="absolute animate-pulse transform rotate-45"
+            style={{
+              width: '14px',
+              height: '14px',
+              backgroundColor: '#FFD700',
+              borderRadius: '2px',
+              filter: 'blur(1px)',
+              boxShadow: `
+                0 0 18px #FFD700,
+                0 0 36px #FFD700,
+                0 0 54px rgba(255, 215, 0, 0.4),
+                inset 0 0 6px rgba(255, 255, 255, 0.4)
+              `,
+              animationDuration: '3.5s',
+              animationDelay: '1s',
+            }}
+          />
+          {/* Outer glow effect */}
+          <div
+            className="absolute transform rotate-45"
+            style={{
+              width: '18px',
+              height: '18px',
+              backgroundColor: 'rgba(255, 215, 0, 0.25)',
+              borderRadius: '3px',
+              filter: 'blur(3px)',
+              left: '-2px',
+              top: '-2px',
+              animation: 'starGlow 4.5s ease-in-out infinite',
+              animationDelay: '1.5s',
+            }}
+          />
+          {/* Center bright point */}
+          <div
+            className="absolute transform rotate-45"
+            style={{
+              width: '6px',
+              height: '6px',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '1px',
+              left: '4px',
+              top: '4px',
+              opacity: '0.9',
+              animation: 'starPulse 2.5s ease-in-out infinite',
+              animationDelay: '0.5s',
+            }}
+          />
+        </div>
+      </div>
+
       {/* Portal container */}
       <div className="relative">
         {/* Outer soft diffuse glow - Layer 1 (Largest, most diffuse) */}
