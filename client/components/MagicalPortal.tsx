@@ -390,10 +390,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '300px',
-            height: '400px',
+            width: '320px',
+            height: '480px',
             background: `
-              radial-gradient(ellipse 120% 150% at center 30%,
+              radial-gradient(ellipse 120% 150% at center,
                 rgba(255, 215, 0, 0.08) 0%,
                 rgba(255, 179, 0, 0.06) 15%,
                 rgba(255, 167, 38, 0.04) 30%,
@@ -403,7 +403,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '150px 150px 20px 20px',
+            borderRadius: '50%',
             filter: 'blur(60px)',
             transform: 'scale(3.5)',
             opacity: 0.7,
@@ -414,10 +414,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '300px',
-            height: '400px',
+            width: '320px',
+            height: '480px',
             background: `
-              radial-gradient(ellipse 100% 120% at center 25%,
+              radial-gradient(ellipse 100% 120% at center,
                 rgba(255, 215, 0, 0.12) 0%,
                 rgba(255, 179, 0, 0.09) 20%,
                 rgba(255, 167, 38, 0.07) 35%,
@@ -426,7 +426,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '150px 150px 20px 20px',
+            borderRadius: '50%',
             filter: 'blur(45px)',
             transform: 'scale(2.8)',
             opacity: 0.6,
@@ -438,10 +438,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '300px',
-            height: '400px',
+            width: '320px',
+            height: '480px',
             background: `
-              radial-gradient(ellipse 80% 100% at center 20%,
+              radial-gradient(ellipse 80% 100% at center,
                 rgba(255, 215, 0, 0.18) 0%,
                 rgba(255, 179, 0, 0.14) 25%,
                 rgba(255, 167, 38, 0.10) 45%,
@@ -450,7 +450,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '150px 150px 20px 20px',
+            borderRadius: '50%',
             filter: 'blur(35px)',
             transform: 'scale(2.2)',
             animation: 'softBreathing 6s ease-in-out infinite',
@@ -462,10 +462,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '300px',
-            height: '400px',
+            width: '320px',
+            height: '480px',
             background: `
-              radial-gradient(ellipse 150% 180% at center 15%,
+              radial-gradient(ellipse 150% 180% at center,
                 transparent 40%,
                 rgba(255, 215, 0, 0.04) 55%,
                 rgba(255, 179, 0, 0.03) 70%,
@@ -474,7 +474,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '150px 150px 20px 20px',
+            borderRadius: '50%',
             filter: 'blur(80px)',
             transform: 'scale(4.0)',
             opacity: 0.5,
@@ -485,11 +485,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute portal-outer-ring"
           style={{
-            width: '320px',
-            height: '420px',
+            width: '340px',
+            height: '500px',
             left: '-10px',
             top: '-10px',
-            borderRadius: '160px 160px 30px 30px',
+            borderRadius: '50%',
             background: `
               linear-gradient(135deg,
                 rgba(255, 215, 0, 0.15) 0%,
@@ -516,11 +516,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute portal-inner-ring"
           style={{
-            width: '310px',
-            height: '410px',
+            width: '330px',
+            height: '490px',
             left: '-5px',
             top: '-5px',
-            borderRadius: '155px 155px 25px 25px',
+            borderRadius: '50%',
             background: `
               linear-gradient(120deg,
                 rgba(255, 215, 0, 0.25) 0%,
@@ -548,9 +548,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="relative portal-main"
           style={{
-            width: '300px',
-            height: '400px',
-            borderRadius: '150px 150px 20px 20px',
+            width: '320px',
+            height: '480px',
+            borderRadius: '50%',
             background: `
               radial-gradient(ellipse 85% 90% at center 40%,
                 rgba(255, 215, 0, 0.15) 0%,
@@ -583,7 +583,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-0"
             style={{
-              borderRadius: '150px 150px 20px 20px',
+              borderRadius: '50%',
               background: `
                 radial-gradient(ellipse 70% 80% at center 35%,
                   rgba(255, 215, 0, 0.12) 0%,
@@ -603,7 +603,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-6"
             style={{
-              borderRadius: '144px 144px 14px 14px',
+              borderRadius: '50%',
               background: `
                 radial-gradient(ellipse 60% 70% at center 30%,
                   rgba(75, 0, 130, 0.08) 0%,
@@ -628,7 +628,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-12"
             style={{
-              borderRadius: '138px 138px 8px 8px',
+              borderRadius: '50%',
               background: `
                 radial-gradient(ellipse 50% 60% at center 25%,
                   rgba(25, 12, 42, 0.06) 0%,
