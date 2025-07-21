@@ -26,23 +26,11 @@ export function AITextMessage({
     ));
   };
 
-  return (
+    return (
     <div className={`flex justify-start w-full mb-4 ${className}`}>
-      <div className="flex items-start gap-2 max-w-md">
-        {/* AI Avatar - compact */}
-        <div className="flex-shrink-0">
-          <div
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg"
-            style={{
-              boxShadow: "0 4px 12px rgba(59, 130, 246, 0.3)",
-            }}
-          >
-            <span className="text-white text-sm">🤖</span>
-          </div>
-        </div>
-
+      <div className="max-w-md">
         {/* Compact Message Card */}
-        <div className="flex-1 relative">
+        <div className="relative">
           <div
             className="relative overflow-hidden rounded-2xl shadow-lg"
             style={{
@@ -114,7 +102,7 @@ export function AITextMessage({
             </div>
           </div>
 
-          {/* Compact message tail */}
+                    {/* Compact message tail */}
           <div
             className="w-3 h-3 transform -translate-x-1 -mt-3 ml-3"
             style={{
