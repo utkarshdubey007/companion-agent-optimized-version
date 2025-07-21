@@ -101,57 +101,61 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
 
   return (
     <div className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
-      {/* Enhanced magical background with vignette and ambient effects */}
+      {/* Rich velvety background - Deep purple center to warm amber edges */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(circle at 25% 30%, rgba(138, 43, 226, 0.3) 0%, transparent 70%),
-            radial-gradient(circle at 75% 70%, rgba(75, 0, 130, 0.2) 0%, transparent 70%),
-            linear-gradient(180deg, #1A0C2A 0%, #0f0520 50%, #1A0C2A 100%)
+            radial-gradient(ellipse at center,
+              #000000 0%,
+              #0d0519 15%,
+              #1a0b2e 30%,
+              #2b1549 45%,
+              #3d1f5c 60%,
+              #5d2d6f 75%,
+              #8b4b7f 85%,
+              #b8698a 92%,
+              #d18a6b 96%,
+              #e6a34a 98%,
+              #f5c85f 100%
+            )
           `
         }}
       />
 
-      {/* Soft vignette overlay */}
+      {/* Secondary warm gradient layer for depth */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 30% 20%,
+              rgba(186, 85, 211, 0.15) 0%,
+              rgba(123, 104, 238, 0.12) 25%,
+              transparent 60%
+            ),
+            radial-gradient(circle at 70% 80%,
+              rgba(255, 140, 0, 0.1) 0%,
+              rgba(255, 165, 0, 0.08) 30%,
+              transparent 65%
+            )
+          `
+        }}
+      />
+
+      {/* Soft magical haze overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
             radial-gradient(ellipse at center,
               transparent 0%,
-              transparent 40%,
-              rgba(0, 0, 0, 0.2) 70%,
-              rgba(0, 0, 0, 0.4) 85%,
-              rgba(0, 0, 0, 0.6) 100%
+              transparent 30%,
+              rgba(138, 43, 226, 0.05) 50%,
+              rgba(75, 0, 130, 0.08) 70%,
+              rgba(25, 25, 112, 0.12) 85%,
+              rgba(0, 0, 0, 0.2) 100%
             )
-          `,
-        }}
-      />
-
-      {/* Subtle noise texture overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          background: `
-            repeating-conic-gradient(
-              from 0deg at 50% 50%,
-              transparent 0deg,
-              rgba(255, 255, 255, 0.02) 1deg,
-              transparent 2deg,
-              rgba(0, 0, 0, 0.02) 3deg,
-              transparent 4deg
-            ),
-            repeating-linear-gradient(
-              0deg,
-              transparent 0px,
-              rgba(255, 255, 255, 0.01) 1px,
-              transparent 2px,
-              rgba(0, 0, 0, 0.01) 3px,
-              transparent 4px
-            )
-          `,
-          filter: 'blur(0.5px)',
+          `
         }}
       />
 
