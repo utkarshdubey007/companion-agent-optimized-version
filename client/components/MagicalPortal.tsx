@@ -541,7 +541,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Dense magical particle field */}
         {Array.from({ length: 80 }, (_, i) => {
           const size = Math.random() * 3 + 1; // 1px to 4px
-          const colors = ['#FFD700', '#FFB800', '#FECF4D', '#FF8C00', '#FFA500'];
+          const colors = ['#FFD700', '#FFB300', '#FFA726', '#FF8C00', '#FF7043'];
           const color = colors[Math.floor(Math.random() * colors.length)];
           const animations = ['animate-ping', 'animate-pulse', ''];
           const animation = animations[Math.floor(Math.random() * animations.length)];
