@@ -101,8 +101,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
 
   return (
     <div className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
-      {/* Dark magical background */}
-      <div 
+      {/* Enhanced magical background with vignette and ambient effects */}
+      <div
         className="absolute inset-0"
         style={{
           background: `
@@ -112,6 +112,136 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           `
         }}
       />
+
+      {/* Soft vignette overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at center,
+              transparent 0%,
+              transparent 40%,
+              rgba(0, 0, 0, 0.2) 70%,
+              rgba(0, 0, 0, 0.4) 85%,
+              rgba(0, 0, 0, 0.6) 100%
+            )
+          `,
+        }}
+      />
+
+      {/* Subtle noise texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          background: `
+            repeating-conic-gradient(
+              from 0deg at 50% 50%,
+              transparent 0deg,
+              rgba(255, 255, 255, 0.02) 1deg,
+              transparent 2deg,
+              rgba(0, 0, 0, 0.02) 3deg,
+              transparent 4deg
+            ),
+            repeating-linear-gradient(
+              0deg,
+              transparent 0px,
+              rgba(255, 255, 255, 0.01) 1px,
+              transparent 2px,
+              rgba(0, 0, 0, 0.01) 3px,
+              transparent 4px
+            )
+          `,
+          filter: 'blur(0.5px)',
+        }}
+      />
+
+      {/* Ambient background stars - Small glowing dots */}
+      {Array.from({ length: 25 }, (_, i) => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 2 + 0.5; // 0.5px to 2.5px
+        const colors = ['#FFD700', '#DDA0DD', '#E6E6FA', '#F0E68C', '#DA70D6'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const delay = Math.random() * 5;
+        const duration = 3 + Math.random() * 4;
+
+        return (
+          <div
+            key={`ambient-star-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${x}%`,
+              top: `${y}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              backgroundColor: color,
+              boxShadow: `0 0 ${size * 4}px ${color}`,
+              opacity: 0.3 + Math.random() * 0.4,
+              animation: `ambientTwinkle ${duration}s ease-in-out infinite`,
+              animationDelay: `${delay}s`,
+              filter: `blur(${size * 0.1}px)`,
+            }}
+          />
+        );
+      })}
+
+      {/* Larger ambient stars with purple hues */}
+      {Array.from({ length: 8 }, (_, i) => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 3 + 1; // 1px to 4px
+        const purpleColors = ['#DDA0DD', '#DA70D6', '#BA55D3', '#9370DB', '#8A2BE2'];
+        const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
+        const delay = Math.random() * 6;
+        const duration = 4 + Math.random() * 3;
+
+        return (
+          <div
+            key={`ambient-purple-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${x}%`,
+              top: `${y}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              backgroundColor: color,
+              boxShadow: `0 0 ${size * 6}px ${color}60, 0 0 ${size * 12}px ${color}30`,
+              opacity: 0.2 + Math.random() * 0.3,
+              animation: `ambientGlow ${duration}s ease-in-out infinite`,
+              animationDelay: `${delay}s`,
+              filter: `blur(${size * 0.15}px)`,
+            }}
+          />
+        );
+      })}
+
+      {/* Distant cosmic glow effects */}
+      {Array.from({ length: 4 }, (_, i) => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 8 + 4; // 4px to 12px
+        const cosmicColors = ['#4169E1', '#6495ED', '#87CEEB', '#B0C4DE'];
+        const color = cosmicColors[Math.floor(Math.random() * cosmicColors.length)];
+        const delay = Math.random() * 8;
+
+        return (
+          <div
+            key={`cosmic-glow-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${x}%`,
+              top: `${y}%`,
+              width: `${size}px`,
+              height: `${size}px`,
+              background: `radial-gradient(circle, ${color}40 0%, ${color}20 30%, transparent 70%)`,
+              opacity: 0.1 + Math.random() * 0.2,
+              animation: `cosmicPulse ${6 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${delay}s`,
+              filter: `blur(${size * 0.3}px)`,
+            }}
+          />
+        );
+      })}
 
       {/* Scattered magical dust particles */}
       {dustParticles.map((dust, index) => (
