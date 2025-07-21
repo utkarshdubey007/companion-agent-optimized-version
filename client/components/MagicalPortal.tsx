@@ -965,6 +965,28 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
+        @keyframes tunnelGlow {
+          0%, 100% {
+            opacity: 0.6;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.9;
+            transform: scale(1.02);
+          }
+        }
+
+        @keyframes lightRefraction {
+          0% {
+            transform: rotate(0deg);
+            opacity: 0.6;
+          }
+          100% {
+            transform: rotate(360deg);
+            opacity: 0.6;
+          }
+        }
+
         @keyframes softBreathing {
           0%, 100% {
             opacity: 0.4;
