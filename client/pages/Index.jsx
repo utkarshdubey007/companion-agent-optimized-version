@@ -250,15 +250,15 @@ export default function Index() {
     >
             {!showCompanionSelector && <FloatingShapes />}
 
-            {/* Letsgo Character positioned in the landscape */}
+            {/* Letsgo Character positioned to left of chat area */}
       <div
         className="absolute z-10 pointer-events-none"
         style={{
-          bottom: "15%", // Position in lower area of screen
-          left: "35%",   // Center-left position as shown in red box
-          transform: "translateX(-50%)", // Center the character
-          width: "180px",  // Increased from 120px
-          height: "180px", // Increased from 120px
+          bottom: "8%",   // Position on the ground level
+          left: "15%",    // Left side aligned with chat area
+          transform: "none", // No centering transform needed
+          width: "180px",  // Maintained size
+          height: "180px", // Maintained size
         }}
       >
         <img
