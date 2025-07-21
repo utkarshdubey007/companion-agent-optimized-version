@@ -161,19 +161,19 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
             className="absolute inset-0"
             style={{
               background: `
-                radial-gradient(ellipse at center, 
-                  rgba(255, 215, 0, 0.3) 0%, 
-                  rgba(255, 165, 0, 0.2) 30%, 
-                  rgba(255, 140, 0, 0.1) 60%, 
+                radial-gradient(ellipse at center,
+                  rgba(255, 215, 0, 0.4) 0%,
+                  rgba(255, 165, 0, 0.3) 30%,
+                  rgba(255, 140, 0, 0.15) 60%,
                   transparent 100%
                 )
               `,
-              borderRadius: "50% 50% 12px 12px",
-              filter: "blur(8px)",
-              transform: "scale(1.2)",
+              clipPath: `ellipse(50% 85% at center 15%)`,
+              filter: "blur(12px)",
+              transform: "scale(1.3)",
             }}
             animate={{
-              opacity: [0.6, 1, 0.6],
+              opacity: [0.7, 1, 0.7],
             }}
             transition={{
               duration: 3,
@@ -182,28 +182,45 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
             }}
           />
 
-          {/* Thick glowing border - outer layer */}
+          {/* Main portal arch with smooth curves and fading bottom */}
           <motion.div
             className="absolute inset-0"
             style={{
-              borderRadius: "50% 50% 12px 12px",
-              border: "8px solid transparent",
               background: `
-                linear-gradient(45deg, 
-                  rgba(255, 215, 0, 0.9) 0%, 
-                  rgba(255, 165, 0, 0.8) 25%, 
-                  rgba(255, 140, 0, 0.7) 50%, 
-                  rgba(255, 165, 0, 0.8) 75%, 
-                  rgba(255, 215, 0, 0.9) 100%
+                radial-gradient(ellipse at center top,
+                  rgba(255, 215, 0, 0.95) 0%,
+                  rgba(255, 165, 0, 0.8) 15%,
+                  rgba(255, 140, 0, 0.6) 35%,
+                  rgba(218, 165, 32, 0.4) 55%,
+                  rgba(138, 43, 226, 0.2) 75%,
+                  rgba(75, 0, 130, 0.1) 85%,
+                  transparent 100%
                 )
               `,
-              backgroundClip: "padding-box",
+              clipPath: `ellipse(50% 85% at center 15%)`,
+              filter: "blur(1px)",
+            }}
+            animate={{
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* Thick glowing border */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              clipPath: `ellipse(50% 85% at center 15%)`,
             }}
             animate={{
               boxShadow: [
-                "inset 0 0 0 8px rgba(255, 215, 0, 0.9), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.5), 0 0 150px rgba(255, 140, 0, 0.3)",
-                "inset 0 0 0 8px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 215, 0, 1), 0 0 160px rgba(255, 165, 0, 0.7), 0 0 240px rgba(255, 140, 0, 0.4)",
-                "inset 0 0 0 8px rgba(255, 215, 0, 0.9), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.5), 0 0 150px rgba(255, 140, 0, 0.3)",
+                "inset 0 0 0 6px rgba(255, 215, 0, 0.95), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.5), 0 0 150px rgba(255, 140, 0, 0.3)",
+                "inset 0 0 0 6px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 215, 0, 1), 0 0 160px rgba(255, 165, 0, 0.7), 0 0 240px rgba(255, 140, 0, 0.4)",
+                "inset 0 0 0 6px rgba(255, 215, 0, 0.95), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.5), 0 0 150px rgba(255, 140, 0, 0.3)",
               ],
             }}
             transition={{
@@ -215,29 +232,21 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
 
           {/* Inner glowing border */}
           <motion.div
-            className="absolute"
+            className="absolute inset-0"
             style={{
-              top: "12px",
-              left: "12px",
-              right: "12px",
-              bottom: "12px",
-              borderRadius: "50% 50% 8px 8px",
-              border: "4px solid transparent",
               background: `
-                linear-gradient(135deg, 
-                  rgba(255, 215, 0, 0.6) 0%, 
-                  rgba(255, 190, 0, 0.4) 50%, 
-                  rgba(255, 215, 0, 0.6) 100%
+                radial-gradient(ellipse at center top,
+                  rgba(255, 255, 255, 0.2) 0%,
+                  rgba(255, 215, 0, 0.3) 12%,
+                  rgba(255, 165, 0, 0.2) 25%,
+                  rgba(255, 140, 0, 0.1) 40%,
+                  transparent 70%
                 )
               `,
-              backgroundClip: "padding-box",
+              clipPath: `ellipse(47% 82% at center 15%)`,
             }}
             animate={{
-              boxShadow: [
-                "inset 0 0 0 4px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5)",
-                "inset 0 0 0 4px rgba(255, 255, 255, 0.9), 0 0 50px rgba(255, 215, 0, 0.7)",
-                "inset 0 0 0 4px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5)",
-              ],
+              opacity: [0.6, 1, 0.6],
             }}
             transition={{
               duration: 3,
@@ -248,39 +257,58 @@ export const VerticalArchPortal: React.FC<VerticalArchPortalProps> = ({
 
           {/* Dark center area for content */}
           <motion.div
-            className="absolute"
+            className="absolute inset-0"
             style={{
-              top: "20px",
-              left: "20px",
-              right: "20px",
-              bottom: "20px",
-              borderRadius: "50% 50% 4px 4px",
               background: `
-                radial-gradient(ellipse at center, 
-                  rgba(0, 0, 0, 0.95) 0%, 
-                  rgba(10, 6, 18, 0.98) 40%, 
-                  rgba(0, 0, 0, 1) 100%
+                radial-gradient(ellipse at center top,
+                  rgba(0, 0, 0, 0.98) 0%,
+                  rgba(10, 6, 18, 0.99) 30%,
+                  rgba(0, 0, 0, 1) 60%,
+                  transparent 100%
                 )
               `,
+              clipPath: `ellipse(44% 79% at center 15%)`,
+            }}
+          />
+
+          {/* Bottom fading effect - seamless blend */}
+          <motion.div
+            className="absolute bottom-0 left-0 right-0"
+            style={{
+              height: "35%",
+              background: `
+                linear-gradient(to bottom,
+                  rgba(255, 215, 0, 0.1) 0%,
+                  rgba(255, 165, 0, 0.06) 20%,
+                  rgba(138, 43, 226, 0.03) 40%,
+                  rgba(75, 0, 130, 0.02) 60%,
+                  transparent 100%
+                )
+              `,
+              filter: "blur(6px)",
+            }}
+            animate={{
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
             }}
           />
 
           {/* Subtle inner glow */}
           <motion.div
-            className="absolute"
+            className="absolute inset-0"
             style={{
-              top: "24px",
-              left: "24px",
-              right: "24px",
-              bottom: "24px",
-              borderRadius: "50% 50% 2px 2px",
               background: `
-                radial-gradient(ellipse at center top, 
-                  rgba(255, 215, 0, 0.08) 0%, 
-                  rgba(255, 165, 0, 0.04) 30%, 
-                  transparent 70%
+                radial-gradient(ellipse at center top,
+                  rgba(255, 215, 0, 0.08) 0%,
+                  rgba(255, 165, 0, 0.04) 25%,
+                  transparent 60%
                 )
               `,
+              clipPath: `ellipse(42% 76% at center 15%)`,
             }}
             animate={{
               opacity: [0.5, 0.8, 0.5],
