@@ -6,21 +6,38 @@ interface VerticalArchPortalProps {
   className?: string;
 }
 
-// Golden sparkling particles
+// Golden sparkling particles positioned exactly like in reference image
 const GoldenSparkle = ({ index }: { index: number }) => {
   const sparklePositions = [
-    { x: 12, y: 8 }, { x: 88, y: 12 }, { x: 15, y: 85 }, { x: 85, y: 88 },
-    { x: 5, y: 45 }, { x: 95, y: 40 }, { x: 25, y: 15 }, { x: 75, y: 82 },
-    { x: 8, y: 65 }, { x: 92, y: 25 }, { x: 35, y: 5 }, { x: 65, y: 95 },
-    { x: 18, y: 30 }, { x: 82, y: 70 }, { x: 28, y: 75 }, { x: 72, y: 20 },
-    { x: 45, y: 12 }, { x: 55, y: 88 }, { x: 38, y: 35 }, { x: 62, y: 65 },
-    { x: 20, y: 55 }, { x: 80, y: 35 }, { x: 42, y: 78 }, { x: 58, y: 22 },
-    { x: 15, y: 50 }, { x: 85, y: 55 }, { x: 30, y: 25 }, { x: 70, y: 75 }
+    // Top row particles
+    { x: 12, y: 8, size: 2.5, glow: true }, { x: 28, y: 6, size: 1.4, glow: false },
+    { x: 52, y: 4, size: 1.8, glow: false }, { x: 68, y: 8, size: 2.2, glow: true },
+    { x: 88, y: 12, size: 1.6, glow: false },
+
+    // Upper sides and middle area
+    { x: 6, y: 18, size: 1.3, glow: false }, { x: 94, y: 20, size: 1.7, glow: false },
+    { x: 18, y: 25, size: 1.2, glow: false }, { x: 82, y: 28, size: 1.6, glow: false },
+    { x: 8, y: 32, size: 1.9, glow: false }, { x: 92, y: 35, size: 1.5, glow: false },
+
+    // Around portal area
+    { x: 15, y: 45, size: 1.4, glow: false }, { x: 85, y: 48, size: 1.8, glow: false },
+    { x: 22, y: 55, size: 1.3, glow: false }, { x: 78, y: 58, size: 2.0, glow: true },
+    { x: 4, y: 50, size: 1.2, glow: false }, { x: 96, y: 45, size: 1.5, glow: false },
+
+    // Lower area particles
+    { x: 12, y: 68, size: 1.7, glow: false }, { x: 88, y: 72, size: 1.5, glow: false },
+    { x: 25, y: 78, size: 1.6, glow: false }, { x: 75, y: 82, size: 1.9, glow: false },
+    { x: 38, y: 88, size: 1.4, glow: false }, { x: 62, y: 85, size: 1.7, glow: false },
+    { x: 2, y: 75, size: 1.8, glow: false }, { x: 98, y: 65, size: 1.3, glow: false },
+
+    // Scattered particles
+    { x: 35, y: 35, size: 1.0, glow: false }, { x: 65, y: 42, size: 1.1, glow: false },
+    { x: 45, y: 55, size: 1.2, glow: false }, { x: 55, y: 38, size: 1.0, glow: false }
   ];
-  
+
   const pos = sparklePositions[index % sparklePositions.length];
-  const size = Math.random() * 3 + 1;
-  const isLarge = size > 2.5;
+  const size = pos.size;
+  const isLarge = pos.glow;
   
   return (
     <motion.div
