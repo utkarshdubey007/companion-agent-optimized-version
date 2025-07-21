@@ -11,28 +11,13 @@ export function ChatMessage({
   // Default avatars
   const defaultAvatar = isAI ? "🤖" : "👧";
 
-  return (
+    return (
     <div
       className={`flex w-full mb-4 animate-slide-in ${
         isAI ? "justify-start" : "justify-end"
       } ${className}`}
     >
-      <div
-        className={`flex max-w-xs md:max-w-sm lg:max-w-md items-end gap-2 ${
-          isAI ? "flex-row" : "flex-row-reverse"
-        }`}
-      >
-        {/* Avatar */}
-        <div
-          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-md ${
-            isAI
-              ? "bg-gradient-to-br from-pink-400 to-purple-500"
-              : "bg-gradient-to-br from-blue-300 to-cyan-400"
-          }`}
-        >
-          {avatar || defaultAvatar}
-        </div>
-
+      <div className={`max-w-xs md:max-w-sm lg:max-w-md`}>
         {/* Message bubble */}
         <div
           className={`relative px-4 py-3 rounded-2xl shadow-sm max-w-full break-words ${
@@ -71,11 +56,11 @@ export function ChatMessage({
         </div>
       </div>
 
-      {/* Timestamp */}
+            {/* Timestamp */}
       {timestamp && (
         <div
           className={`text-xs text-gray-400 mt-1 ${
-            isAI ? "text-left ml-10" : "text-right mr-10"
+            isAI ? "text-left ml-2" : "text-right mr-2"
           }`}
         >
           {timestamp.toLocaleTimeString([], {
