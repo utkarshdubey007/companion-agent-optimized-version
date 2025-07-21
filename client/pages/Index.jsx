@@ -8,7 +8,7 @@ import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
 import { ChatContainer } from "@/components/ChatContainer";
 import { AppHeader } from "@/components/AppHeader";
-import { FloatingShapes } from "@/components/FloatingShapes";
+import { EnhancedMagicalBackground } from "@/components/EnhancedMagicalBackground";
 import CompanionSelector from "@/components/CompanionSelector";
 import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import { useChatState } from "@/hooks/useChatState";
@@ -326,7 +326,7 @@ export default function Index() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {!showCompanionSelector && <FloatingShapes />}
+      {!showCompanionSelector && <EnhancedMagicalBackground />}
 
       {/* Magical Portal Companion */}
       <div
