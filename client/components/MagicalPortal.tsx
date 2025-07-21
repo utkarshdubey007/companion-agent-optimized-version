@@ -292,7 +292,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <MagicalDust x={60} y={25} size={0.7} opacity={0.3} />
         </div>
 
-        {/* Additional ambient glow */}
+        {/* Dreamy ambient glow - Final layer */}
         <div
           className="absolute inset-0 animate-pulse"
           style={{
@@ -300,14 +300,37 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             height: '400px',
             background: `
               radial-gradient(ellipse at center,
-                transparent 40%,
-                rgba(255, 215, 0, 0.1) 70%,
+                transparent 50%,
+                rgba(255, 215, 0, 0.06) 65%,
+                rgba(255, 184, 0, 0.04) 80%,
+                rgba(254, 207, 77, 0.02) 90%,
                 transparent 100%
               )
             `,
             borderRadius: '150px 150px 20px 20px',
-            filter: 'blur(10px)',
-            transform: 'scale(1.1)',
+            filter: 'blur(60px)',
+            transform: 'scale(1.8)',
+            animationDelay: '2s',
+          }}
+        />
+
+        {/* Soft edge aura */}
+        <div
+          className="absolute inset-0"
+          style={{
+            width: '300px',
+            height: '400px',
+            background: `
+              radial-gradient(ellipse at center,
+                transparent 70%,
+                rgba(255, 215, 0, 0.03) 85%,
+                rgba(255, 184, 0, 0.02) 95%,
+                transparent 100%
+              )
+            `,
+            borderRadius: '150px 150px 20px 20px',
+            filter: 'blur(80px)',
+            transform: 'scale(3.0)',
           }}
         />
       </div>
