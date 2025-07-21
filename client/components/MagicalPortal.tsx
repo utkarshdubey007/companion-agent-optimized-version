@@ -261,10 +261,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             background: `
               radial-gradient(ellipse at center,
                 rgba(255, 215, 0, 0.15) 0%,
-                rgba(255, 184, 0, 0.12) 20%,
-                rgba(255, 165, 0, 0.08) 35%,
-                rgba(254, 207, 77, 0.05) 50%,
-                rgba(255, 140, 0, 0.03) 70%,
+                rgba(255, 179, 0, 0.12) 20%,
+                rgba(255, 167, 38, 0.08) 35%,
+                rgba(255, 138, 0, 0.05) 50%,
+                rgba(255, 111, 0, 0.03) 70%,
                 transparent 100%
               )
             `,
@@ -283,9 +283,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             background: `
               radial-gradient(ellipse at center,
                 rgba(255, 215, 0, 0.25) 0%,
-                rgba(255, 184, 0, 0.18) 25%,
-                rgba(255, 165, 0, 0.12) 45%,
-                rgba(254, 207, 77, 0.08) 65%,
+                rgba(255, 179, 0, 0.20) 25%,
+                rgba(255, 167, 38, 0.15) 45%,
+                rgba(255, 138, 0, 0.10) 65%,
                 transparent 100%
               )
             `,
@@ -304,10 +304,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             height: '400px',
             background: `
               radial-gradient(ellipse at center,
-                rgba(255, 215, 0, 0.35) 0%,
-                rgba(255, 184, 0, 0.25) 30%,
-                rgba(255, 165, 0, 0.15) 55%,
-                rgba(254, 207, 77, 0.1) 75%,
+                rgba(255, 215, 0, 0.40) 0%,
+                rgba(255, 179, 0, 0.30) 30%,
+                rgba(255, 167, 38, 0.20) 55%,
+                rgba(255, 138, 0, 0.12) 75%,
                 transparent 100%
               )
             `,
