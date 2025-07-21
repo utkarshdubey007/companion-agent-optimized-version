@@ -571,7 +571,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Extra dense particles inside portal area */}
         {Array.from({ length: 40 }, (_, i) => {
           const size = Math.random() * 2.5 + 0.8; // 0.8px to 3.3px
-          const colors = ['#FFD700', '#FFEB3B', '#FFC107', '#FFB800'];
+          const colors = ['#FFD700', '#FFB300', '#FFA726', '#FF8F00'];
           const color = colors[Math.floor(Math.random() * colors.length)];
           // Position within portal bounds (roughly center 30% of screen)
           const x = 35 + Math.random() * 30;
