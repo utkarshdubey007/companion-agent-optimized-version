@@ -624,6 +624,28 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             transform: scale(0.9);
           }
         }
+
+        @keyframes starGlow {
+          0%, 100% {
+            opacity: 0.3;
+            transform: rotate(45deg) scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: rotate(45deg) scale(1.2);
+          }
+        }
+
+        @keyframes starPulse {
+          0%, 100% {
+            opacity: 0.6;
+            transform: rotate(45deg) scale(0.8);
+          }
+          50% {
+            opacity: 1;
+            transform: rotate(45deg) scale(1.1);
+          }
+        }
       `}</style>
     </div>
   );
