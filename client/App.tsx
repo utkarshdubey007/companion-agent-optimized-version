@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import SpaceCompanionDemo from "./pages/SpaceCompanionDemo";
 import MagicalPortalDemo from "./pages/MagicalPortalDemo";
 import ArchPortalDemo from "./pages/ArchPortalDemo";
+import GoldenArchDemo from "./pages/GoldenArchDemo";
 
 const queryClient = new QueryClient();
 
