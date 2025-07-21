@@ -84,7 +84,7 @@ export default function Index() {
     const addFlippableStorybook = () => {
       // Check if storybook already exists to prevent duplicates
       const storybookExists = chatMessages.some(
-        (msg) => msg.id === "flippable-storybook-1"
+        (msg) => msg.id === "flippable-storybook-1",
       );
 
       if (storybookExists) return;

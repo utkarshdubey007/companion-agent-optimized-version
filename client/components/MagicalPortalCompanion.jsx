@@ -354,11 +354,14 @@ export const MagicalPortalCompanion = ({
       case "talking":
         return { transform: "scaleY(1.5)" };
       case "reacting":
-        if (emotions.includes("😂")) return { borderRadius: "50% 50% 50% 50% / 20% 20% 80% 80%" };
+        if (emotions.includes("😂"))
+          return { borderRadius: "50% 50% 50% 50% / 20% 20% 80% 80%" };
         if (emotions.includes("😢")) return { transform: "scaleY(0.3)" };
         return {};
       default:
-        return companionExpression === "happy" ? { borderRadius: "50% 50% 50% 50% / 20% 20% 80% 80%" } : {};
+        return companionExpression === "happy"
+          ? { borderRadius: "50% 50% 50% 50% / 20% 20% 80% 80%" }
+          : {};
     }
   };
 
@@ -415,10 +418,7 @@ export const MagicalPortalCompanion = ({
         <SleepZzz isVisible={state === "idle"} />
 
         {/* Emotion bubbles */}
-        <EmotionBubbles
-          emotions={emotions}
-          isVisible={state === "reacting"}
-        />
+        <EmotionBubbles emotions={emotions} isVisible={state === "reacting"} />
 
         {/* The magical companion blob */}
         <motion.div
@@ -452,7 +452,10 @@ export const MagicalPortalCompanion = ({
                     ]
                   : "radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 1) 0%, rgba(255, 105, 180, 0.9) 40%, rgba(219, 112, 147, 0.8) 100%)",
             }}
-            transition={{ duration: 0.5, repeat: state === "talking" ? Infinity : 0 }}
+            transition={{
+              duration: 0.5,
+              repeat: state === "talking" ? Infinity : 0,
+            }}
           >
             {/* Left eye */}
             <motion.div
@@ -465,9 +468,7 @@ export const MagicalPortalCompanion = ({
                 ...getEyeStyle(),
               }}
               animate={
-                state === "thinking"
-                  ? { y: [-2, -4, -2], x: [-1, 1, -1] }
-                  : {}
+                state === "thinking" ? { y: [-2, -4, -2], x: [-1, 1, -1] } : {}
               }
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -481,9 +482,7 @@ export const MagicalPortalCompanion = ({
                   transform: `translate(-50%, -50%) translate(${eyePosition.x}px, ${eyePosition.y}px)`,
                 }}
                 animate={
-                  companionExpression === "wink"
-                    ? { scaleX: [1, 0, 1] }
-                    : {}
+                  companionExpression === "wink" ? { scaleX: [1, 0, 1] } : {}
                 }
                 transition={{ duration: 0.5 }}
               />
@@ -500,9 +499,7 @@ export const MagicalPortalCompanion = ({
                 ...getEyeStyle(),
               }}
               animate={
-                state === "thinking"
-                  ? { y: [-2, -4, -2], x: [1, -1, 1] }
-                  : {}
+                state === "thinking" ? { y: [-2, -4, -2], x: [1, -1, 1] } : {}
               }
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -537,7 +534,10 @@ export const MagicalPortalCompanion = ({
                     }
                   : {}
               }
-              transition={{ duration: 0.6, repeat: state === "talking" ? Infinity : 0 }}
+              transition={{
+                duration: 0.6,
+                repeat: state === "talking" ? Infinity : 0,
+              }}
             />
 
             {/* Blush spots */}

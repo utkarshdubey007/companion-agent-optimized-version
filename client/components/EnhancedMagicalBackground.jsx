@@ -10,7 +10,9 @@ export const EnhancedMagicalBackground = () => {
       size: Math.random() * 3 + 1,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      color: ["#FFD700", "#FF6B9D", "#9333EA", "#00D4FF", "#32CD32"][Math.floor(Math.random() * 5)],
+      color: ["#FFD700", "#FF6B9D", "#9333EA", "#00D4FF", "#32CD32"][
+        Math.floor(Math.random() * 5)
+      ],
       duration: Math.random() * 10 + 15,
       delay: Math.random() * 5,
     }));
@@ -23,7 +25,12 @@ export const EnhancedMagicalBackground = () => {
       size: Math.random() * 20 + 10,
       x: Math.random() * 90 + 5,
       y: Math.random() * 90 + 5,
-      color: ["rgba(255, 215, 0, 0.3)", "rgba(255, 107, 157, 0.3)", "rgba(147, 51, 234, 0.3)", "rgba(0, 212, 255, 0.3)"][Math.floor(Math.random() * 4)],
+      color: [
+        "rgba(255, 215, 0, 0.3)",
+        "rgba(255, 107, 157, 0.3)",
+        "rgba(147, 51, 234, 0.3)",
+        "rgba(0, 212, 255, 0.3)",
+      ][Math.floor(Math.random() * 4)],
       duration: Math.random() * 8 + 12,
       delay: Math.random() * 3,
     }));
@@ -256,7 +263,9 @@ export const EnhancedMagicalBackground = () => {
           style={{
             left: `${Math.random() * 90 + 5}%`,
             top: `${Math.random() * 90 + 5}%`,
-            color: ["#FFD700", "#FF6B9D", "#9333EA", "#00D4FF", "#32CD32"][index],
+            color: ["#FFD700", "#FF6B9D", "#9333EA", "#00D4FF", "#32CD32"][
+              index
+            ],
             filter: `drop-shadow(0 0 8px ${["#FFD700", "#FF6B9D", "#9333EA", "#00D4FF", "#32CD32"][index]})`,
           }}
           animate={{
