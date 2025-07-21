@@ -477,7 +477,70 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }}
         />
 
-        {/* Main portal shape with enhanced double-layered border */}
+        {/* Outer glowing border ring - diffuses outward */}
+        <div
+          className="absolute portal-outer-ring"
+          style={{
+            width: '320px',
+            height: '420px',
+            left: '-10px',
+            top: '-10px',
+            borderRadius: '160px 160px 30px 30px',
+            background: `
+              linear-gradient(135deg,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 179, 0, 0.12) 25%,
+                rgba(255, 167, 38, 0.10) 50%,
+                rgba(255, 138, 0, 0.08) 75%,
+                rgba(255, 111, 0, 0.06) 100%
+              )
+            `,
+            border: '2px solid transparent',
+            backgroundClip: 'padding-box',
+            boxShadow: `
+              inset 0 0 0 2px rgba(255, 215, 0, 0.4),
+              0 0 40px rgba(255, 215, 0, 0.3),
+              0 0 70px rgba(255, 179, 0, 0.25),
+              0 0 100px rgba(255, 167, 38, 0.2),
+              0 0 140px rgba(255, 138, 0, 0.15)
+            `,
+            animation: 'outerRingGlow 6s ease-in-out infinite',
+          }}
+        />
+
+        {/* Inner defined border ring - glows inward */}
+        <div
+          className="absolute portal-inner-ring"
+          style={{
+            width: '310px',
+            height: '410px',
+            left: '-5px',
+            top: '-5px',
+            borderRadius: '155px 155px 25px 25px',
+            background: `
+              linear-gradient(120deg,
+                rgba(255, 215, 0, 0.25) 0%,
+                rgba(255, 179, 0, 0.20) 30%,
+                rgba(255, 167, 38, 0.18) 60%,
+                rgba(255, 138, 0, 0.15) 100%
+              )
+            `,
+            border: '1px solid transparent',
+            backgroundClip: 'padding-box',
+            boxShadow: `
+              inset 0 0 0 1px rgba(255, 215, 0, 0.6),
+              inset 0 0 20px rgba(255, 215, 0, 0.2),
+              inset 0 0 40px rgba(255, 179, 0, 0.15),
+              inset 0 0 60px rgba(255, 167, 38, 0.1),
+              0 0 25px rgba(255, 215, 0, 0.4),
+              0 0 50px rgba(255, 179, 0, 0.3)
+            `,
+            animation: 'innerRingGlow 4s ease-in-out infinite',
+            animationDelay: '1s',
+          }}
+        />
+
+        {/* Main portal body */}
         <div
           className="relative portal-main"
           style={{
@@ -495,19 +558,14 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(55, 30, 90, 0.75) 100%
               )
             `,
-            border: '3px solid rgba(255, 179, 0, 0.6)',
+            border: 'none',
             boxShadow: `
-              inset 0 0 0 1px rgba(255, 215, 0, 0.8),
               inset 0 0 80px rgba(0, 0, 0, 0.8),
               inset 0 0 120px rgba(0, 0, 0, 0.6),
               inset 20px 20px 60px rgba(0, 0, 0, 0.4),
               inset -20px -20px 60px rgba(0, 0, 0, 0.4),
               inset 0 40px 80px rgba(0, 0, 0, 0.5),
-              0 0 30px rgba(255, 215, 0, 0.4),
-              0 0 60px rgba(255, 179, 0, 0.3),
-              0 0 90px rgba(255, 167, 38, 0.2),
-              0 0 120px rgba(255, 138, 0, 0.15),
-              inset 0 0 30px rgba(255, 215, 0, 0.05)
+              inset 0 0 30px rgba(255, 215, 0, 0.03)
             `,
           }}
         >
