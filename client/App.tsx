@@ -34,6 +34,7 @@ const App = () => (
           <Route path="/ethereal-portal" element={<EtherealPortalDemo />} />
           <Route path="/exact-portal" element={<ExactPortalDemo />} />
           <Route path="/vertical-arch" element={<VerticalArchDemo />} />
+          <Route path="/new-magical-portal" element={<MagicalPortalNewDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
