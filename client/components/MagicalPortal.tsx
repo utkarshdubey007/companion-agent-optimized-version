@@ -833,6 +833,51 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
+        @keyframes ambientTwinkle {
+          0%, 100% {
+            opacity: 0.2;
+            transform: scale(0.5);
+          }
+          25% {
+            opacity: 0.6;
+            transform: scale(1.1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(0.8);
+          }
+          75% {
+            opacity: 0.4;
+            transform: scale(1.2);
+          }
+        }
+
+        @keyframes ambientGlow {
+          0%, 100% {
+            opacity: 0.2;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.5;
+            transform: scale(1.3);
+          }
+        }
+
+        @keyframes cosmicPulse {
+          0%, 100% {
+            opacity: 0.1;
+            transform: scale(0.8);
+          }
+          33% {
+            opacity: 0.3;
+            transform: scale(1.2);
+          }
+          66% {
+            opacity: 0.2;
+            transform: scale(1.0);
+          }
+        }
+
         @keyframes portalGlow {
           0%, 100% {
             box-shadow:
