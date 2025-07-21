@@ -202,23 +202,22 @@ export const ExactPortalMatch: React.FC<ExactPortalMatchProps> = ({
             minHeight: "400px",
           }}
         >
-          {/* Portal main glow - exact match */}
+          {/* Portal main glow - rectangular pill shape */}
           <motion.div
             className="absolute inset-0"
             style={{
               background: `
-                radial-gradient(ellipse at center top, 
-                  rgba(255, 215, 0, 0.9) 0%, 
-                  rgba(255, 165, 0, 0.7) 12%, 
-                  rgba(255, 140, 0, 0.5) 28%, 
-                  rgba(218, 165, 32, 0.3) 45%, 
-                  rgba(138, 43, 226, 0.15) 65%, 
-                  rgba(75, 0, 130, 0.05) 80%, 
+                radial-gradient(ellipse at center,
+                  rgba(255, 215, 0, 0.9) 0%,
+                  rgba(255, 165, 0, 0.7) 20%,
+                  rgba(255, 140, 0, 0.5) 40%,
+                  rgba(218, 165, 32, 0.3) 60%,
+                  rgba(138, 43, 226, 0.15) 80%,
                   transparent 100%
                 )
               `,
-              clipPath: `ellipse(50% 85% at center 15%)`,
-              filter: "blur(1px)",
+              borderRadius: "40% 40% 8px 8px",
+              filter: "blur(2px)",
             }}
             animate={{
               opacity: [0.8, 1, 0.8],
@@ -230,11 +229,12 @@ export const ExactPortalMatch: React.FC<ExactPortalMatchProps> = ({
             }}
           />
 
-          {/* Portal border - exact golden outline */}
+          {/* Portal border - rectangular with rounded top */}
           <motion.div
             className="absolute inset-0"
             style={{
-              clipPath: `ellipse(50% 85% at center 15%)`,
+              borderRadius: "40% 40% 8px 8px",
+              border: "3px solid transparent",
             }}
             animate={{
               boxShadow: [
@@ -252,17 +252,21 @@ export const ExactPortalMatch: React.FC<ExactPortalMatchProps> = ({
 
           {/* Inner portal glow */}
           <motion.div
-            className="absolute inset-0"
+            className="absolute"
             style={{
+              top: "8px",
+              left: "8px",
+              right: "8px",
+              bottom: "8px",
               background: `
-                radial-gradient(ellipse at center top, 
-                  rgba(255, 255, 255, 0.15) 0%, 
-                  rgba(255, 215, 0, 0.2) 15%, 
-                  rgba(255, 165, 0, 0.1) 35%, 
-                  transparent 60%
+                radial-gradient(ellipse at center,
+                  rgba(255, 255, 255, 0.15) 0%,
+                  rgba(255, 215, 0, 0.2) 25%,
+                  rgba(255, 165, 0, 0.1) 50%,
+                  transparent 80%
                 )
               `,
-              clipPath: `ellipse(47% 82% at center 15%)`,
+              borderRadius: "40% 40% 4px 4px",
             }}
             animate={{
               opacity: [0.7, 1, 0.7],
@@ -278,17 +282,17 @@ export const ExactPortalMatch: React.FC<ExactPortalMatchProps> = ({
           <motion.div
             className="absolute bottom-0 left-0 right-0"
             style={{
-              height: "30%",
+              height: "25%",
               background: `
-                linear-gradient(to bottom, 
-                  rgba(255, 215, 0, 0.12) 0%, 
-                  rgba(255, 165, 0, 0.08) 25%, 
-                  rgba(138, 43, 226, 0.04) 50%, 
-                  rgba(75, 0, 130, 0.02) 75%, 
+                linear-gradient(to bottom,
+                  rgba(255, 215, 0, 0.1) 0%,
+                  rgba(255, 165, 0, 0.06) 30%,
+                  rgba(138, 43, 226, 0.03) 60%,
                   transparent 100%
                 )
               `,
-              filter: "blur(2px)",
+              borderRadius: "0 0 8px 8px",
+              filter: "blur(3px)",
             }}
             animate={{
               opacity: [0.8, 1, 0.8],
