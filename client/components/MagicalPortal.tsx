@@ -247,16 +247,35 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             `,
           }}
         >
-          {/* Inner glow gradient */}
+          {/* Inner glow gradient - blends with dark fill */}
           <div
             className="absolute inset-2 animate-pulse"
             style={{
               borderRadius: '147px 147px 17px 17px',
               background: `
-                radial-gradient(ellipse at center top,
-                  rgba(255, 215, 0, 0.1) 0%,
-                  rgba(255, 184, 0, 0.05) 30%,
-                  transparent 70%
+                radial-gradient(ellipse at center,
+                  transparent 40%,
+                  rgba(255, 215, 0, 0.08) 60%,
+                  rgba(255, 184, 0, 0.12) 75%,
+                  rgba(254, 207, 77, 0.15) 85%,
+                  rgba(255, 140, 0, 0.1) 95%,
+                  transparent 100%
+                )
+              `,
+            }}
+          />
+
+          {/* Subtle edge transition for smooth blending */}
+          <div
+            className="absolute inset-1"
+            style={{
+              borderRadius: '148px 148px 18px 18px',
+              background: `
+                radial-gradient(ellipse at center,
+                  transparent 50%,
+                  rgba(45, 25, 75, 0.3) 75%,
+                  rgba(35, 18, 60, 0.5) 90%,
+                  rgba(26, 12, 42, 0.7) 100%
                 )
               `,
             }}
