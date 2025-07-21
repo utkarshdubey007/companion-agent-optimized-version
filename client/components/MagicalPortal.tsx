@@ -544,7 +544,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }}
         />
 
-        {/* Main portal body */}
+        {/* Main portal body with magical void depth */}
         <div
           className="relative portal-main"
           style={{
@@ -552,59 +552,98 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             height: '400px',
             borderRadius: '150px 150px 20px 20px',
             background: `
-              radial-gradient(ellipse at center,
-                rgba(0, 0, 0, 1) 0%,
-                rgba(8, 4, 16, 0.98) 15%,
-                rgba(15, 8, 30, 0.95) 30%,
-                rgba(26, 12, 42, 0.9) 50%,
-                rgba(35, 18, 60, 0.85) 70%,
-                rgba(45, 25, 75, 0.8) 85%,
-                rgba(55, 30, 90, 0.75) 100%
+              radial-gradient(ellipse 85% 90% at center 40%,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 179, 0, 0.12) 8%,
+                rgba(186, 85, 211, 0.1) 16%,
+                rgba(138, 43, 226, 0.08) 24%,
+                rgba(75, 0, 130, 0.06) 32%,
+                rgba(45, 25, 75, 0.04) 42%,
+                rgba(25, 12, 42, 0.02) 52%,
+                rgba(8, 4, 16, 0.01) 62%,
+                rgba(0, 0, 0, 0.95) 72%,
+                rgba(0, 0, 0, 1) 85%,
+                rgba(0, 0, 0, 1) 100%
               )
             `,
             border: 'none',
             boxShadow: `
-              inset 0 0 80px rgba(0, 0, 0, 0.8),
-              inset 0 0 120px rgba(0, 0, 0, 0.6),
-              inset 20px 20px 60px rgba(0, 0, 0, 0.4),
-              inset -20px -20px 60px rgba(0, 0, 0, 0.4),
-              inset 0 40px 80px rgba(0, 0, 0, 0.5),
-              inset 0 0 30px rgba(255, 215, 0, 0.03)
+              inset 0 0 40px rgba(255, 215, 0, 0.08),
+              inset 0 0 80px rgba(138, 43, 226, 0.06),
+              inset 0 0 120px rgba(75, 0, 130, 0.04),
+              inset 0 0 160px rgba(0, 0, 0, 0.8),
+              inset 0 0 200px rgba(0, 0, 0, 0.9),
+              inset 20px 20px 100px rgba(0, 0, 0, 0.7),
+              inset -20px -20px 100px rgba(0, 0, 0, 0.7),
+              inset 0 60px 120px rgba(0, 0, 0, 0.8)
             `,
           }}
         >
-          {/* Depth enhancement layer */}
+          {/* Magical void depth layers */}
           <div
             className="absolute inset-0"
             style={{
               borderRadius: '150px 150px 20px 20px',
               background: `
-                radial-gradient(ellipse at center,
-                  transparent 0%,
-                  transparent 20%,
-                  rgba(0, 0, 0, 0.1) 40%,
-                  rgba(0, 0, 0, 0.3) 70%,
-                  rgba(0, 0, 0, 0.5) 90%,
-                  rgba(0, 0, 0, 0.7) 100%
+                radial-gradient(ellipse 70% 80% at center 35%,
+                  rgba(255, 215, 0, 0.12) 0%,
+                  rgba(186, 85, 211, 0.08) 15%,
+                  rgba(138, 43, 226, 0.06) 30%,
+                  rgba(75, 0, 130, 0.04) 45%,
+                  rgba(25, 12, 42, 0.02) 60%,
+                  rgba(0, 0, 0, 0.8) 75%,
+                  rgba(0, 0, 0, 1) 100%
                 )
               `,
+              animation: 'voidPulse 8s ease-in-out infinite',
             }}
           />
 
-          {/* Tunnel depth illusion */}
+          {/* Deep void core */}
           <div
-            className="absolute inset-4"
+            className="absolute inset-6"
             style={{
-              borderRadius: '146px 146px 16px 16px',
+              borderRadius: '144px 144px 14px 14px',
               background: `
-                radial-gradient(ellipse at center,
-                  transparent 0%,
-                  rgba(0, 0, 0, 0.2) 30%,
-                  rgba(0, 0, 0, 0.4) 60%,
-                  rgba(0, 0, 0, 0.6) 80%,
-                  rgba(0, 0, 0, 0.8) 100%
+                radial-gradient(ellipse 60% 70% at center 30%,
+                  rgba(75, 0, 130, 0.08) 0%,
+                  rgba(45, 25, 75, 0.06) 20%,
+                  rgba(25, 12, 42, 0.04) 40%,
+                  rgba(8, 4, 16, 0.02) 60%,
+                  rgba(0, 0, 0, 0.95) 80%,
+                  rgba(0, 0, 0, 1) 100%
                 )
               `,
+              boxShadow: `
+                inset 0 0 60px rgba(0, 0, 0, 0.9),
+                inset 0 0 100px rgba(0, 0, 0, 0.8),
+                inset 0 30px 80px rgba(0, 0, 0, 0.7)
+              `,
+              animation: 'deepVoidPulse 6s ease-in-out infinite',
+              animationDelay: '2s',
+            }}
+          />
+
+          {/* Infinite depth illusion */}
+          <div
+            className="absolute inset-12"
+            style={{
+              borderRadius: '138px 138px 8px 8px',
+              background: `
+                radial-gradient(ellipse 50% 60% at center 25%,
+                  rgba(25, 12, 42, 0.06) 0%,
+                  rgba(8, 4, 16, 0.04) 30%,
+                  rgba(0, 0, 0, 0.9) 60%,
+                  rgba(0, 0, 0, 1) 100%
+                )
+              `,
+              boxShadow: `
+                inset 0 0 80px rgba(0, 0, 0, 1),
+                inset 0 0 120px rgba(0, 0, 0, 1),
+                inset 0 20px 60px rgba(0, 0, 0, 0.9)
+              `,
+              animation: 'infiniteDepth 10s ease-in-out infinite',
+              animationDelay: '1s',
             }}
           />
 
