@@ -1129,7 +1129,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           left: -12px;
           right: -12px;
           bottom: -12px;
-          border-radius: 162px 162px 32px 32px;
+          border-radius: 50%;
           background: transparent;
           border: 1px solid rgba(255, 215, 0, 0.3);
           box-shadow:
@@ -1149,7 +1149,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           left: -25px;
           right: -25px;
           bottom: -25px;
-          border-radius: 175px 175px 45px 45px;
+          border-radius: 50%;
           background: transparent;
           box-shadow:
             0 0 80px rgba(255, 215, 0, 0.2),
