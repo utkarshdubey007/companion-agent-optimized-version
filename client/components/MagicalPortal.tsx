@@ -340,9 +340,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }}
         />
 
-        {/* Main portal shape */}
+        {/* Main portal shape with enhanced double-layered border */}
         <div
-          className="relative"
+          className="relative portal-main"
           style={{
             width: '300px',
             height: '400px',
@@ -358,13 +358,13 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(55, 30, 90, 0.75) 100%
               )
             `,
-            border: '6px solid transparent',
+            border: '4px solid #FFB300',
             boxShadow: `
-              inset 0 0 0 6px #FFD700,
-              0 0 30px #FFD700,
-              0 0 60px #FFB800,
-              0 0 90px rgba(254, 207, 77, 0.5),
-              inset 0 0 30px rgba(255, 215, 0, 0.2),
+              inset 0 0 0 2px #FFD700,
+              0 0 20px rgba(255, 204, 0, 0.8),
+              0 0 40px rgba(255, 204, 0, 0.6),
+              0 0 60px rgba(255, 204, 0, 0.4),
+              inset 0 0 30px rgba(255, 215, 0, 0.15),
               inset 0 0 60px rgba(0, 0, 0, 0.6)
             `,
           }}
