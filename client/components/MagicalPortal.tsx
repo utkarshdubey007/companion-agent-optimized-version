@@ -597,7 +597,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         })}
       </div>
 
-      {/* Custom keyframe animations */}
+      {/* Custom keyframe animations and portal border styles */}
       <style>{`
         @keyframes magicalShimmer {
           0%, 100% {
@@ -645,6 +645,62 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             opacity: 1;
             transform: rotate(45deg) scale(1.1);
           }
+        }
+
+        @keyframes portalGlow {
+          0%, 100% {
+            box-shadow:
+              0 0 30px rgba(255, 204, 0, 0.5),
+              0 0 50px rgba(255, 204, 0, 0.3),
+              0 0 80px rgba(255, 204, 0, 0.2);
+            opacity: 0.8;
+          }
+          50% {
+            box-shadow:
+              0 0 40px rgba(255, 204, 0, 0.8),
+              0 0 70px rgba(255, 204, 0, 0.5),
+              0 0 100px rgba(255, 204, 0, 0.3);
+            opacity: 1;
+          }
+        }
+
+        .portal-main::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: -8px;
+          right: -8px;
+          bottom: -8px;
+          border-radius: 158px 158px 28px 28px;
+          background: transparent;
+          border: 2px solid rgba(255, 215, 0, 0.6);
+          box-shadow:
+            0 0 40px rgba(255, 204, 0, 0.5),
+            0 0 60px rgba(255, 204, 0, 0.3),
+            inset 0 0 20px rgba(255, 215, 0, 0.2);
+          animation: portalGlow 3s ease-in-out infinite;
+          pointer-events: none;
+          z-index: -1;
+        }
+
+        .portal-main::after {
+          content: '';
+          position: absolute;
+          top: -15px;
+          left: -15px;
+          right: -15px;
+          bottom: -15px;
+          border-radius: 165px 165px 35px 35px;
+          background: transparent;
+          box-shadow:
+            0 0 60px rgba(255, 204, 0, 0.4),
+            0 0 90px rgba(255, 204, 0, 0.2),
+            0 0 120px rgba(255, 204, 0, 0.1);
+          filter: blur(3px);
+          animation: portalGlow 4s ease-in-out infinite;
+          animation-delay: 1s;
+          pointer-events: none;
+          z-index: -2;
         }
       `}</style>
     </div>
