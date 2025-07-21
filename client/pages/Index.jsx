@@ -250,15 +250,15 @@ export default function Index() {
     >
             {!showCompanionSelector && <FloatingShapes />}
 
-      {/* Letsgo Character positioned in the landscape */}
+            {/* Letsgo Character positioned in the landscape */}
       <div
         className="absolute z-10 pointer-events-none"
         style={{
           bottom: "15%", // Position in lower area of screen
           left: "35%",   // Center-left position as shown in red box
           transform: "translateX(-50%)", // Center the character
-          width: "120px",
-          height: "120px",
+          width: "180px",  // Increased from 120px
+          height: "180px", // Increased from 120px
         }}
       >
         <img
