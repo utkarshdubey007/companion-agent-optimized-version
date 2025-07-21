@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SpaceCompanionDemo from "./pages/SpaceCompanionDemo";
 import MagicalPortalDemo from "./pages/MagicalPortalDemo";
+import ArchPortalDemo from "./pages/ArchPortalDemo";
 
 const queryClient = new QueryClient();
 
