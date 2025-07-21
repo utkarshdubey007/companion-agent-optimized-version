@@ -226,11 +226,14 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
             height: '400px',
             borderRadius: '150px 150px 20px 20px',
             background: `
-              linear-gradient(180deg,
-                rgba(26, 12, 42, 0.95) 0%,
-                rgba(26, 12, 42, 0.98) 30%,
-                rgba(15, 5, 32, 1) 70%,
-                rgba(0, 0, 0, 1) 100%
+              radial-gradient(ellipse at center,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(8, 4, 16, 0.98) 15%,
+                rgba(15, 8, 30, 0.95) 30%,
+                rgba(26, 12, 42, 0.9) 50%,
+                rgba(35, 18, 60, 0.85) 70%,
+                rgba(45, 25, 75, 0.8) 85%,
+                rgba(55, 30, 90, 0.75) 100%
               )
             `,
             border: '6px solid transparent',
@@ -239,7 +242,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               0 0 30px #FFD700,
               0 0 60px #FFB800,
               0 0 90px rgba(254, 207, 77, 0.5),
-              inset 0 0 30px rgba(255, 215, 0, 0.2)
+              inset 0 0 30px rgba(255, 215, 0, 0.2),
+              inset 0 0 60px rgba(0, 0, 0, 0.6)
             `,
           }}
         >
