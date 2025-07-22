@@ -730,6 +730,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                         reflection={pages[currentPage].reflection}
                         badgeTitle={pages[currentPage].badgeTitle}
                         aiAvatarUrl={pages[currentPage].aiAvatarUrl}
+                        pageIndex={currentPage}
                       />
                     </div>
                   </motion.div>
