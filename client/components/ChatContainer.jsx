@@ -225,17 +225,15 @@ export function ChatContainer({
           hasAvatar={!!kidProfileImage}
         />
         {/* Kid profile image */}
-        {kidProfileImage && (
-          <div className="flex-shrink-0 ml-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-              <img
-                src={kidProfileImage}
-                alt="Kid Profile"
-                className="w-full h-full object-cover"
-              />
-            </div>
+        <div className="flex-shrink-0 ml-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-300 shadow-lg">
+            <img
+              src={kidProfileImage || defaultKidImage}
+              alt="Kid Profile"
+              className="w-full h-full object-cover"
+            />
           </div>
-        )}
+        </div>
       </div>
     );
   };
