@@ -388,7 +388,7 @@ const KidReflectionStorybookCard = ({
 
                   {/* Story Text */}
                   <motion.div
-                    className="text-amber-900 leading-relaxed"
+                    className={`${currentTheme.text} leading-relaxed`}
                     style={{
                       fontFamily: '"Kalam", "Comic Neue", cursive',
                       fontSize: "15px",
