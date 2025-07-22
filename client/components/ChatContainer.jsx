@@ -258,7 +258,8 @@ export function ChatContainer({
           {isAIThinking && (
             <AITypingIndicator
               companionColor={selectedCompanion?.color || "#FFD700"}
-              className="ml-4"
+              selectedCompanion={selectedCompanion}
+              className=""
             />
           )}
 
