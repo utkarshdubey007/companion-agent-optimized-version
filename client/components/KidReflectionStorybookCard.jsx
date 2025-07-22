@@ -187,8 +187,8 @@ const KidReflectionStorybookCard = ({
                   backgroundImage: `
                     repeating-linear-gradient(
                       0deg,
-                      transparent,
-                      transparent 8px,
+                      ${currentTheme.cardBg},
+                      ${currentTheme.cardBg} 8px,
                       ${currentTheme.border}20 8px,
                       ${currentTheme.border}20 10px
                     )
