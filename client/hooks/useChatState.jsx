@@ -79,6 +79,7 @@ export function useChatState() {
       onAccept: handleAcceptChallenge,
       onRegenerate: handleRegenerateChallenge,
       onChatMore: () => console.log("Chat more about challenge"),
+      companion: selectedCompanion, // Store current companion with message
     };
     setChatMessages((prev) => [...prev, newMessage]);
   };
