@@ -25,8 +25,10 @@ const KidReflectionStorybookCard = ({
       accent: "text-purple-600",
       decorative: "text-pink-500",
       frame: "#e879f9", // Bright pink
-      buttonBg: "rgba(217, 70, 239, 0.1)",
+      buttonBg: "#fdf4ff", // Solid light purple
       buttonBorder: "rgba(217, 70, 239, 0.3)",
+      cardBg: "#fef7ff", // Solid very light purple
+      shadowBg: "#e879f9", // Solid purple shadow
     },
     sunset: {
       background: "from-orange-100 via-red-50 to-pink-100",
@@ -36,8 +38,10 @@ const KidReflectionStorybookCard = ({
       accent: "text-red-600",
       decorative: "text-orange-500",
       frame: "#fb923c", // Bright orange
-      buttonBg: "rgba(249, 115, 22, 0.1)",
+      buttonBg: "#fff7ed", // Solid light orange
       buttonBorder: "rgba(249, 115, 22, 0.3)",
+      cardBg: "#fff7ed", // Solid very light orange
+      shadowBg: "#fb923c", // Solid orange shadow
     },
     forest: {
       background: "from-green-100 via-emerald-50 to-teal-100",
@@ -47,8 +51,10 @@ const KidReflectionStorybookCard = ({
       accent: "text-emerald-600",
       decorative: "text-green-500",
       frame: "#34d399", // Bright emerald
-      buttonBg: "rgba(16, 185, 129, 0.1)",
+      buttonBg: "#f0fdf4", // Solid light green
       buttonBorder: "rgba(16, 185, 129, 0.3)",
+      cardBg: "#f0fdfa", // Solid very light emerald
+      shadowBg: "#34d399", // Solid emerald shadow
     },
     ocean: {
       background: "from-blue-100 via-cyan-50 to-indigo-100",
@@ -58,8 +64,10 @@ const KidReflectionStorybookCard = ({
       accent: "text-cyan-600",
       decorative: "text-blue-500",
       frame: "#38bdf8", // Bright blue
-      buttonBg: "rgba(14, 165, 233, 0.1)",
+      buttonBg: "#f0f9ff", // Solid light blue
       buttonBorder: "rgba(14, 165, 233, 0.3)",
+      cardBg: "#f0fdff", // Solid very light cyan
+      shadowBg: "#38bdf8", // Solid blue shadow
     },
     vintage: {
       background: "from-amber-50 via-orange-50 to-yellow-100",
@@ -69,8 +77,10 @@ const KidReflectionStorybookCard = ({
       accent: "text-amber-600",
       decorative: "text-amber-600",
       frame: "#d4af37", // Gold
-      buttonBg: "rgba(212, 175, 55, 0.1)",
+      buttonBg: "#fffbeb", // Solid light amber
       buttonBorder: "rgba(212, 175, 55, 0.3)",
+      cardBg: "#fffbeb", // Solid very light amber
+      shadowBg: "#d4af37", // Solid gold shadow
     },
   };
 
