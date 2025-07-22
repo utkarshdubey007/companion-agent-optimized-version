@@ -156,6 +156,18 @@ export function ChatContainer({
     if (message.type === "system") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI companion profile image */}
+          {selectedCompanion?.imageUrl && (
+            <div className="flex-shrink-0 mr-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                <img
+                  src={selectedCompanion.imageUrl}
+                  alt="AI Companion"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
           {/* Message bubble */}
           <div className="max-w-xs">
             <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
