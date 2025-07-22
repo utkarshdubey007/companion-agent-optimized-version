@@ -1,6 +1,24 @@
 import { TagsResponse } from '@shared/api';
 
 /**
+ * Fallback mock data in case API fails
+ */
+const mockFallbackData: TagsResponse = {
+  result_code: 1,
+  error_info: "",
+  data: [
+    { id: 1, tag: "👾 Anime" },
+    { id: 11, tag: "❤️Kindness" },
+    { id: 13, tag: "Family" },
+    { id: 14, tag: "Monsters" },
+    { id: 2, tag: "🐶 Animals" },
+    { id: 15, tag: "Food" }
+  ],
+  has_more: false,
+  total_count: 6
+};
+
+/**
  * API service for fetching current user tags
  */
 export class TagsApiService {
