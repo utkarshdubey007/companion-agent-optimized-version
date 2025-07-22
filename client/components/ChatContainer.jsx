@@ -22,6 +22,7 @@ export function ChatContainer({
   onShowCarousel = () => {},
   isAIThinking = false,
   selectedCompanion = null,
+  kidProfileImage = null, // New prop for kid's profile image
 }) {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
