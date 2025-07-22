@@ -8,21 +8,22 @@ export function AcceptedChallenges({ challenges, loading = false, error = null }
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Transform API challenge data to component format
-  const transformedChallenges = challenges.map((challengeItem, index) => ({
-    id: challengeItem.challenge.id,
-    title: challengeItem.challenge.title,
-    image: challengeItem.challenge.picture_url,
-    motivationalMessage: challengeItem.challenge.description,
-    progress: Math.min(100, ((7 - challengeItem.days_left) / 7) * 100), // Calculate progress based on days left
-    timeLeft: `${challengeItem.days_left}d left`,
-    chatColor: challengeItem.challenge.character_type === 'rooty' ? "#FF9500" :
-               challengeItem.challenge.character_type === 'uni' ? "#FF4757" :
-               challengeItem.challenge.character_type === 'rushmore' ? "#FF6B9D" : "#FF9500",
-    companionIcon: challengeItem.challenge.character_type === 'rooty' ? "🌳" :
-                   challengeItem.challenge.character_type === 'uni' ? "🦄" :
-                   challengeItem.challenge.character_type === 'rushmore' ? "🏔️" : "🌟",
-    isSelected: index === 0, // Select first challenge by default
-  }));
+  const transformedChallenges = challenges.map((challengeItem, index) => {
+    const companionInfo = getCompanionInfo(challengeItem.challenge.character_type);
+
+    return {
+      id: challengeItem.challenge.id,
+      title: challengeItem.challenge.title,
+      image: challengeItem.challenge.picture_url,
+      motivationalMessage: challengeItem.challenge.description,
+      progress: Math.min(100, ((7 - challengeItem.days_left) / 7) * 100), // Calculate progress based on days left
+      timeLeft: challengeItem.time_left, // Use time_left from API for Timer component
+      chatColor: companionInfo.color,
+      companionIcon: companionInfo.icon,
+      companionName: companionInfo.name,
+      isSelected: index === 0, // Select first challenge by default
+    };
+  });
 
   const selectedChallenge = transformedChallenges.find((c) => c.isSelected) || transformedChallenges[0];
 
