@@ -14,7 +14,7 @@ import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
-import { dependent, shouldAskForMood } from "@/data/dependentData";
+import { dependent, shouldAskForMood, moodPickerUtils } from "@/data/dependentData";
 import MoodPickerCard from "@/components/MoodPickerCard";
 
 export default function Index() {
