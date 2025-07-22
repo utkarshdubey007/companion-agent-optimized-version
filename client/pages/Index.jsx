@@ -206,6 +206,10 @@ export default function Index() {
     setHasMoodCheckinOccurred(true);
     setSelectedMood(mood); // Store the selected mood
 
+    // Trigger animation for the mood icon
+    setMoodAnimationTrigger(true);
+    setTimeout(() => setMoodAnimationTrigger(false), 100); // Brief trigger
+
     // Add mood message to chat
     const moodMessage = {
       id: Date.now().toString(),
