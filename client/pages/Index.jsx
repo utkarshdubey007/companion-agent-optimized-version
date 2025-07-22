@@ -357,6 +357,7 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
+          moodIconActivated={shouldAskForMood(dependent) && !hasMoodCheckinOccurred}
         />
 
         {/* Center Content Area - Chat Interface */}
