@@ -35,34 +35,12 @@ export function DualSidebar({
       {/* Container with zero margin, aligned to left edge */}
       <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden">
         {/* Top Sidebar Section - Auto height, no flex-1 */}
-        <div className="flex items-center">
-          {/* Top Section Toggle Button - Always visible at left edge */}
-          <Button
-            onClick={toggleTopSidebar}
-            className="w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-500 ease-in-out shadow-lg flex-shrink-0 z-10"
-            style={{
-              borderRadius: "0 15px 15px 0",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              transform: topSidebarCollapsed ? "translateX(0)" : "translateX(80px)",
-            }}
-          >
-            {topSidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-white transition-transform duration-300" />
-            ) : (
-              <ChevronLeft className="w-4 h-4 text-white transition-transform duration-300" />
-            )}
-          </Button>
-
+        <div className="flex items-center relative">
           {/* Top Section Content - Content-based height */}
           <div
             className={`transition-all duration-500 ease-in-out overflow-hidden ${
-              topSidebarCollapsed
-                ? "w-0 opacity-0 -translate-x-full"
-                : "w-20 opacity-100 translate-x-0"
+              topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
             }`}
-            style={{
-              transform: `translateX(${topSidebarCollapsed ? "-100%" : "0"})`,
-            }}
           >
             <div
               className="bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl flex flex-col p-4"
