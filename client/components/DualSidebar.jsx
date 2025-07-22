@@ -103,6 +103,13 @@ export function DualSidebar({
                     const isMoodSelected = isMoodItem && (showMoodPicker || selectedMood);
                     const hasSelectedMood = isMoodItem && selectedMood;
 
+                    // Get mood-specific animation class
+                    const getMoodAnimationClass = () => {
+                      if (!hasSelectedMood) return "";
+                      const moodId = selectedMood.id.toLowerCase();
+                      return `mood-${moodId}`;
+                    };
+
                     return (
                     <div
                       key={item.alt}
@@ -123,7 +130,7 @@ export function DualSidebar({
                               ? "bg-gradient-to-br from-purple-500/30 to-pink-500/30 border-2 border-purple-400/70 ring-2 ring-purple-400/50 shadow-lg shadow-purple-400/30"
                               : "bg-yellow-500/20 border-yellow-400/50 ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/20"
                             : "bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30"
-                        }`}
+                        } ${getMoodAnimationClass()}`}
                         onClick={() => onMenuItemClick?.(item.alt)}
                       >
                         <img
