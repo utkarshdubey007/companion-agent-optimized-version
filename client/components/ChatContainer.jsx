@@ -173,13 +173,11 @@ export function ChatContainer({
         <div key={message.id} className="flex justify-start w-full mb-4">
           {/* AI companion profile image */}
           <div className="flex-shrink-0 mr-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-emerald-300 shadow-lg">
-              <img
-                src={aiCompanionImage}
-                alt="AI Companion"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <AnimatedCompanionAvatar
+              companion={selectedCompanion}
+              size={40}
+              showAnimations={true}
+            />
           </div>
           {/* Message bubble */}
           <div className="max-w-xs">
