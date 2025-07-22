@@ -79,7 +79,7 @@ export function AcceptedChallenges({ challenges, loading = false, error = null }
       <div
         className={`text-green-400 font-mono ${isCompact ? "text-xs" : "text-sm"} mb-4 text-center flex-shrink-0 min-h-[1.5rem] flex items-center justify-center`}
       >
-        {challenge.timeLeft}
+        <Timer timeLeft={challenge.timeLeft} />
       </div>
 
       {/* Chat Button */}
