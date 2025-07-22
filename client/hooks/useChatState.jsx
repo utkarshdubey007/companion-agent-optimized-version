@@ -40,6 +40,7 @@ export function useChatState() {
         sender: "AI",
         content: `Wow! What a beautiful collection! 🌟 I can see you've put so much creativity and heart into these. Each image tells its own special story! Would you like to tell me more about your favorite one? ✨`,
         timestamp: new Date(),
+        companion: selectedCompanion, // Store current companion with message
       };
       setChatMessages((prev) => [...prev, aiResponse]);
     }, 2200);
