@@ -292,19 +292,19 @@ const KidReflectionStorybookCard = ({
                   <div
                     className="relative rounded-lg overflow-hidden"
                     style={{
-                      border: "3px solid #d4af37",
+                      border: `3px solid ${currentTheme.frame}`,
                       backgroundImage: `
-                        linear-gradient(45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
-                        linear-gradient(-45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%),
-                        linear-gradient(-45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%)
+                        linear-gradient(45deg, ${currentTheme.frame}20 25%, transparent 25%),
+                        linear-gradient(-45deg, ${currentTheme.frame}20 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, ${currentTheme.frame}20 75%),
+                        linear-gradient(-45deg, transparent 75%, ${currentTheme.frame}20 75%)
                       `,
                       backgroundSize: "12px 12px",
                       backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
                       padding: "8px",
                       boxShadow: `
-                        inset 0 0 0 1px rgba(212, 175, 55, 0.3),
-                        inset 0 0 8px rgba(255, 215, 0, 0.2),
+                        inset 0 0 0 1px ${currentTheme.frame}50,
+                        inset 0 0 8px ${currentTheme.frame}30,
                         0 4px 16px rgba(0, 0, 0, 0.1)
                       `,
                     }}
