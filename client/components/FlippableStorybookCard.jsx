@@ -406,8 +406,8 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
               >
-                <div className="text-xs text-amber-700 opacity-60 font-medium mr-2">
-                  How does this make you feel?
+                <div className={`text-xs ${currentTheme.textSecondary} opacity-70 font-medium mr-2`}>
+                  🎭 How does this make you feel? 🎭
                 </div>
                 {reactions.map((reaction, idx) => (
                   <motion.button
@@ -417,39 +417,48 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
                     style={{
                       background:
                         selectedReaction?.icon === reaction.icon
-                          ? `linear-gradient(135deg, ${reaction.color}20, ${reaction.color}10)`
-                          : "linear-gradient(135deg, rgba(245, 245, 220, 0.8), rgba(255, 248, 220, 0.9))",
-                      border: "1px solid rgba(212, 175, 55, 0.3)",
+                          ? `linear-gradient(135deg, ${reaction.color}40, ${reaction.color}20)`
+                          : `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}60)`,
+                      border: `2px solid ${selectedReaction?.icon === reaction.icon ? reaction.color : currentTheme.borderColor}80`,
                       boxShadow:
                         selectedReaction?.icon === reaction.icon
-                          ? `0 4px 12px ${reaction.color}40, inset 0 1px 2px rgba(255,255,255,0.8)`
-                          : "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.8)",
-                      width: "44px", // Minimum 40px + padding
-                      height: "44px",
-                      minWidth: "44px",
-                      minHeight: "44px",
+                          ? `0 6px 16px ${reaction.color}50, inset 0 2px 4px rgba(255,255,255,0.8)`
+                          : `0 3px 10px ${currentTheme.shadowColor}30, inset 0 1px 3px rgba(255,255,255,0.8)`,
+                      width: "46px",
+                      height: "46px",
+                      minWidth: "46px",
+                      minHeight: "46px",
                     }}
                     whileHover={{
-                      scale: 1.1,
-                      y: -2,
+                      scale: 1.15,
+                      y: -3,
+                      rotate: 5,
                       transition: { duration: 0.2 },
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.9, rotate: -5 }}
+                    animate={{
+                      rotate: selectedReaction?.icon === reaction.icon ? [0, 10, -10, 0] : 0,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      repeat: selectedReaction?.icon === reaction.icon ? 3 : 0,
+                    }}
                   >
-                    <span className="text-lg">{reaction.icon}</span>
+                    <span className="text-lg drop-shadow-sm">{reaction.icon}</span>
 
                     {/* Reaction feedback */}
                     <AnimatePresence>
                       {selectedReaction?.icon === reaction.icon && (
                         <motion.div
-                          className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-amber-800 text-yellow-100 text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium"
+                          className={`absolute -top-12 left-1/2 transform -translate-x-1/2 ${currentTheme.textPrimary} text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap font-medium`}
                           style={{
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                            border: "1px solid rgba(212, 175, 55, 0.5)",
+                            background: `linear-gradient(135deg, ${currentTheme.accent}, ${currentTheme.borderColor})`,
+                            boxShadow: `0 6px 16px ${currentTheme.shadowColor}50`,
+                            border: `1px solid ${currentTheme.borderColor}80`,
                           }}
-                          initial={{ opacity: 0, y: 10, scale: 0.5 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -10, scale: 0.5 }}
+                          initial={{ opacity: 0, y: 10, scale: 0.5, rotate: -10 }}
+                          animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.5, rotate: 10 }}
                         >
                           {reaction.label}
                         </motion.div>
