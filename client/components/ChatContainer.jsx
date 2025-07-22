@@ -53,8 +53,11 @@ export function ChatContainer({
 
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
-  // Ensure AI companion has an image
-  const aiCompanionImage = selectedCompanion?.imageUrl || "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F58ad423f73d94106baa75063fb37dfeb?format=webp&width=800";
+  // Use the green companion as default (matches current theme)
+  const aiCompanionImage = selectedCompanion?.imageUrl || "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F5d572fbc79f84a30afda5776e12cc63d?format=webp&width=800";
+
+  // Dummy kid profile image
+  const defaultKidImage = "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format";
 
   const renderMessage = (message) => {
     if (message.type === "carousel") {
