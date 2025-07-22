@@ -274,7 +274,7 @@ export function AnimatedCompanionAvatar({
       style={{ width: size, height: size }}
       onMouseEnter={() => showAnimations && setIsHovered(true)}
       onMouseLeave={() => showAnimations && setIsHovered(false)}
-      layoutId={`chat-companion-${companion.id}`}
+      layoutId={activeCompanion ? `chat-companion-${activeCompanion.id}` : undefined}
     >
       {/* Floating animation container */}
       <motion.div
