@@ -251,7 +251,8 @@ export function AnimatedCompanionAvatar({
   companion,
   size = 40,
   className = "",
-  showAnimations = true
+  showAnimations = true,
+  triggerAnimation = false // New prop to control when to show selection animation
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -274,14 +275,14 @@ export function AnimatedCompanionAvatar({
     );
   }
 
-  // Trigger entrance animation when companion changes
+  // Trigger entrance animation only when explicitly requested
   useEffect(() => {
-    if (activeCompanion && activeCompanion.id) {
+    if (triggerAnimation && activeCompanion && activeCompanion.id) {
       setShouldAnimate(true);
       const timer = setTimeout(() => setShouldAnimate(false), 2000);
       return () => clearTimeout(timer);
     }
-  }, [activeCompanion?.id]);
+  }, [triggerAnimation, activeCompanion?.id]);
 
   return (
     <motion.div
