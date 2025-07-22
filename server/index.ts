@@ -22,5 +22,8 @@ export function createServer() {
   // Tags API route
   app.get("/api/v2/tags/current-user-tags", getCurrentUserTags);
 
+  // Challenges API route
+  app.get("/api/v2/challenges/dependent-challenges/working", getDependentChallengesWorking);
+
   return app;
 }
