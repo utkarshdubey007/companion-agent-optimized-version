@@ -46,6 +46,11 @@ export default function Index() {
   const [selectedMood, setSelectedMood] = useState(null);
   const [moodAnimationTrigger, setMoodAnimationTrigger] = useState(false);
 
+  // Tags state
+  const [tags, setTags] = useState([]);
+  const [tagsLoading, setTagsLoading] = useState(false);
+  const [tagsError, setTagsError] = useState(null);
+
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
