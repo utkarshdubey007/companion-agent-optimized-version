@@ -90,3 +90,95 @@ export interface TagsResponse {
   has_more: boolean;
   total_count: number;
 }
+
+/**
+ * Challenges API interfaces
+ */
+export interface UserProfile {
+  picture_url: string;
+  picture_height: string | number;
+  picture_width: string | number;
+  gender: string;
+  taletree_friend: string;
+}
+
+export interface AcceptedDependent {
+  id: number;
+  username: string;
+  first_name: string;
+  profile: UserProfile;
+}
+
+export interface CreatedBy {
+  first_name: string;
+  last_name: string;
+  is_superuser: boolean;
+  picture_url: string;
+  slug: string;
+  partner_detail: any;
+  id: number;
+  user_type: string;
+}
+
+export interface TreehouseUser {
+  id?: number;
+  camp_master_id?: number;
+  slug: string;
+  name: string;
+  picture: string;
+  description: string;
+  is_verified: boolean;
+  user_type: string;
+  type_of_organisation?: string;
+  agora_group_id?: string;
+}
+
+export interface Challenge {
+  title: string;
+  description: string;
+  hash_tags: any[];
+  created_by: CreatedBy;
+  treehouse_user: TreehouseUser;
+  agora_group_id: string;
+  agora_chat_box: boolean;
+  created_at: string;
+  updated_at: string;
+  id: number;
+  picture_url: string;
+  picture_height: number;
+  picture_width: number;
+  start_date_time: string;
+  start_date_time_ts: number;
+  end_date_time: string;
+  end_date_time_ts: number;
+  has_submitted: boolean;
+  character_type: string;
+  youtube_url: string;
+  deadline: number;
+  tag_list: Tag[];
+  challenge_scope: string;
+  submission_count: number;
+  accepted_dependent_count: number;
+  completed_dependent_count: number;
+  accepted_dependents: AcceptedDependent[];
+  completed_dependents: AcceptedDependent[];
+  special_camp: any;
+  group: string;
+  is_trending: boolean;
+  video_url: string;
+}
+
+export interface ChallengeItem {
+  challenge: Challenge;
+  challenge_status: string;
+  days_left: number;
+  submission_date: string;
+}
+
+export interface ChallengesResponse {
+  result_code: number;
+  error_info: string;
+  data: ChallengeItem[];
+  has_more: boolean;
+  total_count: number;
+}
