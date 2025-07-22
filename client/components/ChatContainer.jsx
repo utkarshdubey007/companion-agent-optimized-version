@@ -178,11 +178,24 @@ export function ChatContainer({
     if (message.sender === "AI") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI companion profile image */}
+          {selectedCompanion?.imageUrl && (
+            <div className="flex-shrink-0 mr-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                <img
+                  src={selectedCompanion.imageUrl}
+                  alt="AI Companion"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
           <AITextMessage
             content={message.content || ""}
             timestamp={message.timestamp}
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
+            hasAvatar={!!selectedCompanion?.imageUrl}
           />
         </div>
       );
