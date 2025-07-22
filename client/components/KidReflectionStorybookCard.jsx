@@ -305,10 +305,10 @@ const KidReflectionStorybookCard = ({
                     style={{
                       border: `3px solid ${currentTheme.frame}`,
                       backgroundImage: `
-                        linear-gradient(45deg, ${currentTheme.frame}20 25%, transparent 25%),
-                        linear-gradient(-45deg, ${currentTheme.frame}20 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, ${currentTheme.frame}20 75%),
-                        linear-gradient(-45deg, transparent 75%, ${currentTheme.frame}20 75%)
+                        linear-gradient(45deg, ${currentTheme.frame}20 25%, ${currentTheme.cardBg} 25%),
+                        linear-gradient(-45deg, ${currentTheme.frame}20 25%, ${currentTheme.cardBg} 25%),
+                        linear-gradient(45deg, ${currentTheme.cardBg} 75%, ${currentTheme.frame}20 75%),
+                        linear-gradient(-45deg, ${currentTheme.cardBg} 75%, ${currentTheme.frame}20 75%)
                       `,
                       backgroundSize: "12px 12px",
                       backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
