@@ -141,7 +141,7 @@ export default function Index() {
     };
 
     setChatMessages((prev) => [...prev, flippableStorybookMessage]);
-    console.log("FlippableStorybookCard added to chat!");
+    console.log("FlippableStorybookCard added to chat!", flippableStorybookMessage);
   };
 
   // Sidebar toggle handlers
