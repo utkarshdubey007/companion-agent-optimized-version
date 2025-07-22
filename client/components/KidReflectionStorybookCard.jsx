@@ -136,19 +136,26 @@ const KidReflectionStorybookCard = ({
 
             {/* Storybook Page Container */}
             <motion.div
-              className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-r-2xl shadow-2xl overflow-hidden"
+              className={`relative bg-gradient-to-br ${currentTheme.background} rounded-r-2xl shadow-2xl overflow-hidden`}
               style={{
                 fontFamily:
                   '"Kalam", "Comic Neue", "Fredoka One", cursive, sans-serif',
-                backgroundImage: `
-                  radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.02) 0%, transparent 50%),
-                  linear-gradient(90deg, rgba(139, 69, 19, 0.05) 0%, transparent 2%),
-                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(139, 69, 19, 0.01) 21px, rgba(139, 69, 19, 0.01) 22px)
+                backgroundImage: theme === 'rainbow' ? `
+                  radial-gradient(circle at 25% 25%, rgba(217, 70, 239, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 25% 75%, rgba(249, 115, 22, 0.04) 0%, transparent 50%),
+                  linear-gradient(90deg, rgba(217, 70, 239, 0.05) 0%, transparent 2%),
+                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(217, 70, 239, 0.02) 21px, rgba(217, 70, 239, 0.02) 22px)
+                ` : `
+                  radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+                  radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+                  linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, transparent 2%),
+                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(0, 0, 0, 0.01) 21px, rgba(0, 0, 0, 0.01) 22px)
                 `,
                 boxShadow: `
-                  inset 4px 0 8px rgba(139, 69, 19, 0.1),
-                  0 0 0 1px rgba(139, 69, 19, 0.1),
+                  inset 4px 0 8px rgba(0, 0, 0, 0.1),
+                  0 0 0 1px ${currentTheme.border}40,
                   0 8px 32px rgba(0, 0, 0, 0.15),
                   0 4px 16px rgba(0, 0, 0, 0.1)
                 `,
