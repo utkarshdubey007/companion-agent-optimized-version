@@ -24,8 +24,7 @@ export default function AIChallengeMessage({
   }, []);
 
   return (
-    <div className="mb-4">
-
+    <div className="relative">
       {/* Magical Sparkles Formation */}
       <AnimatePresence>
         {showSparkles && (
