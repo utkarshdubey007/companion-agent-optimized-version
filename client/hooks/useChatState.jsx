@@ -184,6 +184,7 @@ export function useChatState() {
         sender: "AI",
         content: `Hello there! I'm ${companion.name}! 🌟 ${companion.description} I'm so excited to go on magical adventures with you! What would you like to create together today? ✨`,
         timestamp: new Date(),
+        companion: companion, // Store the selected companion with message
       };
       setChatMessages((prev) => [...prev, welcomeMessage]);
     }, 1800);
