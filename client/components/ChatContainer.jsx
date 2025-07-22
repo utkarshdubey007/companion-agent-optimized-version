@@ -203,12 +203,26 @@ export function ChatContainer({
 
     // Kid messages use regular ChatMessage
     return (
-      <ChatMessage
-        key={message.id}
-        role={message.sender}
-        content={message.content || ""}
-        timestamp={message.timestamp}
-      />
+      <div key={message.id} className="flex justify-end w-full mb-4">
+        <ChatMessage
+          role={message.sender}
+          content={message.content || ""}
+          timestamp={message.timestamp}
+          hasAvatar={!!kidProfileImage}
+        />
+        {/* Kid profile image */}
+        {kidProfileImage && (
+          <div className="flex-shrink-0 ml-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
+              <img
+                src={kidProfileImage}
+                alt="Kid Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        )}
+      </div>
     );
   };
 
