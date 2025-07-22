@@ -211,17 +211,33 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
                 }}
               >
                 <h2
-                  className="text-lg font-bold text-amber-800 mb-2 group-hover:text-amber-900 transition-colors"
+                  className={`text-lg font-bold ${currentTheme.textPrimary} mb-2 transition-colors`}
                   style={{
                     fontFamily: '"Kalam", cursive',
-                    textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
+                    textShadow: `2px 2px 4px rgba(255,255,255,0.9), 0 0 10px ${currentTheme.accent}30`,
                     fontSize: "18px",
                     lineHeight: "1.2",
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.1))",
                   }}
                 >
-                  "{badgeTitle || "Amazing Creation!"}"
+                  ✨ "{badgeTitle || "Amazing Creation!"}" ✨
                 </h2>
-                <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto group-hover:via-amber-500 transition-colors" />
+                <motion.div
+                  className="w-16 h-1 mx-auto rounded-full"
+                  style={{
+                    background: `linear-gradient(90deg, ${currentTheme.buttonBg}, ${currentTheme.accent}, ${currentTheme.borderColor}, ${currentTheme.accent}, ${currentTheme.buttonBg})`,
+                    boxShadow: `0 0 8px ${currentTheme.accent}50`,
+                  }}
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0.8, 1, 0.8],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
               </motion.button>
             </div>
 
