@@ -318,6 +318,12 @@ export default function Index() {
   // Menu item click handler
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
+
+    // Hide accepted challenges for all items except Create
+    if (itemAlt !== "Create") {
+      setShowAcceptedChallenges(false);
+    }
+
     if (itemAlt === "Play") {
       // Show playful reaction
       setCompanionState("reacting");
