@@ -203,6 +203,7 @@ export default function Index() {
   const handleMoodPickerSubmit = (mood) => {
     console.log("Mood submitted:", mood);
     setHasMoodCheckinOccurred(true);
+    setSelectedMood(mood); // Store the selected mood
 
     // Add mood message to chat
     const moodMessage = {
