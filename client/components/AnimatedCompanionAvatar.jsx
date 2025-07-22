@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { companions } from "./CompanionSelector";
 
+// Fallback default companion in case import fails
+const defaultCompanion = {
+  id: 2,
+  name: "Doma",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
+  color: "#4ECDC4",
+  description: "Speedy lizard who races through adventures!",
+  type: "Speedy lizard",
+  traits: ["Fast", "Agile", "Adventurous"],
+};
+
 // Character-specific hover animations (same as in CompanionSelector)
 const CharacterHoverAnimations = ({ companion, isHovered }) => {
   const { name, color } = companion;
