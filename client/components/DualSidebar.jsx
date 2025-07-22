@@ -108,7 +108,9 @@ export function DualSidebar({
                     const getMoodAnimationClass = () => {
                       if (!hasSelectedMood) return "";
                       const moodId = selectedMood.id.toLowerCase();
-                      return `mood-${moodId}`;
+                      const entranceClass = moodAnimationTrigger ? "mood-entrance" : "";
+                      const persistentClass = `mood-${moodId}`;
+                      return `${entranceClass} ${persistentClass}`.trim();
                     };
 
                     return (
