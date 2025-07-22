@@ -501,8 +501,9 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const [selectionInProgress, setSelectionInProgress] = useState(false);
 
   const handleSelect = (companion) => {
-    // Set selected companion for animation
+    // Set selected companion for animation and hide close button
     setSelectedCompanion(companion);
+    setSelectionInProgress(true);
 
     // After showing selection animation, close and complete selection
     setTimeout(() => {
