@@ -335,7 +335,11 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      setShowAcceptedChallenges(!showAcceptedChallenges);
+
+      // Load challenges and show accepted challenges panel
+      console.log('Create icon clicked - loading dependent challenges...');
+      loadDependentChallenges();
+      setShowAcceptedChallenges(true);
     } else if (itemAlt === "Reflect") {
       console.log("Reflect icon clicked - adding FlippableStorybookCard");
       // Show thoughtful reaction
