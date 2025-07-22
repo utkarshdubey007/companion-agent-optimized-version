@@ -10,6 +10,7 @@ export function AITextMessage({
   headerTitle = "Hello, genuine friend! 🌟",
   footerTip = "Every conversation with you is a new beginning! ✨",
   className = "",
+  hasAvatar = false, // New prop to indicate if avatar is shown
 }) {
   // Use exact default content as specified
   const defaultContent =
