@@ -133,6 +133,12 @@ export default function Index() {
     hasMoodCheckinOccurred,
   ]);
 
+  // Tags refresh handler
+  const refreshUserTags = () => {
+    console.log('Refreshing user tags...');
+    loadUserTags();
+  };
+
   // Function to manually add flippable storybook when reflection icon is clicked
   const addFlippableStorybook = () => {
     // Allow multiple storybooks to be added each time reflection icon is clicked
