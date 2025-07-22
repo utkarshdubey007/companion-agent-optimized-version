@@ -723,6 +723,22 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               borderRadius: '50%',
             }}
           >
+            {/* Companion character */}
+            <div
+              className="relative"
+              style={{
+                animation: 'companionFloat 3s ease-in-out infinite',
+              }}
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fe93a77f1b6854a409a544ca800066469?format=webp&width=800"
+                alt="AI Companion"
+                className="w-32 h-32 object-contain"
+                style={{
+                  filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
+                }}
+              />
+            </div>
             {children}
           </div>
 
