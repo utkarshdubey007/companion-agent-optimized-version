@@ -207,10 +207,13 @@ export default function Index() {
     } else if (itemAlt === "Reflect") {
       // Show thoughtful reaction
       setCompanionState("thinking");
+      setCompanionEmotions(["🤔", "📖", "✨"]);
       setTimeout(() => {
         setCompanionState("idle");
+        setCompanionEmotions([]);
       }, 2000);
-      setShowCreationsPanel(!showCreationsPanel);
+      // Add FlippableStorybookCard to chat when reflection icon is clicked
+      addFlippableStorybook();
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
