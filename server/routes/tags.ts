@@ -38,6 +38,23 @@ const mockTagsData = [
  */
 export const getCurrentUserTags: RequestHandler = (req, res) => {
   try {
+    // Log authentication headers for debugging
+    console.log('Tags API Request Headers:', {
+      cookie: req.headers.cookie,
+      authorization: req.headers.authorization,
+      userAgent: req.headers['user-agent']
+    });
+
+    // Check for sessionid in cookies
+    const cookies = req.headers.cookie;
+    const hasSessionId = cookies && cookies.includes('sessionid=');
+
+    if (hasSessionId) {
+      console.log('✅ Authentication detected - sessionid found in cookies');
+    } else {
+      console.log('⚠️ No sessionid found in request cookies');
+    }
+
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {
       const response: TagsResponse = {
@@ -52,7 +69,7 @@ export const getCurrentUserTags: RequestHandler = (req, res) => {
     }, 100);
   } catch (error) {
     console.error('Error in getCurrentUserTags:', error);
-    
+
     const errorResponse: TagsResponse = {
       result_code: 0,
       error_info: "Internal server error",
