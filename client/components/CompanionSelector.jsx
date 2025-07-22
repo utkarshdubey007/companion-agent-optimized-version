@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-const companions = [
+export const companions = [
   {
     id: 1,
     name: "Cody",
