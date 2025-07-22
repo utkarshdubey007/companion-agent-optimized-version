@@ -644,20 +644,43 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                     <motion.button
                       key={idx}
                       onClick={() => goToPage(idx)}
-                      className="w-2 h-2 rounded-full transition-all duration-300 pointer-events-auto"
+                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative"
                       style={{
-                        backgroundColor:
+                        background:
                           idx === currentPage
-                            ? "#d4af37"
-                            : "rgba(212, 175, 55, 0.3)",
+                            ? `linear-gradient(135deg, ${kidThemes[idx % kidThemes.length].accent}, ${kidThemes[idx % kidThemes.length].borderColor})`
+                            : `${kidThemes[idx % kidThemes.length].buttonBg}`,
+                        border: `2px solid ${kidThemes[idx % kidThemes.length].borderColor}`,
                         boxShadow:
                           idx === currentPage
-                            ? "0 0 8px rgba(212, 175, 55, 0.6)"
-                            : "none",
+                            ? `0 0 12px ${kidThemes[idx % kidThemes.length].accent}80, 0 2px 6px ${kidThemes[idx % kidThemes.length].shadowColor}40`
+                            : `0 1px 3px ${kidThemes[idx % kidThemes.length].shadowColor}20`,
                       }}
-                      whileHover={{ scale: 1.3 }}
+                      whileHover={{
+                        scale: 1.4,
+                        rotate: 180,
+                        boxShadow: `0 0 16px ${kidThemes[idx % kidThemes.length].accent}90, 0 4px 8px ${kidThemes[idx % kidThemes.length].shadowColor}60`
+                      }}
                       whileTap={{ scale: 0.8 }}
-                    />
+                      animate={{
+                        scale: idx === currentPage ? [1, 1.2, 1] : 1,
+                        rotate: idx === currentPage ? [0, 360] : 0,
+                      }}
+                      transition={{
+                        duration: idx === currentPage ? 2 : 0.3,
+                        repeat: idx === currentPage ? Infinity : 0,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {idx === currentPage && (
+                        <div
+                          className="absolute inset-0 rounded-full animate-ping"
+                          style={{
+                            background: `radial-gradient(circle, ${kidThemes[idx % kidThemes.length].accent}60, transparent 70%)`,
+                          }}
+                        />
+                      )}
+                    </motion.button>
                   ))}
                 </div>
               </div>
