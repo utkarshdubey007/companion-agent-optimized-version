@@ -372,6 +372,7 @@ export default function Index() {
           moodIconActivated={shouldAskForMood(dependent) && !hasMoodCheckinOccurred}
           selectedMood={selectedMood}
           showMoodPicker={showMoodPicker}
+          moodAnimationTrigger={moodAnimationTrigger}
         />
 
         {/* Center Content Area - Chat Interface */}
