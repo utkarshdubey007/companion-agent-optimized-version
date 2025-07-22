@@ -500,10 +500,11 @@ const KidReflectionStorybookCard = ({
                         <AnimatePresence>
                           {selectedReaction?.icon === reaction.icon && (
                             <motion.div
-                              className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-amber-800 text-yellow-100 text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium"
+                              className={`absolute -top-10 left-1/2 transform -translate-x-1/2 ${currentTheme.text} text-white text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium`}
                               style={{
+                                backgroundColor: currentTheme.border,
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                                border: "1px solid rgba(212, 175, 55, 0.5)",
+                                border: `1px solid ${currentTheme.border}80`,
                               }}
                               initial={{ opacity: 0, y: 10, scale: 0.5 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
