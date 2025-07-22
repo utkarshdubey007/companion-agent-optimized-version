@@ -79,81 +79,78 @@ export default function Index() {
     setShowBottomWaveEffect,
   ]);
 
-  // Add sample flippable storybook with multiple reflections
-  useEffect(() => {
-    const addFlippableStorybook = () => {
-      // Check if storybook already exists to prevent duplicates
-      const storybookExists = chatMessages.some(
-        (msg) => msg.id === "flippable-storybook-1",
-      );
+  // Function to manually add flippable storybook when reflection icon is clicked
+  const addFlippableStorybook = () => {
+    // Check if storybook already exists to prevent duplicates
+    const storybookExists = chatMessages.some(
+      (msg) => msg.type === "flippable_storybook",
+    );
 
-      if (storybookExists) return;
+    if (storybookExists) {
+      console.log("Storybook already exists in chat");
+      return;
+    }
 
-      const samplePages = [
-        {
-          imageUrl:
-            "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
-          reflection:
-            "Wow! I can see a beautiful rainbow painting! The colors are so bright and cheerful - red, orange, yellow, green, blue, and purple all dancing together. It makes me feel happy and excited, like there's magic in the air! ✨",
-          badgeTitle: "Rainbow Master!",
-          aiAvatarUrl:
-            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
-        },
-        {
-          imageUrl:
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-          reflection:
-            "Look at this amazing cat drawing! I love how you made the whiskers so long and the eyes so big and sparkly. The cat looks so friendly and playful - I bet it would love to chase butterflies in a sunny garden! 🐱",
-          badgeTitle: "Animal Artist!",
-          aiAvatarUrl:
-            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800",
-        },
-        {
-          imageUrl:
-            "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=400&h=300&fit=crop",
-          reflection:
-            "This space adventure drawing is incredible! I can see rockets flying to distant planets with stars twinkling all around. The astronaut looks so brave and ready for an amazing journey through the galaxy! 🚀",
-          badgeTitle: "Space Explorer!",
-          aiAvatarUrl:
-            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F408758d5b0f24a8ab1fe3ac5b8489720?format=webp&width=800",
-        },
-        {
-          imageUrl:
-            "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
-          reflection:
-            "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! 🌸",
-          badgeTitle: "Garden Wizard!",
-          aiAvatarUrl:
-            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
-        },
-        {
-          imageUrl:
-            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-          reflection:
-            "I love this underwater world you've created! The fish are swimming in such beautiful patterns, and the coral looks like a magical castle. I can almost hear the gentle sound of the ocean waves! 🌊",
-          badgeTitle: "Ocean Dreamer!",
-          aiAvatarUrl:
-            "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd477fa3ace324c9aafc5275df782584f?format=webp&width=800",
-        },
-      ];
+    const samplePages = [
+      {
+        imageUrl:
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop",
+        reflection:
+          "Wow! I can see a beautiful rainbow painting! The colors are so bright and cheerful - red, orange, yellow, green, blue, and purple all dancing together. It makes me feel happy and excited, like there's magic in the air! ✨",
+        badgeTitle: "Rainbow Master!",
+        aiAvatarUrl:
+          "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
+      },
+      {
+        imageUrl:
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+        reflection:
+          "Look at this amazing cat drawing! I love how you made the whiskers so long and the eyes so big and sparkly. The cat looks so friendly and playful - I bet it would love to chase butterflies in a sunny garden! 🐱",
+        badgeTitle: "Animal Artist!",
+        aiAvatarUrl:
+          "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800",
+      },
+      {
+        imageUrl:
+          "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=400&h=300&fit=crop",
+        reflection:
+          "This space adventure drawing is incredible! I can see rockets flying to distant planets with stars twinkling all around. The astronaut looks so brave and ready for an amazing journey through the galaxy! 🚀",
+        badgeTitle: "Space Explorer!",
+        aiAvatarUrl:
+          "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F408758d5b0f24a8ab1fe3ac5b8489720?format=webp&width=800",
+      },
+      {
+        imageUrl:
+          "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+        reflection:
+          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! 🌸",
+        badgeTitle: "Garden Wizard!",
+        aiAvatarUrl:
+          "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
+      },
+      {
+        imageUrl:
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+        reflection:
+          "I love this underwater world you've created! The fish are swimming in such beautiful patterns, and the coral looks like a magical castle. I can almost hear the gentle sound of the ocean waves! 🌊",
+        badgeTitle: "Ocean Dreamer!",
+        aiAvatarUrl:
+          "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fd477fa3ace324c9aafc5275df782584f?format=webp&width=800",
+      },
+    ];
 
-      const flippableStorybookMessage = {
-        id: "flippable-storybook-1",
-        type: "flippable_storybook",
-        sender: "Kid",
-        pages: samplePages,
-        timestamp: new Date(Date.now() - 120000),
-        index: 0,
-      };
-
-      setChatMessages((prev) => [...prev, flippableStorybookMessage]);
+    const flippableStorybookMessage = {
+      id: `flippable-storybook-${Date.now()}`,
+      type: "flippable_storybook",
+      sender: "Kid",
+      pages: samplePages,
+      timestamp: new Date(),
+      index: 0,
     };
 
-    // Start adding flippable storybook after initial setup
-    const storybookTimer = setTimeout(addFlippableStorybook, 3000);
-
-    return () => clearTimeout(storybookTimer);
-  }, [chatMessages, setChatMessages]);
+    setChatMessages((prev) => [...prev, flippableStorybookMessage]);
+    console.log("FlippableStorybookCard added to chat!");
+  };
 
   // Sidebar toggle handlers
   const toggleTopSidebar = () => {
