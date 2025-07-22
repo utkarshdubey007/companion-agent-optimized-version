@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { getCurrentUserTags } from "./routes/tags";
 
 export function createServer() {
   const app = express();
