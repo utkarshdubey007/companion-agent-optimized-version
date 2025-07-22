@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Timer from "./Timer";
+import { getCompanionInfo } from "@/utils/companionMapping";
 
 export function AcceptedChallenges({ challenges, loading = false, error = null }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
