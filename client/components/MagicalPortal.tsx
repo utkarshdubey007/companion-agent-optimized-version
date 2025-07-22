@@ -1112,6 +1112,15 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           }
         }
 
+        @keyframes companionFloat {
+          0%, 100% {
+            transform: translateY(0px) scale(1);
+          }
+          50% {
+            transform: translateY(-8px) scale(1.02);
+          }
+        }
+
         .portal-main::before {
           content: '';
           position: absolute;
