@@ -547,18 +547,18 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                   disabled={currentPage === 0}
                   className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
                   style={{
-                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${kidThemes[currentPage % kidThemes.length].buttonBg})`,
-                    border: `3px solid ${kidThemes[currentPage % kidThemes.length].borderColor}`,
-                    boxShadow: `0 4px 15px ${kidThemes[currentPage % kidThemes.length].shadowColor}40`,
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
+                    border: `3px solid ${companionTheme.borderColor}`,
+                    boxShadow: `0 4px 15px ${companionTheme.shadowColor}40`,
                   }}
                   whileHover={{
                     scale: 1.15,
                     rotate: -5,
-                    boxShadow: `0 6px 20px ${kidThemes[currentPage % kidThemes.length].shadowColor}60`,
+                    boxShadow: `0 6px 20px ${companionTheme.shadowColor}60`,
                   }}
                   whileTap={{ scale: 0.9, rotate: 5 }}
                 >
-                  <ChevronLeft className={`w-5 h-5 ${kidThemes[currentPage % kidThemes.length].textPrimary}`} />
+                  <ChevronLeft className={`w-5 h-5 ${companionTheme.textPrimary}`} />
                 </motion.button>
 
                 <motion.button
@@ -566,18 +566,18 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                   disabled={currentPage === pages.length - 1}
                   className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
                   style={{
-                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${kidThemes[currentPage % kidThemes.length].buttonBg})`,
-                    border: `3px solid ${kidThemes[currentPage % kidThemes.length].borderColor}`,
-                    boxShadow: `0 4px 15px ${kidThemes[currentPage % kidThemes.length].shadowColor}40`,
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
+                    border: `3px solid ${companionTheme.borderColor}`,
+                    boxShadow: `0 4px 15px ${companionTheme.shadowColor}40`,
                   }}
                   whileHover={{
                     scale: 1.15,
                     rotate: 5,
-                    boxShadow: `0 6px 20px ${kidThemes[currentPage % kidThemes.length].shadowColor}60`,
+                    boxShadow: `0 6px 20px ${companionTheme.shadowColor}60`,
                   }}
                   whileTap={{ scale: 0.9, rotate: -5 }}
                 >
-                  <ChevronRight className={`w-5 h-5 ${kidThemes[currentPage % kidThemes.length].textPrimary}`} />
+                  <ChevronRight className={`w-5 h-5 ${companionTheme.textPrimary}`} />
                 </motion.button>
               </div>
 
