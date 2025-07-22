@@ -146,26 +146,49 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
           {aiAvatarUrl && (
             <div className="absolute top-4 left-8 z-20">
               <motion.button
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 shadow-md bg-white p-0.5 cursor-pointer"
+                className="w-12 h-12 rounded-full overflow-hidden shadow-lg cursor-pointer relative"
+                style={{
+                  border: `3px solid ${currentTheme.borderColor}`,
+                  background: `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}50)`,
+                  boxShadow: `0 4px 15px ${currentTheme.shadowColor}40, 0 0 0 1px ${currentTheme.borderColor}20, inset 0 1px 3px rgba(255,255,255,0.6)`,
+                }}
                 animate={{
-                  scale: [1, 1.05, 1],
+                  scale: [1, 1.08, 1],
+                  rotate: [0, 2, -2, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{
+                  scale: 1.15,
+                  rotate: 5,
+                  boxShadow: `0 6px 20px ${currentTheme.shadowColor}60, 0 0 0 2px ${currentTheme.borderColor}40`
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   console.log("AI Avatar clicked!");
                   // Add avatar interaction here
                 }}
               >
-                <img
-                  src={aiAvatarUrl}
-                  alt="AI Companion"
-                  className="w-full h-full object-cover rounded-full"
+                <div className="w-full h-full p-0.5">
+                  <img
+                    src={aiAvatarUrl}
+                    alt="AI Companion"
+                    className="w-full h-full object-cover rounded-full"
+                    style={{
+                      filter: "brightness(1.1) saturate(1.2)",
+                    }}
+                  />
+                </div>
+                {/* Sparkle effect */}
+                <div
+                  className="absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse"
+                  style={{
+                    background: `radial-gradient(circle, ${currentTheme.accent}, ${currentTheme.borderColor})`,
+                    boxShadow: `0 0 8px ${currentTheme.accent}80`,
+                  }}
                 />
               </motion.button>
             </div>
