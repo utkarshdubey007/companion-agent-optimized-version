@@ -73,3 +73,28 @@ export const shouldAskForMood = (dependentData: DependentData | null = dependent
     localStorage.getItem('checkin_modal') === 'true'
   );
 };
+
+/**
+ * Utility functions to manage mood picker state
+ */
+export const moodPickerUtils = {
+  // Enable mood picker to show on next page load or manual trigger
+  enableMoodPicker: () => {
+    localStorage.setItem('checkin_modal', 'true');
+  },
+
+  // Disable mood picker
+  disableMoodPicker: () => {
+    localStorage.setItem('checkin_modal', 'false');
+  },
+
+  // Check if mood picker is enabled
+  isMoodPickerEnabled: () => {
+    return localStorage.getItem('checkin_modal') === 'true';
+  },
+
+  // Reset mood picker state (useful for testing)
+  resetMoodPickerState: () => {
+    localStorage.removeItem('checkin_modal');
+  }
+};
