@@ -139,6 +139,16 @@ export default function Index() {
     loadUserTags();
   };
 
+  // Log tags state for debugging
+  useEffect(() => {
+    console.log('Tags state updated:', {
+      tags,
+      loading: tagsLoading,
+      error: tagsError,
+      count: tags.length
+    });
+  }, [tags, tagsLoading, tagsError]);
+
   // Function to manually add flippable storybook when reflection icon is clicked
   const addFlippableStorybook = () => {
     // Allow multiple storybooks to be added each time reflection icon is clicked
