@@ -206,6 +206,7 @@ export function ChatContainer({
               companion={message.companion || selectedCompanion}
               size={40}
               showAnimations={true}
+              triggerAnimation={false}
             />
           </div>
           <AITextMessage
