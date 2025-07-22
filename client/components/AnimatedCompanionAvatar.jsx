@@ -298,7 +298,7 @@ export function AnimatedCompanionAvatar({
         <motion.div
           className="absolute inset-0 rounded-full blur-sm"
           style={{
-            backgroundColor: companion.color,
+            backgroundColor: activeCompanion.color,
             width: size + 20,
             height: size + 20,
             left: -10,
@@ -318,27 +318,27 @@ export function AnimatedCompanionAvatar({
         <motion.div
           className="absolute inset-0 rounded-full border-2"
           style={{
-            borderColor: companion.color,
+            borderColor: activeCompanion.color,
             boxShadow: shouldAnimate || isHovered
-              ? `0 0 15px ${companion.color}, 0 0 30px ${companion.color}60`
-              : `0 0 8px ${companion.color}`,
+              ? `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`
+              : `0 0 8px ${activeCompanion.color}`,
             width: size,
             height: size,
           }}
           animate={{
-            borderWidth: shouldAnimate || isHovered 
-              ? ["2px", "3px", "2px"] 
+            borderWidth: shouldAnimate || isHovered
+              ? ["2px", "3px", "2px"]
               : ["1px", "2px", "1px"],
             boxShadow: shouldAnimate || isHovered
               ? [
-                  `0 0 15px ${companion.color}, 0 0 30px ${companion.color}60`,
-                  `0 0 20px ${companion.color}, 0 0 40px ${companion.color}80`,
-                  `0 0 15px ${companion.color}, 0 0 30px ${companion.color}60`,
+                  `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
+                  `0 0 20px ${activeCompanion.color}, 0 0 40px ${activeCompanion.color}80`,
+                  `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
                 ]
               : [
-                  `0 0 8px ${companion.color}`,
-                  `0 0 12px ${companion.color}40`,
-                  `0 0 8px ${companion.color}`,
+                  `0 0 8px ${activeCompanion.color}`,
+                  `0 0 12px ${activeCompanion.color}40`,
+                  `0 0 8px ${activeCompanion.color}`,
                 ],
             scale: shouldAnimate ? [1, 1.2, 1] : [1, 1.05, 1],
           }}
@@ -352,10 +352,10 @@ export function AnimatedCompanionAvatar({
         <motion.div
           className="rounded-full overflow-hidden relative border-2 border-emerald-300 shadow-lg"
           style={{
-            backgroundColor: companion.color,
+            backgroundColor: activeCompanion.color,
             boxShadow: shouldAnimate
-              ? `0 8px 25px ${companion.color}80`
-              : `0 4px 15px ${companion.color}60`,
+              ? `0 8px 25px ${activeCompanion.color}80`
+              : `0 4px 15px ${activeCompanion.color}60`,
             width: size,
             height: size,
           }}
@@ -370,9 +370,9 @@ export function AnimatedCompanionAvatar({
           }}
         >
           <motion.img
-            key={companion.id} // Force re-render on companion change
-            src={companion.image}
-            alt={companion.name}
+            key={activeCompanion.id} // Force re-render on companion change
+            src={activeCompanion.image}
+            alt={activeCompanion.name}
             className="w-full h-full object-cover"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -382,7 +382,7 @@ export function AnimatedCompanionAvatar({
           {/* Character-specific hover animations */}
           {showAnimations && (
             <CharacterHoverAnimations
-              companion={companion}
+              companion={activeCompanion}
               isHovered={isHovered || shouldAnimate}
             />
           )}
