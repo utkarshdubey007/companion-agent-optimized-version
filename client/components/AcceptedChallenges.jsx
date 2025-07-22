@@ -148,11 +148,33 @@ export function AcceptedChallenges({ challenges, loading = false, error = null }
               className="p-4 sm:p-6 flex items-center"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex gap-3 sm:gap-4 justify-center w-full overflow-visible">
-                {challenges.slice(0, 3).map((challenge) => (
-                  <ChallengeCard key={challenge.id} challenge={challenge} />
-                ))}
-              </div>
+              {loading ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white text-center">
+                    <div className="animate-spin w-8 h-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-2"></div>
+                    <p>Loading challenges...</p>
+                  </div>
+                </div>
+              ) : error ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-red-400 text-center">
+                    <p>Error loading challenges</p>
+                    <p className="text-sm text-white/70 mt-1">{error}</p>
+                  </div>
+                </div>
+              ) : transformedChallenges.length === 0 ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white/70 text-center">
+                    <p>No challenges found</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-3 sm:gap-4 justify-center w-full overflow-visible">
+                  {transformedChallenges.slice(0, 3).map((challenge) => (
+                    <ChallengeCard key={challenge.id} challenge={challenge} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
