@@ -246,7 +246,7 @@ export function AnimatedCompanionAvatar({
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   // Use default green companion (Doma) if none is selected
-  const activeCompanion = companion || companions.find(c => c.id === 2); // Doma - green/teal companion
+  const activeCompanion = companion || (companions && companions.find(c => c.id === 2)) || null;
 
   // Trigger entrance animation when companion changes
   useEffect(() => {
