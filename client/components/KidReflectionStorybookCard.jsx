@@ -189,7 +189,7 @@ const KidReflectionStorybookCard = ({
               {/* Page Number */}
               <div className="absolute top-4 right-6">
                 <motion.div
-                  className="text-amber-700 text-sm font-bold opacity-60"
+                  className={`${currentTheme.text} text-sm font-bold opacity-60`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.8 }}
@@ -205,7 +205,7 @@ const KidReflectionStorybookCard = ({
               {/* Decorative corner flourishes */}
               <div className="absolute top-6 left-8">
                 <motion.div
-                  className="text-amber-600 text-lg opacity-40"
+                  className={`${currentTheme.decorative} text-lg opacity-40`}
                   animate={{
                     rotate: [0, 5, -5, 0],
                     scale: [1, 1.05, 1],
@@ -216,13 +216,13 @@ const KidReflectionStorybookCard = ({
                     ease: "easeInOut",
                   }}
                 >
-                  ❦
+                  {theme === 'rainbow' ? '🌈' : theme === 'forest' ? '🌿' : theme === 'ocean' ? '🌊' : theme === 'sunset' ? '🌅' : '❦'}
                 </motion.div>
               </div>
 
               <div className="absolute bottom-6 right-8">
                 <motion.div
-                  className="text-amber-600 text-lg opacity-40"
+                  className={`${currentTheme.decorative} text-lg opacity-40`}
                   animate={{
                     rotate: [0, -5, 5, 0],
                     scale: [1, 1.05, 1],
@@ -234,7 +234,7 @@ const KidReflectionStorybookCard = ({
                     delay: 2,
                   }}
                 >
-                  ❦
+                  {theme === 'rainbow' ? '⭐' : theme === 'forest' ? '🍃' : theme === 'ocean' ? '🐚' : theme === 'sunset' ? '🦋' : '❦'}
                 </motion.div>
               </div>
 
