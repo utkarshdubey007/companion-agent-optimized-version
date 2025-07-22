@@ -261,16 +261,9 @@ export function AnimatedCompanionAvatar({
     (companions && companions.find(c => c.id === 2)) ||
     defaultCompanion;
 
-  // Trigger entrance animation when companion changes
-  useEffect(() => {
-    if (activeCompanion) {
-      setShouldAnimate(true);
-      const timer = setTimeout(() => setShouldAnimate(false), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [activeCompanion?.id]);
-
-  if (!activeCompanion) {
+  // Safety check - should never be null now, but just in case
+  if (!activeCompanion || !activeCompanion.id) {
+    console.warn("AnimatedCompanionAvatar: No valid companion found, using fallback");
     return (
       <div
         className={`w-10 h-10 rounded-full bg-emerald-300 flex items-center justify-center ${className}`}
@@ -280,6 +273,15 @@ export function AnimatedCompanionAvatar({
       </div>
     );
   }
+
+  // Trigger entrance animation when companion changes
+  useEffect(() => {
+    if (activeCompanion && activeCompanion.id) {
+      setShouldAnimate(true);
+      const timer = setTimeout(() => setShouldAnimate(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeCompanion?.id]);
 
   return (
     <motion.div
