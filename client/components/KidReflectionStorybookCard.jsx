@@ -134,8 +134,9 @@ const KidReflectionStorybookCard = ({
           >
             {/* Book Shadow Base */}
             <motion.div
-              className="absolute inset-0 bg-gray-800 rounded-r-lg opacity-20"
+              className="absolute inset-0 rounded-r-lg opacity-20"
               style={{
+                backgroundColor: currentTheme.shadowBg,
                 transform: "translateX(8px) translateY(8px)",
                 filter: "blur(12px)",
               }}
