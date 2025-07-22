@@ -250,28 +250,53 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
                 transition={{ delay: 0.4 }}
               >
                 <div
-                  className="relative rounded-lg overflow-hidden"
+                  className="relative rounded-xl overflow-hidden"
                   style={{
-                    border: "3px solid #d4af37",
-                    padding: "6px",
-                    boxShadow:
-                      "inset 0 0 8px rgba(255, 215, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.1)",
+                    border: `4px solid ${currentTheme.borderColor}`,
+                    padding: "8px",
+                    background: `linear-gradient(135deg, ${currentTheme.patternColors[0]}60, ${currentTheme.patternColors[1]}40, ${currentTheme.patternColors[2]}60)`,
+                    boxShadow: `
+                      inset 0 0 12px ${currentTheme.accent}30,
+                      0 6px 20px ${currentTheme.shadowColor}40,
+                      0 2px 8px ${currentTheme.shadowColor}20
+                    `,
                   }}
                 >
-                  <div className="relative rounded-md overflow-hidden bg-white p-2">
+                  <div
+                    className="relative rounded-lg overflow-hidden p-2"
+                    style={{
+                      background: `linear-gradient(45deg, ${currentTheme.buttonBg}, rgba(255,255,255,0.9))`,
+                      border: `2px solid ${currentTheme.patternColors[0]}80`,
+                    }}
+                  >
                     <img
                       src={imageUrl}
                       alt="A magical illustration"
-                      className="w-full h-40 object-cover rounded-sm"
+                      className="w-full h-40 object-cover rounded"
                       style={{
-                        filter: "contrast(1.1) saturate(1.2) brightness(1.05)",
+                        filter: "contrast(1.15) saturate(1.3) brightness(1.08) hue-rotate(2deg)",
+                        boxShadow: `inset 0 0 8px rgba(0,0,0,0.1)`,
                       }}
                     />
-                    {/* Vintage photo corners */}
-                    <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-amber-700 opacity-30" />
-                    <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-amber-700 opacity-30" />
-                    <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-amber-700 opacity-30" />
-                    <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-amber-700 opacity-30" />
+                    {/* Fun decorative corners */}
+                    <div
+                      className="absolute top-2 left-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.accent }}
+                    />
+                    <div
+                      className="absolute top-2 right-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.borderColor }}
+                    />
+                    <div
+                      className="absolute bottom-2 left-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.patternColors[2] }}
+                    />
+                    <div
+                      className="absolute bottom-2 right-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.patternColors[1] }}
+                    />
+                    {/* Sparkle overlay */}
+                    <div className="absolute top-1 right-1 text-xs opacity-80 animate-pulse">✨</div>
                   </div>
                 </div>
               </motion.div>
