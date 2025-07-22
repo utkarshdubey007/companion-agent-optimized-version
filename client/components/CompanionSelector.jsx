@@ -498,6 +498,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
   const [selectedCompanion, setSelectedCompanion] = useState(null);
+  const [selectionInProgress, setSelectionInProgress] = useState(false);
 
   const handleSelect = (companion) => {
     // Set selected companion for animation
