@@ -279,18 +279,18 @@ export function AnimatedCompanionAvatar({
       {/* Floating animation container */}
       <motion.div
         animate={{
-          y: companion.name === "Letsgo" && (isHovered || shouldAnimate)
+          y: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
             ? [0, -5, 0] // Enhanced bounce for Letsgo
             : [0, -2, 0],
-          rotate: companion.name === "Rushmore" && (isHovered || shouldAnimate)
+          rotate: activeCompanion.name === "Rushmore" && (isHovered || shouldAnimate)
             ? [0, 2, -2, 0] // Wobble for clumsy cat
             : [0, 1, 0, -1, 0],
         }}
         transition={{
-          duration: companion.name === "Letsgo" && (isHovered || shouldAnimate) ? 0.6 : 2.5,
+          duration: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate) ? 0.6 : 2.5,
           repeat: Infinity,
-          ease: companion.name === "Letsgo" && (isHovered || shouldAnimate) 
-            ? "easeOut" 
+          ease: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
+            ? "easeOut"
             : "easeInOut",
         }}
       >
