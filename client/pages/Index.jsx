@@ -42,6 +42,7 @@ export default function Index() {
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
+  const [selectedMood, setSelectedMood] = useState(null);
 
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
