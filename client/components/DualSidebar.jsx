@@ -11,6 +11,7 @@ export function DualSidebar({
   toggleTopSidebar,
   toggleBottomSidebar,
   onMenuItemClick,
+  moodIconActivated = false,
 }) {
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
@@ -94,7 +95,9 @@ export function DualSidebar({
             >
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-2">
-                  {bottomMenuItems.map((item) => (
+                  {bottomMenuItems.map((item) => {
+                    const isMoodActivated = item.alt === "Mood" && moodIconActivated;
+                    return (
                     <div
                       key={item.alt}
                       className="relative group"
@@ -108,14 +111,23 @@ export function DualSidebar({
                       }}
                     >
                       <div
-                        className="w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
+                        className={`w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 backdrop-blur-sm ${
+                          isMoodActivated
+                            ? "bg-yellow-500/20 border-yellow-400/50 ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/20"
+                            : "bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30"
+                        }`}
                         onClick={() => onMenuItemClick?.(item.alt)}
                       >
                         <img
                           src={item.src}
                           alt={item.alt}
-                          className="w-full h-full object-contain"
+                          className={`w-full h-full object-contain transition-all duration-300 ${
+                            isMoodActivated ? "brightness-125 saturate-150" : ""
+                          }`}
                         />
+                        {isMoodActivated && (
+                          <div className="absolute top-0 right-0 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                        )}
                       </div>
 
                       {!bottomSidebarCollapsed && (
@@ -125,7 +137,8 @@ export function DualSidebar({
                         </div>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
