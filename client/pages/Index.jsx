@@ -358,6 +358,7 @@ export default function Index() {
               onShowCarousel={handleShowCarousel}
               isAIThinking={isAIThinking}
               selectedCompanion={chatSelectedCompanion}
+              kidProfileImage="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F58ad423f73d94106baa75063fb37dfeb?format=webp&width=800"
               className="flex-1 min-h-0"
             />
           </div>
