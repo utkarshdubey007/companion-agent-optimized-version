@@ -9,7 +9,7 @@ export function useChatState() {
       content:
         "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?",
       timestamp: new Date(Date.now() - 300000),
-      companion: null, // No companion selected for initial message
+      companion: null, // Will use default companion in AnimatedCompanionAvatar
     },
   ]);
 
