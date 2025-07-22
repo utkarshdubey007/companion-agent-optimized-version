@@ -15,6 +15,67 @@ const KidReflectionStorybookCard = ({
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
+  // Theme configurations
+  const themeConfig = {
+    rainbow: {
+      background: "from-pink-100 via-purple-50 to-blue-100",
+      binding: "from-pink-200 via-purple-200 to-blue-300",
+      border: "#d946ef", // Purple-pink
+      text: "text-purple-800",
+      accent: "text-purple-600",
+      decorative: "text-pink-500",
+      frame: "#e879f9", // Bright pink
+      buttonBg: "rgba(217, 70, 239, 0.1)",
+      buttonBorder: "rgba(217, 70, 239, 0.3)",
+    },
+    sunset: {
+      background: "from-orange-100 via-red-50 to-pink-100",
+      binding: "from-orange-200 via-red-200 to-pink-300",
+      border: "#f97316", // Orange
+      text: "text-orange-800",
+      accent: "text-red-600",
+      decorative: "text-orange-500",
+      frame: "#fb923c", // Bright orange
+      buttonBg: "rgba(249, 115, 22, 0.1)",
+      buttonBorder: "rgba(249, 115, 22, 0.3)",
+    },
+    forest: {
+      background: "from-green-100 via-emerald-50 to-teal-100",
+      binding: "from-green-200 via-emerald-200 to-teal-300",
+      border: "#10b981", // Emerald
+      text: "text-green-800",
+      accent: "text-emerald-600",
+      decorative: "text-green-500",
+      frame: "#34d399", // Bright emerald
+      buttonBg: "rgba(16, 185, 129, 0.1)",
+      buttonBorder: "rgba(16, 185, 129, 0.3)",
+    },
+    ocean: {
+      background: "from-blue-100 via-cyan-50 to-indigo-100",
+      binding: "from-blue-200 via-cyan-200 to-indigo-300",
+      border: "#0ea5e9", // Sky blue
+      text: "text-blue-800",
+      accent: "text-cyan-600",
+      decorative: "text-blue-500",
+      frame: "#38bdf8", // Bright blue
+      buttonBg: "rgba(14, 165, 233, 0.1)",
+      buttonBorder: "rgba(14, 165, 233, 0.3)",
+    },
+    vintage: {
+      background: "from-amber-50 via-orange-50 to-yellow-100",
+      binding: "from-amber-200 via-orange-200 to-amber-300",
+      border: "#d4af37", // Gold
+      text: "text-amber-800",
+      accent: "text-amber-600",
+      decorative: "text-amber-600",
+      frame: "#d4af37", // Gold
+      buttonBg: "rgba(212, 175, 55, 0.1)",
+      buttonBorder: "rgba(212, 175, 55, 0.3)",
+    },
+  };
+
+  const currentTheme = themeConfig[theme] || themeConfig.rainbow;
+
   // Stagger animation entrance
   useEffect(() => {
     const timer = setTimeout(() => {
