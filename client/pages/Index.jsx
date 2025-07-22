@@ -81,15 +81,7 @@ export default function Index() {
 
   // Function to manually add flippable storybook when reflection icon is clicked
   const addFlippableStorybook = () => {
-    // Check if storybook already exists to prevent duplicates
-    const storybookExists = chatMessages.some(
-      (msg) => msg.type === "flippable_storybook",
-    );
-
-    if (storybookExists) {
-      console.log("Storybook already exists in chat");
-      return;
-    }
+    // Allow multiple storybooks to be added each time reflection icon is clicked
 
     const samplePages = [
       {
