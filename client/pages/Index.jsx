@@ -494,7 +494,11 @@ export default function Index() {
 
       {/* Modals and Overlays */}
       {showAcceptedChallenges && (
-        <AcceptedChallenges challenges={challengesData} />
+        <AcceptedChallenges
+          challenges={challenges}
+          loading={challengesLoading}
+          error={challengesError}
+        />
       )}
       {showCreationsPanel && <CreationsPanel creations={creationsData} />}
       {/* Companion Selector Modal */}
