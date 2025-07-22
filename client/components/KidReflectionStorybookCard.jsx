@@ -321,10 +321,10 @@ const KidReflectionStorybookCard = ({
                       />
 
                       {/* Vintage photo corners */}
-                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-amber-700 opacity-30" />
-                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 border-amber-700 opacity-30" />
-                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 border-amber-700 opacity-30" />
-                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-amber-700 opacity-30" />
+                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 opacity-30" style={{borderColor: currentTheme.border}} />
+                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 opacity-30" style={{borderColor: currentTheme.border}} />
+                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 opacity-30" style={{borderColor: currentTheme.border}} />
+                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 opacity-30" style={{borderColor: currentTheme.border}} />
 
                       {/* Subtle shimmer effect */}
                       <motion.div
