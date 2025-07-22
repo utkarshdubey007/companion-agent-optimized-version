@@ -345,7 +345,7 @@ const KidReflectionStorybookCard = ({
 
                   {/* Illustration Caption */}
                   <motion.p
-                    className="text-center text-xs text-amber-700 mt-2 italic font-medium opacity-70"
+                    className={`text-center text-xs ${currentTheme.accent} mt-2 italic font-medium opacity-70`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 0.7 }}
                     transition={{ delay: 1, duration: 0.6 }}
