@@ -12,6 +12,8 @@ export function DualSidebar({
   toggleBottomSidebar,
   onMenuItemClick,
   moodIconActivated = false,
+  selectedMood = null,
+  showMoodPicker = false,
 }) {
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
