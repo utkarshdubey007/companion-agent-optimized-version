@@ -175,6 +175,7 @@ const mockChallengesData = [
     },
     challenge_status: "SELECTED",
     days_left: 6,
+    time_left: 432000000, // 5 days in milliseconds (5 * 24 * 60 * 60 * 1000)
     submission_date: "2025-07-29T13:20:59.971552+00:00"
   },
   {
