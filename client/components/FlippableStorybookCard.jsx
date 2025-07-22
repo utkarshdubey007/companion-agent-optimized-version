@@ -333,13 +333,13 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
 
                 {/* Scrollable text container */}
                 <div
-                  className="text-amber-900 leading-relaxed overflow-y-auto"
+                  className={`${currentTheme.textPrimary} leading-relaxed overflow-y-auto`}
                   style={{
                     fontFamily: '"Kalam", cursive',
                     fontSize: "14px",
                     textAlign: "justify",
-                    textShadow: "1px 1px 2px rgba(255,255,255,0.5)",
-                    lineHeight: "1.5",
+                    textShadow: "1px 1px 3px rgba(255,255,255,0.8)",
+                    lineHeight: "1.6",
                     maxHeight: "120px",
                     paddingRight: "4px",
                   }}
