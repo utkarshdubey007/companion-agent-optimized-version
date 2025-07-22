@@ -152,17 +152,17 @@ const KidReflectionStorybookCard = ({
                 fontFamily:
                   '"Kalam", "Comic Neue", "Fredoka One", cursive, sans-serif',
                 backgroundImage: theme === 'rainbow' ? `
-                  radial-gradient(circle at 25% 25%, rgba(217, 70, 239, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
-                  radial-gradient(circle at 25% 75%, rgba(249, 115, 22, 0.04) 0%, transparent 50%),
-                  linear-gradient(90deg, rgba(217, 70, 239, 0.05) 0%, transparent 2%),
-                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(217, 70, 239, 0.02) 21px, rgba(217, 70, 239, 0.02) 22px)
+                  radial-gradient(circle at 25% 25%, rgba(217, 70, 239, 0.08) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 25% 75%, rgba(249, 115, 22, 0.04) 0%, ${currentTheme.cardBg} 50%),
+                  linear-gradient(90deg, rgba(217, 70, 239, 0.05) 0%, ${currentTheme.cardBg} 2%),
+                  repeating-linear-gradient(0deg, ${currentTheme.cardBg}, ${currentTheme.cardBg} 20px, rgba(217, 70, 239, 0.02) 21px, rgba(217, 70, 239, 0.02) 22px)
                 ` : `
-                  radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
-                  linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, transparent 2%),
-                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(0, 0, 0, 0.01) 21px, rgba(0, 0, 0, 0.01) 22px)
+                  radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.02) 0%, ${currentTheme.cardBg} 50%),
+                  linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, ${currentTheme.cardBg} 2%),
+                  repeating-linear-gradient(0deg, ${currentTheme.cardBg}, ${currentTheme.cardBg} 20px, rgba(0, 0, 0, 0.01) 21px, rgba(0, 0, 0, 0.01) 22px)
                 `,
                 boxShadow: `
                   inset 4px 0 8px rgba(0, 0, 0, 0.1),
