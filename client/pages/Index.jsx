@@ -43,6 +43,7 @@ export default function Index() {
   const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
   const [selectedMood, setSelectedMood] = useState(null);
+  const [moodAnimationTrigger, setMoodAnimationTrigger] = useState(false);
 
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
