@@ -6,7 +6,17 @@ interface MagicalPortalProps {
 }
 
 // Magical dust particles scattered around and inside portal
-const MagicalDust = ({ x, y, size = 1, opacity = 0.7 }: { x: number; y: number; size?: number; opacity?: number }) => (
+const MagicalDust = ({
+  x,
+  y,
+  size = 1,
+  opacity = 0.7,
+}: {
+  x: number;
+  y: number;
+  size?: number;
+  opacity?: number;
+}) => (
   <div
     className="absolute rounded-full animate-pulse"
     style={{
@@ -14,7 +24,7 @@ const MagicalDust = ({ x, y, size = 1, opacity = 0.7 }: { x: number; y: number; 
       top: `${y}%`,
       width: `${size}px`,
       height: `${size}px`,
-      backgroundColor: '#FFD700',
+      backgroundColor: "#FFD700",
       boxShadow: `0 0 ${size * 3}px #FFD700`,
       opacity,
     }}
@@ -22,24 +32,32 @@ const MagicalDust = ({ x, y, size = 1, opacity = 0.7 }: { x: number; y: number; 
 );
 
 // Four-pointed glowing star
-const FourPointedStar = ({ x, y, size = 16 }: { x: number; y: number; size?: number }) => (
+const FourPointedStar = ({
+  x,
+  y,
+  size = 16,
+}: {
+  x: number;
+  y: number;
+  size?: number;
+}) => (
   <div
     className="absolute animate-pulse"
     style={{
       left: `${x}%`,
       top: `${y}%`,
-      transform: 'translate(-50%, -50%)',
+      transform: "translate(-50%, -50%)",
     }}
   >
     {/* Vertical ray */}
     <div
       className="absolute bg-yellow-300"
       style={{
-        width: '2px',
+        width: "2px",
         height: `${size}px`,
-        left: '50%',
-        top: '0',
-        transform: 'translateX(-50%)',
+        left: "50%",
+        top: "0",
+        transform: "translateX(-50%)",
         boxShadow: `0 0 ${size}px #FFD700, 0 0 ${size * 2}px #FFB800`,
       }}
     />
@@ -48,10 +66,10 @@ const FourPointedStar = ({ x, y, size = 16 }: { x: number; y: number; size?: num
       className="absolute bg-yellow-300"
       style={{
         width: `${size}px`,
-        height: '2px',
-        left: '0',
-        top: '50%',
-        transform: 'translateY(-50%)',
+        height: "2px",
+        left: "0",
+        top: "50%",
+        transform: "translateY(-50%)",
         boxShadow: `0 0 ${size}px #FFD700, 0 0 ${size * 2}px #FFB800`,
       }}
     />
@@ -59,18 +77,21 @@ const FourPointedStar = ({ x, y, size = 16 }: { x: number; y: number; size?: num
     <div
       className="absolute bg-yellow-100 rounded-full"
       style={{
-        width: '4px',
-        height: '4px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-        boxShadow: '0 0 8px #FFFFFF, 0 0 16px #FFD700',
+        width: "4px",
+        height: "4px",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        boxShadow: "0 0 8px #FFFFFF, 0 0 16px #FFD700",
       }}
     />
   </div>
 );
 
-export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, className = "" }) => {
+export const MagicalPortal: React.FC<MagicalPortalProps> = ({
+  children,
+  className = "",
+}) => {
   // Scattered dust positions - inside and around portal
   const dustParticles = [
     // Inside portal
@@ -83,7 +104,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
     { x: 50, y: 25, size: 1.3, opacity: 0.7 },
     { x: 30, y: 40, size: 1, opacity: 0.5 },
     { x: 70, y: 55, size: 1.4, opacity: 0.8 },
-    
+
     // Around portal
     { x: 15, y: 20, size: 2, opacity: 0.9 },
     { x: 85, y: 25, size: 1.5, opacity: 0.7 },
@@ -100,7 +121,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
   ];
 
   return (
-    <div className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
+    <div
+      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden ${className}`}
+    >
       {/* Rich velvety background - Deep purple center to warm amber edges */}
       <div
         className="absolute inset-0"
@@ -119,7 +142,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               #e6a34a 98%,
               #f5c85f 100%
             )
-          `
+          `,
         }}
       />
 
@@ -138,7 +161,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               rgba(255, 165, 0, 0.08) 30%,
               transparent 65%
             )
-          `
+          `,
         }}
       />
 
@@ -155,7 +178,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               rgba(25, 25, 112, 0.12) 85%,
               rgba(0, 0, 0, 0.2) 100%
             )
-          `
+          `,
         }}
       />
 
@@ -164,7 +187,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         const x = Math.random() * 100;
         const y = Math.random() * 100;
         const size = Math.random() * 2 + 0.5; // 0.5px to 2.5px
-        const colors = ['#FFD700', '#DDA0DD', '#E6E6FA', '#F0E68C', '#DA70D6'];
+        const colors = ["#FFD700", "#DDA0DD", "#E6E6FA", "#F0E68C", "#DA70D6"];
         const color = colors[Math.floor(Math.random() * colors.length)];
         const delay = Math.random() * 5;
         const duration = 3 + Math.random() * 4;
@@ -194,8 +217,15 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         const x = Math.random() * 100;
         const y = Math.random() * 100;
         const size = Math.random() * 3 + 1; // 1px to 4px
-        const purpleColors = ['#DDA0DD', '#DA70D6', '#BA55D3', '#9370DB', '#8A2BE2'];
-        const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
+        const purpleColors = [
+          "#DDA0DD",
+          "#DA70D6",
+          "#BA55D3",
+          "#9370DB",
+          "#8A2BE2",
+        ];
+        const color =
+          purpleColors[Math.floor(Math.random() * purpleColors.length)];
         const delay = Math.random() * 6;
         const duration = 4 + Math.random() * 3;
 
@@ -224,8 +254,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         const x = Math.random() * 100;
         const y = Math.random() * 100;
         const size = Math.random() * 8 + 4; // 4px to 12px
-        const cosmicColors = ['#4169E1', '#6495ED', '#87CEEB', '#B0C4DE'];
-        const color = cosmicColors[Math.floor(Math.random() * cosmicColors.length)];
+        const cosmicColors = ["#4169E1", "#6495ED", "#87CEEB", "#B0C4DE"];
+        const color =
+          cosmicColors[Math.floor(Math.random() * cosmicColors.length)];
         const delay = Math.random() * 8;
 
         return (
@@ -267,9 +298,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
       <div
         className="absolute"
         style={{
-          left: '20%',
-          top: '20%',
-          transform: 'translate(-50%, -50%)',
+          left: "20%",
+          top: "20%",
+          transform: "translate(-50%, -50%)",
         }}
       >
         <div className="relative">
@@ -277,46 +308,46 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute animate-pulse transform rotate-45"
             style={{
-              width: '16px',
-              height: '16px',
-              backgroundColor: '#FFD700',
-              borderRadius: '2px',
-              filter: 'blur(1px)',
+              width: "16px",
+              height: "16px",
+              backgroundColor: "#FFD700",
+              borderRadius: "2px",
+              filter: "blur(1px)",
               boxShadow: `
                 0 0 20px #FFD700,
                 0 0 40px #FFD700,
                 0 0 60px rgba(255, 215, 0, 0.5),
                 inset 0 0 8px rgba(255, 255, 255, 0.3)
               `,
-              animationDuration: '3s',
+              animationDuration: "3s",
             }}
           />
           {/* Outer glow effect */}
           <div
             className="absolute transform rotate-45"
             style={{
-              width: '20px',
-              height: '20px',
-              backgroundColor: 'rgba(255, 215, 0, 0.3)',
-              borderRadius: '3px',
-              filter: 'blur(4px)',
-              left: '-2px',
-              top: '-2px',
-              animation: 'starGlow 4s ease-in-out infinite',
+              width: "20px",
+              height: "20px",
+              backgroundColor: "rgba(255, 215, 0, 0.3)",
+              borderRadius: "3px",
+              filter: "blur(4px)",
+              left: "-2px",
+              top: "-2px",
+              animation: "starGlow 4s ease-in-out infinite",
             }}
           />
           {/* Center bright point */}
           <div
             className="absolute transform rotate-45"
             style={{
-              width: '8px',
-              height: '8px',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '1px',
-              left: '4px',
-              top: '4px',
-              opacity: '0.8',
-              animation: 'starPulse 2s ease-in-out infinite',
+              width: "8px",
+              height: "8px",
+              backgroundColor: "#FFFFFF",
+              borderRadius: "1px",
+              left: "4px",
+              top: "4px",
+              opacity: "0.8",
+              animation: "starPulse 2s ease-in-out infinite",
             }}
           />
         </div>
@@ -326,9 +357,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
       <div
         className="absolute"
         style={{
-          right: '22%',
-          bottom: '22%',
-          transform: 'translate(50%, 50%)',
+          right: "22%",
+          bottom: "22%",
+          transform: "translate(50%, 50%)",
         }}
       >
         <div className="relative">
@@ -336,49 +367,49 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute animate-pulse transform rotate-45"
             style={{
-              width: '14px',
-              height: '14px',
-              backgroundColor: '#FFD700',
-              borderRadius: '2px',
-              filter: 'blur(1px)',
+              width: "14px",
+              height: "14px",
+              backgroundColor: "#FFD700",
+              borderRadius: "2px",
+              filter: "blur(1px)",
               boxShadow: `
                 0 0 18px #FFD700,
                 0 0 36px #FFD700,
                 0 0 54px rgba(255, 215, 0, 0.4),
                 inset 0 0 6px rgba(255, 255, 255, 0.4)
               `,
-              animationDuration: '3.5s',
-              animationDelay: '1s',
+              animationDuration: "3.5s",
+              animationDelay: "1s",
             }}
           />
           {/* Outer glow effect */}
           <div
             className="absolute transform rotate-45"
             style={{
-              width: '18px',
-              height: '18px',
-              backgroundColor: 'rgba(255, 215, 0, 0.25)',
-              borderRadius: '3px',
-              filter: 'blur(3px)',
-              left: '-2px',
-              top: '-2px',
-              animation: 'starGlow 4.5s ease-in-out infinite',
-              animationDelay: '1.5s',
+              width: "18px",
+              height: "18px",
+              backgroundColor: "rgba(255, 215, 0, 0.25)",
+              borderRadius: "3px",
+              filter: "blur(3px)",
+              left: "-2px",
+              top: "-2px",
+              animation: "starGlow 4.5s ease-in-out infinite",
+              animationDelay: "1.5s",
             }}
           />
           {/* Center bright point */}
           <div
             className="absolute transform rotate-45"
             style={{
-              width: '6px',
-              height: '6px',
-              backgroundColor: '#FFFFFF',
-              borderRadius: '1px',
-              left: '4px',
-              top: '4px',
-              opacity: '0.9',
-              animation: 'starPulse 2.5s ease-in-out infinite',
-              animationDelay: '0.5s',
+              width: "6px",
+              height: "6px",
+              backgroundColor: "#FFFFFF",
+              borderRadius: "1px",
+              left: "4px",
+              top: "4px",
+              opacity: "0.9",
+              animation: "starPulse 2.5s ease-in-out infinite",
+              animationDelay: "0.5s",
             }}
           />
         </div>
@@ -390,8 +421,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse 120% 150% at center,
                 rgba(255, 215, 0, 0.08) 0%,
@@ -403,9 +434,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(60px)',
-            transform: 'scale(3.5)',
+            borderRadius: "50%",
+            filter: "blur(60px)",
+            transform: "scale(3.5)",
             opacity: 0.7,
           }}
         />
@@ -414,8 +445,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse 100% 120% at center,
                 rgba(255, 215, 0, 0.12) 0%,
@@ -426,11 +457,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(45px)',
-            transform: 'scale(2.8)',
+            borderRadius: "50%",
+            filter: "blur(45px)",
+            transform: "scale(2.8)",
             opacity: 0.6,
-            animation: 'softBreathing 8s ease-in-out infinite',
+            animation: "softBreathing 8s ease-in-out infinite",
           }}
         />
 
@@ -438,8 +469,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse 80% 100% at center,
                 rgba(255, 215, 0, 0.18) 0%,
@@ -450,11 +481,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(35px)',
-            transform: 'scale(2.2)',
-            animation: 'softBreathing 6s ease-in-out infinite',
-            animationDelay: '2s',
+            borderRadius: "50%",
+            filter: "blur(35px)",
+            transform: "scale(2.2)",
+            animation: "softBreathing 6s ease-in-out infinite",
+            animationDelay: "2s",
           }}
         />
 
@@ -462,8 +493,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse 150% 180% at center,
                 transparent 40%,
@@ -474,9 +505,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(80px)',
-            transform: 'scale(4.0)',
+            borderRadius: "50%",
+            filter: "blur(80px)",
+            transform: "scale(4.0)",
             opacity: 0.5,
           }}
         />
@@ -485,11 +516,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute portal-outer-ring"
           style={{
-            width: '340px',
-            height: '500px',
-            left: '-10px',
-            top: '-10px',
-            borderRadius: '50%',
+            width: "340px",
+            height: "500px",
+            left: "-10px",
+            top: "-10px",
+            borderRadius: "50%",
             background: `
               linear-gradient(135deg,
                 rgba(255, 215, 0, 0.15) 0%,
@@ -499,8 +530,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(255, 111, 0, 0.06) 100%
               )
             `,
-            border: '2px solid transparent',
-            backgroundClip: 'padding-box',
+            border: "2px solid transparent",
+            backgroundClip: "padding-box",
             boxShadow: `
               inset 0 0 0 2px rgba(255, 215, 0, 0.4),
               0 0 40px rgba(255, 215, 0, 0.3),
@@ -508,7 +539,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               0 0 100px rgba(255, 167, 38, 0.2),
               0 0 140px rgba(255, 138, 0, 0.15)
             `,
-            animation: 'outerRingGlow 6s ease-in-out infinite',
+            animation: "outerRingGlow 6s ease-in-out infinite",
           }}
         />
 
@@ -516,11 +547,11 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute portal-inner-ring"
           style={{
-            width: '330px',
-            height: '490px',
-            left: '-5px',
-            top: '-5px',
-            borderRadius: '50%',
+            width: "330px",
+            height: "490px",
+            left: "-5px",
+            top: "-5px",
+            borderRadius: "50%",
             background: `
               linear-gradient(120deg,
                 rgba(255, 215, 0, 0.25) 0%,
@@ -529,8 +560,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(255, 138, 0, 0.15) 100%
               )
             `,
-            border: '1px solid transparent',
-            backgroundClip: 'padding-box',
+            border: "1px solid transparent",
+            backgroundClip: "padding-box",
             boxShadow: `
               inset 0 0 0 1px rgba(255, 215, 0, 0.6),
               inset 0 0 20px rgba(255, 215, 0, 0.2),
@@ -539,8 +570,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               0 0 25px rgba(255, 215, 0, 0.4),
               0 0 50px rgba(255, 179, 0, 0.3)
             `,
-            animation: 'innerRingGlow 4s ease-in-out infinite',
-            animationDelay: '1s',
+            animation: "innerRingGlow 4s ease-in-out infinite",
+            animationDelay: "1s",
           }}
         />
 
@@ -548,9 +579,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="relative portal-main"
           style={{
-            width: '320px',
-            height: '480px',
-            borderRadius: '50%',
+            width: "320px",
+            height: "480px",
+            borderRadius: "50%",
             background: `
               radial-gradient(ellipse 85% 90% at center 40%,
                 rgba(255, 215, 0, 0.15) 0%,
@@ -566,7 +597,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 rgba(0, 0, 0, 1) 100%
               )
             `,
-            border: 'none',
+            border: "none",
             boxShadow: `
               inset 0 0 40px rgba(255, 215, 0, 0.08),
               inset 0 0 80px rgba(138, 43, 226, 0.06),
@@ -583,7 +614,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-0"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse 70% 80% at center 35%,
                   rgba(255, 215, 0, 0.12) 0%,
@@ -595,7 +626,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                   rgba(0, 0, 0, 1) 100%
                 )
               `,
-              animation: 'voidPulse 8s ease-in-out infinite',
+              animation: "voidPulse 8s ease-in-out infinite",
             }}
           />
 
@@ -603,7 +634,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-6"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse 60% 70% at center 30%,
                   rgba(75, 0, 130, 0.08) 0%,
@@ -619,8 +650,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 inset 0 0 100px rgba(0, 0, 0, 0.8),
                 inset 0 30px 80px rgba(0, 0, 0, 0.7)
               `,
-              animation: 'deepVoidPulse 6s ease-in-out infinite',
-              animationDelay: '2s',
+              animation: "deepVoidPulse 6s ease-in-out infinite",
+              animationDelay: "2s",
             }}
           />
 
@@ -628,7 +659,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-12"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse 50% 60% at center 25%,
                   rgba(25, 12, 42, 0.06) 0%,
@@ -642,8 +673,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 inset 0 0 120px rgba(0, 0, 0, 1),
                 inset 0 20px 60px rgba(0, 0, 0, 0.9)
               `,
-              animation: 'infiniteDepth 10s ease-in-out infinite',
-              animationDelay: '1s',
+              animation: "infiniteDepth 10s ease-in-out infinite",
+              animationDelay: "1s",
             }}
           />
 
@@ -651,7 +682,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-0"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse at center,
                   transparent 50%,
@@ -662,17 +693,16 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                   rgba(255, 111, 0, 0.20) 100%
                 )
               `,
-              animation: 'tunnelGlow 5s ease-in-out infinite',
-              animationDelay: '0.5s',
+              animation: "tunnelGlow 5s ease-in-out infinite",
+              animationDelay: "0.5s",
             }}
           />
-
 
           {/* Inner glow gradient - blends with dark fill */}
           <div
             className="absolute inset-2 animate-pulse"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse at center,
                   transparent 40%,
@@ -690,7 +720,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-1"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               background: `
                 radial-gradient(ellipse at center,
                   transparent 50%,
@@ -706,13 +736,14 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-0 animate-pulse"
             style={{
-              borderRadius: '50%',
-              border: '2px solid transparent',
+              borderRadius: "50%",
+              border: "2px solid transparent",
               background: `
                 linear-gradient(45deg, #FFD700, #FFB800, #FECF4D, #FFD700) border-box
               `,
-              WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'subtract',
+              WebkitMask:
+                "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "subtract",
             }}
           />
 
@@ -720,14 +751,14 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
           <div
             className="absolute inset-8 flex items-center justify-center"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
             }}
           >
             {/* Companion character */}
             <div
               className="relative"
               style={{
-                animation: 'companionFloat 3s ease-in-out infinite',
+                animation: "companionFloat 3s ease-in-out infinite",
               }}
             >
               <img
@@ -735,7 +766,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 alt="AI Companion"
                 className="w-32 h-32 object-contain"
                 style={{
-                  filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
+                  filter: "drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))",
                 }}
               />
             </div>
@@ -756,8 +787,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0 animate-pulse"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse at center,
                 transparent 50%,
@@ -767,10 +798,10 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(60px)',
-            transform: 'scale(1.8)',
-            animationDelay: '2s',
+            borderRadius: "50%",
+            filter: "blur(60px)",
+            transform: "scale(1.8)",
+            animationDelay: "2s",
           }}
         />
 
@@ -778,8 +809,8 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         <div
           className="absolute inset-0"
           style={{
-            width: '320px',
-            height: '480px',
+            width: "320px",
+            height: "480px",
             background: `
               radial-gradient(ellipse at center,
                 transparent 70%,
@@ -788,9 +819,9 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
                 transparent 100%
               )
             `,
-            borderRadius: '50%',
-            filter: 'blur(80px)',
-            transform: 'scale(3.0)',
+            borderRadius: "50%",
+            filter: "blur(80px)",
+            transform: "scale(3.0)",
           }}
         />
       </div>
@@ -800,10 +831,17 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Dense magical particle field */}
         {Array.from({ length: 80 }, (_, i) => {
           const size = Math.random() * 3 + 1; // 1px to 4px
-          const colors = ['#FFD700', '#FFB300', '#FFA726', '#FF8C00', '#FF7043'];
+          const colors = [
+            "#FFD700",
+            "#FFB300",
+            "#FFA726",
+            "#FF8C00",
+            "#FF7043",
+          ];
           const color = colors[Math.floor(Math.random() * colors.length)];
-          const animations = ['animate-ping', 'animate-pulse', ''];
-          const animation = animations[Math.floor(Math.random() * animations.length)];
+          const animations = ["animate-ping", "animate-pulse", ""];
+          const animation =
+            animations[Math.floor(Math.random() * animations.length)];
           const x = Math.random() * 100;
           const y = Math.random() * 100;
 
@@ -830,7 +868,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Extra dense particles inside portal area */}
         {Array.from({ length: 40 }, (_, i) => {
           const size = Math.random() * 2.5 + 0.8; // 0.8px to 3.3px
-          const colors = ['#FFD700', '#FFB300', '#FFA726', '#FF8F00'];
+          const colors = ["#FFD700", "#FFB300", "#FFA726", "#FF8F00"];
           const color = colors[Math.floor(Math.random() * colors.length)];
           // Position within portal bounds (roughly center 30% of screen)
           const x = 35 + Math.random() * 30;
@@ -859,7 +897,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Shimmering particles with scale animation */}
         {Array.from({ length: 35 }, (_, i) => {
           const size = Math.random() * 2 + 1; // 1px to 3px
-          const colors = ['#FFD700', '#FF8C00', '#FFA500', '#FFAB00'];
+          const colors = ["#FFD700", "#FF8C00", "#FFA500", "#FFAB00"];
           const color = colors[Math.floor(Math.random() * colors.length)];
           const x = Math.random() * 100;
           const y = Math.random() * 100;
@@ -887,7 +925,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
         {/* Twinkling micro particles */}
         {Array.from({ length: 60 }, (_, i) => {
           const size = Math.random() * 1.5 + 0.5; // 0.5px to 2px
-          const colors = ['#FFEB3B', '#FFF176', '#FFD54F', '#FFCA28'];
+          const colors = ["#FFEB3B", "#FFF176", "#FFD54F", "#FFCA28"];
           const color = colors[Math.floor(Math.random() * colors.length)];
           const x = Math.random() * 100;
           const y = Math.random() * 100;

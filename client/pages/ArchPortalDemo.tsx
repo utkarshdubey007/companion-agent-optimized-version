@@ -5,9 +5,10 @@ import { Button } from "../components/ui/button";
 export const ArchPortalDemo: React.FC = () => {
   const [size, setSize] = useState<"sm" | "md" | "lg">("md");
   const [showCompanion, setShowCompanion] = useState(false);
-  
+
   // Using the provided image URL
-  const companionImageUrl = "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fb1cb81f962884e8db61b8b2ee5ffa094?format=webp&width=800";
+  const companionImageUrl =
+    "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fb1cb81f962884e8db61b8b2ee5ffa094?format=webp&width=800";
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -28,7 +29,7 @@ export const ArchPortalDemo: React.FC = () => {
               </Button>
             ))}
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button
               variant={showCompanion ? "default" : "outline"}
@@ -43,7 +44,9 @@ export const ArchPortalDemo: React.FC = () => {
 
         {/* Info panel */}
         <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-xs">
-          <h3 className="text-white font-semibold text-sm mb-2">Magical Arch Portal</h3>
+          <h3 className="text-white font-semibold text-sm mb-2">
+            Magical Arch Portal
+          </h3>
           <div className="text-gray-300 text-xs space-y-1">
             <p>• Arch-shaped golden portal</p>
             <p>• Floating golden particles</p>

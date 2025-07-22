@@ -141,7 +141,10 @@ export default function Index() {
     };
 
     setChatMessages((prev) => [...prev, flippableStorybookMessage]);
-    console.log("FlippableStorybookCard added to chat!", flippableStorybookMessage);
+    console.log(
+      "FlippableStorybookCard added to chat!",
+      flippableStorybookMessage,
+    );
   };
 
   // Sidebar toggle handlers
@@ -320,8 +323,6 @@ export default function Index() {
       }}
     >
       {!showCompanionSelector && <EnhancedMagicalBackground />}
-
-
 
       <AppHeader />
 

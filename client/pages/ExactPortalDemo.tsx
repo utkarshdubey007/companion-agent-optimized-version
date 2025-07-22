@@ -38,7 +38,8 @@ export const ExactPortalDemo: React.FC = () => {
               Portal Content
             </h2>
             <p className="text-yellow-200/80 text-sm max-w-xs">
-              This portal exactly matches the reference image with precise particle and star positions.
+              This portal exactly matches the reference image with precise
+              particle and star positions.
             </p>
           </div>
         )}

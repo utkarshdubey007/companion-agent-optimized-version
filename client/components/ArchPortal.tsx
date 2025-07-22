@@ -11,13 +11,22 @@ interface ArchPortalProps {
 // Floating golden particles around the portal
 const GoldenParticle = ({ index, delay }: { index: number; delay: number }) => {
   const positions = [
-    { x: -40, y: -60 }, { x: 40, y: -60 }, { x: -60, y: -20 }, { x: 60, y: -20 },
-    { x: -50, y: 20 }, { x: 50, y: 20 }, { x: -30, y: 60 }, { x: 30, y: 60 },
-    { x: -70, y: -40 }, { x: 70, y: -40 }, { x: -80, y: 0 }, { x: 80, y: 0 }
+    { x: -40, y: -60 },
+    { x: 40, y: -60 },
+    { x: -60, y: -20 },
+    { x: 60, y: -20 },
+    { x: -50, y: 20 },
+    { x: 50, y: 20 },
+    { x: -30, y: 60 },
+    { x: 30, y: 60 },
+    { x: -70, y: -40 },
+    { x: 70, y: -40 },
+    { x: -80, y: 0 },
+    { x: 80, y: 0 },
   ];
-  
+
   const pos = positions[index % positions.length];
-  
+
   return (
     <motion.div
       className="absolute w-1 h-1 bg-yellow-300 rounded-full"
@@ -25,7 +34,8 @@ const GoldenParticle = ({ index, delay }: { index: number; delay: number }) => {
         left: "50%",
         top: "50%",
         transform: `translate(${pos.x}px, ${pos.y}px)`,
-        boxShadow: "0 0 8px rgba(255, 215, 0, 0.9), 0 0 16px rgba(255, 215, 0, 0.6)",
+        boxShadow:
+          "0 0 8px rgba(255, 215, 0, 0.9), 0 0 16px rgba(255, 215, 0, 0.6)",
       }}
       animate={{
         scale: [0.4, 1.2, 0.4],
@@ -45,14 +55,23 @@ const GoldenParticle = ({ index, delay }: { index: number; delay: number }) => {
 // Twinkling stars scattered around
 const TwinklingStar = ({ index }: { index: number }) => {
   const starPositions = [
-    { x: 15, y: 10 }, { x: 85, y: 15 }, { x: 10, y: 85 }, { x: 90, y: 80 },
-    { x: 25, y: 25 }, { x: 75, y: 30 }, { x: 30, y: 75 }, { x: 70, y: 70 },
-    { x: 5, y: 50 }, { x: 95, y: 45 }, { x: 50, y: 5 }, { x: 45, y: 95 }
+    { x: 15, y: 10 },
+    { x: 85, y: 15 },
+    { x: 10, y: 85 },
+    { x: 90, y: 80 },
+    { x: 25, y: 25 },
+    { x: 75, y: 30 },
+    { x: 30, y: 75 },
+    { x: 70, y: 70 },
+    { x: 5, y: 50 },
+    { x: 95, y: 45 },
+    { x: 50, y: 5 },
+    { x: 45, y: 95 },
   ];
-  
+
   const pos = starPositions[index % starPositions.length];
   const size = Math.random() * 2 + 1;
-  
+
   return (
     <motion.div
       className="absolute bg-yellow-200 rounded-full"
@@ -78,7 +97,13 @@ const TwinklingStar = ({ index }: { index: number }) => {
 };
 
 // Shimmering magical sparkles
-const MagicalSparkle = ({ index, portalSize }: { index: number; portalSize: { width: number; height: number } }) => {
+const MagicalSparkle = ({
+  index,
+  portalSize,
+}: {
+  index: number;
+  portalSize: { width: number; height: number };
+}) => {
   const angle = (index * 360) / 16;
   const radiusX = portalSize.width * 0.7;
   const radiusY = portalSize.height * 0.6;
@@ -131,7 +156,9 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
   const { width, height } = sizeConfig[size];
 
   return (
-    <div className={`relative flex items-center justify-center min-h-screen ${className}`}>
+    <div
+      className={`relative flex items-center justify-center min-h-screen ${className}`}
+    >
       {/* Deep violet night sky background */}
       <div
         className="absolute inset-0"
@@ -195,7 +222,7 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
                 transparent 100%
               )
             `,
-            clipPath: `ellipse(${width/2}px ${height*0.8}px at center ${height*0.8}px)`,
+            clipPath: `ellipse(${width / 2}px ${height * 0.8}px at center ${height * 0.8}px)`,
             boxShadow: `
               0 0 40px rgba(255, 215, 0, 0.8),
               0 0 80px rgba(255, 190, 0, 0.6),
@@ -228,7 +255,7 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
                 transparent 50%
               )
             `,
-            clipPath: `ellipse(${width/2 - 10}px ${height*0.8 - 10}px at center ${height*0.8}px)`,
+            clipPath: `ellipse(${width / 2 - 10}px ${height * 0.8 - 10}px at center ${height * 0.8}px)`,
           }}
           animate={{
             opacity: [0.6, 1, 0.6],
@@ -247,7 +274,11 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
 
         {/* Magical sparkles around the arch */}
         {[...Array(16)].map((_, i) => (
-          <MagicalSparkle key={`sparkle-${i}`} index={i} portalSize={{ width, height }} />
+          <MagicalSparkle
+            key={`sparkle-${i}`}
+            index={i}
+            portalSize={{ width, height }}
+          />
         ))}
 
         {/* Light rays emanating from the portal */}
@@ -255,7 +286,7 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
           className="absolute inset-0"
           style={{
             background: `
-              conic-gradient(from 0deg at center ${height*0.8}px, 
+              conic-gradient(from 0deg at center ${height * 0.8}px, 
                 transparent 0deg, 
                 rgba(255, 215, 0, 0.1) 30deg, 
                 transparent 60deg, 
@@ -287,7 +318,7 @@ export const ArchPortal: React.FC<ArchPortalProps> = ({
           className="absolute inset-0"
           style={{
             border: "2px solid rgba(255, 215, 0, 0.6)",
-            clipPath: `ellipse(${width/2}px ${height*0.8}px at center ${height*0.8}px)`,
+            clipPath: `ellipse(${width / 2}px ${height * 0.8}px at center ${height * 0.8}px)`,
           }}
           animate={{
             borderColor: [

@@ -10,7 +10,13 @@ interface MagicalCompanionPortalProps {
 }
 
 // Sparkle particle component
-const FloatingSparkle = ({ index, portalBounds }: { index: number; portalBounds: { width: number; height: number } }) => {
+const FloatingSparkle = ({
+  index,
+  portalBounds,
+}: {
+  index: number;
+  portalBounds: { width: number; height: number };
+}) => {
   const angle = (index * 360) / 12;
   const radiusX = portalBounds.width * 0.6;
   const radiusY = portalBounds.height * 0.6;
@@ -42,12 +48,21 @@ const FloatingSparkle = ({ index, portalBounds }: { index: number; portalBounds:
 };
 
 // Background magical particles
-const MagicalParticles = ({ count, state }: { count: number; state: string }) => {
+const MagicalParticles = ({
+  count,
+  state,
+}: {
+  count: number;
+  state: string;
+}) => {
   const getParticleColor = () => {
     switch (state) {
-      case "thinking": return "#9333EA";
-      case "speaking": return "#FF6B9D";
-      default: return "#FFD700";
+      case "thinking":
+        return "#9333EA";
+      case "speaking":
+        return "#FF6B9D";
+      default:
+        return "#FFD700";
     }
   };
 
@@ -148,7 +163,13 @@ const ThinkingStars = () => {
 };
 
 // Expression bubble component
-const ExpressionBubble = ({ expression, state }: { expression: string; state: string }) => {
+const ExpressionBubble = ({
+  expression,
+  state,
+}: {
+  expression: string;
+  state: string;
+}) => {
   return (
     <motion.div
       className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2 shadow-lg"
@@ -193,7 +214,9 @@ export const MagicalCompanionPortal: React.FC<MagicalCompanionPortalProps> = ({
     if (state === "idle") {
       const expressions = ["😟", "😊", "🤔", "😌"];
       const interval = setInterval(() => {
-        setCurrentExpression(expressions[Math.floor(Math.random() * expressions.length)]);
+        setCurrentExpression(
+          expressions[Math.floor(Math.random() * expressions.length)],
+        );
       }, 4000);
       return () => clearInterval(interval);
     } else {
@@ -244,7 +267,9 @@ export const MagicalCompanionPortal: React.FC<MagicalCompanionPortalProps> = ({
   };
 
   return (
-    <div className={`relative flex items-center justify-center min-h-screen ${className}`}>
+    <div
+      className={`relative flex items-center justify-center min-h-screen ${className}`}
+    >
       {/* Space background */}
       <div
         className="absolute inset-0"
@@ -306,15 +331,18 @@ export const MagicalCompanionPortal: React.FC<MagicalCompanionPortalProps> = ({
             `,
           }}
           animate={{
-            boxShadow: state === "speaking" ? [
-              "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
-              "0 0 80px rgba(255, 215, 0, 1), 0 0 160px rgba(255, 165, 0, 0.8), 0 0 240px rgba(255, 140, 0, 0.6), inset 0 0 80px rgba(255, 215, 0, 0.5)",
-              "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
-            ] : [
-              "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
-              "0 0 60px rgba(255, 215, 0, 1), 0 0 120px rgba(255, 165, 0, 0.8), 0 0 180px rgba(255, 140, 0, 0.6), inset 0 0 60px rgba(255, 215, 0, 0.5)",
-              "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
-            ],
+            boxShadow:
+              state === "speaking"
+                ? [
+                    "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
+                    "0 0 80px rgba(255, 215, 0, 1), 0 0 160px rgba(255, 165, 0, 0.8), 0 0 240px rgba(255, 140, 0, 0.6), inset 0 0 80px rgba(255, 215, 0, 0.5)",
+                    "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
+                  ]
+                : [
+                    "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
+                    "0 0 60px rgba(255, 215, 0, 1), 0 0 120px rgba(255, 165, 0, 0.8), 0 0 180px rgba(255, 140, 0, 0.6), inset 0 0 60px rgba(255, 215, 0, 0.5)",
+                    "0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 165, 0, 0.6), 0 0 120px rgba(255, 140, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.3)",
+                  ],
           }}
           transition={{
             duration: state === "speaking" ? 1 : 3,
@@ -375,11 +403,14 @@ export const MagicalCompanionPortal: React.FC<MagicalCompanionPortalProps> = ({
               filter: `drop-shadow(0 0 20px rgba(255, 215, 0, ${state === "speaking" ? 0.8 : 0.5}))`,
             }}
             animate={{
-              filter: state === "speaking" ? [
-                "drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))",
-                "drop-shadow(0 0 40px rgba(255, 215, 0, 1))",
-                "drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))",
-              ] : undefined,
+              filter:
+                state === "speaking"
+                  ? [
+                      "drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))",
+                      "drop-shadow(0 0 40px rgba(255, 215, 0, 1))",
+                      "drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))",
+                    ]
+                  : undefined,
             }}
             transition={{
               duration: 0.8,

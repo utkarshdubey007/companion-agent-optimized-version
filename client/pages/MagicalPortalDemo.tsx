@@ -5,14 +5,15 @@ import { Button } from "../components/ui/button";
 export const MagicalPortalDemo: React.FC = () => {
   const [state, setState] = useState<"idle" | "thinking" | "speaking">("idle");
   const [size, setSize] = useState<"sm" | "md" | "lg">("md");
-  
+
   // Using the provided image URL
-  const companionImageUrl = "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fb1cb81f962884e8db61b8b2ee5ffa094?format=webp&width=800";
+  const companionImageUrl =
+    "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fb1cb81f962884e8db61b8b2ee5ffa094?format=webp&width=800";
 
   const expressions = {
     idle: "😟",
     thinking: "🤔",
-    speaking: "😊"
+    speaking: "😊",
   };
 
   return (
@@ -34,7 +35,7 @@ export const MagicalPortalDemo: React.FC = () => {
               </Button>
             ))}
           </div>
-          
+
           <h3 className="text-white font-semibold text-sm">Portal Size</h3>
           <div className="flex gap-2">
             {(["sm", "md", "lg"] as const).map((s) => (
@@ -53,11 +54,19 @@ export const MagicalPortalDemo: React.FC = () => {
 
         {/* Info panel */}
         <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 max-w-xs">
-          <h3 className="text-white font-semibold text-sm mb-2">Current State: {state}</h3>
+          <h3 className="text-white font-semibold text-sm mb-2">
+            Current State: {state}
+          </h3>
           <div className="text-gray-300 text-xs space-y-1">
-            <p><strong>Idle:</strong> Soft shimmer, gentle float</p>
-            <p><strong>Thinking:</strong> Floats up with swirling stars</p>
-            <p><strong>Speaking:</strong> Intense glow, sound waves</p>
+            <p>
+              <strong>Idle:</strong> Soft shimmer, gentle float
+            </p>
+            <p>
+              <strong>Thinking:</strong> Floats up with swirling stars
+            </p>
+            <p>
+              <strong>Speaking:</strong> Intense glow, sound waves
+            </p>
           </div>
         </div>
       </div>

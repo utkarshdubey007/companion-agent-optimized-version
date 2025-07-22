@@ -6,7 +6,8 @@ import { companions } from "./CompanionSelector";
 const defaultCompanion = {
   id: 2,
   name: "Doma",
-  image: "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
+  image:
+    "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F2f140743f61a4813a678c882959815ff?format=webp&width=800",
   color: "#4ECDC4",
   description: "Speedy lizard who races through adventures!",
   type: "Speedy lizard",
@@ -252,19 +253,22 @@ export function AnimatedCompanionAvatar({
   size = 40,
   className = "",
   showAnimations = true,
-  triggerAnimation = false // New prop to control when to show selection animation
+  triggerAnimation = false, // New prop to control when to show selection animation
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   // Use default green companion (Doma) if none is selected
-  const activeCompanion = companion ||
-    (companions && companions.find(c => c.id === 2)) ||
+  const activeCompanion =
+    companion ||
+    (companions && companions.find((c) => c.id === 2)) ||
     defaultCompanion;
 
   // Safety check - should never be null now, but just in case
   if (!activeCompanion || !activeCompanion.id) {
-    console.warn("AnimatedCompanionAvatar: No valid companion found, using fallback");
+    console.warn(
+      "AnimatedCompanionAvatar: No valid companion found, using fallback",
+    );
     return (
       <div
         className={`w-10 h-10 rounded-full bg-emerald-300 flex items-center justify-center ${className}`}
@@ -290,24 +294,32 @@ export function AnimatedCompanionAvatar({
       style={{ width: size, height: size }}
       onMouseEnter={() => showAnimations && setIsHovered(true)}
       onMouseLeave={() => showAnimations && setIsHovered(false)}
-      layoutId={activeCompanion ? `chat-companion-${activeCompanion.id}` : undefined}
+      layoutId={
+        activeCompanion ? `chat-companion-${activeCompanion.id}` : undefined
+      }
     >
       {/* Floating animation container */}
       <motion.div
         animate={{
-          y: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
-            ? [0, -5, 0] // Enhanced bounce for Letsgo
-            : [0, -2, 0],
-          rotate: activeCompanion.name === "Rushmore" && (isHovered || shouldAnimate)
-            ? [0, 2, -2, 0] // Wobble for clumsy cat
-            : [0, 1, 0, -1, 0],
+          y:
+            activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
+              ? [0, -5, 0] // Enhanced bounce for Letsgo
+              : [0, -2, 0],
+          rotate:
+            activeCompanion.name === "Rushmore" && (isHovered || shouldAnimate)
+              ? [0, 2, -2, 0] // Wobble for clumsy cat
+              : [0, 1, 0, -1, 0],
         }}
         transition={{
-          duration: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate) ? 0.6 : 2.5,
+          duration:
+            activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
+              ? 0.6
+              : 2.5,
           repeat: Infinity,
-          ease: activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
-            ? "easeOut"
-            : "easeInOut",
+          ease:
+            activeCompanion.name === "Letsgo" && (isHovered || shouldAnimate)
+              ? "easeOut"
+              : "easeInOut",
         }}
       >
         {/* Outer magical aura - scaled down for chat */}
@@ -335,27 +347,30 @@ export function AnimatedCompanionAvatar({
           className="absolute inset-0 rounded-full border-2"
           style={{
             borderColor: activeCompanion.color,
-            boxShadow: shouldAnimate || isHovered
-              ? `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`
-              : `0 0 8px ${activeCompanion.color}`,
+            boxShadow:
+              shouldAnimate || isHovered
+                ? `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`
+                : `0 0 8px ${activeCompanion.color}`,
             width: size,
             height: size,
           }}
           animate={{
-            borderWidth: shouldAnimate || isHovered
-              ? ["2px", "3px", "2px"]
-              : ["1px", "2px", "1px"],
-            boxShadow: shouldAnimate || isHovered
-              ? [
-                  `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
-                  `0 0 20px ${activeCompanion.color}, 0 0 40px ${activeCompanion.color}80`,
-                  `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
-                ]
-              : [
-                  `0 0 8px ${activeCompanion.color}`,
-                  `0 0 12px ${activeCompanion.color}40`,
-                  `0 0 8px ${activeCompanion.color}`,
-                ],
+            borderWidth:
+              shouldAnimate || isHovered
+                ? ["2px", "3px", "2px"]
+                : ["1px", "2px", "1px"],
+            boxShadow:
+              shouldAnimate || isHovered
+                ? [
+                    `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
+                    `0 0 20px ${activeCompanion.color}, 0 0 40px ${activeCompanion.color}80`,
+                    `0 0 15px ${activeCompanion.color}, 0 0 30px ${activeCompanion.color}60`,
+                  ]
+                : [
+                    `0 0 8px ${activeCompanion.color}`,
+                    `0 0 12px ${activeCompanion.color}40`,
+                    `0 0 8px ${activeCompanion.color}`,
+                  ],
             scale: shouldAnimate ? [1, 1.2, 1] : [1, 1.05, 1],
           }}
           transition={{

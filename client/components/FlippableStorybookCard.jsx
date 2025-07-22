@@ -3,7 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Volume2, Star, Award } from "lucide-react";
 
 // Custom StorybookPage component with fixed layout
-const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentTheme }) => {
+const StorybookPage = ({
+  imageUrl,
+  reflection,
+  badgeTitle,
+  aiAvatarUrl,
+  currentTheme,
+}) => {
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
@@ -93,7 +99,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                 whileHover={{
                   scale: 1.15,
                   rotate: 5,
-                  boxShadow: `0 6px 20px ${currentTheme.shadowColor}60, 0 0 0 2px ${currentTheme.borderColor}40`
+                  boxShadow: `0 6px 20px ${currentTheme.shadowColor}60, 0 0 0 2px ${currentTheme.borderColor}40`,
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -203,7 +209,8 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                       alt="A magical illustration"
                       className="w-full h-40 object-cover rounded"
                       style={{
-                        filter: "contrast(1.15) saturate(1.3) brightness(1.08) hue-rotate(2deg)",
+                        filter:
+                          "contrast(1.15) saturate(1.3) brightness(1.08) hue-rotate(2deg)",
                         boxShadow: `inset 0 0 8px rgba(0,0,0,0.1)`,
                       }}
                     />
@@ -225,7 +232,9 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                       style={{ backgroundColor: currentTheme.patternColors[1] }}
                     />
                     {/* Sparkle overlay */}
-                    <div className="absolute top-1 right-1 text-xs opacity-80 animate-pulse">✨</div>
+                    <div className="absolute top-1 right-1 text-xs opacity-80 animate-pulse">
+                      ✨
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -313,7 +322,7 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                     }}
                     whileHover={{
                       scale: 1.15,
-                      boxShadow: `0 4px 12px ${currentTheme.shadowColor}50`
+                      boxShadow: `0 4px 12px ${currentTheme.shadowColor}50`,
                     }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -335,7 +344,9 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
               >
-                <div className={`text-xs ${currentTheme.textSecondary} opacity-70 font-medium mr-2`}>
+                <div
+                  className={`text-xs ${currentTheme.textSecondary} opacity-70 font-medium mr-2`}
+                >
                   🎭 How does this make you feel? 🎭
                 </div>
                 {reactions.map((reaction, idx) => (
@@ -366,14 +377,19 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                     }}
                     whileTap={{ scale: 0.9, rotate: -5 }}
                     animate={{
-                      rotate: selectedReaction?.icon === reaction.icon ? [0, 10, -10, 0] : 0,
+                      rotate:
+                        selectedReaction?.icon === reaction.icon
+                          ? [0, 10, -10, 0]
+                          : 0,
                     }}
                     transition={{
                       duration: 0.6,
                       repeat: selectedReaction?.icon === reaction.icon ? 3 : 0,
                     }}
                   >
-                    <span className="text-lg drop-shadow-sm">{reaction.icon}</span>
+                    <span className="text-lg drop-shadow-sm">
+                      {reaction.icon}
+                    </span>
 
                     {/* Reaction feedback */}
                     <AnimatePresence>
@@ -385,7 +401,12 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, currentT
                             boxShadow: `0 6px 16px ${currentTheme.shadowColor}50`,
                             border: `1px solid ${currentTheme.borderColor}80`,
                           }}
-                          initial={{ opacity: 0, y: 10, scale: 0.5, rotate: -10 }}
+                          initial={{
+                            opacity: 0,
+                            y: 10,
+                            scale: 0.5,
+                            rotate: -10,
+                          }}
                           animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
                           exit={{ opacity: 0, y: -10, scale: 0.5, rotate: 10 }}
                         >
@@ -558,7 +579,9 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                   }}
                   whileTap={{ scale: 0.9, rotate: 5 }}
                 >
-                  <ChevronLeft className={`w-5 h-5 ${companionTheme.textPrimary}`} />
+                  <ChevronLeft
+                    className={`w-5 h-5 ${companionTheme.textPrimary}`}
+                  />
                 </motion.button>
 
                 <motion.button
@@ -577,7 +600,9 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                   }}
                   whileTap={{ scale: 0.9, rotate: -5 }}
                 >
-                  <ChevronRight className={`w-5 h-5 ${companionTheme.textPrimary}`} />
+                  <ChevronRight
+                    className={`w-5 h-5 ${companionTheme.textPrimary}`}
+                  />
                 </motion.button>
               </div>
 
@@ -603,7 +628,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                       whileHover={{
                         scale: 1.4,
                         rotate: 180,
-                        boxShadow: `0 0 16px ${companionTheme.accent}90, 0 4px 8px ${companionTheme.shadowColor}60`
+                        boxShadow: `0 0 16px ${companionTheme.accent}90, 0 4px 8px ${companionTheme.shadowColor}60`,
                       }}
                       whileTap={{ scale: 0.8 }}
                       animate={{

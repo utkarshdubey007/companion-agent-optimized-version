@@ -12,7 +12,7 @@ const SpaceSparkle = ({ index }: { index: number }) => {
   const sparkleDelay = index * 0.3;
   const sparkleX = Math.random() * 100;
   const sparkleY = Math.random() * 100;
-  
+
   return (
     <motion.div
       className="absolute w-1 h-1 bg-white rounded-full"
@@ -41,7 +41,7 @@ const SpaceStar = ({ index }: { index: number }) => {
   const starX = Math.random() * 100;
   const starY = Math.random() * 100;
   const starSize = Math.random() * 3 + 2;
-  
+
   return (
     <motion.div
       className="absolute bg-yellow-200 rounded-full"
@@ -183,7 +183,9 @@ export const SpaceCompanion: React.FC<SpaceCompanionProps> = ({
   size = 200,
 }) => {
   return (
-    <div className={`relative flex items-center justify-center min-h-screen ${className}`}>
+    <div
+      className={`relative flex items-center justify-center min-h-screen ${className}`}
+    >
       {/* Space background */}
       <div
         className="absolute inset-0"

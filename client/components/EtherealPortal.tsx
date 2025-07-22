@@ -10,20 +10,41 @@ interface EtherealPortalProps {
 // Floating magical particles
 const FloatingParticle = ({ index }: { index: number }) => {
   const positions = [
-    { x: 15, y: 12 }, { x: 85, y: 18 }, { x: 25, y: 85 }, { x: 75, y: 80 },
-    { x: 8, y: 45 }, { x: 92, y: 35 }, { x: 35, y: 8 }, { x: 65, y: 90 },
-    { x: 5, y: 65 }, { x: 95, y: 55 }, { x: 45, y: 5 }, { x: 55, y: 95 },
-    { x: 20, y: 25 }, { x: 80, y: 75 }, { x: 30, y: 70 }, { x: 70, y: 30 },
-    { x: 12, y: 88 }, { x: 88, y: 12 }, { x: 40, y: 40 }, { x: 60, y: 60 },
-    { x: 18, y: 58 }, { x: 82, y: 42 }, { x: 38, y: 78 }, { x: 62, y: 22 },
-    { x: 28, y: 48 }, { x: 72, y: 52 }, { x: 48, y: 28 }, { x: 52, y: 72 }
+    { x: 15, y: 12 },
+    { x: 85, y: 18 },
+    { x: 25, y: 85 },
+    { x: 75, y: 80 },
+    { x: 8, y: 45 },
+    { x: 92, y: 35 },
+    { x: 35, y: 8 },
+    { x: 65, y: 90 },
+    { x: 5, y: 65 },
+    { x: 95, y: 55 },
+    { x: 45, y: 5 },
+    { x: 55, y: 95 },
+    { x: 20, y: 25 },
+    { x: 80, y: 75 },
+    { x: 30, y: 70 },
+    { x: 70, y: 30 },
+    { x: 12, y: 88 },
+    { x: 88, y: 12 },
+    { x: 40, y: 40 },
+    { x: 60, y: 60 },
+    { x: 18, y: 58 },
+    { x: 82, y: 42 },
+    { x: 38, y: 78 },
+    { x: 62, y: 22 },
+    { x: 28, y: 48 },
+    { x: 72, y: 52 },
+    { x: 48, y: 28 },
+    { x: 52, y: 72 },
   ];
-  
+
   const pos = positions[index % positions.length];
   const size = Math.random() * 2.5 + 1;
   const isLarge = size > 2;
   const delay = index * 0.3;
-  
+
   return (
     <motion.div
       className="absolute rounded-full"
@@ -55,7 +76,7 @@ const EtherealDust = ({ index }: { index: number }) => {
   const x = Math.random() * 100;
   const y = Math.random() * 100;
   const size = Math.random() * 1.5 + 0.5;
-  
+
   return (
     <motion.div
       className="absolute rounded-full opacity-60"
@@ -118,7 +139,7 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
         {[...Array(28)].map((_, i) => (
           <FloatingParticle key={`particle-${i}`} index={i} />
         ))}
-        
+
         {/* Ethereal dust particles */}
         {[...Array(35)].map((_, i) => (
           <EtherealDust key={`dust-${i}`} index={i} />
@@ -157,9 +178,13 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
             width: `max(${portalWidth}, ${minWidth})`,
             height: `max(${portalHeight}, ${minHeight})`,
           }}
-          animate={animated ? {
-            scale: [1, 1.01, 1],
-          } : {}}
+          animate={
+            animated
+              ? {
+                  scale: [1, 1.01, 1],
+                }
+              : {}
+          }
           transition={{
             duration: 4,
             repeat: Infinity,
@@ -183,9 +208,13 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
               clipPath: `ellipse(50% 85% at center 15%)`,
               filter: "blur(2px)",
             }}
-            animate={animated ? {
-              opacity: [0.7, 1, 0.7],
-            } : {}}
+            animate={
+              animated
+                ? {
+                    opacity: [0.7, 1, 0.7],
+                  }
+                : {}
+            }
             transition={{
               duration: 3,
               repeat: Infinity,
@@ -211,15 +240,20 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
               border: "2px solid transparent",
               backgroundClip: "padding-box",
             }}
-            animate={animated ? {
-              boxShadow: [
-                "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
-                "inset 0 0 0 2px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.6), 0 0 200px rgba(255, 140, 0, 0.3)",
-                "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
-              ],
-            } : {
-              boxShadow: "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
-            }}
+            animate={
+              animated
+                ? {
+                    boxShadow: [
+                      "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
+                      "inset 0 0 0 2px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.6), 0 0 200px rgba(255, 140, 0, 0.3)",
+                      "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
+                    ],
+                  }
+                : {
+                    boxShadow:
+                      "inset 0 0 0 2px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 120px rgba(255, 140, 0, 0.2)",
+                  }
+            }
             transition={{
               duration: 4,
               repeat: Infinity,
@@ -241,9 +275,13 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
               `,
               clipPath: `ellipse(47% 82% at center 15%)`,
             }}
-            animate={animated ? {
-              opacity: [0.6, 0.9, 0.6],
-            } : {}}
+            animate={
+              animated
+                ? {
+                    opacity: [0.6, 0.9, 0.6],
+                  }
+                : {}
+            }
             transition={{
               duration: 2.5,
               repeat: Infinity,
@@ -266,9 +304,13 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
               `,
               filter: "blur(3px)",
             }}
-            animate={animated ? {
-              opacity: [0.8, 1, 0.8],
-            } : {}}
+            animate={
+              animated
+                ? {
+                    opacity: [0.8, 1, 0.8],
+                  }
+                : {}
+            }
             transition={{
               duration: 3,
               repeat: Infinity,
@@ -277,36 +319,37 @@ export const EtherealPortal: React.FC<EtherealPortalProps> = ({
           />
 
           {/* Particle effects around portal perimeter */}
-          {animated && [...Array(12)].map((_, i) => {
-            const angle = (i * 360) / 12;
-            const radiusX = 55; // % of width
-            const radiusY = 45; // % of height
-            const x = 50 + Math.cos((angle * Math.PI) / 180) * radiusX;
-            const y = 15 + Math.sin((angle * Math.PI) / 180) * radiusY;
+          {animated &&
+            [...Array(12)].map((_, i) => {
+              const angle = (i * 360) / 12;
+              const radiusX = 55; // % of width
+              const radiusY = 45; // % of height
+              const x = 50 + Math.cos((angle * Math.PI) / 180) * radiusX;
+              const y = 15 + Math.sin((angle * Math.PI) / 180) * radiusY;
 
-            return (
-              <motion.div
-                key={`portal-particle-${i}`}
-                className="absolute w-1 h-1 bg-yellow-300 rounded-full"
-                style={{
-                  left: `${x}%`,
-                  top: `${y}%`,
-                  boxShadow: "0 0 8px rgba(255, 215, 0, 0.9)",
-                }}
-                animate={{
-                  scale: [0.5, 1.2, 0.5],
-                  opacity: [0.4, 1, 0.4],
-                  rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 3,
-                  delay: i * 0.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            );
-          })}
+              return (
+                <motion.div
+                  key={`portal-particle-${i}`}
+                  className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+                  style={{
+                    left: `${x}%`,
+                    top: `${y}%`,
+                    boxShadow: "0 0 8px rgba(255, 215, 0, 0.9)",
+                  }}
+                  animate={{
+                    scale: [0.5, 1.2, 0.5],
+                    opacity: [0.4, 1, 0.4],
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 3,
+                    delay: i * 0.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              );
+            })}
 
           {/* Content area - positioned in the center of the portal */}
           <div

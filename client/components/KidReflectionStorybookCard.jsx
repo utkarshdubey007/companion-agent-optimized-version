@@ -151,14 +151,17 @@ const KidReflectionStorybookCard = ({
               style={{
                 fontFamily:
                   '"Kalam", "Comic Neue", "Fredoka One", cursive, sans-serif',
-                backgroundImage: theme === 'rainbow' ? `
+                backgroundImage:
+                  theme === "rainbow"
+                    ? `
                   radial-gradient(circle at 25% 25%, rgba(217, 70, 239, 0.08) 0%, ${currentTheme.cardBg} 50%),
                   radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, ${currentTheme.cardBg} 50%),
                   radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, ${currentTheme.cardBg} 50%),
                   radial-gradient(circle at 25% 75%, rgba(249, 115, 22, 0.04) 0%, ${currentTheme.cardBg} 50%),
                   linear-gradient(90deg, rgba(217, 70, 239, 0.05) 0%, ${currentTheme.cardBg} 2%),
                   repeating-linear-gradient(0deg, ${currentTheme.cardBg}, ${currentTheme.cardBg} 20px, rgba(217, 70, 239, 0.02) 21px, rgba(217, 70, 239, 0.02) 22px)
-                ` : `
+                `
+                    : `
                   radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, ${currentTheme.cardBg} 50%),
                   radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.02) 0%, ${currentTheme.cardBg} 50%),
                   linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, ${currentTheme.cardBg} 2%),
@@ -227,7 +230,15 @@ const KidReflectionStorybookCard = ({
                     ease: "easeInOut",
                   }}
                 >
-                  {theme === 'rainbow' ? '🌈' : theme === 'forest' ? '🌿' : theme === 'ocean' ? '🌊' : theme === 'sunset' ? '🌅' : '❦'}
+                  {theme === "rainbow"
+                    ? "🌈"
+                    : theme === "forest"
+                      ? "🌿"
+                      : theme === "ocean"
+                        ? "🌊"
+                        : theme === "sunset"
+                          ? "🌅"
+                          : "❦"}
                 </motion.div>
               </div>
 
@@ -245,7 +256,15 @@ const KidReflectionStorybookCard = ({
                     delay: 2,
                   }}
                 >
-                  {theme === 'rainbow' ? '⭐' : theme === 'forest' ? '🍃' : theme === 'ocean' ? '🐚' : theme === 'sunset' ? '🦋' : '❦'}
+                  {theme === "rainbow"
+                    ? "⭐"
+                    : theme === "forest"
+                      ? "🍃"
+                      : theme === "ocean"
+                        ? "🐚"
+                        : theme === "sunset"
+                          ? "🦋"
+                          : "❦"}
                 </motion.div>
               </div>
 
@@ -282,7 +301,7 @@ const KidReflectionStorybookCard = ({
                   <motion.div
                     className="w-16 h-0.5 mx-auto"
                     style={{
-                      background: `linear-gradient(to right, ${currentTheme.cardBg}, ${currentTheme.border}, ${currentTheme.cardBg})`
+                      background: `linear-gradient(to right, ${currentTheme.cardBg}, ${currentTheme.border}, ${currentTheme.cardBg})`,
                     }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
@@ -332,10 +351,22 @@ const KidReflectionStorybookCard = ({
                       />
 
                       {/* Vintage photo corners */}
-                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 opacity-30" style={{borderColor: currentTheme.border}} />
-                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 opacity-30" style={{borderColor: currentTheme.border}} />
-                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 opacity-30" style={{borderColor: currentTheme.border}} />
-                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 opacity-30" style={{borderColor: currentTheme.border}} />
+                      <div
+                        className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
 
                       {/* Subtle shimmer effect */}
                       <motion.div
@@ -479,7 +510,9 @@ const KidReflectionStorybookCard = ({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2, duration: 0.6 }}
                   >
-                    <div className={`text-xs ${currentTheme.accent} opacity-60 font-medium mr-2`}>
+                    <div
+                      className={`text-xs ${currentTheme.accent} opacity-60 font-medium mr-2`}
+                    >
                       How does this make you feel?
                     </div>
                     {reactions.map((reaction, idx) => (

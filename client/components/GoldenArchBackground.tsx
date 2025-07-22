@@ -10,17 +10,32 @@ interface GoldenArchBackgroundProps {
 // Floating golden particle stars
 const ParticleStar = ({ index }: { index: number }) => {
   const positions = [
-    { x: 15, y: 20 }, { x: 85, y: 25 }, { x: 25, y: 75 }, { x: 75, y: 80 },
-    { x: 10, y: 50 }, { x: 90, y: 45 }, { x: 35, y: 15 }, { x: 65, y: 85 },
-    { x: 5, y: 30 }, { x: 95, y: 70 }, { x: 50, y: 10 }, { x: 45, y: 90 },
-    { x: 20, y: 40 }, { x: 80, y: 35 }, { x: 30, y: 60 }, { x: 70, y: 55 },
-    { x: 12, y: 65 }, { x: 88, y: 15 }, { x: 40, y: 85 }, { x: 60, y: 25 }
+    { x: 15, y: 20 },
+    { x: 85, y: 25 },
+    { x: 25, y: 75 },
+    { x: 75, y: 80 },
+    { x: 10, y: 50 },
+    { x: 90, y: 45 },
+    { x: 35, y: 15 },
+    { x: 65, y: 85 },
+    { x: 5, y: 30 },
+    { x: 95, y: 70 },
+    { x: 50, y: 10 },
+    { x: 45, y: 90 },
+    { x: 20, y: 40 },
+    { x: 80, y: 35 },
+    { x: 30, y: 60 },
+    { x: 70, y: 55 },
+    { x: 12, y: 65 },
+    { x: 88, y: 15 },
+    { x: 40, y: 85 },
+    { x: 60, y: 25 },
   ];
-  
+
   const pos = positions[index % positions.length];
   const size = Math.random() * 2 + 1;
   const delay = index * 0.5;
-  
+
   return (
     <motion.div
       className="absolute bg-yellow-300 rounded-full"
@@ -51,7 +66,7 @@ const GlowingDust = ({ index }: { index: number }) => {
   const x = Math.random() * 100;
   const y = Math.random() * 100;
   const size = Math.random() * 1 + 0.5;
-  
+
   return (
     <motion.div
       className="absolute bg-yellow-200 rounded-full opacity-60"
@@ -79,12 +94,18 @@ const GlowingDust = ({ index }: { index: number }) => {
 };
 
 // Bright starburst effect
-const Starburst = ({ position, size = 60 }: { position: "top-left" | "bottom-right"; size?: number }) => {
+const Starburst = ({
+  position,
+  size = 60,
+}: {
+  position: "top-left" | "bottom-right";
+  size?: number;
+}) => {
   const positionStyles = {
     "top-left": { top: "15%", left: "15%" },
-    "bottom-right": { bottom: "15%", right: "15%" }
+    "bottom-right": { bottom: "15%", right: "15%" },
   };
-  
+
   return (
     <motion.div
       className="absolute"
@@ -129,7 +150,7 @@ const Starburst = ({ position, size = 60 }: { position: "top-left" | "bottom-rig
             }}
           />
         ))}
-        
+
         {/* Center bright point */}
         <motion.div
           className="absolute bg-yellow-100 rounded-full"
@@ -161,9 +182,10 @@ export const GoldenArchBackground: React.FC<GoldenArchBackgroundProps> = ({
   className = "",
   intensity = "medium",
 }) => {
-  const particleCount = intensity === "low" ? 15 : intensity === "medium" ? 25 : 35;
+  const particleCount =
+    intensity === "low" ? 15 : intensity === "medium" ? 25 : 35;
   const dustCount = intensity === "low" ? 20 : intensity === "medium" ? 30 : 40;
-  
+
   return (
     <div className={`relative w-full h-full overflow-hidden ${className}`}>
       {/* Deep purple-black background with vignette */}
@@ -189,16 +211,16 @@ export const GoldenArchBackground: React.FC<GoldenArchBackgroundProps> = ({
         {[...Array(particleCount)].map((_, i) => (
           <ParticleStar key={`particle-${i}`} index={i} />
         ))}
-        
+
         {/* Glowing dust particles */}
         {[...Array(dustCount)].map((_, i) => (
           <GlowingDust key={`dust-${i}`} index={i} />
         ))}
-        
+
         {/* Bright starbursts */}
         <Starburst position="top-left" size={80} />
         <Starburst position="bottom-right" size={70} />
-        
+
         {/* Ambient golden glow */}
         <motion.div
           className="absolute inset-0"
@@ -279,7 +301,7 @@ export const GoldenArchBackground: React.FC<GoldenArchBackgroundProps> = ({
               ease: "easeInOut",
             }}
           />
-          
+
           {/* Bloom effect on corners */}
           <motion.div
             className="absolute -top-4 -left-4 w-8 h-8 bg-yellow-300 rounded-full opacity-60"
@@ -297,7 +319,7 @@ export const GoldenArchBackground: React.FC<GoldenArchBackgroundProps> = ({
               ease: "easeInOut",
             }}
           />
-          
+
           <motion.div
             className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-300 rounded-full opacity-60"
             style={{
@@ -315,7 +337,7 @@ export const GoldenArchBackground: React.FC<GoldenArchBackgroundProps> = ({
               ease: "easeInOut",
             }}
           />
-          
+
           {/* Content area */}
           <div className="relative w-full h-full p-8 flex items-center justify-center">
             {children}

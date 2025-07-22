@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { EtherealPortal } from "../components/EtherealPortal";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 
 export const EtherealPortalDemo: React.FC = () => {
   const [animated, setAnimated] = useState(true);
@@ -13,7 +18,7 @@ export const EtherealPortalDemo: React.FC = () => {
       <div className="absolute top-4 left-4 z-20 space-y-4">
         <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 space-y-3">
           <h3 className="text-white font-semibold text-sm">Portal Controls</h3>
-          
+
           <div className="flex items-center gap-2">
             <Button
               variant={animated ? "default" : "outline"}
@@ -24,7 +29,7 @@ export const EtherealPortalDemo: React.FC = () => {
               {animated ? "Disable" : "Enable"} Animations
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button
               variant={showContent ? "default" : "outline"}
@@ -39,7 +44,9 @@ export const EtherealPortalDemo: React.FC = () => {
 
         {/* Info panel */}
         <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 max-w-sm">
-          <h3 className="text-white font-semibold text-sm mb-2">Ethereal Portal</h3>
+          <h3 className="text-white font-semibold text-sm mb-2">
+            Ethereal Portal
+          </h3>
           <div className="text-gray-300 text-xs space-y-1">
             <p>✨ Glowing yellow outline</p>
             <p>🌙 Smooth arch with curved edges</p>
@@ -63,14 +70,15 @@ export const EtherealPortalDemo: React.FC = () => {
             </CardHeader>
             <CardContent className="text-center space-y-3">
               <p className="text-yellow-200/80 text-sm">
-                Step through this magical portal into a world of wonder and possibility.
+                Step through this magical portal into a world of wonder and
+                possibility.
               </p>
               <div className="space-y-2">
                 <Button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-medium">
                   Enter Portal
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full border-yellow-400/60 text-yellow-200 hover:bg-yellow-400/10 hover:border-yellow-300"
                 >
                   Learn More

@@ -55,7 +55,8 @@ export function ChatContainer({
   const allMessages = messages.length > 0 ? messages : initialMessages;
 
   // Dummy kid profile image
-  const defaultKidImage = "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format";
+  const defaultKidImage =
+    "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format";
 
   const renderMessage = (message) => {
     if (message.type === "carousel") {
