@@ -201,7 +201,7 @@ export function ChatContainer({
           {/* AI companion profile image */}
           <div className="flex-shrink-0 mr-3">
             <AnimatedCompanionAvatar
-              companion={selectedCompanion}
+              companion={message.companion || selectedCompanion}
               size={40}
               showAnimations={true}
             />
