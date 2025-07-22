@@ -18,5 +18,8 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Tags API route
+  app.get("/api/v2/tags/current-user-tags", getCurrentUserTags);
+
   return app;
 }
