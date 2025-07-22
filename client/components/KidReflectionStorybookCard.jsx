@@ -9,6 +9,7 @@ const KidReflectionStorybookCard = ({
   reactionsEnabled = true,
   aiAvatarUrl,
   index = 0,
+  theme = "rainbow", // Default theme
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedReaction, setSelectedReaction] = useState(null);
