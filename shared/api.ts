@@ -172,6 +172,7 @@ export interface ChallengeItem {
   challenge: Challenge;
   challenge_status: string;
   days_left: number;
+  time_left: number;
   submission_date: string;
 }
 
