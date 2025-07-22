@@ -197,6 +197,7 @@ export default function Index() {
       }, 2000);
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
+      console.log("Reflect icon clicked - adding FlippableStorybookCard");
       // Show thoughtful reaction
       setCompanionState("thinking");
       setCompanionEmotions(["🤔", "📖", "✨"]);
