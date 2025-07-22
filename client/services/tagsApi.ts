@@ -4,15 +4,13 @@ import { TagsResponse } from '@shared/api';
  * API service for fetching current user tags
  */
 export class TagsApiService {
-  private static readonly BASE_URL = 'http://localhost:8000/api/v2';
-
   /**
    * Fetch current user tags
    * @returns Promise<TagsResponse>
    */
   static async getCurrentUserTags(): Promise<TagsResponse> {
     try {
-      const response = await fetch(`${this.BASE_URL}/tags/current-user-tags`, {
+      const response = await fetch('/api/v2/tags/current-user-tags', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
