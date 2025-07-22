@@ -236,27 +236,30 @@ const CharacterHoverAnimations = ({ companion, isHovered }) => {
   return null;
 };
 
-export function AnimatedCompanionAvatar({ 
-  companion, 
-  size = 40, 
+export function AnimatedCompanionAvatar({
+  companion,
+  size = 40,
   className = "",
-  showAnimations = true 
+  showAnimations = true
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
+  // Use default green companion (Doma) if none is selected
+  const activeCompanion = companion || companions.find(c => c.id === 2); // Doma - green/teal companion
+
   // Trigger entrance animation when companion changes
   useEffect(() => {
-    if (companion) {
+    if (activeCompanion) {
       setShouldAnimate(true);
       const timer = setTimeout(() => setShouldAnimate(false), 2000);
       return () => clearTimeout(timer);
     }
-  }, [companion?.id]);
+  }, [activeCompanion?.id]);
 
-  if (!companion) {
+  if (!activeCompanion) {
     return (
-      <div 
+      <div
         className={`w-10 h-10 rounded-full bg-emerald-300 flex items-center justify-center ${className}`}
         style={{ width: size, height: size }}
       >
