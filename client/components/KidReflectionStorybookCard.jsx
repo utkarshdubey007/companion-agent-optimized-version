@@ -468,7 +468,7 @@ const KidReflectionStorybookCard = ({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2, duration: 0.6 }}
                   >
-                    <div className="text-xs text-amber-700 opacity-60 font-medium mr-2">
+                    <div className={`text-xs ${currentTheme.accent} opacity-60 font-medium mr-2`}>
                       How does this make you feel?
                     </div>
                     {reactions.map((reaction, idx) => (
