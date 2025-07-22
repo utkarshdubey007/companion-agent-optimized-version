@@ -731,7 +731,7 @@ export const MagicalPortal: React.FC<MagicalPortalProps> = ({ children, classNam
               }}
             >
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fe93a77f1b6854a409a544ca800066469?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F7e5764f9cbe144e68f64fea0866008be?format=webp&width=800"
                 alt="AI Companion"
                 className="w-32 h-32 object-contain"
                 style={{
