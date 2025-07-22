@@ -70,12 +70,38 @@ export default function Index() {
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
+  // Fetch current user tags
+  const loadUserTags = async () => {
+    setTagsLoading(true);
+    setTagsError(null);
+
+    try {
+      const response = await fetchCurrentUserTags();
+
+      if (response.result_code === 1) {
+        setTags(response.data);
+        console.log('Tags loaded successfully:', response.data);
+      } else {
+        setTagsError(response.error_info || 'Failed to load tags');
+        console.error('Tags API error:', response.error_info);
+      }
+    } catch (error) {
+      setTagsError(error.message || 'Failed to fetch tags');
+      console.error('Tags fetch error:', error);
+    } finally {
+      setTagsLoading(false);
+    }
+  };
+
   // Auto-expand sidebars on page load and check mood picker
   useEffect(() => {
     // Initialize mood picker for demo - enable it if not already set
     if (!localStorage.getItem('checkin_modal')) {
       moodPickerUtils.enableMoodPicker();
     }
+
+    // Load user tags on component mount
+    loadUserTags();
 
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
@@ -292,7 +318,7 @@ export default function Index() {
       console.log("Friends button clicked! Opening companion selector...");
       // Show excited reaction for friends
       setCompanionState("reacting");
-      setCompanionEmotions(["👫", "💕", "🤗"]);
+      setCompanionEmotions(["👫", "����", "🤗"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
