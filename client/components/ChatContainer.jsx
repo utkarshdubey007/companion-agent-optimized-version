@@ -11,6 +11,7 @@ import { AITypingIndicator } from "./MagicalCompanionChat";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 import StorybookReflectionCard from "./StorybookReflectionCard";
 import FlippableStorybookCard from "./FlippableStorybookCard";
+import { AnimatedCompanionAvatar } from "./AnimatedCompanionAvatar";
 
 export function ChatContainer({
   messages,
