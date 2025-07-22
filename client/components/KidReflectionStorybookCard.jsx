@@ -282,7 +282,7 @@ const KidReflectionStorybookCard = ({
                   <motion.div
                     className="w-16 h-0.5 mx-auto"
                     style={{
-                      background: `linear-gradient(to right, transparent, ${currentTheme.border}, transparent)`
+                      background: `linear-gradient(to right, ${currentTheme.cardBg}, ${currentTheme.border}, ${currentTheme.cardBg})`
                     }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
