@@ -48,7 +48,11 @@ const App = () => (
 
 // Prevent double root creation in development with HMR
 const container = document.getElementById("root")!;
-if (!container._reactRootContainer) {
-  container._reactRootContainer = createRoot(container);
+let root = (window as any).__reactRoot;
+
+if (!root) {
+  root = createRoot(container);
+  (window as any).__reactRoot = root;
 }
-container._reactRootContainer.render(<App />);
+
+root.render(<App />);
