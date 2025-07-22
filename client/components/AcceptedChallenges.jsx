@@ -93,7 +93,7 @@ export function AcceptedChallenges({ challenges, loading = false, error = null }
           }}
         >
           <span className="flex items-center justify-center gap-2">
-            Chat with
+            Chat with {challenge.companionName}
             <span className={`${isCompact ? "text-lg" : "text-xl"}`}>
               {challenge.companionIcon}
             </span>
