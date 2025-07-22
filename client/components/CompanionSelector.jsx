@@ -206,7 +206,7 @@ const CharacterHoverAnimations = ({ companion, isHovered }) => {
   if (name === "Rooty") {
     return (
       <motion.div className="absolute inset-0 pointer-events-none">
-        {["⚙️", "🔧", "⚡", "🛠️"].map((tool, i) => (
+        {["⚙️", "����", "⚡", "🛠️"].map((tool, i) => (
           <motion.div
             key={i}
             className="absolute text-xs"
@@ -621,26 +621,30 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             isolation: "isolate",
           }}
         >
-          {/* Outer orbit rings */}
-          <motion.div
-            className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-5 rounded-full z-[5]"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 60,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+          {/* Outer orbit rings - temporarily hidden to debug white strip */}
+          {false && (
+            <>
+              <motion.div
+                className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-5 rounded-full z-[5]"
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 60,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
 
-          <motion.div
-            className="absolute w-[450px] h-[450px] border border-white border-opacity-2 rounded-full z-[5]"
-            animate={{ rotate: -360 }}
-            transition={{
-              duration: 50,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+              <motion.div
+                className="absolute w-[450px] h-[450px] border border-white border-opacity-2 rounded-full z-[5]"
+                animate={{ rotate: -360 }}
+                transition={{
+                  duration: 50,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </>
+          )}
 
           {/* Center ring for selected companion */}
           <AnimatePresence>
