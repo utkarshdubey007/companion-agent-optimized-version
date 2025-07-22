@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EnhancedMagicalCompanion } from "./MagicalCompanion";
+import { AnimatedCompanionAvatar } from "./AnimatedCompanionAvatar";
 
 // Hook to detect when AI is typing/thinking
 export const useAITypingState = () => {
