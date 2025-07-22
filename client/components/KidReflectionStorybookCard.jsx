@@ -490,8 +490,8 @@ const KidReflectionStorybookCard = ({
                         style={{
                           background:
                             selectedReaction?.icon === reaction.icon
-                              ? `linear-gradient(135deg, ${reaction.color}20, ${reaction.color}10)`
-                              : `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.buttonBg})`,
+                              ? `linear-gradient(135deg, ${reaction.color}30, ${reaction.color}20)`
+                              : currentTheme.buttonBg,
                           border: `1px solid ${currentTheme.buttonBorder}`,
                           boxShadow:
                             selectedReaction?.icon === reaction.icon
