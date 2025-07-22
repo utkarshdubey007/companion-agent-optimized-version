@@ -818,7 +818,7 @@ const CompanionSelector = ({ onSelect, onClose }) => {
           <AnimatePresence>
             {!selectedCompanion && (
               <motion.button
-                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
+                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl z-[80]"
                 onClick={handleClose}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
