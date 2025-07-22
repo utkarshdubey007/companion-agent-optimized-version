@@ -340,6 +340,7 @@ export const AITypingIndicator = ({
           companion={selectedCompanion}
           size={40}
           showAnimations={true}
+          triggerAnimation={true}
         />
       </div>
 
