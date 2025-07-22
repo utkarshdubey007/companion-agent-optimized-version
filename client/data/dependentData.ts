@@ -43,7 +43,7 @@ export const dependent: DependentData = {
     treehouse: "",
     school_name: "safd",
     one_time_plan: "Emeralites",
-    ask_for_mood: false,
+    ask_for_mood: true,
     tribe_request_status: "",
     query: "",
     conversation_ids: "b74bf0f3-a61b-45e9-b676-b4cee150fdb0"
