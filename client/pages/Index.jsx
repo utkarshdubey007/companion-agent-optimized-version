@@ -52,6 +52,11 @@ export default function Index() {
   const [tagsLoading, setTagsLoading] = useState(false);
   const [tagsError, setTagsError] = useState(null);
 
+  // Challenges state
+  const [challenges, setChallenges] = useState([]);
+  const [challengesLoading, setChallengesLoading] = useState(false);
+  const [challengesError, setChallengesError] = useState(null);
+
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
