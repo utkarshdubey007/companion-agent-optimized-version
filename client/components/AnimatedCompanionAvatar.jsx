@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { companions } from "./CompanionSelector";
 
 // Character-specific hover animations (same as in CompanionSelector)
 const CharacterHoverAnimations = ({ companion, isHovered }) => {
