@@ -328,25 +328,7 @@ export default function Index() {
     >
       {!showCompanionSelector && <EnhancedMagicalBackground />}
 
-      {/* Magical Portal Companion */}
-      <div
-        className="absolute z-10"
-        style={{
-          bottom: "15%", // Position above ground level
-          right: "12%", // Right side near chat area
-          transform: "none",
-        }}
-      >
-        <MagicalPortalCompanion
-          state={companionState}
-          emotions={companionEmotions}
-          size={180}
-          onInteraction={(interaction) => {
-            console.log("Companion interaction:", interaction);
-            // Add sparkle feedback or other interactions
-          }}
-        />
-      </div>
+
 
       <AppHeader />
 
