@@ -14,6 +14,8 @@ import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
+import { dependent, shouldAskForMood } from "@/data/dependentData";
+import MoodPickerCard from "@/components/MoodPickerCard";
 
 export default function Index() {
   // Page state management
@@ -37,6 +39,10 @@ export default function Index() {
   // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
 
+  // Mood picker state
+  const [showMoodPicker, setShowMoodPicker] = useState(false);
+  const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
+
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
@@ -56,7 +62,7 @@ export default function Index() {
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
-  // Auto-expand sidebars on page load
+  // Auto-expand sidebars on page load and check mood picker
   useEffect(() => {
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
@@ -68,15 +74,24 @@ export default function Index() {
       setShowBottomWaveEffect(true);
     }, 1200);
 
+    // Check if mood picker should be shown after sidebars load
+    const moodTimer = setTimeout(() => {
+      if (shouldAskForMood(dependent) && !hasMoodCheckinOccurred) {
+        setShowMoodPicker(true);
+      }
+    }, 2000);
+
     return () => {
       clearTimeout(topTimer);
       clearTimeout(bottomTimer);
+      clearTimeout(moodTimer);
     };
   }, [
     setTopSidebarCollapsed,
     setShowTopWaveEffect,
     setBottomSidebarCollapsed,
     setShowBottomWaveEffect,
+    hasMoodCheckinOccurred,
   ]);
 
   // Function to manually add flippable storybook when reflection icon is clicked
@@ -178,6 +193,39 @@ export default function Index() {
     }
   }, [isAIThinking, companionState]);
 
+  // Mood picker handlers
+  const handleMoodPickerSubmit = (mood) => {
+    console.log("Mood submitted:", mood);
+    setHasMoodCheckinOccurred(true);
+
+    // Add mood message to chat
+    const moodMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, moodMessage]);
+
+    // Add AI response
+    setTimeout(() => {
+      const aiResponse = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: generateMoodResponse(mood),
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+    }, 1500);
+  };
+
+  const handleMoodPickerClose = () => {
+    setShowMoodPicker(false);
+    setHasMoodCheckinOccurred(true);
+  };
+
   // Menu item click handler
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
@@ -233,41 +281,12 @@ export default function Index() {
       }, 2000);
       setShowCompanionSelector(true);
     } else if (itemAlt === "Mood") {
-      console.log("Mood button clicked - creating mood message");
+      console.log("Mood button clicked - showing mood picker");
 
-      const moodMessage = {
-        id: Date.now().toString(),
-        type: "mood",
-        sender: "Kid",
-        content: "",
-        timestamp: new Date(),
-        onMoodSubmit: (mood) => {
-          setChatMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === moodMessage.id
-                ? {
-                    ...msg,
-                    type: "text",
-                    content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
-                  }
-                : msg,
-            ),
-          );
-
-          setTimeout(() => {
-            const aiResponse = {
-              id: (Date.now() + 1).toString(),
-              type: "text",
-              sender: "AI",
-              content: generateMoodResponse(mood),
-              timestamp: new Date(),
-            };
-            setChatMessages((prev) => [...prev, aiResponse]);
-          }, 1500);
-        },
-      };
-
-      setChatMessages((prev) => [...prev, moodMessage]);
+      // Show mood picker modal
+      setShowMoodPicker(true);
+      // Set checkin modal to true for the shouldAskForMood logic
+      localStorage.setItem('checkin_modal', 'true');
     } else if (itemAlt === "Store") {
       handleAddAttachment();
     }
@@ -382,6 +401,13 @@ export default function Index() {
           onClose={() => setShowCompanionSelector(false)}
         />
       )}
+
+      {/* Mood Picker Modal */}
+      <MoodPickerCard
+        isVisible={showMoodPicker}
+        onClose={handleMoodPickerClose}
+        onMoodSubmit={handleMoodPickerSubmit}
+      />
     </div>
   );
 }
