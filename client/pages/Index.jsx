@@ -139,6 +139,29 @@ export default function Index() {
     hasMoodCheckinOccurred,
   ]);
 
+  // Fetch dependent challenges
+  const loadDependentChallenges = async () => {
+    setChallengesLoading(true);
+    setChallengesError(null);
+
+    try {
+      const response = await fetchDependentChallenges(2404);
+
+      if (response.result_code === 1) {
+        setChallenges(response.data);
+        console.log('Challenges loaded successfully:', response.data);
+      } else {
+        setChallengesError(response.error_info || 'Failed to load challenges');
+        console.error('Challenges API error:', response.error_info);
+      }
+    } catch (error) {
+      setChallengesError(error.message || 'Failed to fetch challenges');
+      console.error('Challenges fetch error:', error);
+    } finally {
+      setChallengesLoading(false);
+    }
+  };
+
   // Tags refresh handler
   const refreshUserTags = () => {
     console.log('Refreshing user tags...');
