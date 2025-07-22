@@ -404,7 +404,7 @@ export function AnimatedCompanionAvatar({
                   style={{
                     left: "50%",
                     top: "50%",
-                    boxShadow: `0 0 8px ${companion.color}`,
+                    boxShadow: `0 0 8px ${activeCompanion.color}`,
                   }}
                   initial={{
                     scale: 0,
