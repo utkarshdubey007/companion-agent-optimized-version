@@ -74,3 +74,19 @@ export interface DependentData {
   special_camp: SpecialCamp;
   school_details: string;
 }
+
+/**
+ * Tags API interfaces
+ */
+export interface Tag {
+  id: number;
+  tag: string;
+}
+
+export interface TagsResponse {
+  result_code: number;
+  error_info: string;
+  data: Tag[];
+  has_more: boolean;
+  total_count: number;
+}
