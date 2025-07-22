@@ -207,13 +207,28 @@ export function AcceptedChallenges({ challenges, loading = false, error = null }
               className="p-4 sm:p-6 flex items-center"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex justify-center w-full overflow-visible">
-                <ChallengeCard
-                  key={selectedChallenge.id}
-                  challenge={selectedChallenge}
-                  isCollapsedView={true}
-                />
-              </div>
+              {loading ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white text-center">
+                    <div className="animate-spin w-6 h-6 border-2 border-white border-t-transparent rounded-full mx-auto mb-2"></div>
+                    <p className="text-sm">Loading...</p>
+                  </div>
+                </div>
+              ) : selectedChallenge ? (
+                <div className="flex justify-center w-full overflow-visible">
+                  <ChallengeCard
+                    key={selectedChallenge.id}
+                    challenge={selectedChallenge}
+                    isCollapsedView={true}
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white/70 text-center">
+                    <p className="text-sm">No challenges</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
