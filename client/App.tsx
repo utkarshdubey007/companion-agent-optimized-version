@@ -46,4 +46,9 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Prevent double root creation in development with HMR
+const container = document.getElementById("root")!;
+if (!container._reactRootContainer) {
+  container._reactRootContainer = createRoot(container);
+}
+container._reactRootContainer.render(<App />);
