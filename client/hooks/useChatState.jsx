@@ -159,6 +159,7 @@ export function useChatState() {
               sender: "AI",
               content: `Wow! ${images.length === 1 ? "That's a beautiful picture" : `Those are ${images.length} amazing pictures`}! 🌟 I love your creativity! Tell me more about ${images.length === 1 ? "it" : "them"} - what inspired you to create ${images.length === 1 ? "this" : "these"}? ✨`,
               timestamp: new Date(),
+              companion: selectedCompanion, // Store current companion with message
             };
             setChatMessages((prev) => [...prev, aiResponse]);
           }, 2000);
