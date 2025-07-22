@@ -430,7 +430,7 @@ const KidReflectionStorybookCard = ({
                       </motion.div>
                     )}
                     <span
-                      className="text-xs text-amber-700 italic font-medium"
+                      className={`text-xs ${currentTheme.accent} italic font-medium`}
                       style={{
                         fontFamily: '"Times New Roman", serif',
                         textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
@@ -441,12 +441,16 @@ const KidReflectionStorybookCard = ({
                     {/* Voice playback button */}
                     <motion.button
                       onClick={handleAudioPlay}
-                      className="p-1 rounded-full bg-amber-100 hover:bg-amber-200 transition-colors opacity-60 hover:opacity-100"
+                      className="p-1 rounded-full transition-colors opacity-60 hover:opacity-100"
+                      style={{
+                        backgroundColor: currentTheme.buttonBg,
+                        border: `1px solid ${currentTheme.buttonBorder}`,
+                      }}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       <Volume2
-                        className={`w-3 h-3 text-amber-700 ${
+                        className={`w-3 h-3 ${currentTheme.accent} ${
                           isAudioPlaying ? "animate-pulse" : ""
                         }`}
                       />
