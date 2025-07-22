@@ -3,15 +3,87 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Volume2, Star, Award } from "lucide-react";
 
 // Custom StorybookPage component with fixed layout
-const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
+const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageIndex = 0 }) => {
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
+  // Delightful kid-friendly color themes that rotate per page
+  const kidThemes = [
+    {
+      name: "Candy Land",
+      background: "from-pink-200 via-rose-100 to-pink-50",
+      binding: "from-pink-300 via-rose-300 to-pink-400",
+      shadowColor: "#ec4899",
+      borderColor: "#f472b6",
+      textPrimary: "text-pink-800",
+      textSecondary: "text-rose-600",
+      decorative: "text-pink-500",
+      accent: "#f472b6",
+      buttonBg: "#fdf2f8",
+      patternColors: ["#fce7f3", "#fbcfe8", "#f9a8d4"],
+    },
+    {
+      name: "Ocean Adventure",
+      background: "from-cyan-200 via-blue-100 to-sky-50",
+      binding: "from-cyan-300 via-blue-300 to-cyan-400",
+      shadowColor: "#0891b2",
+      borderColor: "#22d3ee",
+      textPrimary: "text-cyan-800",
+      textSecondary: "text-blue-600",
+      decorative: "text-cyan-500",
+      accent: "#22d3ee",
+      buttonBg: "#f0fdff",
+      patternColors: ["#e0f7fa", "#b2ebf2", "#4dd0e1"],
+    },
+    {
+      name: "Sunny Garden",
+      background: "from-lime-200 via-green-100 to-emerald-50",
+      binding: "from-lime-300 via-green-300 to-emerald-400",
+      shadowColor: "#16a34a",
+      borderColor: "#4ade80",
+      textPrimary: "text-green-800",
+      textSecondary: "text-emerald-600",
+      decorative: "text-lime-500",
+      accent: "#4ade80",
+      buttonBg: "#f0fdf4",
+      patternColors: ["#dcfce7", "#bbf7d0", "#86efac"],
+    },
+    {
+      name: "Purple Magic",
+      background: "from-purple-200 via-violet-100 to-indigo-50",
+      binding: "from-purple-300 via-violet-300 to-indigo-400",
+      shadowColor: "#7c3aed",
+      borderColor: "#a855f7",
+      textPrimary: "text-purple-800",
+      textSecondary: "text-violet-600",
+      decorative: "text-purple-500",
+      accent: "#a855f7",
+      buttonBg: "#faf5ff",
+      patternColors: ["#f3e8ff", "#ddd6fe", "#c4b5fd"],
+    },
+    {
+      name: "Sunshine Party",
+      background: "from-yellow-200 via-orange-100 to-amber-50",
+      binding: "from-yellow-300 via-orange-300 to-amber-400",
+      shadowColor: "#f59e0b",
+      borderColor: "#fbbf24",
+      textPrimary: "text-orange-800",
+      textSecondary: "text-yellow-600",
+      decorative: "text-orange-500",
+      accent: "#fbbf24",
+      buttonBg: "#fffbeb",
+      patternColors: ["#fef3c7", "#fed7aa", "#fdba74"],
+    },
+  ];
+
+  const currentTheme = kidThemes[pageIndex % kidThemes.length];
+
   const reactions = [
-    { icon: "❤️", label: "Love it!", color: "#FF6B6B" },
-    { icon: "😃", label: "So fun!", color: "#4ECDC4" },
-    { icon: "✨", label: "Magical!", color: "#9333EA" },
-    { icon: "🌟", label: "Amazing!", color: "#F39C12" },
+    { icon: "🥰", label: "Super cute!", color: "#ff69b4" },
+    { icon: "🤩", label: "So cool!", color: "#00bcd4" },
+    { icon: "✨", label: "Magical!", color: "#9c27b0" },
+    { icon: "🌈", label: "Amazing!", color: "#ff9800" },
+    { icon: "🎉", label: "Awesome!", color: "#4caf50" },
   ];
 
   const handleReactionClick = (reaction) => {
