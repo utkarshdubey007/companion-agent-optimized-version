@@ -109,6 +109,7 @@ export function useChatState() {
         content:
           "That's a great idea! I love your creativity! ✨ Let me think of something fun we can do with that...",
         timestamp: new Date(),
+        companion: selectedCompanion, // Store current companion with message
       };
       setChatMessages((prev) => [...prev, aiMessage]);
     }, 2500); // Extended thinking time for magical effect
