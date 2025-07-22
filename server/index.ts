@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { getCurrentUserTags } from "./routes/tags";
+import { getDependentChallengesWorking } from "./routes/challenges";
 
 export function createServer() {
   const app = express();
