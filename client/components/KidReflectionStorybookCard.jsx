@@ -247,7 +247,7 @@ const KidReflectionStorybookCard = ({
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
                   <motion.h2
-                    className="text-xl font-bold text-amber-800 mb-2"
+                    className={`text-xl font-bold ${currentTheme.text} mb-2`}
                     style={{
                       fontFamily: '"Kalam", "Comic Neue", cursive',
                       textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
@@ -256,7 +256,7 @@ const KidReflectionStorybookCard = ({
                     animate={{
                       textShadow: [
                         "2px 2px 4px rgba(255,255,255,0.8)",
-                        "2px 2px 8px rgba(255,215,0,0.3)",
+                        `2px 2px 8px ${currentTheme.border}50`,
                         "2px 2px 4px rgba(255,255,255,0.8)",
                       ],
                     }}
@@ -269,7 +269,10 @@ const KidReflectionStorybookCard = ({
                     "{badgeTitle}"
                   </motion.h2>
                   <motion.div
-                    className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"
+                    className="w-16 h-0.5 mx-auto"
+                    style={{
+                      background: `linear-gradient(to right, transparent, ${currentTheme.border}, transparent)`
+                    }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
