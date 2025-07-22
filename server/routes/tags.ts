@@ -39,21 +39,40 @@ const mockTagsData = [
 export const getCurrentUserTags: RequestHandler = (req, res) => {
   try {
     // Log authentication headers for debugging
+    const sessionId = req.headers['x-session-id'] as string;
+    const authCookies = req.headers['x-auth-cookies'] as string;
+
     console.log('Tags API Request Headers:', {
+      sessionId,
+      authCookies: authCookies ? 'Present' : 'Missing',
       cookie: req.headers.cookie,
-      authorization: req.headers.authorization,
       userAgent: req.headers['user-agent']
     });
 
-    // Check for sessionid in cookies
-    const cookies = req.headers.cookie;
-    const hasSessionId = cookies && cookies.includes('sessionid=');
-
-    if (hasSessionId) {
-      console.log('✅ Authentication detected - sessionid found in cookies');
+    // Check for authentication
+    if (sessionId) {
+      console.log('✅ Authentication detected - sessionid:', sessionId);
     } else {
-      console.log('⚠️ No sessionid found in request cookies');
+      console.log('⚠️ No sessionid found in custom headers');
     }
+
+    // Validate sessionid (simple validation for demo)
+    const expectedSessionId = 'idzg7dkp3aiddmvrn78it4kaq9hl8yc4';
+    const isAuthenticated = sessionId === expectedSessionId;
+
+    if (!isAuthenticated) {
+      console.log('❌ Authentication failed - invalid or missing sessionid');
+      const errorResponse: TagsResponse = {
+        result_code: 0,
+        error_info: "Authentication required",
+        data: [],
+        has_more: false,
+        total_count: 0
+      };
+      return res.status(401).json(errorResponse);
+    }
+
+    console.log('🎉 Authentication successful - returning user tags');
 
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {
