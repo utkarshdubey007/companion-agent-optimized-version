@@ -17,6 +17,7 @@ import { menuItemsData, challengesData, creationsData } from "@/data/appData";
 import { dependent, shouldAskForMood, moodPickerUtils } from "@/data/dependentData";
 import MoodPickerCard from "@/components/MoodPickerCard";
 import { fetchCurrentUserTags } from "@/services/tagsApi";
+import { fetchDependentChallenges } from "@/services/challengesApi";
 
 export default function Index() {
   // Page state management
