@@ -592,18 +592,18 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                       style={{
                         background:
                           idx === currentPage
-                            ? `linear-gradient(135deg, ${kidThemes[idx % kidThemes.length].accent}, ${kidThemes[idx % kidThemes.length].borderColor})`
-                            : `${kidThemes[idx % kidThemes.length].buttonBg}`,
-                        border: `2px solid ${kidThemes[idx % kidThemes.length].borderColor}`,
+                            ? `linear-gradient(135deg, ${companionTheme.accent}, ${companionTheme.borderColor})`
+                            : `${companionTheme.buttonBg}`,
+                        border: `2px solid ${companionTheme.borderColor}`,
                         boxShadow:
                           idx === currentPage
-                            ? `0 0 12px ${kidThemes[idx % kidThemes.length].accent}80, 0 2px 6px ${kidThemes[idx % kidThemes.length].shadowColor}40`
-                            : `0 1px 3px ${kidThemes[idx % kidThemes.length].shadowColor}20`,
+                            ? `0 0 12px ${companionTheme.accent}80, 0 2px 6px ${companionTheme.shadowColor}40`
+                            : `0 1px 3px ${companionTheme.shadowColor}20`,
                       }}
                       whileHover={{
                         scale: 1.4,
                         rotate: 180,
-                        boxShadow: `0 0 16px ${kidThemes[idx % kidThemes.length].accent}90, 0 4px 8px ${kidThemes[idx % kidThemes.length].shadowColor}60`
+                        boxShadow: `0 0 16px ${companionTheme.accent}90, 0 4px 8px ${companionTheme.shadowColor}60`
                       }}
                       whileTap={{ scale: 0.8 }}
                       animate={{
@@ -620,7 +620,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                         <div
                           className="absolute inset-0 rounded-full animate-ping"
                           style={{
-                            background: `radial-gradient(circle, ${kidThemes[idx % kidThemes.length].accent}60, transparent 70%)`,
+                            background: `radial-gradient(circle, ${companionTheme.accent}60, transparent 70%)`,
                           }}
                         />
                       )}
