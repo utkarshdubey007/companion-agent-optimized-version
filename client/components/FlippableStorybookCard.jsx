@@ -365,23 +365,31 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl, pageInde
                   transition={{ delay: 1, duration: 0.6 }}
                 >
                   <span
-                    className="text-xs text-amber-700 italic font-medium"
+                    className={`text-xs ${currentTheme.textSecondary} italic font-medium`}
                     style={{
-                      fontFamily: '"Times New Roman", serif',
+                      fontFamily: '"Kalam", cursive',
                       textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
                     }}
                   >
-                    - Your Magical Friend
+                    🌟 Your Magical Friend 🌟
                   </span>
                   {/* Voice playback button */}
                   <motion.button
                     onClick={handleAudioPlay}
-                    className="p-1 rounded-full bg-amber-100 hover:bg-amber-200 transition-colors opacity-60 hover:opacity-100"
-                    whileHover={{ scale: 1.1 }}
+                    className="p-1.5 rounded-full transition-all opacity-70 hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}60)`,
+                      border: `2px solid ${currentTheme.borderColor}60`,
+                      boxShadow: `0 2px 8px ${currentTheme.shadowColor}30`,
+                    }}
+                    whileHover={{
+                      scale: 1.15,
+                      boxShadow: `0 4px 12px ${currentTheme.shadowColor}50`
+                    }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <Volume2
-                      className={`w-3 h-3 text-amber-700 ${
+                      className={`w-3 h-3 ${currentTheme.textSecondary} ${
                         isAudioPlaying ? "animate-pulse" : ""
                       }`}
                     />
