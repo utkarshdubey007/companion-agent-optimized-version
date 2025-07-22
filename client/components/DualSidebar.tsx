@@ -119,27 +119,35 @@ export function DualSidebar({
           {/* Bottom Section Toggle Button - Always visible at left edge */}
           <Button
             onClick={toggleBottomSidebar}
-            className="w-8 h-12 rounded-r-lg bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-300 shadow-lg flex-shrink-0"
+            className="w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 transition-all duration-500 ease-in-out shadow-lg flex-shrink-0 z-10"
             style={{
+              borderRadius: "0 15px 15px 0",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              transform: bottomSidebarCollapsed ? "translateX(0)" : "translateX(80px)",
             }}
           >
             {bottomSidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-white" />
+              <ChevronRight className="w-4 h-4 text-white transition-transform duration-300" />
             ) : (
-              <ChevronLeft className="w-4 h-4 text-white" />
+              <ChevronLeft className="w-4 h-4 text-white transition-transform duration-300" />
             )}
           </Button>
 
           {/* Bottom Section Content - Independent sizing */}
           <div
-            className={`transition-all duration-700 ease-out overflow-hidden ${
-              bottomSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              bottomSidebarCollapsed
+                ? "w-0 opacity-0 -translate-x-full"
+                : "w-20 opacity-100 translate-x-0"
             }`}
+            style={{
+              transform: `translateX(${bottomSidebarCollapsed ? "-100%" : "0"})`,
+            }}
           >
             <div
-              className="bg-[#1C2051] rounded-r-[20px] border border-white/20 border-l-0 shadow-2xl flex flex-col p-3"
+              className="bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl flex flex-col p-3"
               style={{
+                borderRadius: "0 15px 15px 0",
                 boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
                 height: "auto",
                 maxHeight: "calc(30vh)",
