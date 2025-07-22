@@ -375,11 +375,11 @@ const KidReflectionStorybookCard = ({
                     transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
                   >
                     <div
-                      className="w-12 h-12 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg flex items-center justify-center text-2xl font-bold text-amber-800 shadow-lg"
+                      className={`w-12 h-12 bg-gradient-to-br ${currentTheme.binding} rounded-lg flex items-center justify-center text-2xl font-bold ${currentTheme.text} shadow-lg`}
                       style={{
                         fontFamily: '"Times New Roman", serif',
                         textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
-                        border: "2px solid #d4af37",
+                        border: `2px solid ${currentTheme.border}`,
                       }}
                     >
                       {reflection.charAt(0).toUpperCase()}
