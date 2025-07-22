@@ -64,6 +64,11 @@ export default function Index() {
 
   // Auto-expand sidebars on page load and check mood picker
   useEffect(() => {
+    // Initialize mood picker for demo - enable it if not already set
+    if (!localStorage.getItem('checkin_modal')) {
+      moodPickerUtils.enableMoodPicker();
+    }
+
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
       setShowTopWaveEffect(true);
