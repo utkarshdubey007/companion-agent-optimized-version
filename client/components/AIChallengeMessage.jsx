@@ -24,20 +24,7 @@ export default function AIChallengeMessage({
   }, []);
 
   return (
-    <div className="flex justify-start mb-4">
-      {/* AI Avatar */}
-      <motion.div
-        className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center mr-3 flex-shrink-0 shadow-lg"
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ duration: 0.6, ease: "backOut" }}
-      >
-        <div className="sparkle-container">
-          <span className="text-white font-bold text-xs">AI</span>
-          <div className="absolute inset-0 sparkle-animation"></div>
-        </div>
-      </motion.div>
-
+    <div className="relative">
       {/* Magical Sparkles Formation */}
       <AnimatePresence>
         {showSparkles && (

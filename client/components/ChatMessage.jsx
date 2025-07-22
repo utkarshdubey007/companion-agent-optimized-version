@@ -4,6 +4,7 @@ export function ChatMessage({
   timestamp,
   avatar,
   className = "",
+  hasAvatar = false, // New prop to indicate if external avatar is shown
 }) {
   const isAI = role === "AI";
   const isKid = role === "Kid";
@@ -12,11 +13,7 @@ export function ChatMessage({
   const defaultAvatar = isAI ? "🤖" : "👧";
 
   return (
-    <div
-      className={`flex w-full mb-4 animate-slide-in ${
-        isAI ? "justify-start" : "justify-end"
-      } ${className}`}
-    >
+    <div className={`animate-slide-in ${className}`}>
       <div className={`max-w-xs md:max-w-sm lg:max-w-md`}>
         {/* Message bubble */}
         <div

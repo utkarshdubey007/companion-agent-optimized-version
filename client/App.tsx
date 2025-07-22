@@ -8,6 +8,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import SpaceCompanionDemo from "./pages/SpaceCompanionDemo";
+import MagicalPortalDemo from "./pages/MagicalPortalDemo";
+import ArchPortalDemo from "./pages/ArchPortalDemo";
+import GoldenArchDemo from "./pages/GoldenArchDemo";
+import EtherealPortalDemo from "./pages/EtherealPortalDemo";
+import ExactPortalDemo from "./pages/ExactPortalDemo";
+import VerticalArchDemo from "./pages/VerticalArchDemo";
+import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +27,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/space-companion" element={<SpaceCompanionDemo />} />
+          <Route path="/magical-portal" element={<MagicalPortalDemo />} />
+          <Route path="/arch-portal" element={<ArchPortalDemo />} />
+          <Route path="/golden-arch" element={<GoldenArchDemo />} />
+          <Route path="/ethereal-portal" element={<EtherealPortalDemo />} />
+          <Route path="/exact-portal" element={<ExactPortalDemo />} />
+          <Route path="/vertical-arch" element={<VerticalArchDemo />} />
+          <Route
+            path="/new-magical-portal"
+            element={<MagicalPortalNewDemo />}
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -27,4 +46,13 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Prevent double root creation in development with HMR
+const container = document.getElementById("root")!;
+let root = (window as any).__reactRoot;
+
+if (!root) {
+  root = createRoot(container);
+  (window as any).__reactRoot = root;
+}
+
+root.render(<App />);

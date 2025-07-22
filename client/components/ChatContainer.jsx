@@ -11,6 +11,7 @@ import { AITypingIndicator } from "./MagicalCompanionChat";
 import KidReflectionStorybookCard from "./KidReflectionStorybookCard";
 import StorybookReflectionCard from "./StorybookReflectionCard";
 import FlippableStorybookCard from "./FlippableStorybookCard";
+import { AnimatedCompanionAvatar } from "./AnimatedCompanionAvatar";
 
 export function ChatContainer({
   messages,
@@ -22,6 +23,7 @@ export function ChatContainer({
   onShowCarousel = () => {},
   isAIThinking = false,
   selectedCompanion = null,
+  kidProfileImage = null, // New prop for kid's profile image
 }) {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -51,6 +53,10 @@ export function ChatContainer({
   ];
 
   const allMessages = messages.length > 0 ? messages : initialMessages;
+
+  // Dummy kid profile image
+  const defaultKidImage =
+    "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format";
 
   const renderMessage = (message) => {
     if (message.type === "carousel") {
@@ -136,6 +142,15 @@ export function ChatContainer({
     if (message.type === "ai_challenge") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI companion profile image */}
+          <div className="flex-shrink-0 mr-3">
+            <AnimatedCompanionAvatar
+              companion={message.companion || selectedCompanion}
+              size={40}
+              showAnimations={true}
+              triggerAnimation={false}
+            />
+          </div>
           <AIChallengeMessage
             title={message.title || "Today's Challenge!"}
             description={
@@ -155,6 +170,15 @@ export function ChatContainer({
     if (message.type === "system") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI companion profile image */}
+          <div className="flex-shrink-0 mr-3">
+            <AnimatedCompanionAvatar
+              companion={message.companion || selectedCompanion}
+              size={40}
+              showAnimations={true}
+              triggerAnimation={false}
+            />
+          </div>
           {/* Message bubble */}
           <div className="max-w-xs">
             <div className="bg-chat-bubble text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
@@ -177,11 +201,21 @@ export function ChatContainer({
     if (message.sender === "AI") {
       return (
         <div key={message.id} className="flex justify-start w-full mb-4">
+          {/* AI companion profile image */}
+          <div className="flex-shrink-0 mr-3">
+            <AnimatedCompanionAvatar
+              companion={message.companion || selectedCompanion}
+              size={40}
+              showAnimations={true}
+              triggerAnimation={false}
+            />
+          </div>
           <AITextMessage
             content={message.content || ""}
             timestamp={message.timestamp}
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
+            hasAvatar={!!selectedCompanion?.imageUrl}
           />
         </div>
       );
@@ -189,12 +223,24 @@ export function ChatContainer({
 
     // Kid messages use regular ChatMessage
     return (
-      <ChatMessage
-        key={message.id}
-        role={message.sender}
-        content={message.content || ""}
-        timestamp={message.timestamp}
-      />
+      <div key={message.id} className="flex justify-end w-full mb-4">
+        <ChatMessage
+          role={message.sender}
+          content={message.content || ""}
+          timestamp={message.timestamp}
+          hasAvatar={!!kidProfileImage}
+        />
+        {/* Kid profile image */}
+        <div className="flex-shrink-0 ml-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-pink-300 shadow-lg">
+            <img
+              src={kidProfileImage || defaultKidImage}
+              alt="Kid Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
     );
   };
 
@@ -216,7 +262,8 @@ export function ChatContainer({
           {isAIThinking && (
             <AITypingIndicator
               companionColor={selectedCompanion?.color || "#FFD700"}
-              className="ml-4"
+              selectedCompanion={selectedCompanion}
+              className=""
             />
           )}
 

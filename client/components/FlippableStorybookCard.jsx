@@ -3,15 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Volume2, Star, Award } from "lucide-react";
 
 // Custom StorybookPage component with fixed layout
-const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
+const StorybookPage = ({
+  imageUrl,
+  reflection,
+  badgeTitle,
+  aiAvatarUrl,
+  currentTheme,
+}) => {
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   const reactions = [
-    { icon: "❤️", label: "Love it!", color: "#FF6B6B" },
-    { icon: "😃", label: "So fun!", color: "#4ECDC4" },
-    { icon: "✨", label: "Magical!", color: "#9333EA" },
-    { icon: "🌟", label: "Amazing!", color: "#F39C12" },
+    { icon: "🥰", label: "Super cute!", color: "#ff69b4" },
+    { icon: "🤩", label: "So cool!", color: "#00bcd4" },
+    { icon: "✨", label: "Magical!", color: "#9c27b0" },
+    { icon: "🌈", label: "Amazing!", color: "#ff9800" },
+    { icon: "🎉", label: "Awesome!", color: "#4caf50" },
   ];
 
   const handleReactionClick = (reaction) => {
@@ -29,39 +36,44 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
       <div className="max-w-md w-full">
         {/* Storybook Page Container */}
         <motion.div
-          className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-l-2xl shadow-2xl overflow-hidden"
+          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-l-2xl shadow-2xl overflow-hidden`}
           style={{
             fontFamily: '"Kalam", "Comic Neue", cursive, sans-serif',
             backgroundImage: `
-              radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
-              radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.02) 0%, transparent 50%),
-              linear-gradient(90deg, rgba(139, 69, 19, 0.05) 0%, transparent 2%),
-              repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(139, 69, 19, 0.01) 21px, rgba(139, 69, 19, 0.01) 22px)
+              radial-gradient(circle at 20% 20%, ${currentTheme.patternColors[0]}80 0%, ${currentTheme.buttonBg} 40%),
+              radial-gradient(circle at 80% 30%, ${currentTheme.patternColors[1]}60 0%, ${currentTheme.buttonBg} 40%),
+              radial-gradient(circle at 40% 80%, ${currentTheme.patternColors[2]}40 0%, ${currentTheme.buttonBg} 40%),
+              linear-gradient(45deg, ${currentTheme.patternColors[0]}20 0%, ${currentTheme.buttonBg} 2%),
+              repeating-linear-gradient(0deg, ${currentTheme.buttonBg}, ${currentTheme.buttonBg} 25px, ${currentTheme.patternColors[0]}30 26px, ${currentTheme.patternColors[0]}30 28px)
             `,
             boxShadow: `
-              inset 4px 0 8px rgba(139, 69, 19, 0.1),
-              0 0 0 1px rgba(139, 69, 19, 0.1),
-              0 8px 32px rgba(0, 0, 0, 0.15),
-              0 4px 16px rgba(0, 0, 0, 0.1)
+              inset 4px 0 12px ${currentTheme.shadowColor}20,
+              0 0 0 2px ${currentTheme.borderColor}40,
+              0 12px 40px ${currentTheme.shadowColor}30,
+              0 6px 20px ${currentTheme.shadowColor}20
             `,
             minHeight: "520px",
             aspectRatio: "3/4",
+            border: `2px solid ${currentTheme.borderColor}60`,
           }}
         >
           {/* Book Binding Edge */}
           <div
-            className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-b from-amber-200 via-orange-200 to-amber-300"
+            className={`absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-b ${currentTheme.binding}`}
             style={{
               backgroundImage: `
                 repeating-linear-gradient(
                   0deg,
-                  transparent,
-                  transparent 8px,
-                  rgba(139, 69, 19, 0.1) 8px,
-                  rgba(139, 69, 19, 0.1) 10px
-                )
+                  ${currentTheme.buttonBg},
+                  ${currentTheme.buttonBg} 10px,
+                  ${currentTheme.borderColor}40 11px,
+                  ${currentTheme.borderColor}40 13px
+                ),
+                linear-gradient(90deg, ${currentTheme.patternColors[0]}40 0%, transparent 100%)
               `,
-              boxShadow: "inset 2px 0 4px rgba(139, 69, 19, 0.2)",
+              boxShadow: `inset 2px 0 6px ${currentTheme.shadowColor}30, inset -1px 0 3px ${currentTheme.borderColor}50`,
+              border: `1px solid ${currentTheme.borderColor}60`,
+              borderLeft: "none",
             }}
           />
 
@@ -69,26 +81,49 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
           {aiAvatarUrl && (
             <div className="absolute top-4 left-8 z-20">
               <motion.button
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-amber-400 shadow-md bg-white p-0.5 cursor-pointer"
+                className="w-12 h-12 rounded-full overflow-hidden shadow-lg cursor-pointer relative"
+                style={{
+                  border: `3px solid ${currentTheme.borderColor}`,
+                  background: `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}50)`,
+                  boxShadow: `0 4px 15px ${currentTheme.shadowColor}40, 0 0 0 1px ${currentTheme.borderColor}20, inset 0 1px 3px rgba(255,255,255,0.6)`,
+                }}
                 animate={{
-                  scale: [1, 1.05, 1],
+                  scale: [1, 1.08, 1],
+                  rotate: [0, 2, -2, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{
+                  scale: 1.15,
+                  rotate: 5,
+                  boxShadow: `0 6px 20px ${currentTheme.shadowColor}60, 0 0 0 2px ${currentTheme.borderColor}40`,
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   console.log("AI Avatar clicked!");
                   // Add avatar interaction here
                 }}
               >
-                <img
-                  src={aiAvatarUrl}
-                  alt="AI Companion"
-                  className="w-full h-full object-cover rounded-full"
+                <div className="w-full h-full p-0.5">
+                  <img
+                    src={aiAvatarUrl}
+                    alt="AI Companion"
+                    className="w-full h-full object-cover rounded-full"
+                    style={{
+                      filter: "brightness(1.1) saturate(1.2)",
+                    }}
+                  />
+                </div>
+                {/* Sparkle effect */}
+                <div
+                  className="absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse"
+                  style={{
+                    background: `radial-gradient(circle, ${currentTheme.accent}, ${currentTheme.borderColor})`,
+                    boxShadow: `0 0 8px ${currentTheme.accent}80`,
+                  }}
                 />
               </motion.button>
             </div>
@@ -111,17 +146,33 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                 }}
               >
                 <h2
-                  className="text-lg font-bold text-amber-800 mb-2 group-hover:text-amber-900 transition-colors"
+                  className={`text-lg font-bold ${currentTheme.textPrimary} mb-2 transition-colors`}
                   style={{
                     fontFamily: '"Kalam", cursive',
-                    textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
+                    textShadow: `2px 2px 4px rgba(255,255,255,0.9), 0 0 10px ${currentTheme.accent}30`,
                     fontSize: "18px",
                     lineHeight: "1.2",
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.1))",
                   }}
                 >
-                  "{badgeTitle || "Amazing Creation!"}"
+                  ✨ "{badgeTitle || "Amazing Creation!"}" ✨
                 </h2>
-                <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto group-hover:via-amber-500 transition-colors" />
+                <motion.div
+                  className="w-16 h-1 mx-auto rounded-full"
+                  style={{
+                    background: `linear-gradient(90deg, ${currentTheme.buttonBg}, ${currentTheme.accent}, ${currentTheme.borderColor}, ${currentTheme.accent}, ${currentTheme.buttonBg})`,
+                    boxShadow: `0 0 8px ${currentTheme.accent}50`,
+                  }}
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0.8, 1, 0.8],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
               </motion.button>
             </div>
 
@@ -134,28 +185,56 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                 transition={{ delay: 0.4 }}
               >
                 <div
-                  className="relative rounded-lg overflow-hidden"
+                  className="relative rounded-xl overflow-hidden"
                   style={{
-                    border: "3px solid #d4af37",
-                    padding: "6px",
-                    boxShadow:
-                      "inset 0 0 8px rgba(255, 215, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.1)",
+                    border: `4px solid ${currentTheme.borderColor}`,
+                    padding: "8px",
+                    background: `linear-gradient(135deg, ${currentTheme.patternColors[0]}60, ${currentTheme.patternColors[1]}40, ${currentTheme.patternColors[2]}60)`,
+                    boxShadow: `
+                      inset 0 0 12px ${currentTheme.accent}30,
+                      0 6px 20px ${currentTheme.shadowColor}40,
+                      0 2px 8px ${currentTheme.shadowColor}20
+                    `,
                   }}
                 >
-                  <div className="relative rounded-md overflow-hidden bg-white p-2">
+                  <div
+                    className="relative rounded-lg overflow-hidden p-2"
+                    style={{
+                      background: `linear-gradient(45deg, ${currentTheme.buttonBg}, rgba(255,255,255,0.9))`,
+                      border: `2px solid ${currentTheme.patternColors[0]}80`,
+                    }}
+                  >
                     <img
                       src={imageUrl}
                       alt="A magical illustration"
-                      className="w-full h-40 object-cover rounded-sm"
+                      className="w-full h-40 object-cover rounded"
                       style={{
-                        filter: "contrast(1.1) saturate(1.2) brightness(1.05)",
+                        filter:
+                          "contrast(1.15) saturate(1.3) brightness(1.08) hue-rotate(2deg)",
+                        boxShadow: `inset 0 0 8px rgba(0,0,0,0.1)`,
                       }}
                     />
-                    {/* Vintage photo corners */}
-                    <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-amber-700 opacity-30" />
-                    <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-amber-700 opacity-30" />
-                    <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-amber-700 opacity-30" />
-                    <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-amber-700 opacity-30" />
+                    {/* Fun decorative corners */}
+                    <div
+                      className="absolute top-2 left-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.accent }}
+                    />
+                    <div
+                      className="absolute top-2 right-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.borderColor }}
+                    />
+                    <div
+                      className="absolute bottom-2 left-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.patternColors[2] }}
+                    />
+                    <div
+                      className="absolute bottom-2 right-2 w-3 h-3 rounded-full opacity-60"
+                      style={{ backgroundColor: currentTheme.patternColors[1] }}
+                    />
+                    {/* Sparkle overlay */}
+                    <div className="absolute top-1 right-1 text-xs opacity-80 animate-pulse">
+                      ✨
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -177,11 +256,13 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                   transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
                 >
                   <div
-                    className="w-10 h-10 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg flex items-center justify-center text-xl font-bold text-amber-800 shadow-lg"
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold ${currentTheme.textPrimary} shadow-lg`}
                     style={{
-                      fontFamily: '"Times New Roman", serif',
-                      textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
-                      border: "2px solid #d4af37",
+                      background: `linear-gradient(135deg, ${currentTheme.patternColors[0]}, ${currentTheme.patternColors[1]}, ${currentTheme.patternColors[2]})`,
+                      fontFamily: '"Kalam", cursive',
+                      textShadow: `2px 2px 4px rgba(255,255,255,0.9), 0 0 8px ${currentTheme.accent}40`,
+                      border: `3px solid ${currentTheme.borderColor}`,
+                      boxShadow: `0 4px 12px ${currentTheme.shadowColor}40, inset 0 1px 3px rgba(255,255,255,0.6)`,
                     }}
                   >
                     {reflection.charAt(0).toUpperCase()}
@@ -190,13 +271,13 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
 
                 {/* Scrollable text container */}
                 <div
-                  className="text-amber-900 leading-relaxed overflow-y-auto"
+                  className={`${currentTheme.textPrimary} leading-relaxed overflow-y-auto`}
                   style={{
                     fontFamily: '"Kalam", cursive',
                     fontSize: "14px",
                     textAlign: "justify",
-                    textShadow: "1px 1px 2px rgba(255,255,255,0.5)",
-                    lineHeight: "1.5",
+                    textShadow: "1px 1px 3px rgba(255,255,255,0.8)",
+                    lineHeight: "1.6",
                     maxHeight: "120px",
                     paddingRight: "4px",
                   }}
@@ -222,23 +303,31 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                   transition={{ delay: 1, duration: 0.6 }}
                 >
                   <span
-                    className="text-xs text-amber-700 italic font-medium"
+                    className={`text-xs ${currentTheme.textSecondary} italic font-medium`}
                     style={{
-                      fontFamily: '"Times New Roman", serif',
+                      fontFamily: '"Kalam", cursive',
                       textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
                     }}
                   >
-                    - Your Magical Friend
+                    🌟 Your Magical Friend 🌟
                   </span>
                   {/* Voice playback button */}
                   <motion.button
                     onClick={handleAudioPlay}
-                    className="p-1 rounded-full bg-amber-100 hover:bg-amber-200 transition-colors opacity-60 hover:opacity-100"
-                    whileHover={{ scale: 1.1 }}
+                    className="p-1.5 rounded-full transition-all opacity-70 hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}60)`,
+                      border: `2px solid ${currentTheme.borderColor}60`,
+                      boxShadow: `0 2px 8px ${currentTheme.shadowColor}30`,
+                    }}
+                    whileHover={{
+                      scale: 1.15,
+                      boxShadow: `0 4px 12px ${currentTheme.shadowColor}50`,
+                    }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <Volume2
-                      className={`w-3 h-3 text-amber-700 ${
+                      className={`w-3 h-3 ${currentTheme.textSecondary} ${
                         isAudioPlaying ? "animate-pulse" : ""
                       }`}
                     />
@@ -255,8 +344,10 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
               >
-                <div className="text-xs text-amber-700 opacity-60 font-medium mr-2">
-                  How does this make you feel?
+                <div
+                  className={`text-xs ${currentTheme.textSecondary} opacity-70 font-medium mr-2`}
+                >
+                  🎭 How does this make you feel? 🎭
                 </div>
                 {reactions.map((reaction, idx) => (
                   <motion.button
@@ -266,39 +357,58 @@ const StorybookPage = ({ imageUrl, reflection, badgeTitle, aiAvatarUrl }) => {
                     style={{
                       background:
                         selectedReaction?.icon === reaction.icon
-                          ? `linear-gradient(135deg, ${reaction.color}20, ${reaction.color}10)`
-                          : "linear-gradient(135deg, rgba(245, 245, 220, 0.8), rgba(255, 248, 220, 0.9))",
-                      border: "1px solid rgba(212, 175, 55, 0.3)",
+                          ? `linear-gradient(135deg, ${reaction.color}40, ${reaction.color}20)`
+                          : `linear-gradient(135deg, ${currentTheme.buttonBg}, ${currentTheme.patternColors[0]}60)`,
+                      border: `2px solid ${selectedReaction?.icon === reaction.icon ? reaction.color : currentTheme.borderColor}80`,
                       boxShadow:
                         selectedReaction?.icon === reaction.icon
-                          ? `0 4px 12px ${reaction.color}40, inset 0 1px 2px rgba(255,255,255,0.8)`
-                          : "0 2px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.8)",
-                      width: "44px", // Minimum 40px + padding
-                      height: "44px",
-                      minWidth: "44px",
-                      minHeight: "44px",
+                          ? `0 6px 16px ${reaction.color}50, inset 0 2px 4px rgba(255,255,255,0.8)`
+                          : `0 3px 10px ${currentTheme.shadowColor}30, inset 0 1px 3px rgba(255,255,255,0.8)`,
+                      width: "46px",
+                      height: "46px",
+                      minWidth: "46px",
+                      minHeight: "46px",
                     }}
                     whileHover={{
-                      scale: 1.1,
-                      y: -2,
+                      scale: 1.15,
+                      y: -3,
+                      rotate: 5,
                       transition: { duration: 0.2 },
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.9, rotate: -5 }}
+                    animate={{
+                      rotate:
+                        selectedReaction?.icon === reaction.icon
+                          ? [0, 10, -10, 0]
+                          : 0,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      repeat: selectedReaction?.icon === reaction.icon ? 3 : 0,
+                    }}
                   >
-                    <span className="text-lg">{reaction.icon}</span>
+                    <span className="text-lg drop-shadow-sm">
+                      {reaction.icon}
+                    </span>
 
                     {/* Reaction feedback */}
                     <AnimatePresence>
                       {selectedReaction?.icon === reaction.icon && (
                         <motion.div
-                          className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-amber-800 text-yellow-100 text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium"
+                          className={`absolute -top-12 left-1/2 transform -translate-x-1/2 ${currentTheme.textPrimary} text-white text-xs px-3 py-1.5 rounded-full whitespace-nowrap font-medium`}
                           style={{
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                            border: "1px solid rgba(212, 175, 55, 0.5)",
+                            background: `linear-gradient(135deg, ${currentTheme.accent}, ${currentTheme.borderColor})`,
+                            boxShadow: `0 6px 16px ${currentTheme.shadowColor}50`,
+                            border: `1px solid ${currentTheme.borderColor}80`,
                           }}
-                          initial={{ opacity: 0, y: 10, scale: 0.5 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -10, scale: 0.5 }}
+                          initial={{
+                            opacity: 0,
+                            y: 10,
+                            scale: 0.5,
+                            rotate: -10,
+                          }}
+                          animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.5, rotate: 10 }}
                         >
                           {reaction.label}
                         </motion.div>
@@ -364,6 +474,21 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [direction, setDirection] = useState(0);
+
+  // Green companion matching theme for all pages
+  const companionTheme = {
+    name: "Companion Green",
+    background: "from-emerald-200 via-green-100 to-teal-50",
+    binding: "from-emerald-300 via-green-300 to-teal-400",
+    shadowColor: "#10b981",
+    borderColor: "#34d399",
+    textPrimary: "text-emerald-800",
+    textSecondary: "text-green-600",
+    decorative: "text-emerald-500",
+    accent: "#22c55e",
+    buttonBg: "#ecfdf5",
+    patternColors: ["#d1fae5", "#a7f3d0", "#6ee7b7"],
+  };
 
   // Stagger animation entrance
   useEffect(() => {
@@ -441,33 +566,43 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                 <motion.button
                   onClick={prevPage}
                   disabled={currentPage === 0}
-                  className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
-                  whileHover={{
-                    scale: 1.1,
-                    backgroundColor: "rgba(255,255,255,0.9)",
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
                   style={{
-                    border: "2px solid rgba(212, 175, 55, 0.3)",
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
+                    border: `3px solid ${companionTheme.borderColor}`,
+                    boxShadow: `0 4px 15px ${companionTheme.shadowColor}40`,
                   }}
+                  whileHover={{
+                    scale: 1.15,
+                    rotate: -5,
+                    boxShadow: `0 6px 20px ${companionTheme.shadowColor}60`,
+                  }}
+                  whileTap={{ scale: 0.9, rotate: 5 }}
                 >
-                  <ChevronLeft className="w-5 h-5 text-amber-800" />
+                  <ChevronLeft
+                    className={`w-5 h-5 ${companionTheme.textPrimary}`}
+                  />
                 </motion.button>
 
                 <motion.button
                   onClick={nextPage}
                   disabled={currentPage === pages.length - 1}
-                  className="w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
-                  whileHover={{
-                    scale: 1.1,
-                    backgroundColor: "rgba(255,255,255,0.9)",
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
                   style={{
-                    border: "2px solid rgba(212, 175, 55, 0.3)",
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
+                    border: `3px solid ${companionTheme.borderColor}`,
+                    boxShadow: `0 4px 15px ${companionTheme.shadowColor}40`,
                   }}
+                  whileHover={{
+                    scale: 1.15,
+                    rotate: 5,
+                    boxShadow: `0 6px 20px ${companionTheme.shadowColor}60`,
+                  }}
+                  whileTap={{ scale: 0.9, rotate: -5 }}
                 >
-                  <ChevronRight className="w-5 h-5 text-amber-800" />
+                  <ChevronRight
+                    className={`w-5 h-5 ${companionTheme.textPrimary}`}
+                  />
                 </motion.button>
               </div>
 
@@ -478,20 +613,43 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                     <motion.button
                       key={idx}
                       onClick={() => goToPage(idx)}
-                      className="w-2 h-2 rounded-full transition-all duration-300 pointer-events-auto"
+                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative"
                       style={{
-                        backgroundColor:
+                        background:
                           idx === currentPage
-                            ? "#d4af37"
-                            : "rgba(212, 175, 55, 0.3)",
+                            ? `linear-gradient(135deg, ${companionTheme.accent}, ${companionTheme.borderColor})`
+                            : `${companionTheme.buttonBg}`,
+                        border: `2px solid ${companionTheme.borderColor}`,
                         boxShadow:
                           idx === currentPage
-                            ? "0 0 8px rgba(212, 175, 55, 0.6)"
-                            : "none",
+                            ? `0 0 12px ${companionTheme.accent}80, 0 2px 6px ${companionTheme.shadowColor}40`
+                            : `0 1px 3px ${companionTheme.shadowColor}20`,
                       }}
-                      whileHover={{ scale: 1.3 }}
+                      whileHover={{
+                        scale: 1.4,
+                        rotate: 180,
+                        boxShadow: `0 0 16px ${companionTheme.accent}90, 0 4px 8px ${companionTheme.shadowColor}60`,
+                      }}
                       whileTap={{ scale: 0.8 }}
-                    />
+                      animate={{
+                        scale: idx === currentPage ? [1, 1.2, 1] : 1,
+                        rotate: idx === currentPage ? [0, 360] : 0,
+                      }}
+                      transition={{
+                        duration: idx === currentPage ? 2 : 0.3,
+                        repeat: idx === currentPage ? Infinity : 0,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {idx === currentPage && (
+                        <div
+                          className="absolute inset-0 rounded-full animate-ping"
+                          style={{
+                            background: `radial-gradient(circle, ${companionTheme.accent}60, transparent 70%)`,
+                          }}
+                        />
+                      )}
+                    </motion.button>
                   ))}
                 </div>
               </div>
@@ -541,6 +699,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                         reflection={pages[currentPage].reflection}
                         badgeTitle={pages[currentPage].badgeTitle}
                         aiAvatarUrl={pages[currentPage].aiAvatarUrl}
+                        currentTheme={companionTheme}
                       />
                     </div>
                   </motion.div>

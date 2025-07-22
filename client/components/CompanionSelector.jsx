@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-const companions = [
+export const companions = [
   {
     id: 1,
     name: "Cody",
@@ -206,7 +206,7 @@ const CharacterHoverAnimations = ({ companion, isHovered }) => {
   if (name === "Rooty") {
     return (
       <motion.div className="absolute inset-0 pointer-events-none">
-        {["⚙️", "🔧", "⚡", "🛠️"].map((tool, i) => (
+        {["⚙️", "����", "⚡", "🛠️"].map((tool, i) => (
           <motion.div
             key={i}
             className="absolute text-xs"
@@ -498,10 +498,12 @@ const CompanionSelector = ({ onSelect, onClose }) => {
   const [hoveredCompanion, setHoveredCompanion] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
   const [selectedCompanion, setSelectedCompanion] = useState(null);
+  const [selectionInProgress, setSelectionInProgress] = useState(false);
 
   const handleSelect = (companion) => {
-    // Set selected companion for animation
+    // Set selected companion for animation and hide close button
     setSelectedCompanion(companion);
+    setSelectionInProgress(true);
 
     // After showing selection animation, close and complete selection
     setTimeout(() => {
@@ -621,26 +623,30 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             isolation: "isolate",
           }}
         >
-          {/* Outer orbit rings */}
-          <motion.div
-            className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-10 rounded-full z-[5]"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 60,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+          {/* Outer orbit rings - temporarily hidden to debug white strip */}
+          {false && (
+            <>
+              <motion.div
+                className="absolute w-[500px] h-[500px] border border-dashed border-white border-opacity-5 rounded-full z-[5]"
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 60,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
 
-          <motion.div
-            className="absolute w-[450px] h-[450px] border border-white border-opacity-5 rounded-full z-[5]"
-            animate={{ rotate: -360 }}
-            transition={{
-              duration: 50,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
+              <motion.div
+                className="absolute w-[450px] h-[450px] border border-white border-opacity-2 rounded-full z-[5]"
+                animate={{ rotate: -360 }}
+                transition={{
+                  duration: 50,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </>
+          )}
 
           {/* Center ring for selected companion */}
           <AnimatePresence>
@@ -814,11 +820,11 @@ const CompanionSelector = ({ onSelect, onClose }) => {
             )}
           </AnimatePresence>
 
-          {/* Center crystal orb (cancel button) - hide when companion is selected */}
+          {/* Center crystal orb (cancel button) - completely hidden when companion is selected */}
           <AnimatePresence>
-            {!selectedCompanion && (
+            {!selectedCompanion && !isClosing && !selectionInProgress && (
               <motion.button
-                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-2 border-white border-opacity-30 z-[80]"
+                className="absolute w-24 h-24 bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl z-[80]"
                 onClick={handleClose}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

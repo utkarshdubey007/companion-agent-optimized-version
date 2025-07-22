@@ -9,10 +9,82 @@ const KidReflectionStorybookCard = ({
   reactionsEnabled = true,
   aiAvatarUrl,
   index = 0,
+  theme = "rainbow", // Default theme
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  // Theme configurations
+  const themeConfig = {
+    rainbow: {
+      background: "from-pink-100 via-purple-50 to-blue-100",
+      binding: "from-pink-200 via-purple-200 to-blue-300",
+      border: "#d946ef", // Purple-pink
+      text: "text-purple-800",
+      accent: "text-purple-600",
+      decorative: "text-pink-500",
+      frame: "#e879f9", // Bright pink
+      buttonBg: "#fdf4ff", // Solid light purple
+      buttonBorder: "rgba(217, 70, 239, 0.3)",
+      cardBg: "#fef7ff", // Solid very light purple
+      shadowBg: "#e879f9", // Solid purple shadow
+    },
+    sunset: {
+      background: "from-orange-100 via-red-50 to-pink-100",
+      binding: "from-orange-200 via-red-200 to-pink-300",
+      border: "#f97316", // Orange
+      text: "text-orange-800",
+      accent: "text-red-600",
+      decorative: "text-orange-500",
+      frame: "#fb923c", // Bright orange
+      buttonBg: "#fff7ed", // Solid light orange
+      buttonBorder: "rgba(249, 115, 22, 0.3)",
+      cardBg: "#fff7ed", // Solid very light orange
+      shadowBg: "#fb923c", // Solid orange shadow
+    },
+    forest: {
+      background: "from-green-100 via-emerald-50 to-teal-100",
+      binding: "from-green-200 via-emerald-200 to-teal-300",
+      border: "#10b981", // Emerald
+      text: "text-green-800",
+      accent: "text-emerald-600",
+      decorative: "text-green-500",
+      frame: "#34d399", // Bright emerald
+      buttonBg: "#f0fdf4", // Solid light green
+      buttonBorder: "rgba(16, 185, 129, 0.3)",
+      cardBg: "#f0fdfa", // Solid very light emerald
+      shadowBg: "#34d399", // Solid emerald shadow
+    },
+    ocean: {
+      background: "from-blue-100 via-cyan-50 to-indigo-100",
+      binding: "from-blue-200 via-cyan-200 to-indigo-300",
+      border: "#0ea5e9", // Sky blue
+      text: "text-blue-800",
+      accent: "text-cyan-600",
+      decorative: "text-blue-500",
+      frame: "#38bdf8", // Bright blue
+      buttonBg: "#f0f9ff", // Solid light blue
+      buttonBorder: "rgba(14, 165, 233, 0.3)",
+      cardBg: "#f0fdff", // Solid very light cyan
+      shadowBg: "#38bdf8", // Solid blue shadow
+    },
+    vintage: {
+      background: "from-amber-50 via-orange-50 to-yellow-100",
+      binding: "from-amber-200 via-orange-200 to-amber-300",
+      border: "#d4af37", // Gold
+      text: "text-amber-800",
+      accent: "text-amber-600",
+      decorative: "text-amber-600",
+      frame: "#d4af37", // Gold
+      buttonBg: "#fffbeb", // Solid light amber
+      buttonBorder: "rgba(212, 175, 55, 0.3)",
+      cardBg: "#fffbeb", // Solid very light amber
+      shadowBg: "#d4af37", // Solid gold shadow
+    },
+  };
+
+  const currentTheme = themeConfig[theme] || themeConfig.rainbow;
 
   // Stagger animation entrance
   useEffect(() => {
@@ -62,8 +134,9 @@ const KidReflectionStorybookCard = ({
           >
             {/* Book Shadow Base */}
             <motion.div
-              className="absolute inset-0 bg-gray-800 rounded-r-lg opacity-20"
+              className="absolute inset-0 rounded-r-lg opacity-20"
               style={{
+                backgroundColor: currentTheme.shadowBg,
                 transform: "translateX(8px) translateY(8px)",
                 filter: "blur(12px)",
               }}
@@ -74,19 +147,29 @@ const KidReflectionStorybookCard = ({
 
             {/* Storybook Page Container */}
             <motion.div
-              className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 rounded-r-2xl shadow-2xl overflow-hidden"
+              className={`relative bg-gradient-to-br ${currentTheme.background} rounded-r-2xl shadow-2xl overflow-hidden`}
               style={{
                 fontFamily:
                   '"Kalam", "Comic Neue", "Fredoka One", cursive, sans-serif',
-                backgroundImage: `
-                  radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.02) 0%, transparent 50%),
-                  linear-gradient(90deg, rgba(139, 69, 19, 0.05) 0%, transparent 2%),
-                  repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(139, 69, 19, 0.01) 21px, rgba(139, 69, 19, 0.01) 22px)
+                backgroundImage:
+                  theme === "rainbow"
+                    ? `
+                  radial-gradient(circle at 25% 25%, rgba(217, 70, 239, 0.08) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 75% 25%, rgba(34, 197, 94, 0.05) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 25% 75%, rgba(249, 115, 22, 0.04) 0%, ${currentTheme.cardBg} 50%),
+                  linear-gradient(90deg, rgba(217, 70, 239, 0.05) 0%, ${currentTheme.cardBg} 2%),
+                  repeating-linear-gradient(0deg, ${currentTheme.cardBg}, ${currentTheme.cardBg} 20px, rgba(217, 70, 239, 0.02) 21px, rgba(217, 70, 239, 0.02) 22px)
+                `
+                    : `
+                  radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.03) 0%, ${currentTheme.cardBg} 50%),
+                  radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.02) 0%, ${currentTheme.cardBg} 50%),
+                  linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, ${currentTheme.cardBg} 2%),
+                  repeating-linear-gradient(0deg, ${currentTheme.cardBg}, ${currentTheme.cardBg} 20px, rgba(0, 0, 0, 0.01) 21px, rgba(0, 0, 0, 0.01) 22px)
                 `,
                 boxShadow: `
-                  inset 4px 0 8px rgba(139, 69, 19, 0.1),
-                  0 0 0 1px rgba(139, 69, 19, 0.1),
+                  inset 4px 0 8px rgba(0, 0, 0, 0.1),
+                  0 0 0 1px ${currentTheme.border}40,
                   0 8px 32px rgba(0, 0, 0, 0.15),
                   0 4px 16px rgba(0, 0, 0, 0.1)
                 `,
@@ -102,25 +185,25 @@ const KidReflectionStorybookCard = ({
             >
               {/* Book Binding Edge */}
               <div
-                className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-b from-amber-200 via-orange-200 to-amber-300"
+                className={`absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-b ${currentTheme.binding}`}
                 style={{
                   backgroundImage: `
                     repeating-linear-gradient(
                       0deg,
-                      transparent,
-                      transparent 8px,
-                      rgba(139, 69, 19, 0.1) 8px,
-                      rgba(139, 69, 19, 0.1) 10px
+                      ${currentTheme.cardBg},
+                      ${currentTheme.cardBg} 8px,
+                      ${currentTheme.border}20 8px,
+                      ${currentTheme.border}20 10px
                     )
                   `,
-                  boxShadow: "inset -2px 0 4px rgba(139, 69, 19, 0.2)",
+                  boxShadow: `inset -2px 0 4px ${currentTheme.border}40`,
                 }}
               />
 
               {/* Page Number */}
               <div className="absolute top-4 right-6">
                 <motion.div
-                  className="text-amber-700 text-sm font-bold opacity-60"
+                  className={`${currentTheme.text} text-sm font-bold opacity-60`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.6 }}
                   transition={{ delay: 0.8 }}
@@ -136,7 +219,7 @@ const KidReflectionStorybookCard = ({
               {/* Decorative corner flourishes */}
               <div className="absolute top-6 left-8">
                 <motion.div
-                  className="text-amber-600 text-lg opacity-40"
+                  className={`${currentTheme.decorative} text-lg opacity-40`}
                   animate={{
                     rotate: [0, 5, -5, 0],
                     scale: [1, 1.05, 1],
@@ -147,13 +230,21 @@ const KidReflectionStorybookCard = ({
                     ease: "easeInOut",
                   }}
                 >
-                  ❦
+                  {theme === "rainbow"
+                    ? "🌈"
+                    : theme === "forest"
+                      ? "🌿"
+                      : theme === "ocean"
+                        ? "🌊"
+                        : theme === "sunset"
+                          ? "🌅"
+                          : "❦"}
                 </motion.div>
               </div>
 
               <div className="absolute bottom-6 right-8">
                 <motion.div
-                  className="text-amber-600 text-lg opacity-40"
+                  className={`${currentTheme.decorative} text-lg opacity-40`}
                   animate={{
                     rotate: [0, -5, 5, 0],
                     scale: [1, 1.05, 1],
@@ -165,7 +256,15 @@ const KidReflectionStorybookCard = ({
                     delay: 2,
                   }}
                 >
-                  ❦
+                  {theme === "rainbow"
+                    ? "⭐"
+                    : theme === "forest"
+                      ? "🍃"
+                      : theme === "ocean"
+                        ? "🐚"
+                        : theme === "sunset"
+                          ? "🦋"
+                          : "❦"}
                 </motion.div>
               </div>
 
@@ -178,7 +277,7 @@ const KidReflectionStorybookCard = ({
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
                   <motion.h2
-                    className="text-xl font-bold text-amber-800 mb-2"
+                    className={`text-xl font-bold ${currentTheme.text} mb-2`}
                     style={{
                       fontFamily: '"Kalam", "Comic Neue", cursive',
                       textShadow: "2px 2px 4px rgba(255,255,255,0.8)",
@@ -187,7 +286,7 @@ const KidReflectionStorybookCard = ({
                     animate={{
                       textShadow: [
                         "2px 2px 4px rgba(255,255,255,0.8)",
-                        "2px 2px 8px rgba(255,215,0,0.3)",
+                        `2px 2px 8px ${currentTheme.border}50`,
                         "2px 2px 4px rgba(255,255,255,0.8)",
                       ],
                     }}
@@ -200,7 +299,10 @@ const KidReflectionStorybookCard = ({
                     "{badgeTitle}"
                   </motion.h2>
                   <motion.div
-                    className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"
+                    className="w-16 h-0.5 mx-auto"
+                    style={{
+                      background: `linear-gradient(to right, ${currentTheme.cardBg}, ${currentTheme.border}, ${currentTheme.cardBg})`,
+                    }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
@@ -220,19 +322,19 @@ const KidReflectionStorybookCard = ({
                   <div
                     className="relative rounded-lg overflow-hidden"
                     style={{
-                      border: "3px solid #d4af37",
+                      border: `3px solid ${currentTheme.frame}`,
                       backgroundImage: `
-                        linear-gradient(45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
-                        linear-gradient(-45deg, rgba(212, 175, 55, 0.1) 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%),
-                        linear-gradient(-45deg, transparent 75%, rgba(212, 175, 55, 0.1) 75%)
+                        linear-gradient(45deg, ${currentTheme.frame}20 25%, ${currentTheme.cardBg} 25%),
+                        linear-gradient(-45deg, ${currentTheme.frame}20 25%, ${currentTheme.cardBg} 25%),
+                        linear-gradient(45deg, ${currentTheme.cardBg} 75%, ${currentTheme.frame}20 75%),
+                        linear-gradient(-45deg, ${currentTheme.cardBg} 75%, ${currentTheme.frame}20 75%)
                       `,
                       backgroundSize: "12px 12px",
                       backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
                       padding: "8px",
                       boxShadow: `
-                        inset 0 0 0 1px rgba(212, 175, 55, 0.3),
-                        inset 0 0 8px rgba(255, 215, 0, 0.2),
+                        inset 0 0 0 1px ${currentTheme.frame}50,
+                        inset 0 0 8px ${currentTheme.frame}30,
                         0 4px 16px rgba(0, 0, 0, 0.1)
                       `,
                     }}
@@ -249,10 +351,22 @@ const KidReflectionStorybookCard = ({
                       />
 
                       {/* Vintage photo corners */}
-                      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-amber-700 opacity-30" />
-                      <div className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 border-amber-700 opacity-30" />
-                      <div className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 border-amber-700 opacity-30" />
-                      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-amber-700 opacity-30" />
+                      <div
+                        className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
+                      <div
+                        className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 opacity-30"
+                        style={{ borderColor: currentTheme.border }}
+                      />
 
                       {/* Subtle shimmer effect */}
                       <motion.div
@@ -273,7 +387,7 @@ const KidReflectionStorybookCard = ({
 
                   {/* Illustration Caption */}
                   <motion.p
-                    className="text-center text-xs text-amber-700 mt-2 italic font-medium opacity-70"
+                    className={`text-center text-xs ${currentTheme.accent} mt-2 italic font-medium opacity-70`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 0.7 }}
                     transition={{ delay: 1, duration: 0.6 }}
@@ -303,11 +417,11 @@ const KidReflectionStorybookCard = ({
                     transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
                   >
                     <div
-                      className="w-12 h-12 bg-gradient-to-br from-amber-200 to-orange-300 rounded-lg flex items-center justify-center text-2xl font-bold text-amber-800 shadow-lg"
+                      className={`w-12 h-12 bg-gradient-to-br ${currentTheme.binding} rounded-lg flex items-center justify-center text-2xl font-bold ${currentTheme.text} shadow-lg`}
                       style={{
                         fontFamily: '"Times New Roman", serif',
                         textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
-                        border: "2px solid #d4af37",
+                        border: `2px solid ${currentTheme.border}`,
                       }}
                     >
                       {reflection.charAt(0).toUpperCase()}
@@ -316,7 +430,7 @@ const KidReflectionStorybookCard = ({
 
                   {/* Story Text */}
                   <motion.div
-                    className="text-amber-900 leading-relaxed"
+                    className={`${currentTheme.text} leading-relaxed`}
                     style={{
                       fontFamily: '"Kalam", "Comic Neue", cursive',
                       fontSize: "15px",
@@ -358,7 +472,7 @@ const KidReflectionStorybookCard = ({
                       </motion.div>
                     )}
                     <span
-                      className="text-xs text-amber-700 italic font-medium"
+                      className={`text-xs ${currentTheme.accent} italic font-medium`}
                       style={{
                         fontFamily: '"Times New Roman", serif',
                         textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
@@ -369,12 +483,16 @@ const KidReflectionStorybookCard = ({
                     {/* Voice playback button */}
                     <motion.button
                       onClick={handleAudioPlay}
-                      className="p-1 rounded-full bg-amber-100 hover:bg-amber-200 transition-colors opacity-60 hover:opacity-100"
+                      className="p-1 rounded-full transition-colors opacity-60 hover:opacity-100"
+                      style={{
+                        backgroundColor: currentTheme.buttonBg,
+                        border: `1px solid ${currentTheme.buttonBorder}`,
+                      }}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       <Volume2
-                        className={`w-3 h-3 text-amber-700 ${
+                        className={`w-3 h-3 ${currentTheme.accent} ${
                           isAudioPlaying ? "animate-pulse" : ""
                         }`}
                       />
@@ -392,7 +510,9 @@ const KidReflectionStorybookCard = ({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2, duration: 0.6 }}
                   >
-                    <div className="text-xs text-amber-700 opacity-60 font-medium mr-2">
+                    <div
+                      className={`text-xs ${currentTheme.accent} opacity-60 font-medium mr-2`}
+                    >
                       How does this make you feel?
                     </div>
                     {reactions.map((reaction, idx) => (
@@ -403,9 +523,9 @@ const KidReflectionStorybookCard = ({
                         style={{
                           background:
                             selectedReaction?.icon === reaction.icon
-                              ? `linear-gradient(135deg, ${reaction.color}20, ${reaction.color}10)`
-                              : "linear-gradient(135deg, rgba(245, 245, 220, 0.8), rgba(255, 248, 220, 0.9))",
-                          border: "1px solid rgba(212, 175, 55, 0.3)",
+                              ? `linear-gradient(135deg, ${reaction.color}30, ${reaction.color}20)`
+                              : currentTheme.buttonBg,
+                          border: `1px solid ${currentTheme.buttonBorder}`,
                           boxShadow:
                             selectedReaction?.icon === reaction.icon
                               ? `0 4px 12px ${reaction.color}40, inset 0 1px 2px rgba(255,255,255,0.8)`
@@ -424,10 +544,11 @@ const KidReflectionStorybookCard = ({
                         <AnimatePresence>
                           {selectedReaction?.icon === reaction.icon && (
                             <motion.div
-                              className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-amber-800 text-yellow-100 text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium"
+                              className={`absolute -top-10 left-1/2 transform -translate-x-1/2 ${currentTheme.text} text-white text-xs px-3 py-1 rounded-full whitespace-nowrap font-medium`}
                               style={{
+                                backgroundColor: currentTheme.border,
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                                border: "1px solid rgba(212, 175, 55, 0.5)",
+                                border: `1px solid ${currentTheme.border}80`,
                               }}
                               initial={{ opacity: 0, y: 10, scale: 0.5 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}

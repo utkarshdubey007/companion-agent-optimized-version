@@ -9,6 +9,7 @@ export function useChatState() {
       content:
         "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?",
       timestamp: new Date(Date.now() - 300000),
+      companion: null, // Will use default companion in AnimatedCompanionAvatar
     },
   ]);
 
@@ -39,6 +40,7 @@ export function useChatState() {
         sender: "AI",
         content: `Wow! What a beautiful collection! 🌟 I can see you've put so much creativity and heart into these. Each image tells its own special story! Would you like to tell me more about your favorite one? ✨`,
         timestamp: new Date(),
+        companion: selectedCompanion, // Store current companion with message
       };
       setChatMessages((prev) => [...prev, aiResponse]);
     }, 2200);
@@ -77,6 +79,7 @@ export function useChatState() {
       onAccept: handleAcceptChallenge,
       onRegenerate: handleRegenerateChallenge,
       onChatMore: () => console.log("Chat more about challenge"),
+      companion: selectedCompanion, // Store current companion with message
     };
     setChatMessages((prev) => [...prev, newMessage]);
   };
@@ -106,6 +109,7 @@ export function useChatState() {
         content:
           "That's a great idea! I love your creativity! ✨ Let me think of something fun we can do with that...",
         timestamp: new Date(),
+        companion: selectedCompanion, // Store current companion with message
       };
       setChatMessages((prev) => [...prev, aiMessage]);
     }, 2500); // Extended thinking time for magical effect
@@ -155,6 +159,7 @@ export function useChatState() {
               sender: "AI",
               content: `Wow! ${images.length === 1 ? "That's a beautiful picture" : `Those are ${images.length} amazing pictures`}! 🌟 I love your creativity! Tell me more about ${images.length === 1 ? "it" : "them"} - what inspired you to create ${images.length === 1 ? "this" : "these"}? ✨`,
               timestamp: new Date(),
+              companion: selectedCompanion, // Store current companion with message
             };
             setChatMessages((prev) => [...prev, aiResponse]);
           }, 2000);
@@ -179,6 +184,7 @@ export function useChatState() {
         sender: "AI",
         content: `Hello there! I'm ${companion.name}! 🌟 ${companion.description} I'm so excited to go on magical adventures with you! What would you like to create together today? ✨`,
         timestamp: new Date(),
+        companion: companion, // Store the selected companion with message
       };
       setChatMessages((prev) => [...prev, welcomeMessage]);
     }, 1800);
