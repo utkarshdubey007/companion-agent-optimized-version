@@ -324,49 +324,62 @@ export const MagicalCompanionChat = ({
 export const AITypingIndicator = ({
   companionColor = "#FFD700",
   className = "",
+  selectedCompanion = null,
 }) => {
   return (
     <motion.div
-      className={`flex items-center gap-3 p-4 ${className}`}
+      className={`flex items-start gap-3 mb-4 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4 }}
     >
-      {/* Thinking dots */}
-      <div className="flex gap-1">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: companionColor }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: 1,
-              delay: i * 0.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+      {/* Companion Avatar */}
+      <div className="flex-shrink-0">
+        <AnimatedCompanionAvatar
+          companion={selectedCompanion}
+          size={40}
+          showAnimations={true}
+        />
       </div>
 
-      <motion.span
-        className="text-sm text-gray-500 italic"
-        animate={{
-          opacity: [0.7, 1, 0.7],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        Your companion is thinking...
-      </motion.span>
+      {/* Thinking indicator */}
+      <div className="flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border border-gray-100">
+        {/* Thinking dots */}
+        <div className="flex gap-1">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: companionColor }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 1,
+                delay: i * 0.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <motion.span
+          className="text-sm text-gray-600 italic"
+          animate={{
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {selectedCompanion?.name || "Your companion"} is thinking...
+        </motion.span>
+      </div>
     </motion.div>
   );
 };
