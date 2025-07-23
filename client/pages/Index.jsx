@@ -12,6 +12,7 @@ import { EnhancedMagicalBackground } from "@/components/EnhancedMagicalBackgroun
 import CompanionSelector from "@/components/CompanionSelector";
 import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import ChallengeListView from "@/components/ChallengeListView";
+import StorybookReflectionCard from "@/components/StorybookReflectionCard";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
