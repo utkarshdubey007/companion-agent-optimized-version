@@ -51,6 +51,11 @@ export default function Index() {
   const [cameFromUploadMenu, setCameFromUploadMenu] = useState(false);
   const [showUploadMenu, setShowUploadMenu] = useState(false);
 
+  // Creation sharing flow state
+  const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'complete'
+  const [creationImages, setCreationImages] = useState([]);
+  const [creationTitle, setCreationTitle] = useState('');
+
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
