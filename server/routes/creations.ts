@@ -11,6 +11,7 @@ export async function getCreations(req: Request, res: Response) {
 
     // Get authentication token from request headers
     const authToken = req.headers['x-auth-token'] as string;
+    console.log('Creations API called with token:', authToken ? 'Token present' : 'No token');
 
     // Build the target URL with query parameters
     const params = new URLSearchParams();
@@ -20,6 +21,7 @@ export async function getCreations(req: Request, res: Response) {
     if (starting_after) params.append('starting_after', starting_after as string);
 
     const targetUrl = `http://localhost:8000/api/v2/creations?${params.toString()}`;
+    console.log('Attempting to fetch from:', targetUrl);
 
     // Forward the request to localhost:8000 with authentication from frontend
     const response = await fetch(targetUrl, {
@@ -29,6 +31,8 @@ export async function getCreations(req: Request, res: Response) {
         'Content-Type': 'application/json'
       }
     });
+
+    console.log('Response status:', response.status, response.statusText);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
