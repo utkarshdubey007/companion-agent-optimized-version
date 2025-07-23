@@ -49,6 +49,7 @@ export default function Index() {
   // Upload menu state
   const [showChallengeListView, setShowChallengeListView] = useState(false);
   const [cameFromUploadMenu, setCameFromUploadMenu] = useState(false);
+  const [showUploadMenu, setShowUploadMenu] = useState(false);
 
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
@@ -463,7 +464,7 @@ export default function Index() {
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
-        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ���",
+        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ����",
       Nervous: "Feeling nervous is natural! You're braver than you know. 💪",
       Bored:
         "Every feeling is valid and important. What would help you feel better today? 🌈",
