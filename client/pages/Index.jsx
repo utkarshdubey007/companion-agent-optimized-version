@@ -385,18 +385,10 @@ export default function Index() {
   // Fetch creations from API
   const fetchCreationsFromAPI = async () => {
     try {
-      const response = await fetch(
-        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth-Token":
-              "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0",
-          },
-        },
+      const response = await authenticatedGet(
+        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0"
       );
-      const data = await response.json();
+      const data = await parseJsonResponse(response);
 
       if (data.result_code === 1 && data.data) {
         // Transform API data to match CreationsPanel interface
