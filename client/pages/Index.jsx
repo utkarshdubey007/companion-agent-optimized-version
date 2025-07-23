@@ -658,6 +658,42 @@ export default function Index() {
         onClose={handleMoodPickerClose}
         onMoodSubmit={handleMoodPickerSubmit}
       />
+
+      {/* Challenge List View Modal */}
+      {showChallengeListView && (
+        <ChallengeListView
+          challenges={challenges}
+          loading={challengesLoading}
+          error={challengesError}
+          onClose={handleChallengeListClose}
+          onChallengeSelect={handleChallengeSelect}
+        />
+      )}
+
+      {/* Kid Media Upload Modal */}
+      {showKidMediaUpload && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md">
+            <div className="p-6">
+              <KidMediaMessage
+                mode="upload"
+                images={[]}
+                onImagesUpdate={handleImagesUpdate}
+                onShareCreation={handleShareCreation}
+                className=""
+              />
+              <div className="mt-4 text-center">
+                <button
+                  onClick={handleKidMediaUploadClose}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
