@@ -224,9 +224,9 @@ export function SimplifiedChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
-      {/* Fixed Companion Character at exact red box location (bottom-left) */}
-      <div className="absolute bottom-16 left-8 z-20">
-        <div className="w-40 h-40 md:w-48 md:h-48">
+      {/* Fixed Companion Character at exact red box location */}
+      <div className="absolute bottom-32 left-20 z-20">
+        <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
           {animationData ? (
             <Lottie
               animationData={animationData}
