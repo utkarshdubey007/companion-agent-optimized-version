@@ -347,7 +347,7 @@ export default function Index() {
       loadDependentChallenges();
       setShowAcceptedChallenges(true);
     } else if (itemAlt === "Reflect") {
-      console.log("Reflect icon clicked - adding FlippableStorybookCard");
+      console.log("Reflect icon clicked - showing CreationsPanel");
       // Show thoughtful reaction
       setCompanionState("thinking");
       setCompanionEmotions(["🤔", "📖", "✨"]);
@@ -355,8 +355,8 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      // Add FlippableStorybookCard to chat when reflection icon is clicked
-      addFlippableStorybook();
+      // Toggle CreationsPanel when reflection icon is clicked
+      setShowCreationsPanel(prev => !prev);
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
