@@ -137,16 +137,35 @@ export function SimplifiedChatContainer({
     }
 
     if (message.type === "media") {
-      return (
-        <KidMediaMessage
-          key={message.id}
-          images={message.images}
-          onImagesUpdate={message.onImagesUpdate}
-          onShareCreation={onShowCarousel}
-          timestamp={message.timestamp}
-          mode="upload"
-        />
-      );
+      if (message.sender === "AI") {
+        // AI Media Upload message - positioned on the left like other AI messages
+        return (
+          <div className="absolute bottom-56 left-1/2" key={message.id}>
+            <div className="max-w-sm">
+              <KidMediaMessage
+                images={message.images}
+                onImagesUpdate={message.onImagesUpdate}
+                onShareCreation={onShowCarousel}
+                timestamp={message.timestamp}
+                mode="upload"
+                className="flex justify-start"
+              />
+            </div>
+          </div>
+        );
+      } else {
+        // Kid Media Upload message - positioned on the right
+        return (
+          <KidMediaMessage
+            key={message.id}
+            images={message.images}
+            onImagesUpdate={message.onImagesUpdate}
+            onShareCreation={onShowCarousel}
+            timestamp={message.timestamp}
+            mode="upload"
+          />
+        );
+      }
     }
 
     if (message.type === "kid_media") {
