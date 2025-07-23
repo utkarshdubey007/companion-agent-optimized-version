@@ -425,6 +425,10 @@ export default function Index() {
         // Step 2: Trigger API upload
         uploadCreation(creationImages, creationTitle, message)
           .then(() => {
+            // Reset companion state
+            setCompanionState("talking");
+            setTimeout(() => setCompanionState("idle"), 2000);
+
             // Step 3: Show success message
             const successMessage = {
               id: (Date.now() + 2).toString(),
