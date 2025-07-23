@@ -189,10 +189,7 @@ export default function Index() {
 
       console.log("FormData prepared, sending to API...");
 
-      const response = await fetch("/api/v2/creations_media", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await authenticatedPost("/api/v2/creations_media", formData);
 
       console.log("API Response status:", response.status);
 
