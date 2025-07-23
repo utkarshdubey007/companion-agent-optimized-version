@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import Lottie from "lottie-react";
 import { MagicalChallengeCard } from "./MagicalChallengeCard";
 import { ChatMessage } from "./ChatMessage";
 import { CompactChallengeCard } from "./CompactChallengeCard";
