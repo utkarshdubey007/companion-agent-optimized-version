@@ -25,7 +25,7 @@ export default function KidMediaMessage({
   const isLeftAlign = align === "left";
 
   return (
-    <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} mb-4 ${className}`}>
+    <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} ${isLeftAlign ? 'mb-0' : 'mb-4'} ${className}`}>
       <div className={`flex items-end gap-3 max-w-md ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
         {/* Avatar - show first for left align, last for right align */}
         {isLeftAlign && (
