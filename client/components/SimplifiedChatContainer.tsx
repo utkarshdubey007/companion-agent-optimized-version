@@ -231,23 +231,22 @@ export function SimplifiedChatContainer({
       </div>
 
       {/* Latest Message Container */}
-      <div className="flex-1 flex items-center justify-center px-4 pb-24">
+      <div className="flex-1 flex items-center justify-center px-4 pb-24 ml-32 lg:ml-48">
         <div className="w-full max-w-2xl">
           {/* Default state when no messages */}
           {!latestMessage && (
             <div className="flex justify-center w-full">
-              <div className="max-w-sm">
-                <CompactChallengeCard
-                  title="How are you feeling today?"
-                  description="Just wanted to know how your day is going?"
-                  onAccept={onAcceptChallenge}
-                  onRegenerate={onRegenerateChallenge}
-                  onChatMore={onChatMore}
-                />
+              <div className="max-w-md w-full animate-fade-in">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
+                  <h3 className="text-lg md:text-xl font-bold text-center mb-2">How are you feeling today?</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
+                    Just wanted to know how your day is going?
+                  </p>
+                </div>
               </div>
             </div>
           )}
-          
+
           {/* Latest Message */}
           {latestMessage && (
             <div className="animate-slide-in">
@@ -258,14 +257,13 @@ export function SimplifiedChatContainer({
           {/* Additional Challenge Card when Imagine is clicked */}
           {showMagicalCard && (
             <div className="flex justify-center w-full mt-6 animate-slide-in">
-              <div className="max-w-sm">
-                <CompactChallengeCard
-                  title="Today's Magical Mission!"
-                  description="Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉"
-                  onAccept={onAcceptChallenge}
-                  onRegenerate={onRegenerateChallenge}
-                  onChatMore={onChatMore}
-                />
+              <div className="max-w-md w-full">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
+                  <h3 className="text-lg md:text-xl font-bold text-center mb-2">Today's Magical Mission!</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
+                    Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉
+                  </p>
+                </div>
               </div>
             </div>
           )}
