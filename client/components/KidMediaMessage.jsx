@@ -10,10 +10,13 @@ export default function KidMediaMessage({
   timestamp = new Date(),
   className = "",
   mode = "upload", // New prop to control display mode
+  align = "right", // New prop to control alignment: "left" for AI, "right" for Kid
 }) {
+  const isLeftAlign = align === "left";
+
   return (
-    <div className={`flex justify-end mb-4 ${className}`}>
-      <div className="flex items-end gap-3 max-w-md">
+    <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} mb-4 ${className}`}>
+      <div className={`flex items-end gap-3 max-w-md ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
         {/* Message Content */}
         <motion.div
           className="max-w-xs"
