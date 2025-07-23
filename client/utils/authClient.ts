@@ -3,7 +3,8 @@
  */
 
 // User provided authentication token
-const AUTH_TOKEN = "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t; _ga_JN6T86SWNW=GS2.1.s1753277585$o39$g1$t1753279947$j57$l0$h0";
+const AUTH_TOKEN =
+  "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t; _ga_JN6T86SWNW=GS2.1.s1753277585$o39$g1$t1753279947$j57$l0$h0";
 
 /**
  * Extract session ID from cookie string
@@ -44,7 +45,7 @@ export function createAuthHeaders(): Record<string, string> {
  */
 export async function authenticatedFetch(
   url: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<Response> {
   const defaultOptions: RequestInit = {
     credentials: "include",
@@ -69,7 +70,7 @@ export async function authenticatedGet(url: string): Promise<Response> {
  */
 export async function authenticatedPost(
   url: string,
-  data?: any
+  data?: any,
 ): Promise<Response> {
   const options: RequestInit = {
     method: "POST",

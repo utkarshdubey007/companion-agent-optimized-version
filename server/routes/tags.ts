@@ -56,7 +56,10 @@ export const getCurrentUserTags: RequestHandler = (req, res) => {
       return res.status(401).json(errorResponse);
     }
 
-    console.log("🎉 Tags Authentication successful - sessionid:", authResult.sessionId);
+    console.log(
+      "🎉 Tags Authentication successful - sessionid:",
+      authResult.sessionId,
+    );
 
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {

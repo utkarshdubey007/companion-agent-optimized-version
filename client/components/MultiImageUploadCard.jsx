@@ -69,7 +69,9 @@ export default function MultiImageUploadCard({
 
       const fileArray = Array.from(files);
       const validFiles = fileArray.filter(
-        (file) => file.type.startsWith("image/") || file.name.toLowerCase().endsWith('.heic')
+        (file) =>
+          file.type.startsWith("image/") ||
+          file.name.toLowerCase().endsWith(".heic"),
       );
 
       // Only process files if we haven't reached the limit
@@ -80,23 +82,34 @@ export default function MultiImageUploadCard({
       for (const file of filesToProcess) {
         try {
           const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
-          console.log(`Processing file: ${file.name} (${file.type}, ${fileSizeMB}MB)`);
+          console.log(
+            `Processing file: ${file.name} (${file.type}, ${fileSizeMB}MB)`,
+          );
 
           // Check file size before processing (warn if > 10MB)
           if (file.size > 10 * 1024 * 1024) {
-            console.warn(`Large file detected: ${file.name} (${fileSizeMB}MB). Processing with aggressive compression...`);
+            console.warn(
+              `Large file detected: ${file.name} (${fileSizeMB}MB). Processing with aggressive compression...`,
+            );
           }
 
           // Use imageUtils to process the file (handles HEIC conversion and compression)
           const processedFile = await imageUtils.getImagePromise(file);
 
           const processedSizeMB = (processedFile.size / 1024 / 1024).toFixed(2);
-          const compressionRatio = ((1 - processedFile.size / file.size) * 100).toFixed(1);
-          console.log(`Processed file: ${processedFile.name} (${processedFile.type}, ${processedSizeMB}MB, ${compressionRatio}% compression)`);
+          const compressionRatio = (
+            (1 - processedFile.size / file.size) *
+            100
+          ).toFixed(1);
+          console.log(
+            `Processed file: ${processedFile.name} (${processedFile.type}, ${processedSizeMB}MB, ${compressionRatio}% compression)`,
+          );
 
           // Check if processed file is still too large (> 5MB)
           if (processedFile.size > 5 * 1024 * 1024) {
-            console.warn(`Processed file still large: ${processedFile.name} (${processedSizeMB}MB). May cause upload issues.`);
+            console.warn(
+              `Processed file still large: ${processedFile.name} (${processedSizeMB}MB). May cause upload issues.`,
+            );
           }
 
           // Create preview URL from the processed file
@@ -106,7 +119,6 @@ export default function MultiImageUploadCard({
             const newImages = [...prev, imageUrl];
             return newImages.slice(0, maxImages);
           });
-
         } catch (error) {
           console.error(`Failed to process file ${file.name}:`, error);
 

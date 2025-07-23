@@ -18,11 +18,14 @@ export async function uploadCreationMedia(req: Request, res: Response) {
       return res.status(401).json({
         result_code: 0,
         error_info: authResult.message,
-        data: null
+        data: null,
       });
     }
 
-    console.log("🎉 Upload Authentication successful - sessionid:", authResult.sessionId);
+    console.log(
+      "🎉 Upload Authentication successful - sessionid:",
+      authResult.sessionId,
+    );
 
     // Log request details
     console.log("Request body size:", JSON.stringify(req.body).length);
@@ -45,20 +48,19 @@ export async function uploadCreationMedia(req: Request, res: Response) {
         user_id: req.body.user_id || "2404",
         created_at: new Date().toISOString(),
         media_urls: [
-          "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop"
-        ]
-      }
+          "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+        ],
+      },
     };
 
     console.log("Upload processed successfully, returning mock response");
     res.json(mockResponse);
-
   } catch (error) {
     console.error("Error in uploadCreationMedia:", error);
     res.status(500).json({
       result_code: 0,
       error_info: "Internal server error during upload",
-      data: null
+      data: null,
     });
   }
 }

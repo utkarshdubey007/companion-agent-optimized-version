@@ -108,7 +108,7 @@ export class ChallengesApiService {
   ): Promise<ChallengesResponse> {
     try {
       const response = await authenticatedGet(
-        `/api/v2/challenges/dependent-challenges/working?dependent_id=${dependentId}`
+        `/api/v2/challenges/dependent-challenges/working?dependent_id=${dependentId}`,
       );
       const data = await parseJsonResponse<ChallengesResponse>(response);
       return data;

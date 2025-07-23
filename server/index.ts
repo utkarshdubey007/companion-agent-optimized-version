@@ -14,8 +14,8 @@ export function createServer() {
   app.use(cors());
 
   // Increase size limits for file uploads (50MB for JSON, 100MB for URL-encoded data)
-  app.use(express.json({ limit: '50mb' }));
-  app.use(express.urlencoded({ extended: true, limit: '100mb' }));
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {

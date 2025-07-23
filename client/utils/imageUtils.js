@@ -1,5 +1,5 @@
-import heic2any from 'heic2any';
-import ImageBlobReduce from 'image-blob-reduce';
+import heic2any from "heic2any";
+import ImageBlobReduce from "image-blob-reduce";
 import Pica from "pica";
 
 function handleNonHeicImages(file) {
@@ -17,10 +17,9 @@ function handleNonHeicImages(file) {
         resolve(imageFile);
       })
       .catch((error) => {
-        console.log(error)
-        reject(error)
-      }
-      );
+        console.log(error);
+        reject(error);
+      });
   });
 }
 
@@ -34,14 +33,14 @@ function handleHeic(file) {
   return new Promise((resolve, reject) => {
     heic2any({
       blob: file,
-      toType: 'image/jpeg',
+      toType: "image/jpeg",
     })
       .then((conversionResult) => {
         return compressImage(conversionResult);
       })
       .then((blob) => {
         const metaData = {
-          name: file.name + '.jpeg',
+          name: file.name + ".jpeg",
           lastModifiedDate: file.lastModifiedDate,
           type: blob.type,
           size: blob.size,
@@ -51,7 +50,7 @@ function handleHeic(file) {
         resolve(imageFile);
       })
       .catch((e) => {
-        console.log(e)
+        console.log(e);
         reject(e);
       });
   });
@@ -71,43 +70,45 @@ function compressImage(file) {
         unsharpThreshold: 2,
       })
       .then((blob) => {
-        console.log(`Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB → ${(blob.size / 1024 / 1024).toFixed(2)}MB (${((1 - blob.size / file.size) * 100).toFixed(1)}% reduction)`);
-        resolve(blob)
+        console.log(
+          `Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB → ${(blob.size / 1024 / 1024).toFixed(2)}MB (${((1 - blob.size / file.size) * 100).toFixed(1)}% reduction)`,
+        );
+        resolve(blob);
       })
       .catch((error) => {
-        console.log(error)
-        reject(error)
+        console.log(error);
+        reject(error);
       });
   });
 }
 
 function getImagePromise(file) {
   try {
-    const fileExtension = file.name.split('.').pop().toLowerCase();
+    const fileExtension = file.name.split(".").pop().toLowerCase();
     let imagePromise;
-    if (fileExtension === 'heic') {
+    if (fileExtension === "heic") {
       imagePromise = handleHeic(file);
     } else {
       imagePromise = handleNonHeicImages(file);
     }
     return imagePromise;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
 const convertImageToBinary = (file) => {
   // Create a new FileReader instance
   const image = new Image();
-  image.setAttribute('crossorigin', 'anonymous');
+  image.setAttribute("crossorigin", "anonymous");
   image.src = file;
 
   // Event handler for image load
   return new Promise((resolve, reject) => {
     image.onload = () => {
       // Create a canvas to draw the image
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
       canvas.width = image.width;
       canvas.height = image.height;
       context.drawImage(image, 0, 0, image.width, image.height);
@@ -115,16 +116,16 @@ const convertImageToBinary = (file) => {
       // Convert the canvas content to Blob
       canvas.toBlob((blob) => {
         // Use the blob as needed (e.g., send to server)
-        const myFile = new File([blob], 'image.jpeg', {
-          type: 'image/jpeg',
+        const myFile = new File([blob], "image.jpeg", {
+          type: "image/jpeg",
         });
-        resolve(myFile)
+        resolve(myFile);
       });
-    }
-  })
-}
+    };
+  });
+};
 
 export const imageUtils = {
   getImagePromise,
-  convertImageToBinary
+  convertImageToBinary,
 };

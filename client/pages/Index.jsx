@@ -24,7 +24,11 @@ import {
 import MoodPickerCard from "@/components/MoodPickerCard";
 import { fetchCurrentUserTags } from "@/services/tagsApi";
 import { fetchDependentChallenges } from "@/services/challengesApi";
-import { authenticatedPost, authenticatedGet, parseJsonResponse } from "@/utils/authClient";
+import {
+  authenticatedPost,
+  authenticatedGet,
+  parseJsonResponse,
+} from "@/utils/authClient";
 import { imageUtils } from "@/utils/imageUtils";
 
 export default function Index() {
@@ -186,11 +190,17 @@ export default function Index() {
               size: processedFile.size,
               type: processedFile.type,
               originalSize: file.size,
-              compressionRatio: ((file.size - processedFile.size) / file.size * 100).toFixed(1) + '%'
+              compressionRatio:
+                (((file.size - processedFile.size) / file.size) * 100).toFixed(
+                  1,
+                ) + "%",
             });
             formData.append("uploads", processedFile);
           } catch (processingError) {
-            console.warn(`Image processing failed for image ${i}, using original:`, processingError);
+            console.warn(
+              `Image processing failed for image ${i}, using original:`,
+              processingError,
+            );
             // Fallback to original file if processing fails
             formData.append("uploads", file);
           }
@@ -211,9 +221,14 @@ export default function Index() {
           totalSize += pair[1].size;
         }
       }
-      console.log(`FormData prepared, total upload size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`);
+      console.log(
+        `FormData prepared, total upload size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`,
+      );
 
-      const response = await authenticatedPost("/api/v2/creations_media", formData);
+      const response = await authenticatedPost(
+        "/api/v2/creations_media",
+        formData,
+      );
 
       console.log("API Response status:", response.status);
 
@@ -224,7 +239,7 @@ export default function Index() {
         // Provide specific error message for 413 Request Entity Too Large
         if (response.status === 413) {
           throw new Error(
-            `Upload size too large (${(totalSize / 1024 / 1024).toFixed(2)}MB). Please try with fewer or smaller images.`
+            `Upload size too large (${(totalSize / 1024 / 1024).toFixed(2)}MB). Please try with fewer or smaller images.`,
           );
         }
 
@@ -418,7 +433,7 @@ export default function Index() {
   const fetchCreationsFromAPI = async () => {
     try {
       const response = await authenticatedGet(
-        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0"
+        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0",
       );
       const data = await parseJsonResponse(response);
 

@@ -20,11 +20,14 @@ export async function getCreations(req: Request, res: Response) {
       return res.status(401).json({
         result_code: 0,
         error_info: authResult.message,
-        data: []
+        data: [],
       });
     }
 
-    console.log("🎉 Creations Authentication successful - sessionid:", authResult.sessionId);
+    console.log(
+      "🎉 Creations Authentication successful - sessionid:",
+      authResult.sessionId,
+    );
 
     // Build the target URL with query parameters
     const params = new URLSearchParams();

@@ -18,7 +18,7 @@ export const testAuthentication: RequestHandler = (req, res) => {
         success: false,
         authenticated: false,
         message: authResult.message,
-        sessionId: null
+        sessionId: null,
       });
     }
 
@@ -29,7 +29,7 @@ export const testAuthentication: RequestHandler = (req, res) => {
       authenticated: true,
       message: "Authentication successful",
       sessionId: authResult.sessionId,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error("Error in auth test:", error);
@@ -37,7 +37,7 @@ export const testAuthentication: RequestHandler = (req, res) => {
       success: false,
       authenticated: false,
       message: "Internal server error",
-      sessionId: null
+      sessionId: null,
     });
   }
 };

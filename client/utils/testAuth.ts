@@ -21,7 +21,7 @@ export async function testAuthentication(): Promise<{
     return {
       success: false,
       authenticated: false,
-      message: `Test failed: ${error.message}`
+      message: `Test failed: ${error.message}`,
     };
   }
 }
@@ -31,7 +31,7 @@ export async function testAuthentication(): Promise<{
  */
 export async function runAuthTest(): Promise<void> {
   const result = await testAuthentication();
-  
+
   if (result.success && result.authenticated) {
     console.log("✅ Authentication test PASSED");
     console.log(`Session ID: ${result.sessionId}`);
