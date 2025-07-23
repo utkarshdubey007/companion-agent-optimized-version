@@ -39,33 +39,16 @@ const mockTagsData = [
  */
 export const getCurrentUserTags: RequestHandler = (req, res) => {
   try {
-    // Log authentication headers for debugging
-    const sessionId = req.headers["x-session-id"] as string;
-    const authCookies = req.headers["x-auth-cookies"] as string;
+    console.log("Tags API Request received");
 
-    console.log("Tags API Request Headers:", {
-      sessionId,
-      authCookies: authCookies ? "Present" : "Missing",
-      cookie: req.headers.cookie,
-      userAgent: req.headers["user-agent"],
-    });
+    // Validate authentication using the new utility
+    const authResult = validateAuthentication(req.headers);
 
-    // Check for authentication
-    if (sessionId) {
-      console.log("✅ Authentication detected - sessionid:", sessionId);
-    } else {
-      console.log("⚠️ No sessionid found in custom headers");
-    }
-
-    // Validate sessionid (simple validation for demo)
-    const expectedSessionId = "w5f3jr2arpxfvxqt88eb9pi5b0dbcxdq";
-    const isAuthenticated = sessionId === expectedSessionId;
-
-    if (!isAuthenticated) {
-      console.log("❌ Authentication failed - invalid or missing sessionid");
+    if (!authResult.isValid) {
+      console.log("❌ Tags Authentication failed:", authResult.message);
       const errorResponse: TagsResponse = {
         result_code: 0,
-        error_info: "Authentication required",
+        error_info: authResult.message,
         data: [],
         has_more: false,
         total_count: 0,
@@ -73,7 +56,7 @@ export const getCurrentUserTags: RequestHandler = (req, res) => {
       return res.status(401).json(errorResponse);
     }
 
-    console.log("🎉 Authentication successful - returning user tags");
+    console.log("🎉 Tags Authentication successful - sessionid:", authResult.sessionId);
 
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {
