@@ -26,5 +26,8 @@ export function createServer() {
   // Challenges API route
   app.get("/api/v2/challenges/dependent-challenges/working", getDependentChallengesWorking);
 
+  // Creations API route
+  app.get("/api/v2/creations", getCreations);
+
   return app;
 }
