@@ -8,10 +8,13 @@ import { useState } from "react";
 export function ChatInputBox({
   onSendMessage,
   onAddAttachment,
+  onSelectChallenge,
+  onMyOwnCreation,
   placeholder = "Ask me anything...",
   disabled = false,
 }) {
   const [message, setMessage] = useState("");
+  const [showUploadMenu, setShowUploadMenu] = useState(false);
 
   const handleSend = () => {
     if (message.trim() && onSendMessage) {
