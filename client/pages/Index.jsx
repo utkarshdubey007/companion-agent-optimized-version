@@ -538,6 +538,7 @@ export default function Index() {
                 // Reset creation sharing state
                 setCreationSharingStep(null);
                 setCreationImages([]);
+                setCreationFiles([]);
                 setCreationTitle('');
                 setCreationDescription('');
               }, 300);
