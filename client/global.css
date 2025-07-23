@@ -453,6 +453,10 @@
   animation: slideInLeft 0.4s ease-out;
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
 /* Hide scrollbars while keeping scroll functionality */
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
