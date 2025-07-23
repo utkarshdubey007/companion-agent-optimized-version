@@ -507,8 +507,17 @@ export default function Index() {
   };
 
   const handleMyOwnCreation = () => {
-    console.log("My own creation clicked - showing media upload");
-    setShowKidMediaUpload(true);
+    console.log("My own creation clicked - adding media upload to chat");
+
+    // Add KidMediaMessage to chat
+    const mediaMessage = {
+      id: Date.now().toString(),
+      type: "media",
+      sender: "Kid",
+      images: [],
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, mediaMessage]);
   };
 
   const handleChallengeListClose = () => {
