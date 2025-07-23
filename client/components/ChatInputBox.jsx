@@ -11,9 +11,15 @@ export function ChatInputBox({
   onMyOwnCreation,
   placeholder = "Ask me anything...",
   disabled = false,
+  externalShowUploadMenu = false,
+  onUploadMenuChange,
 }) {
   const [message, setMessage] = useState("");
-  const [showUploadMenu, setShowUploadMenu] = useState(false);
+  const [internalShowUploadMenu, setInternalShowUploadMenu] = useState(false);
+
+  // Use external state if provided, otherwise use internal state
+  const showUploadMenu = externalShowUploadMenu !== false ? externalShowUploadMenu : internalShowUploadMenu;
+  const setShowUploadMenu = onUploadMenuChange || setInternalShowUploadMenu;
 
   const handleSend = () => {
     if (message.trim() && onSendMessage) {
