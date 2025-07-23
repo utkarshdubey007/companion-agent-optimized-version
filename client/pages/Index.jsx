@@ -52,9 +52,11 @@ export default function Index() {
   const [showUploadMenu, setShowUploadMenu] = useState(false);
 
   // Creation sharing flow state
-  const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'complete'
+  const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'uploading', 'complete'
   const [creationImages, setCreationImages] = useState([]);
   const [creationTitle, setCreationTitle] = useState('');
+  const [creationDescription, setCreationDescription] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
 
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
@@ -528,7 +530,7 @@ export default function Index() {
     const responses = {
       Happy: "That's wonderful! Your positive energy is contagious! ����",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
-      Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
+      Calm: "That's beautiful! Peace and calm are such gifts. ��",
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
