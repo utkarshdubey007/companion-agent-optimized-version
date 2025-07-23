@@ -96,11 +96,12 @@ export const challengesData = [
 export const creationsData = [
   {
     id: "1",
-    title: "Monster Character",
+    title: "my robo camel",
     images: [
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2F63656ed422f24b9c9cd47657e89e2840?format=webp&width=800",
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fac9225ba31de444ea69e2ee963f3f976?format=webp&width=800",
     ],
+    description: "He has long neck",
   },
   {
     id: "2",
@@ -108,6 +109,7 @@ export const creationsData = [
     images: [
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc1f47f5b06164bf3bc1fc7a1e8e5e060?format=webp&width=800",
     ],
+    description: "Magical world of wonder",
   },
   {
     id: "3",
@@ -117,5 +119,6 @@ export const creationsData = [
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fac9225ba31de444ea69e2ee963f3f976?format=webp&width=800",
       "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fc1f47f5b06164bf3bc1fc7a1e8e5e060?format=webp&width=800",
     ],
+    description: "Epic adventure awaits",
   },
 ];
