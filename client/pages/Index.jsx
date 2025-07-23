@@ -464,7 +464,7 @@ export default function Index() {
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
-        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ����",
+        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ���",
       Nervous: "Feeling nervous is natural! You're braver than you know. 💪",
       Bored:
         "Every feeling is valid and important. What would help you feel better today? 🌈",
@@ -526,8 +526,7 @@ export default function Index() {
 
   const handleBackToUploadMenu = () => {
     setShowChallengeListView(false);
-    // Don't reset cameFromUploadMenu here - keep the upload menu open
-    // The upload menu will close when user makes a selection
+    setShowUploadMenu(true); // Reopen the upload menu
   };
 
   const handleChallengeSelect = (challenge) => {
