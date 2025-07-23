@@ -434,7 +434,7 @@ export default function Index() {
     <div
       className="min-h-screen bg-space-bg relative overflow-hidden"
       style={{
-        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb05ebce3ebe54ebeaa6fe5297c022bd3?format=webp&width=800')`,
+        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fbe19d365cb504ae1abfb1c61a7af9c62?format=webp&width=800')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
