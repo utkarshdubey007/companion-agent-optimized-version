@@ -234,8 +234,12 @@ export function SimplifiedChatContainer({
               animationData={animationData}
               loop={true}
               autoplay={true}
-              className="w-full h-full object-contain drop-shadow-lg"
-              style={{ width: '100%', height: '100%' }}
+              className="w-full h-full object-contain drop-shadow-2xl relative z-10"
+              style={{
+                width: '100%',
+                height: '100%',
+                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))'
+              }}
             />
           ) : (
             // Fallback image while loading
