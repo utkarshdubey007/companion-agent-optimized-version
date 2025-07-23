@@ -14,7 +14,11 @@ import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
-import { dependent, shouldAskForMood, moodPickerUtils } from "@/data/dependentData";
+import {
+  dependent,
+  shouldAskForMood,
+  moodPickerUtils,
+} from "@/data/dependentData";
 import MoodPickerCard from "@/components/MoodPickerCard";
 import { fetchCurrentUserTags } from "@/services/tagsApi";
 import { fetchDependentChallenges } from "@/services/challengesApi";
@@ -89,14 +93,14 @@ export default function Index() {
 
       if (response.result_code === 1) {
         setTags(response.data);
-        console.log('Tags loaded successfully:', response.data);
+        console.log("Tags loaded successfully:", response.data);
       } else {
-        setTagsError(response.error_info || 'Failed to load tags');
-        console.error('Tags API error:', response.error_info);
+        setTagsError(response.error_info || "Failed to load tags");
+        console.error("Tags API error:", response.error_info);
       }
     } catch (error) {
-      setTagsError(error.message || 'Failed to fetch tags');
-      console.error('Tags fetch error:', error);
+      setTagsError(error.message || "Failed to fetch tags");
+      console.error("Tags fetch error:", error);
     } finally {
       setTagsLoading(false);
     }
@@ -105,7 +109,7 @@ export default function Index() {
   // Auto-expand sidebars on page load and check mood picker
   useEffect(() => {
     // Initialize mood picker for demo - enable it if not already set
-    if (!localStorage.getItem('checkin_modal')) {
+    if (!localStorage.getItem("checkin_modal")) {
       moodPickerUtils.enableMoodPicker();
     }
 
@@ -152,14 +156,14 @@ export default function Index() {
 
       if (response.result_code === 1) {
         setChallenges(response.data);
-        console.log('Challenges loaded successfully:', response.data);
+        console.log("Challenges loaded successfully:", response.data);
       } else {
-        setChallengesError(response.error_info || 'Failed to load challenges');
-        console.error('Challenges API error:', response.error_info);
+        setChallengesError(response.error_info || "Failed to load challenges");
+        console.error("Challenges API error:", response.error_info);
       }
     } catch (error) {
-      setChallengesError(error.message || 'Failed to fetch challenges');
-      console.error('Challenges fetch error:', error);
+      setChallengesError(error.message || "Failed to fetch challenges");
+      console.error("Challenges fetch error:", error);
     } finally {
       setChallengesLoading(false);
     }
@@ -167,17 +171,17 @@ export default function Index() {
 
   // Tags refresh handler
   const refreshUserTags = () => {
-    console.log('Refreshing user tags...');
+    console.log("Refreshing user tags...");
     loadUserTags();
   };
 
   // Log tags state for debugging
   useEffect(() => {
-    console.log('Tags state updated:', {
+    console.log("Tags state updated:", {
       tags,
       loading: tagsLoading,
       error: tagsError,
-      count: tags.length
+      count: tags.length,
     });
   }, [tags, tagsLoading, tagsError]);
 
@@ -253,40 +257,44 @@ export default function Index() {
   const fetchCreationsFromAPI = async () => {
     try {
       const response = await fetch(
-        '/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0',
+        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0",
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
-            'X-Auth-Token': '_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0'
-          }
-        }
+            "Content-Type": "application/json",
+            "X-Auth-Token":
+              "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0",
+          },
+        },
       );
       const data = await response.json();
 
       if (data.result_code === 1 && data.data) {
         // Transform API data to match CreationsPanel interface
-        const transformedData = data.data.map(creation => ({
+        const transformedData = data.data.map((creation) => ({
           id: creation.id.toString(),
           title: creation.title,
-          images: creation.media.map(media =>
-            // Use s240_url if available, fallback to s150_url or original url
-            media.s240_url || media.s150_url || media.url
-          ).filter(url => url) // Remove empty URLs
+          images: creation.media
+            .map(
+              (media) =>
+                // Use s240_url if available, fallback to s150_url or original url
+                media.s240_url || media.s150_url || media.url,
+            )
+            .filter((url) => url), // Remove empty URLs
         }));
 
         setApiCreationsData(transformedData);
         setShowCreationsPanel(true);
-        console.log('Creations fetched from API:', transformedData);
+        console.log("Creations fetched from API:", transformedData);
       } else {
-        console.error('Failed to fetch creations:', data.error_info);
+        console.error("Failed to fetch creations:", data.error_info);
         // Fallback to static data if API fails
-        setShowCreationsPanel(prev => !prev);
+        setShowCreationsPanel((prev) => !prev);
       }
     } catch (error) {
-      console.error('Error fetching creations:', error);
+      console.error("Error fetching creations:", error);
       // Fallback to static data if API fails
-      setShowCreationsPanel(prev => !prev);
+      setShowCreationsPanel((prev) => !prev);
     }
   };
 
@@ -387,7 +395,9 @@ export default function Index() {
       }, 2000);
 
       // Load challenges and show accepted challenges panel
-      console.log('Create icon clicked - loading dependent challenges and fetching creations...');
+      console.log(
+        "Create icon clicked - loading dependent challenges and fetching creations...",
+      );
       loadDependentChallenges();
       setShowAcceptedChallenges(true);
 
@@ -433,7 +443,7 @@ export default function Index() {
       // Show mood picker modal
       setShowMoodPicker(true);
       // Set checkin modal to true for the shouldAskForMood logic
-      localStorage.setItem('checkin_modal', 'true');
+      localStorage.setItem("checkin_modal", "true");
     } else if (itemAlt === "Store") {
       handleAddAttachment();
     }
@@ -504,7 +514,9 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
-          moodIconActivated={shouldAskForMood(dependent) && !hasMoodCheckinOccurred}
+          moodIconActivated={
+            shouldAskForMood(dependent) && !hasMoodCheckinOccurred
+          }
           selectedMood={selectedMood}
           showMoodPicker={showMoodPicker}
           moodAnimationTrigger={moodAnimationTrigger}
@@ -548,7 +560,13 @@ export default function Index() {
           error={challengesError}
         />
       )}
-      {showCreationsPanel && <CreationsPanel creations={apiCreationsData.length > 0 ? apiCreationsData : creationsData} />}
+      {showCreationsPanel && (
+        <CreationsPanel
+          creations={
+            apiCreationsData.length > 0 ? apiCreationsData : creationsData
+          }
+        />
+      )}
       {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector

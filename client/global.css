@@ -671,7 +671,8 @@
 
 /* Mood-specific animations for sidebar icons */
 @keyframes moodHappy {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1) rotate(0deg);
   }
   25% {
@@ -686,7 +687,8 @@
 }
 
 @keyframes moodExcited {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px) translateY(0px) scale(1);
   }
   12.5% {
@@ -713,7 +715,8 @@
 }
 
 @keyframes moodAngry {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px) scale(1) rotate(0deg);
   }
   10% {
@@ -746,7 +749,8 @@
 }
 
 @keyframes moodSad {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1) rotate(0deg);
   }
   25% {
@@ -761,7 +765,8 @@
 }
 
 @keyframes moodSurprised {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
   }
   10% {
@@ -794,7 +799,8 @@
 }
 
 @keyframes moodCalm {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
   }
   25% {
@@ -809,7 +815,8 @@
 }
 
 @keyframes moodWorried {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px) translateY(0px) scale(1) rotate(0deg);
   }
   8% {
@@ -846,12 +853,13 @@
     transform: translateX(-1px) translateY(0px) scale(1.01) rotate(-0.1deg);
   }
   96% {
-    transform: translateX(0px) translateY(-1px) scale(1.00) rotate(0.1deg);
+    transform: translateX(0px) translateY(-1px) scale(1) rotate(0.1deg);
   }
 }
 
 @keyframes moodNeutral {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {

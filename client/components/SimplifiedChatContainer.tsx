@@ -67,7 +67,9 @@ export function SimplifiedChatContainer({
   useEffect(() => {
     const loadAnimation = async () => {
       try {
-        const response = await fetch("https://cdn.builder.io/o/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Faf1bb45b193d45099ddf3851679da168?alt=media&token=e1de5c73-b4dc-4ba8-add2-191d7b69446e&apiKey=da24af11bdbb4585b8e6eb6406b2daf9");
+        const response = await fetch(
+          "https://cdn.builder.io/o/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Faf1bb45b193d45099ddf3851679da168?alt=media&token=e1de5c73-b4dc-4ba8-add2-191d7b69446e&apiKey=da24af11bdbb4585b8e6eb6406b2daf9",
+        );
         const data = await response.json();
         setAnimationData(data);
       } catch (error) {
@@ -195,9 +197,7 @@ export function SimplifiedChatContainer({
         <div className="absolute bottom-56 left-1/2" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
-              <p className="text-sm leading-relaxed">
-                {message.content}
-              </p>
+              <p className="text-sm leading-relaxed">{message.content}</p>
               {/* Speech bubble tail */}
               <div className="absolute bottom-0 left-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
             </div>
@@ -211,9 +211,7 @@ export function SimplifiedChatContainer({
       <div className="absolute bottom-28 right-8" key={message.id}>
         <div className="max-w-xs">
           <div className="bg-green-500 text-white p-3 rounded-2xl rounded-br-sm shadow-lg relative">
-            <p className="text-sm leading-relaxed">
-              {message.content}
-            </p>
+            <p className="text-sm leading-relaxed">{message.content}</p>
             {/* Speech bubble tail */}
             <div className="absolute bottom-0 right-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-green-500 transform translate-y-full"></div>
           </div>
@@ -236,9 +234,9 @@ export function SimplifiedChatContainer({
               autoplay={true}
               className="w-full h-full object-contain drop-shadow-2xl relative z-10"
               style={{
-                width: '100%',
-                height: '100%',
-                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))'
+                width: "100%",
+                height: "100%",
+                filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))",
               }}
             />
           ) : (
@@ -248,7 +246,7 @@ export function SimplifiedChatContainer({
               alt="AI Companion"
               className="w-full h-full object-contain animate-gentle-float drop-shadow-2xl relative z-10"
               style={{
-                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))'
+                filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))",
               }}
             />
           )}
@@ -258,8 +256,14 @@ export function SimplifiedChatContainer({
             <div className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm shadow-lg">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-pulse"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-pulse"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
               </div>
             </div>
           </div>
@@ -270,16 +274,12 @@ export function SimplifiedChatContainer({
       <div className="relative w-full h-full">
         {/* Latest AI Message - above companion */}
         {latestAI && (
-          <div className="animate-slide-in">
-            {renderMessage(latestAI)}
-          </div>
+          <div className="animate-slide-in">{renderMessage(latestAI)}</div>
         )}
 
         {/* Latest Kid Message - on the right */}
         {latestKid && (
-          <div className="animate-slide-in">
-            {renderMessage(latestKid)}
-          </div>
+          <div className="animate-slide-in">{renderMessage(latestKid)}</div>
         )}
 
         {/* Default state when no messages */}
@@ -288,8 +288,12 @@ export function SimplifiedChatContainer({
             <div className="max-w-sm">
               <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-sm leading-relaxed">
-                  Hello, brave explorer! 🌟<br />
-                  You have already pending challenges. Please finish them first before starting a new one.<br /><br />
+                  Hello, brave explorer! 🌟
+                  <br />
+                  You have already pending challenges. Please finish them first
+                  before starting a new one.
+                  <br />
+                  <br />
                   Excited to see the amazing journey you'll take us on!
                 </p>
                 {/* Speech bubble tail */}
@@ -304,9 +308,13 @@ export function SimplifiedChatContainer({
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-slide-in">
             <div className="max-w-md w-full">
               <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
-                <h3 className="text-lg md:text-xl font-bold text-center mb-2">Today's Magical Mission!</h3>
+                <h3 className="text-lg md:text-xl font-bold text-center mb-2">
+                  Today's Magical Mission!
+                </h3>
                 <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
-                  Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉
+                  Help the forest animals organize a surprise party! Gather
+                  magical decorations and create the most wonderful celebration
+                  the enchanted forest has ever seen! ✨🎉
                 </p>
               </div>
             </div>
