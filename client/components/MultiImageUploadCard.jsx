@@ -10,6 +10,7 @@ import {
   ChevronRight,
   Camera,
 } from "lucide-react";
+import { imageUtils } from "@/utils/imageUtils";
 
 export default function MultiImageUploadCard({
   initialImages = [],
