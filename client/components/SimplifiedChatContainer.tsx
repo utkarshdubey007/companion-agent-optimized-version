@@ -148,6 +148,18 @@ export function SimplifiedChatContainer({
       );
     }
 
+    if (message.type === "kid_media") {
+      return (
+        <KidMediaMessage
+          key={message.id}
+          images={message.images}
+          onImagesUpdate={message.onImagesUpdate}
+          timestamp={message.timestamp}
+          mode="display"
+        />
+      );
+    }
+
     if (message.type === "ai_challenge") {
       return (
         <div className="flex justify-start w-full">
