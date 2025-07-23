@@ -217,7 +217,7 @@ export default function Index() {
         imageUrl:
           "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
         reflection:
-          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! ����",
+          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! ������",
         badgeTitle: "Garden Wizard!",
         aiAvatarUrl:
           "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
@@ -257,7 +257,8 @@ export default function Index() {
         {
           method: 'GET',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-Auth-Token': '_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753266506$o37$g1$t1753268076$j59$l0$h0'
           }
         }
       );
