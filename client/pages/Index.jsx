@@ -98,6 +98,20 @@ export default function Index() {
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
+  // Helper function to get file extension from MIME type
+  const getFileExtension = (mimeType) => {
+    const extensions = {
+      'image/jpeg': 'jpg',
+      'image/jpg': 'jpg',
+      'image/png': 'png',
+      'image/gif': 'gif',
+      'image/webp': 'webp',
+      'image/bmp': 'bmp',
+      'image/svg+xml': 'svg'
+    };
+    return extensions[mimeType] || 'jpg';
+  };
+
   // Upload creation to API
   const uploadCreation = async (images, title, description) => {
     try {
