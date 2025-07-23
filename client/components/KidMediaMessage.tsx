@@ -10,6 +10,7 @@ interface KidMediaMessageProps {
   timestamp?: Date;
   className?: string;
   mode?: "upload" | "display"; // New prop to control display mode
+  align?: "left" | "right"; // New prop to control alignment: "left" for AI, "right" for Kid
 }
 
 export default function KidMediaMessage({
