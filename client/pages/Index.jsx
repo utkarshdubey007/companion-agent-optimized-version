@@ -557,28 +557,7 @@ export default function Index() {
     }, 1500);
   };
 
-  const handleKidMediaUploadClose = () => {
-    setShowKidMediaUpload(false);
-  };
 
-  const handleImagesUpdate = (images) => {
-    console.log("Images updated:", images);
-  };
-
-  const handleShareCreation = (images) => {
-    console.log("Share creation:", images);
-    setShowKidMediaUpload(false);
-
-    // Add media message to chat
-    const mediaMessage = {
-      id: Date.now().toString(),
-      type: "kid_media",
-      sender: "Kid",
-      images: images,
-      timestamp: new Date(),
-    };
-    setChatMessages((prev) => [...prev, mediaMessage]);
-  };
 
   return (
     <div
