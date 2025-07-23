@@ -538,7 +538,7 @@ export default function Index() {
           error={challengesError}
         />
       )}
-      {showCreationsPanel && <CreationsPanel creations={creationsData} />}
+      {showCreationsPanel && <CreationsPanel creations={apiCreationsData.length > 0 ? apiCreationsData : creationsData} />}
       {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector
