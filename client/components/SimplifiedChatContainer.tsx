@@ -126,7 +126,7 @@ export function SimplifiedChatContainer({
     if (message.type === "storybook_reflection") {
       return (
         <div className="absolute bottom-32 left-1/2" key={message.id}>
-          <div className="max-w-sm">
+          <div className="max-w-sm storybook-entrance">
             <StorybookReflectionCard
               creationData={message.creationData}
               timestamp={message.timestamp}
