@@ -148,7 +148,8 @@ export function SimplifiedChatContainer({
                 onShareCreation={onShowCarousel}
                 timestamp={message.timestamp}
                 mode="upload"
-                className="flex justify-start"
+                align="left"
+                className=""
               />
             </div>
           </div>
