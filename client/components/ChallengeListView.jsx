@@ -56,12 +56,14 @@ export default function ChallengeListView({
             <Button
               variant="ghost"
               size="sm"
-              onClick={onClose}
+              onClick={onBackToMenu || onClose}
               className="text-white hover:bg-white/20 p-2 h-auto"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
-            <h2 className="text-lg font-semibold">Select challenge</h2>
+            <h2 className="text-lg font-semibold">
+              {onBackToMenu ? "Select challenge" : "Select challenge"}
+            </h2>
           </div>
         </div>
 
