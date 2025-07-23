@@ -147,7 +147,7 @@ export function SimplifiedChatContainer({
               <KidMediaMessage
                 images={message.images}
                 onImagesUpdate={message.onImagesUpdate}
-                onShareCreation={onShowCarousel}
+                onShareCreation={onCreationSharing}
                 timestamp={message.timestamp}
                 mode="upload"
                 align="left"
