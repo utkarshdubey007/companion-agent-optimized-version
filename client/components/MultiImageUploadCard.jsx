@@ -395,7 +395,7 @@ export default function MultiImageUploadCard({
                 </button>
               </p>
               <p className={`text-xs ${themeStyles.textSecondary}`}>
-                Supports JPG, PNG, GIF • Max {maxImages} images
+                Supports JPG, PNG, GIF, HEIC • Max {maxImages} images
               </p>
             </div>
           </motion.div>
