@@ -26,7 +26,7 @@ export default function KidMediaMessage({
           >
             {/* Conditional rendering based on mode */}
             {mode === "upload" ? (
-              <div className="bg-white rounded-2xl p-2 shadow-md border border-gray-100 max-w-xs">
+              <div className="bg-white rounded-2xl p-2 shadow-md border border-gray-100 w-full">
                 <div className="compact-upload-wrapper">
                   <MultiImageUploadCard
                     initialImages={images}
@@ -39,7 +39,7 @@ export default function KidMediaMessage({
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl p-2 shadow-md border border-gray-100 max-w-xs">
+              <div className="bg-white rounded-2xl p-2 shadow-md border border-gray-100 w-full">
                 <CompactKidImageCard images={images} className="compact-display" />
               </div>
             )}
