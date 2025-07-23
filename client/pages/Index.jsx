@@ -204,7 +204,14 @@ export default function Index() {
       formData.append("description", description);
       formData.append("user_id", "2404"); // dependent user ID
 
-      console.log("FormData prepared, sending to API...");
+      // Calculate total upload size
+      let totalSize = 0;
+      for (let pair of formData.entries()) {
+        if (pair[1] instanceof File) {
+          totalSize += pair[1].size;
+        }
+      }
+      console.log(`FormData prepared, total upload size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`);
 
       const response = await authenticatedPost("/api/v2/creations_media", formData);
 
@@ -213,6 +220,14 @@ export default function Index() {
       if (!response.ok) {
         const errorText = await response.text();
         console.error("API Error response:", errorText);
+
+        // Provide specific error message for 413 Request Entity Too Large
+        if (response.status === 413) {
+          throw new Error(
+            `Upload size too large (${(totalSize / 1024 / 1024).toFixed(2)}MB). Please try with fewer or smaller images.`
+          );
+        }
+
         throw new Error(
           `HTTP error! status: ${response.status} - ${errorText}`,
         );
