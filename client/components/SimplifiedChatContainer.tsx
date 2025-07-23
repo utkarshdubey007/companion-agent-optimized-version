@@ -246,7 +246,10 @@ export function SimplifiedChatContainer({
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F39f348f7483547d18b45c8bfcdc8ad42?format=webp&width=800"
               alt="AI Companion"
-              className="w-full h-full object-contain animate-gentle-float drop-shadow-lg"
+              className="w-full h-full object-contain animate-gentle-float drop-shadow-2xl relative z-10"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))'
+              }}
             />
           )}
         </div>
