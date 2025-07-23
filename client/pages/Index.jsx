@@ -47,6 +47,10 @@ export default function Index() {
   // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
 
+  // Upload menu state
+  const [showChallengeListView, setShowChallengeListView] = useState(false);
+  const [showKidMediaUpload, setShowKidMediaUpload] = useState(false);
+
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
@@ -460,7 +464,7 @@ export default function Index() {
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
-        "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
+        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ���",
       Nervous: "Feeling nervous is natural! You're braver than you know. 💪",
       Bored:
         "Every feeling is valid and important. What would help you feel better today? 🌈",
