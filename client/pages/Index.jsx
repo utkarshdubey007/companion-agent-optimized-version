@@ -532,6 +532,13 @@ export default function Index() {
     setShowUploadMenu(true); // Reopen the upload menu
   };
 
+  const handleUploadMenuChange = (isOpen) => {
+    setShowUploadMenu(isOpen);
+    if (!isOpen) {
+      setCameFromUploadMenu(false); // Reset when menu closes
+    }
+  };
+
   const handleChallengeSelect = (challenge) => {
     console.log("Challenge selected:", challenge);
     setShowChallengeListView(false);
