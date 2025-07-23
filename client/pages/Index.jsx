@@ -676,6 +676,7 @@ export default function Index() {
           error={challengesError}
           onClose={handleChallengeListClose}
           onChallengeSelect={handleChallengeSelect}
+          onBackToMenu={cameFromUploadMenu ? handleBackToUploadMenu : null}
         />
       )}
 
