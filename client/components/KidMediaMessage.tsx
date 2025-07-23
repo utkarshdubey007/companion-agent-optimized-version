@@ -10,6 +10,7 @@ interface KidMediaMessageProps {
   timestamp?: Date;
   className?: string;
   mode?: "upload" | "display"; // New prop to control display mode
+  isCompact?: boolean; // New prop for compact layout
 }
 
 export default function KidMediaMessage({
