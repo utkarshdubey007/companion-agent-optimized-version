@@ -395,7 +395,8 @@ export default function Index() {
       return; // Don't proceed with normal message handling
     } else if (creationSharingStep === 'description') {
       // User provided description
-      setCreationSharingStep('complete');
+      setCreationDescription(message);
+      setCreationSharingStep('uploading');
 
       // Add user message for description
       const descriptionMessage = {
@@ -407,22 +408,79 @@ export default function Index() {
       };
       setChatMessages((prev) => [...prev, descriptionMessage]);
 
-      // Complete the creation sharing process
+      // Step 1: Show immediate feedback
       setTimeout(() => {
-        const completionMessage = {
+        const uploadingMessage = {
           id: (Date.now() + 1).toString(),
           type: "text",
           sender: "AI",
-          content: `Perfect! "${creationTitle}" sounds amazing! 🌟 Thank you for sharing your wonderful creation with me. I love hearing about your creative process!`,
+          content: "Please wait, I am uploading your creations...",
           timestamp: new Date(),
         };
-        setChatMessages((prev) => [...prev, completionMessage]);
+        setChatMessages((prev) => [...prev, uploadingMessage]);
 
-        // Reset creation sharing state
-        setCreationSharingStep(null);
-        setCreationImages([]);
-        setCreationTitle('');
-      }, 1000);
+        // Step 2: Trigger API upload
+        uploadCreation(creationImages, creationTitle, message)
+          .then(() => {
+            // Step 3: Show success message
+            const successMessage = {
+              id: (Date.now() + 2).toString(),
+              type: "text",
+              sender: "AI",
+              content: "Amazing! Your creation has been successfully uploaded!",
+              timestamp: new Date(),
+            };
+            setChatMessages((prev) => [...prev, successMessage]);
+
+            // Step 4: Show reflection message after 500ms
+            setTimeout(() => {
+              const reflectionMessage = {
+                id: (Date.now() + 3).toString(),
+                type: "text",
+                sender: "AI",
+                content: "Please wait till I am reflecting on your creations...",
+                timestamp: new Date(),
+              };
+              setChatMessages((prev) => [...prev, reflectionMessage]);
+
+              // Step 5: Add StorybookReflectionCard
+              setTimeout(() => {
+                const storybookMessage = {
+                  id: (Date.now() + 4).toString(),
+                  type: "storybook_reflection",
+                  sender: "AI",
+                  timestamp: new Date(),
+                  creationData: {
+                    title: creationTitle,
+                    description: message,
+                    images: creationImages,
+                  }
+                };
+                setChatMessages((prev) => [...prev, storybookMessage]);
+
+                // Reset creation sharing state
+                setCreationSharingStep(null);
+                setCreationImages([]);
+                setCreationTitle('');
+                setCreationDescription('');
+              }, 300);
+            }, 500);
+          })
+          .catch((error) => {
+            // Handle upload error
+            const errorMessage = {
+              id: (Date.now() + 2).toString(),
+              type: "text",
+              sender: "AI",
+              content: "I'm sorry, there was an issue uploading your creation. Please try again later.",
+              timestamp: new Date(),
+            };
+            setChatMessages((prev) => [...prev, errorMessage]);
+
+            // Reset to description step to allow retry
+            setCreationSharingStep('description');
+          });
+      }, 800);
 
       return; // Don't proceed with normal message handling
     }
