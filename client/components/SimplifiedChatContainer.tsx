@@ -60,6 +60,24 @@ export function SimplifiedChatContainer({
   selectedCompanion,
   kidProfileImage,
 }: SimplifiedChatContainerProps) {
+  // State for Lottie animation data
+  const [animationData, setAnimationData] = useState(null);
+
+  // Load Lottie animation data
+  useEffect(() => {
+    const loadAnimation = async () => {
+      try {
+        const response = await fetch("https://cdn.builder.io/o/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Faf1bb45b193d45099ddf3851679da168?alt=media&token=e1de5c73-b4dc-4ba8-add2-191d7b69446e&apiKey=da24af11bdbb4585b8e6eb6406b2daf9");
+        const data = await response.json();
+        setAnimationData(data);
+      } catch (error) {
+        console.error("Failed to load Lottie animation:", error);
+      }
+    };
+
+    loadAnimation();
+  }, []);
+
   // Get the latest AI and Kid messages separately
   const getLatestMessages = () => {
     let latestAI = null;
