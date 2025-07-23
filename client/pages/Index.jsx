@@ -49,7 +49,6 @@ export default function Index() {
 
   // Upload menu state
   const [showChallengeListView, setShowChallengeListView] = useState(false);
-  const [showKidMediaUpload, setShowKidMediaUpload] = useState(false);
   const [cameFromUploadMenu, setCameFromUploadMenu] = useState(false);
 
   // Mood picker state
