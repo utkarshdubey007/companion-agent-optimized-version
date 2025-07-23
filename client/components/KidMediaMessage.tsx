@@ -42,8 +42,8 @@ export default function KidMediaMessage({
               initialImages={images}
               onChange={onImagesUpdate}
               onShareCreation={onShareCreation}
-              maxImages={6}
-              className="mb-2"
+              maxImages={4}
+              className="mb-2 transform scale-90"
             />
           ) : (
             <CompactKidImageCard images={images} className="mb-2" />
