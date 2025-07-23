@@ -275,7 +275,7 @@ export function SimplifiedChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute bottom-48 left-8">
+          <div className="absolute bottom-96 left-20">
             <div className="max-w-xs">
               <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-sm leading-relaxed">
