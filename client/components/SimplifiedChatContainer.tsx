@@ -17,6 +17,7 @@ interface ChatMessage {
     | "ai_challenge"
     | "system"
     | "media"
+    | "kid_media"
     | "image_display"
     | "mood"
     | "carousel";
