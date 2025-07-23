@@ -49,6 +49,9 @@ export default function Index() {
 
   // Tags state
   const [tags, setTags] = useState([]);
+
+  // Dynamic creations data from API
+  const [apiCreationsData, setApiCreationsData] = useState([]);
   const [tagsLoading, setTagsLoading] = useState(false);
   const [tagsError, setTagsError] = useState(null);
 
