@@ -33,5 +33,8 @@ export function createServer() {
   // Creations API route
   app.get("/api/v2/creations", getCreations);
 
+  // Authentication test route
+  app.get("/api/auth-test", testAuthentication);
+
   return app;
 }
