@@ -387,9 +387,12 @@ export default function Index() {
       }, 2000);
 
       // Load challenges and show accepted challenges panel
-      console.log('Create icon clicked - loading dependent challenges...');
+      console.log('Create icon clicked - loading dependent challenges and fetching creations...');
       loadDependentChallenges();
       setShowAcceptedChallenges(true);
+
+      // Also fetch creations from API
+      fetchCreationsFromAPI();
     } else if (itemAlt === "Reflect") {
       console.log("Reflect icon clicked - fetching creations from API");
       // Show thoughtful reaction
