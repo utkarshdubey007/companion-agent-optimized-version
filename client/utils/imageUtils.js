@@ -64,12 +64,14 @@ function compressImage(file) {
   return new Promise((resolve, reject) => {
     reducer
       .toBlob(file, {
-        max: 1080,
+        max: 800, // Reduced from 1080 to 800 for smaller file sizes
+        quality: 0.8, // Added quality setting (80% quality)
         unsharpAmount: 80,
         unsharpRadius: 0.6,
         unsharpThreshold: 2,
       })
       .then((blob) => {
+        console.log(`Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB → ${(blob.size / 1024 / 1024).toFixed(2)}MB (${((1 - blob.size / file.size) * 100).toFixed(1)}% reduction)`);
         resolve(blob)
       })
       .catch((error) => {
