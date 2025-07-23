@@ -267,33 +267,17 @@ const mockChallengesData = [
  */
 export const getDependentChallengesWorking: RequestHandler = (req, res) => {
   try {
-    // Log authentication headers for debugging
-    const sessionId = req.headers['x-session-id'] as string;
-    const authCookies = req.headers['x-auth-cookies'] as string;
     const dependentId = req.query.dependent_id;
-    
-    console.log('Challenges API Request:', {
-      sessionId,
-      dependentId,
-      authCookies: authCookies ? 'Present' : 'Missing'
-    });
+    console.log('Challenges API Request received for dependent_id:', dependentId);
 
-    // Check for authentication
-    if (sessionId) {
-      console.log('✅ Challenges Authentication detected - sessionid:', sessionId);
-    } else {
-      console.log('⚠️ No sessionid found in challenges request');
-    }
+    // Validate authentication using the new utility
+    const authResult = validateAuthentication(req.headers);
 
-    // Validate sessionid (using updated token)
-    const expectedSessionId = 'ym7qxiur5kruzip1lv7jgrtp2fc9b7rt';
-    const isAuthenticated = sessionId === expectedSessionId;
-
-    if (!isAuthenticated) {
-      console.log('❌ Challenges Authentication failed - invalid or missing sessionid');
+    if (!authResult.isValid) {
+      console.log('❌ Challenges Authentication failed:', authResult.message);
       const errorResponse: ChallengesResponse = {
         result_code: 0,
-        error_info: "Authentication required",
+        error_info: authResult.message,
         data: [],
         has_more: false,
         total_count: 0
@@ -301,7 +285,7 @@ export const getDependentChallengesWorking: RequestHandler = (req, res) => {
       return res.status(401).json(errorResponse);
     }
 
-    console.log('🎉 Challenges Authentication successful - returning dependent challenges');
+    console.log('🎉 Challenges Authentication successful - sessionid:', authResult.sessionId);
 
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {
