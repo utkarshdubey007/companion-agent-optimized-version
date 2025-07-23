@@ -36,6 +36,11 @@ interface ChatMessage {
   images?: string[];
   onImagesUpdate?: (images: string[]) => void;
   onMoodSubmit?: (mood: any) => void;
+  creationData?: {
+    title: string;
+    description: string;
+    images: string[];
+  };
 }
 
 interface SimplifiedChatContainerProps {
