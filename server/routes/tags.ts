@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { TagsResponse } from "@shared/api";
+import { validateAuthentication } from "../utils/auth";
 
 /**
  * Mock data for current user tags
