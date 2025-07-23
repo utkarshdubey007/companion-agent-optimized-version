@@ -628,6 +628,8 @@ export default function Index() {
                 onAddAttachment={handleAddAttachment}
                 onSelectChallenge={handleSelectChallenge}
                 onMyOwnCreation={handleMyOwnCreation}
+                externalShowUploadMenu={showUploadMenu}
+                onUploadMenuChange={handleUploadMenuChange}
               />
             </div>
           </div>
