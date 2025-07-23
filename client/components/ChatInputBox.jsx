@@ -31,8 +31,20 @@ export function ChatInputBox({
   };
 
   const handleAddClick = () => {
-    if (onAddAttachment) {
-      onAddAttachment();
+    setShowUploadMenu(!showUploadMenu);
+  };
+
+  const handleSelectChallenge = () => {
+    setShowUploadMenu(false);
+    if (onSelectChallenge) {
+      onSelectChallenge();
+    }
+  };
+
+  const handleMyOwnCreation = () => {
+    setShowUploadMenu(false);
+    if (onMyOwnCreation) {
+      onMyOwnCreation();
     }
   };
 
