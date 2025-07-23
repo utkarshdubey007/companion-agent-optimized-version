@@ -458,7 +458,7 @@ export default function Index() {
   // Generate AI response based on mood
   const generateMoodResponse = (mood) => {
     const responses = {
-      Happy: "That's wonderful! Your positive energy is contagious! ���",
+      Happy: "That's wonderful! Your positive energy is contagious! ����",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
@@ -492,6 +492,75 @@ export default function Index() {
 
   const handleCompanionClose = () => {
     setShowCompanionSelector(false);
+  };
+
+  // Upload menu handlers
+  const handleSelectChallenge = () => {
+    console.log("Select challenge clicked - loading challenges");
+    // Load challenges if not already loaded
+    if (challenges.length === 0) {
+      loadDependentChallenges();
+    }
+    setShowChallengeListView(true);
+  };
+
+  const handleMyOwnCreation = () => {
+    console.log("My own creation clicked - showing media upload");
+    setShowKidMediaUpload(true);
+  };
+
+  const handleChallengeListClose = () => {
+    setShowChallengeListView(false);
+  };
+
+  const handleChallengeSelect = (challenge) => {
+    console.log("Challenge selected:", challenge);
+    setShowChallengeListView(false);
+
+    // Add challenge message to chat
+    const challengeMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: `I want to work on the "${challenge.title}" challenge!`,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, challengeMessage]);
+
+    // Add AI response
+    setTimeout(() => {
+      const aiResponse = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: `Great choice! Let's work on "${challenge.title}" together. What would you like to create for this challenge?`,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+    }, 1500);
+  };
+
+  const handleKidMediaUploadClose = () => {
+    setShowKidMediaUpload(false);
+  };
+
+  const handleImagesUpdate = (images) => {
+    console.log("Images updated:", images);
+  };
+
+  const handleShareCreation = (images) => {
+    console.log("Share creation:", images);
+    setShowKidMediaUpload(false);
+
+    // Add media message to chat
+    const mediaMessage = {
+      id: Date.now().toString(),
+      type: "kid_media",
+      sender: "Kid",
+      images: images,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, mediaMessage]);
   };
 
   return (
