@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { Camera, Plus, Upload } from "lucide-react";
 import MultiImageUploadCard from "./MultiImageUploadCard";
 import CompactKidImageCard from "./CompactKidImageCard";
 
