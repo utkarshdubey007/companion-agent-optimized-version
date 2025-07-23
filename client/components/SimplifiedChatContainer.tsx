@@ -192,7 +192,7 @@ export function SimplifiedChatContainer({
     // AI text messages - positioned at companion mouth level
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-48 left-1/2" key={message.id}>
+        <div className="absolute bottom-56 left-1/2" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">
@@ -208,7 +208,7 @@ export function SimplifiedChatContainer({
 
     // Kid messages - positioned below AI message on the right
     return (
-      <div className="absolute bottom-20 right-8" key={message.id}>
+      <div className="absolute bottom-28 right-8" key={message.id}>
         <div className="max-w-xs">
           <div className="bg-green-500 text-white p-3 rounded-2xl rounded-br-sm shadow-lg relative">
             <p className="text-sm leading-relaxed">
@@ -284,7 +284,7 @@ export function SimplifiedChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute bottom-48 left-1/2">
+          <div className="absolute bottom-56 left-1/2">
             <div className="max-w-sm">
               <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-sm leading-relaxed">
