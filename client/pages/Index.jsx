@@ -507,11 +507,11 @@ export default function Index() {
   };
 
   const handleMyOwnCreation = () => {
-    console.log("My own creation clicked - adding media upload to chat");
+    console.log("My own creation clicked - clearing previous kid messages and adding media upload");
 
     setShowUploadMenu(false); // Close upload menu
 
-    // Add KidMediaMessage to chat
+    // Clear previous kid messages and add new KidMediaMessage
     const mediaMessage = {
       id: Date.now().toString(),
       type: "media",
@@ -519,7 +519,12 @@ export default function Index() {
       images: [],
       timestamp: new Date(),
     };
-    setChatMessages((prev) => [...prev, mediaMessage]);
+
+    // Filter out previous kid messages and keep only AI messages, then add new media message
+    setChatMessages((prev) => {
+      const aiMessages = prev.filter(message => message.sender === "AI");
+      return [...aiMessages, mediaMessage];
+    });
   };
 
   const handleChallengeListClose = () => {
