@@ -189,10 +189,10 @@ export function SimplifiedChatContainer({
       );
     }
 
-    // AI text messages - positioned to the right of companion
+    // AI text messages - positioned at companion mouth level
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-32 left-1/2" key={message.id}>
+        <div className="absolute bottom-48 left-1/2" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">
