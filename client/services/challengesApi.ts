@@ -1,4 +1,5 @@
 import { ChallengesResponse } from "@shared/api";
+import { authenticatedGet, parseJsonResponse } from "../utils/authClient";
 
 /**
  * Fallback mock data in case API fails
