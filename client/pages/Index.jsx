@@ -410,6 +410,9 @@ export default function Index() {
 
       // Step 1: Show immediate feedback
       setTimeout(() => {
+        // Set companion to thinking state during upload
+        setCompanionState("thinking");
+
         const uploadingMessage = {
           id: (Date.now() + 1).toString(),
           type: "text",
