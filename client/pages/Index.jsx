@@ -96,6 +96,47 @@ export default function Index() {
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
+  // Upload creation to API
+  const uploadCreation = async (images, title, description) => {
+    try {
+      setIsUploading(true);
+
+      const formData = new FormData();
+
+      // Convert image URLs to File objects (if they're blob URLs)
+      for (let i = 0; i < images.length; i++) {
+        const imageUrl = images[i];
+        if (imageUrl.startsWith('blob:')) {
+          const response = await fetch(imageUrl);
+          const blob = await response.blob();
+          const file = new File([blob], `creation_${i}.jpg`, { type: 'image/jpeg' });
+          formData.append('uploads', file);
+        }
+      }
+
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('user_id', '2404'); // dependent user ID
+
+      const response = await fetch('/api/v2/creations_media', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error('Upload failed:', error);
+      throw error;
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   // Fetch current user tags
   const loadUserTags = async () => {
     setTagsLoading(true);
@@ -530,7 +571,7 @@ export default function Index() {
     const responses = {
       Happy: "That's wonderful! Your positive energy is contagious! ����",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
-      Calm: "That's beautiful! Peace and calm are such gifts. ��",
+      Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
