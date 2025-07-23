@@ -178,9 +178,10 @@ export function CreationsPanel({ creations }) {
                   {/* Description - Below Image */}
                   {currentCreation.description && (
                     <div
-                      className="bg-red-500 text-white text-xs font-medium px-3 py-1 rounded-md text-center"
+                      className="bg-red-500 text-white text-sm font-medium px-4 py-2 rounded-md text-center mt-2 max-w-full"
                       style={{
-                        background: "#dc2626"
+                        background: "#dc2626",
+                        minHeight: "32px"
                       }}
                     >
                       {currentCreation.description}
