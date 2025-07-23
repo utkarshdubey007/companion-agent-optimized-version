@@ -6,7 +6,7 @@ import { DualSidebar } from "@/components/DualSidebar";
 import { AcceptedChallenges } from "@/components/AcceptedChallenges";
 import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
-import { ChatContainer } from "@/components/ChatContainer";
+import { SimplifiedChatContainer } from "@/components/SimplifiedChatContainer";
 import { AppHeader } from "@/components/AppHeader";
 import { EnhancedMagicalBackground } from "@/components/EnhancedMagicalBackground";
 import CompanionSelector from "@/components/CompanionSelector";
