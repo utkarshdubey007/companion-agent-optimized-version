@@ -507,20 +507,20 @@ export default function Index() {
   };
 
   const handleMyOwnCreation = () => {
-    console.log("My own creation clicked - clearing previous kid messages and adding media upload");
+    console.log("My own creation clicked - clearing previous kid messages and adding AI media upload message");
 
     setShowUploadMenu(false); // Close upload menu
 
-    // Clear previous kid messages and add new KidMediaMessage
+    // Clear previous kid messages and add new AI Media Upload message
     const mediaMessage = {
       id: Date.now().toString(),
       type: "media",
-      sender: "Kid",
+      sender: "AI",
       images: [],
       timestamp: new Date(),
     };
 
-    // Filter out previous kid messages and keep only AI messages, then add new media message
+    // Filter out previous kid messages and keep only AI messages, then add new AI media message
     setChatMessages((prev) => {
       const aiMessages = prev.filter(message => message.sender === "AI");
       return [...aiMessages, mediaMessage];
