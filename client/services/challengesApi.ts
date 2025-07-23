@@ -85,6 +85,7 @@ const mockChallengesData: ChallengesResponse = {
       },
       challenge_status: "SELECTED",
       days_left: 6,
+      time_left: 518400, // 6 days in seconds (6 * 24 * 60 * 60)
       submission_date: "2025-07-29T13:21:26.872888+00:00",
     },
   ],

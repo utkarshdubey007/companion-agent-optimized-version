@@ -11,6 +11,8 @@ import { AppHeader } from "@/components/AppHeader";
 import { EnhancedMagicalBackground } from "@/components/EnhancedMagicalBackground";
 import CompanionSelector from "@/components/CompanionSelector";
 import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
+import ChallengeListView from "@/components/ChallengeListView";
+import StorybookReflectionCard from "@/components/StorybookReflectionCard";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
@@ -44,6 +46,19 @@ export default function Index() {
 
   // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
+
+  // Upload menu state
+  const [showChallengeListView, setShowChallengeListView] = useState(false);
+  const [cameFromUploadMenu, setCameFromUploadMenu] = useState(false);
+  const [showUploadMenu, setShowUploadMenu] = useState(false);
+
+  // Creation sharing flow state
+  const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'uploading', 'complete'
+  const [creationImages, setCreationImages] = useState([]);
+  const [creationFiles, setCreationFiles] = useState([]); // Store original File objects
+  const [creationTitle, setCreationTitle] = useState("");
+  const [creationDescription, setCreationDescription] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
@@ -82,6 +97,122 @@ export default function Index() {
     handleAddAttachment,
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
+
+  // Helper function to get file extension from MIME type
+  const getFileExtension = (mimeType) => {
+    const extensions = {
+      "image/jpeg": "jpg",
+      "image/jpg": "jpg",
+      "image/png": "png",
+      "image/gif": "gif",
+      "image/webp": "webp",
+      "image/bmp": "bmp",
+      "image/svg+xml": "svg",
+    };
+    return extensions[mimeType] || "jpg";
+  };
+
+  // Upload creation to API
+  const uploadCreation = async (images, title, description) => {
+    try {
+      setIsUploading(true);
+      console.log("Starting upload with images:", images);
+
+      const formData = new FormData();
+
+      // Convert all image sources to binary File objects
+      for (let i = 0; i < images.length; i++) {
+        const imageUrl = images[i];
+        console.log(`Processing image ${i}:`, imageUrl);
+
+        try {
+          let file;
+
+          if (imageUrl.startsWith("data:")) {
+            // Handle base64 data URLs (most common from MultiImageUploadCard)
+            const [header, base64Data] = imageUrl.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg";
+
+            // Convert base64 to binary
+            const binaryString = atob(base64Data);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let j = 0; j < binaryString.length; j++) {
+              bytes[j] = binaryString.charCodeAt(j);
+            }
+
+            const blob = new Blob([bytes], { type: mimeType });
+            file = new File(
+              [blob],
+              `creation_${i + 1}.${getFileExtension(mimeType)}`,
+              {
+                type: mimeType,
+              },
+            );
+          } else if (imageUrl.startsWith("blob:")) {
+            // Handle blob URLs
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            file = new File([blob], `creation_${i + 1}.jpg`, {
+              type: blob.type || "image/jpeg",
+            });
+          } else if (imageUrl.startsWith("http")) {
+            // Handle remote URLs
+            const response = await fetch(imageUrl, { mode: "cors" });
+            const blob = await response.blob();
+            file = new File([blob], `creation_${i + 1}.jpg`, {
+              type: blob.type || "image/jpeg",
+            });
+          } else {
+            // Skip if URL format is not recognized
+            console.warn(`Skipping unrecognized image URL format: ${imageUrl}`);
+            continue;
+          }
+
+          console.log(`Created file for image ${i}:`, {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+          });
+
+          formData.append("uploads", file);
+        } catch (imageError) {
+          console.error(`Failed to process image ${i}:`, imageError);
+          // Continue with other images even if one fails
+        }
+      }
+
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("user_id", "2404"); // dependent user ID
+
+      console.log("FormData prepared, sending to API...");
+
+      const response = await fetch("/api/v2/creations_media", {
+        method: "POST",
+        body: formData,
+      });
+
+      console.log("API Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API Error response:", errorText);
+        throw new Error(
+          `HTTP error! status: ${response.status} - ${errorText}`,
+        );
+      }
+
+      const result = await response.json();
+      console.log("Upload successful:", result);
+      return result;
+    } catch (error) {
+      console.error("Upload failed:", error);
+      throw error;
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   // Fetch current user tags
   const loadUserTags = async () => {
@@ -309,9 +440,141 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
+    // Check if we're in creation sharing flow
+    if (creationSharingStep === "title") {
+      // User provided title
+      setCreationTitle(message);
+      setCreationSharingStep("description");
+
+      // Add user message for title
+      const titleMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "Kid",
+        content: message,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, titleMessage]);
+
+      // Add AI message asking for description
+      setTimeout(() => {
+        const descriptionRequest = {
+          id: (Date.now() + 1).toString(),
+          type: "text",
+          sender: "AI",
+          content:
+            "Great! Now let's take a moment to craft a detailed description of it.",
+          timestamp: new Date(),
+        };
+        setChatMessages((prev) => [...prev, descriptionRequest]);
+      }, 1000);
+
+      return; // Don't proceed with normal message handling
+    } else if (creationSharingStep === "description") {
+      // User provided description
+      setCreationDescription(message);
+      setCreationSharingStep("uploading");
+
+      // Add user message for description
+      const descriptionMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "Kid",
+        content: message,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, descriptionMessage]);
+
+      // Step 1: Show immediate feedback
+      setTimeout(() => {
+        // Set companion to thinking state during upload
+        setCompanionState("thinking");
+
+        const uploadingMessage = {
+          id: (Date.now() + 1).toString(),
+          type: "text",
+          sender: "AI",
+          content: "Please wait, I am uploading your creations...",
+          timestamp: new Date(),
+        };
+        setChatMessages((prev) => [...prev, uploadingMessage]);
+
+        // Step 2: Trigger API upload
+        uploadCreation(creationImages, creationTitle, message)
+          .then(() => {
+            // Reset companion state
+            setCompanionState("talking");
+            setTimeout(() => setCompanionState("idle"), 2000);
+
+            // Step 3: Show success message
+            const successMessage = {
+              id: (Date.now() + 2).toString(),
+              type: "text",
+              sender: "AI",
+              content: "Amazing! Your creation has been successfully uploaded!",
+              timestamp: new Date(),
+            };
+            setChatMessages((prev) => [...prev, successMessage]);
+
+            // Step 4: Show reflection message after 500ms
+            setTimeout(() => {
+              const reflectionMessage = {
+                id: (Date.now() + 3).toString(),
+                type: "text",
+                sender: "AI",
+                content:
+                  "Please wait till I am reflecting on your creations...",
+                timestamp: new Date(),
+              };
+              setChatMessages((prev) => [...prev, reflectionMessage]);
+
+              // Step 5: Add StorybookReflectionCard
+              setTimeout(() => {
+                const storybookMessage = {
+                  id: (Date.now() + 4).toString(),
+                  type: "storybook_reflection",
+                  sender: "AI",
+                  timestamp: new Date(),
+                  creationData: {
+                    title: creationTitle,
+                    description: message,
+                    images: creationImages,
+                  },
+                };
+                setChatMessages((prev) => [...prev, storybookMessage]);
+
+                // Reset creation sharing state
+                setCreationSharingStep(null);
+                setCreationImages([]);
+                setCreationFiles([]);
+                setCreationTitle("");
+                setCreationDescription("");
+              }, 300);
+            }, 500);
+          })
+          .catch((error) => {
+            // Handle upload error
+            const errorMessage = {
+              id: (Date.now() + 2).toString(),
+              type: "text",
+              sender: "AI",
+              content:
+                "I'm sorry, there was an issue uploading your creation. Please try again later.",
+              timestamp: new Date(),
+            };
+            setChatMessages((prev) => [...prev, errorMessage]);
+
+            // Reset to description step to allow retry
+            setCreationSharingStep("description");
+          });
+      }, 800);
+
+      return; // Don't proceed with normal message handling
+    }
+
+    // Normal message handling
     // Set companion to thinking state
     setCompanionState("thinking");
-
     handleSendMessage(message);
   };
 
@@ -452,13 +715,13 @@ export default function Index() {
   // Generate AI response based on mood
   const generateMoodResponse = (mood) => {
     const responses = {
-      Happy: "That's wonderful! Your positive energy is contagious! ���",
+      Happy: "That's wonderful! Your positive energy is contagious! ����",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
       Worried:
-        "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
+        "It's okay to feel this way sometimes. I'm here if you want to talk about it. ���",
       Nervous: "Feeling nervous is natural! You're braver than you know. 💪",
       Bored:
         "Every feeling is valid and important. What would help you feel better today? 🌈",
@@ -486,6 +749,103 @@ export default function Index() {
 
   const handleCompanionClose = () => {
     setShowCompanionSelector(false);
+  };
+
+  // Upload menu handlers
+  const handleSelectChallenge = () => {
+    console.log("Select challenge clicked - loading challenges");
+    // Load challenges if not already loaded
+    if (challenges.length === 0) {
+      loadDependentChallenges();
+    }
+    setShowUploadMenu(false); // Close upload menu
+    setCameFromUploadMenu(true);
+    setShowChallengeListView(true);
+  };
+
+  const handleMyOwnCreation = () => {
+    console.log(
+      "My own creation clicked - clearing previous kid messages and adding AI media upload message",
+    );
+
+    setShowUploadMenu(false); // Close upload menu
+
+    // Clear previous kid messages and add new AI Media Upload message
+    const mediaMessage = {
+      id: Date.now().toString(),
+      type: "media",
+      sender: "AI",
+      images: [],
+      timestamp: new Date(),
+    };
+
+    // Filter out previous kid messages and keep only AI messages, then add new AI media message
+    setChatMessages((prev) => {
+      const aiMessages = prev.filter((message) => message.sender === "AI");
+      return [...aiMessages, mediaMessage];
+    });
+  };
+
+  const handleChallengeListClose = () => {
+    setShowChallengeListView(false);
+    setCameFromUploadMenu(false);
+  };
+
+  const handleBackToUploadMenu = () => {
+    setShowChallengeListView(false);
+    setShowUploadMenu(true); // Reopen the upload menu
+  };
+
+  const handleUploadMenuChange = (isOpen) => {
+    setShowUploadMenu(isOpen);
+    if (!isOpen) {
+      setCameFromUploadMenu(false); // Reset when menu closes
+    }
+  };
+
+  // Handler for creation sharing flow
+  const handleCreationSharing = (images) => {
+    console.log("Starting creation sharing flow with images:", images);
+    setCreationImages(images);
+    setCreationSharingStep("title");
+
+    // Add AI message asking for title
+    const titleRequest = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "AI",
+      content:
+        "Great! Now let's give it a name. Tell me the name of your creation.",
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, titleRequest]);
+  };
+
+  const handleChallengeSelect = (challenge) => {
+    console.log("Challenge selected:", challenge);
+    setShowChallengeListView(false);
+
+    // Add challenge message to chat
+    const challengeMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: `I want to work on the "${challenge.title}" challenge!`,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, challengeMessage]);
+
+    // Add AI response
+    setTimeout(() => {
+      const aiResponse = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: `Great choice! Let's work on "${challenge.title}" together. What would you like to create for this challenge?`,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+    }, 1500);
   };
 
   return (
@@ -532,6 +892,7 @@ export default function Index() {
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
               onShowCarousel={handleShowCarousel}
+              onCreationSharing={handleCreationSharing}
               isAIThinking={isAIThinking}
               selectedCompanion={chatSelectedCompanion}
               kidProfileImage="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format"
@@ -546,6 +907,10 @@ export default function Index() {
                 placeholder="Ask me anything..."
                 onSendMessage={handleEnhancedSendMessage}
                 onAddAttachment={handleAddAttachment}
+                onSelectChallenge={handleSelectChallenge}
+                onMyOwnCreation={handleMyOwnCreation}
+                externalShowUploadMenu={showUploadMenu}
+                onUploadMenuChange={handleUploadMenuChange}
               />
             </div>
           </div>
@@ -581,6 +946,18 @@ export default function Index() {
         onClose={handleMoodPickerClose}
         onMoodSubmit={handleMoodPickerSubmit}
       />
+
+      {/* Challenge List View Modal */}
+      {showChallengeListView && (
+        <ChallengeListView
+          challenges={challenges}
+          loading={challengesLoading}
+          error={challengesError}
+          onClose={handleChallengeListClose}
+          onChallengeSelect={handleChallengeSelect}
+          onBackToMenu={cameFromUploadMenu ? handleBackToUploadMenu : null}
+        />
+      )}
     </div>
   );
 }

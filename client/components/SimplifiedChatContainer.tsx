@@ -8,6 +8,7 @@ import AIChallengeMessage from "./AIChallengeMessage";
 import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
+import StorybookReflectionCard from "./StorybookReflectionCard";
 
 interface ChatMessage {
   id: string;
@@ -17,9 +18,11 @@ interface ChatMessage {
     | "ai_challenge"
     | "system"
     | "media"
+    | "kid_media"
     | "image_display"
     | "mood"
-    | "carousel";
+    | "carousel"
+    | "storybook_reflection";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
@@ -33,6 +36,11 @@ interface ChatMessage {
   images?: string[];
   onImagesUpdate?: (images: string[]) => void;
   onMoodSubmit?: (mood: any) => void;
+  creationData?: {
+    title: string;
+    description: string;
+    images: string[];
+  };
 }
 
 interface SimplifiedChatContainerProps {
@@ -43,6 +51,7 @@ interface SimplifiedChatContainerProps {
   onRegenerateChallenge?: () => void;
   onChatMore?: () => void;
   onShowCarousel?: (images: string[]) => void;
+  onCreationSharing?: (images: string[]) => void;
   isAIThinking?: boolean;
   selectedCompanion?: any;
   kidProfileImage?: string;
@@ -56,6 +65,7 @@ export function SimplifiedChatContainer({
   onRegenerateChallenge,
   onChatMore,
   onShowCarousel = () => {},
+  onCreationSharing = () => {},
   isAIThinking = false,
   selectedCompanion,
   kidProfileImage,
@@ -113,6 +123,19 @@ export function SimplifiedChatContainer({
       );
     }
 
+    if (message.type === "storybook_reflection") {
+      return (
+        <div className="absolute bottom-32 left-1/2" key={message.id}>
+          <div className="max-w-sm storybook-entrance">
+            <StorybookReflectionCard
+              creationData={message.creationData}
+              timestamp={message.timestamp}
+            />
+          </div>
+        </div>
+      );
+    }
+
     if (message.type === "mood") {
       return (
         <MoodMessage
@@ -136,14 +159,46 @@ export function SimplifiedChatContainer({
     }
 
     if (message.type === "media") {
+      if (message.sender === "AI") {
+        // AI Media Upload message - positioned with exact same horizontal gap as AI text messages
+        return (
+          <div className="absolute bottom-32 left-1/2" key={message.id}>
+            <div className="max-w-sm">
+              <KidMediaMessage
+                images={message.images}
+                onImagesUpdate={message.onImagesUpdate}
+                onShareCreation={onCreationSharing}
+                timestamp={message.timestamp}
+                mode="upload"
+                align="left"
+                className=""
+              />
+            </div>
+          </div>
+        );
+      } else {
+        // Kid Media Upload message - positioned on the right
+        return (
+          <KidMediaMessage
+            key={message.id}
+            images={message.images}
+            onImagesUpdate={message.onImagesUpdate}
+            onShareCreation={onShowCarousel}
+            timestamp={message.timestamp}
+            mode="upload"
+          />
+        );
+      }
+    }
+
+    if (message.type === "kid_media") {
       return (
         <KidMediaMessage
           key={message.id}
           images={message.images}
           onImagesUpdate={message.onImagesUpdate}
-          onShareCreation={onShowCarousel}
           timestamp={message.timestamp}
-          mode="upload"
+          mode="display"
         />
       );
     }
