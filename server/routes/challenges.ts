@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { ChallengesResponse } from "@shared/api";
+import { validateAuthentication } from "../utils/auth";
 
 /**
  * Mock data for dependent challenges working
