@@ -10,6 +10,7 @@ export default function ChallengeListView({
   error = null,
   onClose,
   onChallengeSelect,
+  onBackToMenu,
 }) {
   // Transform API challenge data to component format
   const transformedChallenges = challenges.map((challengeItem, index) => {
