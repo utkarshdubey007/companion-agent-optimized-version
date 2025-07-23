@@ -33,8 +33,9 @@ export function createServer() {
     getDependentChallengesWorking,
   );
 
-  // Creations API route
+  // Creations API routes
   app.get("/api/v2/creations", getCreations);
+  app.post("/api/v2/creations_media", uploadCreationMedia);
 
   // Authentication test route
   app.get("/api/auth-test", testAuthentication);
