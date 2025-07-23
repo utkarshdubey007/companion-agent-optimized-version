@@ -24,6 +24,7 @@ import {
 import MoodPickerCard from "@/components/MoodPickerCard";
 import { fetchCurrentUserTags } from "@/services/tagsApi";
 import { fetchDependentChallenges } from "@/services/challengesApi";
+import { authenticatedPost, authenticatedGet, parseJsonResponse } from "@/utils/authClient";
 
 export default function Index() {
   // Page state management
