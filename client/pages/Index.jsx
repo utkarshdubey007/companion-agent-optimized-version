@@ -249,6 +249,40 @@ export default function Index() {
     );
   };
 
+  // Fetch creations from API
+  const fetchCreationsFromAPI = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:8000/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0'
+      );
+      const data = await response.json();
+
+      if (data.result_code === 1 && data.data) {
+        // Transform API data to match CreationsPanel interface
+        const transformedData = data.data.map(creation => ({
+          id: creation.id.toString(),
+          title: creation.title,
+          images: creation.media.map(media =>
+            // Use s240_url if available, fallback to s150_url or original url
+            media.s240_url || media.s150_url || media.url
+          ).filter(url => url) // Remove empty URLs
+        }));
+
+        setApiCreationsData(transformedData);
+        setShowCreationsPanel(true);
+        console.log('Creations fetched from API:', transformedData);
+      } else {
+        console.error('Failed to fetch creations:', data.error_info);
+        // Fallback to static data if API fails
+        setShowCreationsPanel(prev => !prev);
+      }
+    } catch (error) {
+      console.error('Error fetching creations:', error);
+      // Fallback to static data if API fails
+      setShowCreationsPanel(prev => !prev);
+    }
+  };
+
   // Sidebar toggle handlers
   const toggleTopSidebar = () => {
     setTopSidebarCollapsed(!topSidebarCollapsed);
