@@ -187,7 +187,7 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
                     <div
                       className="bg-red-500 text-white text-xs font-medium px-3 py-1 rounded-md text-center"
                       style={{
-                        background: "#dc2626"
+                        background: "#dc2626",
                       }}
                     >
                       {currentCreation.description}

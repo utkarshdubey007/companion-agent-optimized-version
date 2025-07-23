@@ -31,7 +31,6 @@ export const menuItemsData = {
       alt: "Reward",
       delay: 500,
     },
-
   ],
   bottom: [
     {

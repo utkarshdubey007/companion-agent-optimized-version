@@ -181,7 +181,7 @@ export function CreationsPanel({ creations }) {
                       className="bg-red-500 text-white text-sm font-medium px-4 py-2 rounded-md text-center mt-2 max-w-full"
                       style={{
                         background: "#dc2626",
-                        minHeight: "32px"
+                        minHeight: "32px",
                       }}
                     >
                       {currentCreation.description}
