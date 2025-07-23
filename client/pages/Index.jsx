@@ -350,7 +350,7 @@ export default function Index() {
         imageUrl:
           "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
         reflection:
-          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! �������",
+          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! ������",
         badgeTitle: "Garden Wizard!",
         aiAvatarUrl:
           "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
@@ -851,16 +851,6 @@ export default function Index() {
       {!showCompanionSelector && <EnhancedMagicalBackground />}
 
       <AppHeader />
-
-      {/* Temporary Auth Test Button - Remove after testing */}
-      <div className="absolute top-20 right-4 z-50">
-        <Button
-          onClick={runAuthTest}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded"
-        >
-          Test Auth
-        </Button>
-      </div>
 
       {/* Main Content */}
       <div className="flex h-[calc(100vh-80px)]">
