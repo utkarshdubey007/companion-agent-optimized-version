@@ -205,11 +205,11 @@ export function SimplifiedChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
-      {/* Fixed Companion Character at bottom-left */}
-      <div className="fixed bottom-20 left-8 z-20">
-        <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
+      {/* Fixed Companion Character at exact red box location (bottom-left) */}
+      <div className="absolute bottom-16 left-8 z-20">
+        <div className="w-40 h-40 md:w-48 md:h-48">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800"
+            src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F39f348f7483547d18b45c8bfcdc8ad42?format=webp&width=800"
             alt="AI Companion"
             className="w-full h-full object-contain animate-gentle-float drop-shadow-lg"
           />
@@ -227,44 +227,52 @@ export function SimplifiedChatContainer({
         )}
       </div>
 
-      {/* Latest Message Container */}
-      <div className="flex-1 flex items-center justify-center px-4 pb-24 ml-32 lg:ml-48">
-        <div className="w-full max-w-2xl">
-          {/* Default state when no messages */}
-          {!latestMessage && (
-            <div className="flex justify-center w-full">
-              <div className="max-w-md w-full animate-fade-in">
-                <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
-                  <h3 className="text-lg md:text-xl font-bold text-center mb-2">How are you feeling today?</h3>
-                  <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
-                    Just wanted to know how your day is going?
-                  </p>
-                </div>
+      {/* Messages Container - positioned absolutely for precise placement */}
+      <div className="relative w-full h-full">
+        {/* Latest AI Message - above companion */}
+        {latestAI && (
+          <div className="animate-slide-in">
+            {renderMessage(latestAI)}
+          </div>
+        )}
+
+        {/* Latest Kid Message - on the right */}
+        {latestKid && (
+          <div className="animate-slide-in">
+            {renderMessage(latestKid)}
+          </div>
+        )}
+
+        {/* Default state when no messages */}
+        {!latestAI && !latestKid && (
+          <div className="absolute bottom-48 left-8">
+            <div className="max-w-xs">
+              <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
+                <p className="text-sm leading-relaxed">
+                  Hello, brave explorer! 🌟<br />
+                  You have already pending challenges. Please finish them first before starting a new one.<br /><br />
+                  Excited to see the amazing journey you'll take us on!
+                </p>
+                {/* Speech bubble tail */}
+                <div className="absolute bottom-0 left-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Latest Message */}
-          {latestMessage && (
-            <div className="animate-slide-in">
-              {renderMessage(latestMessage)}
-            </div>
-          )}
-
-          {/* Additional Challenge Card when Imagine is clicked */}
-          {showMagicalCard && (
-            <div className="flex justify-center w-full mt-6 animate-slide-in">
-              <div className="max-w-md w-full">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
-                  <h3 className="text-lg md:text-xl font-bold text-center mb-2">Today's Magical Mission!</h3>
-                  <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
-                    Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉
-                  </p>
-                </div>
+        {/* Additional Challenge Card when Imagine is clicked */}
+        {showMagicalCard && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-slide-in">
+            <div className="max-w-md w-full">
+              <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
+                <h3 className="text-lg md:text-xl font-bold text-center mb-2">Today's Magical Mission!</h3>
+                <p className="text-sm md:text-base leading-relaxed text-center opacity-90">
+                  Help the forest animals organize a surprise party! Gather magical decorations and create the most wonderful celebration the enchanted forest has ever seen! ✨🎉
+                </p>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
