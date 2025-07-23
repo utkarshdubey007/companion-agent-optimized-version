@@ -6,7 +6,7 @@ import { DualSidebar } from "@/components/DualSidebar";
 import { AcceptedChallenges } from "@/components/AcceptedChallenges";
 import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
-import { ChatContainer } from "@/components/ChatContainer";
+import { SimplifiedChatContainer } from "@/components/SimplifiedChatContainer";
 import { AppHeader } from "@/components/AppHeader";
 import { EnhancedMagicalBackground } from "@/components/EnhancedMagicalBackground";
 import CompanionSelector from "@/components/CompanionSelector";
@@ -14,6 +14,14 @@ import { MagicalPortalCompanion } from "@/components/MagicalPortalCompanion";
 import { useChatState } from "@/hooks/useChatState";
 import { usePageState } from "@/hooks/usePageState";
 import { menuItemsData, challengesData, creationsData } from "@/data/appData";
+import {
+  dependent,
+  shouldAskForMood,
+  moodPickerUtils,
+} from "@/data/dependentData";
+import MoodPickerCard from "@/components/MoodPickerCard";
+import { fetchCurrentUserTags } from "@/services/tagsApi";
+import { fetchDependentChallenges } from "@/services/challengesApi";
 
 export default function Index() {
   // Page state management
@@ -37,6 +45,25 @@ export default function Index() {
   // Companion selector state
   const [showCompanionSelector, setShowCompanionSelector] = useState(false);
 
+  // Mood picker state
+  const [showMoodPicker, setShowMoodPicker] = useState(false);
+  const [hasMoodCheckinOccurred, setHasMoodCheckinOccurred] = useState(false);
+  const [selectedMood, setSelectedMood] = useState(null);
+  const [moodAnimationTrigger, setMoodAnimationTrigger] = useState(false);
+
+  // Tags state
+  const [tags, setTags] = useState([]);
+
+  // Dynamic creations data from API
+  const [apiCreationsData, setApiCreationsData] = useState([]);
+  const [tagsLoading, setTagsLoading] = useState(false);
+  const [tagsError, setTagsError] = useState(null);
+
+  // Challenges state
+  const [challenges, setChallenges] = useState([]);
+  const [challengesLoading, setChallengesLoading] = useState(false);
+  const [challengesError, setChallengesError] = useState(null);
+
   // Magical companion state
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
@@ -56,8 +83,39 @@ export default function Index() {
     handleCompanionSelect: chatHandleCompanionSelect,
   } = useChatState();
 
-  // Auto-expand sidebars on page load
+  // Fetch current user tags
+  const loadUserTags = async () => {
+    setTagsLoading(true);
+    setTagsError(null);
+
+    try {
+      const response = await fetchCurrentUserTags();
+
+      if (response.result_code === 1) {
+        setTags(response.data);
+        console.log("Tags loaded successfully:", response.data);
+      } else {
+        setTagsError(response.error_info || "Failed to load tags");
+        console.error("Tags API error:", response.error_info);
+      }
+    } catch (error) {
+      setTagsError(error.message || "Failed to fetch tags");
+      console.error("Tags fetch error:", error);
+    } finally {
+      setTagsLoading(false);
+    }
+  };
+
+  // Auto-expand sidebars on page load and check mood picker
   useEffect(() => {
+    // Initialize mood picker for demo - enable it if not already set
+    if (!localStorage.getItem("checkin_modal")) {
+      moodPickerUtils.enableMoodPicker();
+    }
+
+    // Load user tags on component mount
+    loadUserTags();
+
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
       setShowTopWaveEffect(true);
@@ -68,16 +126,64 @@ export default function Index() {
       setShowBottomWaveEffect(true);
     }, 1200);
 
+    // Check if mood picker should be shown after sidebars load
+    const moodTimer = setTimeout(() => {
+      if (shouldAskForMood(dependent) && !hasMoodCheckinOccurred) {
+        setShowMoodPicker(true);
+      }
+    }, 2000);
+
     return () => {
       clearTimeout(topTimer);
       clearTimeout(bottomTimer);
+      clearTimeout(moodTimer);
     };
   }, [
     setTopSidebarCollapsed,
     setShowTopWaveEffect,
     setBottomSidebarCollapsed,
     setShowBottomWaveEffect,
+    hasMoodCheckinOccurred,
   ]);
+
+  // Fetch dependent challenges
+  const loadDependentChallenges = async () => {
+    setChallengesLoading(true);
+    setChallengesError(null);
+
+    try {
+      const response = await fetchDependentChallenges(2404);
+
+      if (response.result_code === 1) {
+        setChallenges(response.data);
+        console.log("Challenges loaded successfully:", response.data);
+      } else {
+        setChallengesError(response.error_info || "Failed to load challenges");
+        console.error("Challenges API error:", response.error_info);
+      }
+    } catch (error) {
+      setChallengesError(error.message || "Failed to fetch challenges");
+      console.error("Challenges fetch error:", error);
+    } finally {
+      setChallengesLoading(false);
+    }
+  };
+
+  // Tags refresh handler
+  const refreshUserTags = () => {
+    console.log("Refreshing user tags...");
+    loadUserTags();
+  };
+
+  // Log tags state for debugging
+  useEffect(() => {
+    console.log("Tags state updated:", {
+      tags,
+      loading: tagsLoading,
+      error: tagsError,
+      count: tags.length,
+    });
+  }, [tags, tagsLoading, tagsError]);
 
   // Function to manually add flippable storybook when reflection icon is clicked
   const addFlippableStorybook = () => {
@@ -115,7 +221,7 @@ export default function Index() {
         imageUrl:
           "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
         reflection:
-          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! 🌸",
+          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! ������",
         badgeTitle: "Garden Wizard!",
         aiAvatarUrl:
           "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
@@ -145,6 +251,51 @@ export default function Index() {
       "FlippableStorybookCard added to chat!",
       flippableStorybookMessage,
     );
+  };
+
+  // Fetch creations from API
+  const fetchCreationsFromAPI = async () => {
+    try {
+      const response = await fetch(
+        "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Auth-Token":
+              "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0",
+          },
+        },
+      );
+      const data = await response.json();
+
+      if (data.result_code === 1 && data.data) {
+        // Transform API data to match CreationsPanel interface
+        const transformedData = data.data.map((creation) => ({
+          id: creation.id.toString(),
+          title: creation.title,
+          images: creation.media
+            .map(
+              (media) =>
+                // Use s240_url if available, fallback to s150_url or original url
+                media.s240_url || media.s150_url || media.url,
+            )
+            .filter((url) => url), // Remove empty URLs
+        }));
+
+        setApiCreationsData(transformedData);
+        setShowCreationsPanel(true);
+        console.log("Creations fetched from API:", transformedData);
+      } else {
+        console.error("Failed to fetch creations:", data.error_info);
+        // Fallback to static data if API fails
+        setShowCreationsPanel((prev) => !prev);
+      }
+    } catch (error) {
+      console.error("Error fetching creations:", error);
+      // Fallback to static data if API fails
+      setShowCreationsPanel((prev) => !prev);
+    }
   };
 
   // Sidebar toggle handlers
@@ -178,9 +329,53 @@ export default function Index() {
     }
   }, [isAIThinking, companionState]);
 
+  // Mood picker handlers
+  const handleMoodPickerSubmit = (mood) => {
+    console.log("Mood submitted:", mood);
+    setHasMoodCheckinOccurred(true);
+    setSelectedMood(mood); // Store the selected mood
+
+    // Trigger animation for the mood icon
+    setMoodAnimationTrigger(true);
+    setTimeout(() => setMoodAnimationTrigger(false), 100); // Brief trigger
+
+    // Add mood message to chat
+    const moodMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, moodMessage]);
+
+    // Add AI response
+    setTimeout(() => {
+      const aiResponse = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: generateMoodResponse(mood),
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, aiResponse]);
+    }, 1500);
+  };
+
+  const handleMoodPickerClose = () => {
+    setShowMoodPicker(false);
+    setHasMoodCheckinOccurred(true);
+  };
+
   // Menu item click handler
   const handleMenuItemClick = (itemAlt) => {
     console.log("Menu item clicked:", itemAlt);
+
+    // Hide accepted challenges for all items except Create
+    if (itemAlt !== "Create") {
+      setShowAcceptedChallenges(false);
+    }
+
     if (itemAlt === "Play") {
       // Show playful reaction
       setCompanionState("reacting");
@@ -198,9 +393,18 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      setShowAcceptedChallenges(!showAcceptedChallenges);
+
+      // Load challenges and show accepted challenges panel
+      console.log(
+        "Create icon clicked - loading dependent challenges and fetching creations...",
+      );
+      loadDependentChallenges();
+      setShowAcceptedChallenges(true);
+
+      // Also fetch creations from API
+      fetchCreationsFromAPI();
     } else if (itemAlt === "Reflect") {
-      console.log("Reflect icon clicked - adding FlippableStorybookCard");
+      console.log("Reflect icon clicked - fetching creations from API");
       // Show thoughtful reaction
       setCompanionState("thinking");
       setCompanionEmotions(["🤔", "📖", "✨"]);
@@ -208,8 +412,9 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      // Add FlippableStorybookCard to chat when reflection icon is clicked
-      addFlippableStorybook();
+
+      // Fetch creations from API and show panel
+      fetchCreationsFromAPI();
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
@@ -226,48 +431,19 @@ export default function Index() {
       console.log("Friends button clicked! Opening companion selector...");
       // Show excited reaction for friends
       setCompanionState("reacting");
-      setCompanionEmotions(["👫", "💕", "🤗"]);
+      setCompanionEmotions(["👫", "����", "🤗"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
       setShowCompanionSelector(true);
     } else if (itemAlt === "Mood") {
-      console.log("Mood button clicked - creating mood message");
+      console.log("Mood button clicked - showing mood picker");
 
-      const moodMessage = {
-        id: Date.now().toString(),
-        type: "mood",
-        sender: "Kid",
-        content: "",
-        timestamp: new Date(),
-        onMoodSubmit: (mood) => {
-          setChatMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === moodMessage.id
-                ? {
-                    ...msg,
-                    type: "text",
-                    content: `I'm feeling ${mood.name.toLowerCase()} today! ${mood.emoji} ${mood.description}`,
-                  }
-                : msg,
-            ),
-          );
-
-          setTimeout(() => {
-            const aiResponse = {
-              id: (Date.now() + 1).toString(),
-              type: "text",
-              sender: "AI",
-              content: generateMoodResponse(mood),
-              timestamp: new Date(),
-            };
-            setChatMessages((prev) => [...prev, aiResponse]);
-          }, 1500);
-        },
-      };
-
-      setChatMessages((prev) => [...prev, moodMessage]);
+      // Show mood picker modal
+      setShowMoodPicker(true);
+      // Set checkin modal to true for the shouldAskForMood logic
+      localStorage.setItem("checkin_modal", "true");
     } else if (itemAlt === "Store") {
       handleAddAttachment();
     }
@@ -276,7 +452,7 @@ export default function Index() {
   // Generate AI response based on mood
   const generateMoodResponse = (mood) => {
     const responses = {
-      Happy: "That's wonderful! Your positive energy is contagious! ✨",
+      Happy: "That's wonderful! Your positive energy is contagious! ���",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
@@ -316,7 +492,7 @@ export default function Index() {
     <div
       className="min-h-screen bg-space-bg relative overflow-hidden"
       style={{
-        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb05ebce3ebe54ebeaa6fe5297c022bd3?format=webp&width=800')`,
+        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Fbe19d365cb504ae1abfb1c61a7af9c62?format=webp&width=800')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -338,12 +514,18 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
+          moodIconActivated={
+            shouldAskForMood(dependent) && !hasMoodCheckinOccurred
+          }
+          selectedMood={selectedMood}
+          showMoodPicker={showMoodPicker}
+          moodAnimationTrigger={moodAnimationTrigger}
         />
 
         {/* Center Content Area - Chat Interface */}
         <div className="flex-1 relative flex flex-col">
           <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 pt-6 min-h-0">
-            <ChatContainer
+            <SimplifiedChatContainer
               messages={chatMessages}
               showMagicalCard={showMagicalCard}
               onAcceptChallenge={handleAcceptChallenge}
@@ -358,7 +540,7 @@ export default function Index() {
           </div>
 
           {/* Fixed Input Box at Bottom */}
-          <div className="flex-shrink-0 sticky bottom-0 pt-6 pb-4">
+          <div className="flex-shrink-0 sticky bottom-0 pt-6 pb-8">
             <div className="max-w-2xl mx-auto px-4 md:px-6">
               <ChatInputBox
                 placeholder="Ask me anything..."
@@ -372,9 +554,19 @@ export default function Index() {
 
       {/* Modals and Overlays */}
       {showAcceptedChallenges && (
-        <AcceptedChallenges challenges={challengesData} />
+        <AcceptedChallenges
+          challenges={challenges}
+          loading={challengesLoading}
+          error={challengesError}
+        />
       )}
-      {showCreationsPanel && <CreationsPanel creations={creationsData} />}
+      {showCreationsPanel && (
+        <CreationsPanel
+          creations={
+            apiCreationsData.length > 0 ? apiCreationsData : creationsData
+          }
+        />
+      )}
       {/* Companion Selector Modal */}
       {showCompanionSelector && (
         <CompanionSelector
@@ -382,6 +574,13 @@ export default function Index() {
           onClose={() => setShowCompanionSelector(false)}
         />
       )}
+
+      {/* Mood Picker Modal */}
+      <MoodPickerCard
+        isVisible={showMoodPicker}
+        onClose={handleMoodPickerClose}
+        onMoodSubmit={handleMoodPickerSubmit}
+      />
     </div>
   );
 }

@@ -1,11 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Timer from "./Timer";
+import { getCompanionInfo } from "@/utils/companionMapping";
 
-export function AcceptedChallenges({ challenges }) {
+export function AcceptedChallenges({ challenges, loading = false, error = null }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const selectedChallenge =
-    challenges.find((c) => c.isSelected) || challenges[0];
+
+  // Transform API challenge data to component format
+  const transformedChallenges = challenges.map((challengeItem, index) => {
+    const companionInfo = getCompanionInfo(challengeItem.challenge.character_type);
+
+    return {
+      id: challengeItem.challenge.id,
+      title: challengeItem.challenge.title,
+      image: challengeItem.challenge.picture_url,
+      motivationalMessage: challengeItem.challenge.description,
+      progress: Math.min(100, ((7 - challengeItem.days_left) / 7) * 100), // Calculate progress based on days left
+      timeLeft: challengeItem.time_left, // Use time_left from API for Timer component
+      chatColor: companionInfo.color,
+      companionIcon: companionInfo.icon,
+      companionName: companionInfo.name,
+      isSelected: index === 0, // Select first challenge by default
+    };
+  });
+
+  const selectedChallenge = transformedChallenges.find((c) => c.isSelected) || transformedChallenges[0];
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -59,7 +79,7 @@ export function AcceptedChallenges({ challenges }) {
       <div
         className={`text-green-400 font-mono ${isCompact ? "text-xs" : "text-sm"} mb-4 text-center flex-shrink-0 min-h-[1.5rem] flex items-center justify-center`}
       >
-        {challenge.timeLeft}
+        <Timer timeLeft={challenge.timeLeft} />
       </div>
 
       {/* Chat Button */}
@@ -73,7 +93,7 @@ export function AcceptedChallenges({ challenges }) {
           }}
         >
           <span className="flex items-center justify-center gap-2">
-            Chat with
+            Chat with {challenge.companionName}
             <span className={`${isCompact ? "text-lg" : "text-xl"}`}>
               {challenge.companionIcon}
             </span>
@@ -131,11 +151,33 @@ export function AcceptedChallenges({ challenges }) {
               className="p-4 sm:p-6 flex items-center"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex gap-3 sm:gap-4 justify-center w-full overflow-visible">
-                {challenges.slice(0, 3).map((challenge) => (
-                  <ChallengeCard key={challenge.id} challenge={challenge} />
-                ))}
-              </div>
+              {loading ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white text-center">
+                    <div className="animate-spin w-8 h-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-2"></div>
+                    <p>Loading challenges...</p>
+                  </div>
+                </div>
+              ) : error ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-red-400 text-center">
+                    <p>Error loading challenges</p>
+                    <p className="text-sm text-white/70 mt-1">{error}</p>
+                  </div>
+                </div>
+              ) : transformedChallenges.length === 0 ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white/70 text-center">
+                    <p>No challenges found</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-3 sm:gap-4 justify-center w-full overflow-visible">
+                  {transformedChallenges.slice(0, 3).map((challenge) => (
+                    <ChallengeCard key={challenge.id} challenge={challenge} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -168,13 +210,28 @@ export function AcceptedChallenges({ challenges }) {
               className="p-4 sm:p-6 flex items-center"
               style={{ height: "calc(100% - 80px)" }}
             >
-              <div className="flex justify-center w-full overflow-visible">
-                <ChallengeCard
-                  key={selectedChallenge.id}
-                  challenge={selectedChallenge}
-                  isCollapsedView={true}
-                />
-              </div>
+              {loading ? (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white text-center">
+                    <div className="animate-spin w-6 h-6 border-2 border-white border-t-transparent rounded-full mx-auto mb-2"></div>
+                    <p className="text-sm">Loading...</p>
+                  </div>
+                </div>
+              ) : selectedChallenge ? (
+                <div className="flex justify-center w-full overflow-visible">
+                  <ChallengeCard
+                    key={selectedChallenge.id}
+                    challenge={selectedChallenge}
+                    isCollapsedView={true}
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center w-full">
+                  <div className="text-white/70 text-center">
+                    <p className="text-sm">No challenges</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

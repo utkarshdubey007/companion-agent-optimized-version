@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { getCurrentUserTags } from "./routes/tags";
+import { getDependentChallengesWorking } from "./routes/challenges";
+import { getCreations } from "./routes/creations";
 
 export function createServer() {
   const app = express();
@@ -16,6 +19,18 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // Tags API route
+  app.get("/api/v2/tags/current-user-tags", getCurrentUserTags);
+
+  // Challenges API route
+  app.get(
+    "/api/v2/challenges/dependent-challenges/working",
+    getDependentChallengesWorking,
+  );
+
+  // Creations API route
+  app.get("/api/v2/creations", getCreations);
 
   return app;
 }
