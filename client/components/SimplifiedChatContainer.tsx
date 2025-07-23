@@ -138,14 +138,21 @@ export function SimplifiedChatContainer({
 
     if (message.type === "media") {
       return (
-        <KidMediaMessage
-          key={message.id}
-          images={message.images}
-          onImagesUpdate={message.onImagesUpdate}
-          onShareCreation={onShowCarousel}
-          timestamp={message.timestamp}
-          mode="upload"
-        />
+        <div key={message.id} className="relative mb-4">
+          <div className="flex justify-end pr-4">
+            <div className="max-w-sm">
+              <KidMediaMessage
+                images={message.images}
+                onImagesUpdate={message.onImagesUpdate}
+                onShareCreation={onShowCarousel}
+                timestamp={message.timestamp}
+                mode="upload"
+                isCompact={true}
+                className=""
+              />
+            </div>
+          </div>
+        </div>
       );
     }
 
