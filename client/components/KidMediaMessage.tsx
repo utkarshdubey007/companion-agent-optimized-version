@@ -25,8 +25,12 @@ export default function KidMediaMessage({
   const isLeftAlign = align === "left";
 
   return (
-    <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} ${isLeftAlign ? 'mb-0' : 'mb-4'} ${className}`}>
-      <div className={`flex items-end gap-2 max-w-sm ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
+    <div
+      className={`flex ${isLeftAlign ? "justify-start" : "justify-end"} ${isLeftAlign ? "mb-0" : "mb-4"} ${className}`}
+    >
+      <div
+        className={`flex items-end gap-2 max-w-sm ${isLeftAlign ? "flex-row" : "flex-row"}`}
+      >
         {/* No avatar for AI messages since companion represents AI */}
 
         {/* Message Content */}
@@ -50,7 +54,9 @@ export default function KidMediaMessage({
           )}
 
           {/* Timestamp */}
-          <div className={`text-xs text-gray-400 mt-1 ${isLeftAlign ? 'ml-2 text-left' : 'mr-2 text-right'}`}>
+          <div
+            className={`text-xs text-gray-400 mt-1 ${isLeftAlign ? "ml-2 text-left" : "mr-2 text-right"}`}
+          >
             {timestamp.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",

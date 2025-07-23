@@ -14,7 +14,9 @@ export default function ChallengeListView({
 }) {
   // Transform API challenge data to component format
   const transformedChallenges = challenges.map((challengeItem, index) => {
-    const companionInfo = getCompanionInfo(challengeItem.challenge.character_type);
+    const companionInfo = getCompanionInfo(
+      challengeItem.challenge.character_type,
+    );
 
     return {
       id: challengeItem.challenge.id,
@@ -118,7 +120,9 @@ export default function ChallengeListView({
                         <span className="text-xs text-purple-600 font-medium">
                           by {challenge.companionName}
                         </span>
-                        <span className="text-lg">{challenge.companionIcon}</span>
+                        <span className="text-lg">
+                          {challenge.companionIcon}
+                        </span>
                       </div>
                     </div>
                   </div>

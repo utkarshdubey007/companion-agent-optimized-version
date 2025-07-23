@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Plus, ArrowUp } from "lucide-react";
 import { useState } from "react";
 
@@ -18,7 +22,10 @@ export function ChatInputBox({
   const [internalShowUploadMenu, setInternalShowUploadMenu] = useState(false);
 
   // Use external state if provided, otherwise use internal state
-  const showUploadMenu = externalShowUploadMenu !== false ? externalShowUploadMenu : internalShowUploadMenu;
+  const showUploadMenu =
+    externalShowUploadMenu !== false
+      ? externalShowUploadMenu
+      : internalShowUploadMenu;
   const setShowUploadMenu = onUploadMenuChange || setInternalShowUploadMenu;
 
   const handleSend = () => {

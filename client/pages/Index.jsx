@@ -56,8 +56,8 @@ export default function Index() {
   const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'uploading', 'complete'
   const [creationImages, setCreationImages] = useState([]);
   const [creationFiles, setCreationFiles] = useState([]); // Store original File objects
-  const [creationTitle, setCreationTitle] = useState('');
-  const [creationDescription, setCreationDescription] = useState('');
+  const [creationTitle, setCreationTitle] = useState("");
+  const [creationDescription, setCreationDescription] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
   // Mood picker state
@@ -101,22 +101,22 @@ export default function Index() {
   // Helper function to get file extension from MIME type
   const getFileExtension = (mimeType) => {
     const extensions = {
-      'image/jpeg': 'jpg',
-      'image/jpg': 'jpg',
-      'image/png': 'png',
-      'image/gif': 'gif',
-      'image/webp': 'webp',
-      'image/bmp': 'bmp',
-      'image/svg+xml': 'svg'
+      "image/jpeg": "jpg",
+      "image/jpg": "jpg",
+      "image/png": "png",
+      "image/gif": "gif",
+      "image/webp": "webp",
+      "image/bmp": "bmp",
+      "image/svg+xml": "svg",
     };
-    return extensions[mimeType] || 'jpg';
+    return extensions[mimeType] || "jpg";
   };
 
   // Upload creation to API
   const uploadCreation = async (images, title, description) => {
     try {
       setIsUploading(true);
-      console.log('Starting upload with images:', images);
+      console.log("Starting upload with images:", images);
 
       const formData = new FormData();
 
@@ -128,11 +128,11 @@ export default function Index() {
         try {
           let file;
 
-          if (imageUrl.startsWith('data:')) {
+          if (imageUrl.startsWith("data:")) {
             // Handle base64 data URLs (most common from MultiImageUploadCard)
-            const [header, base64Data] = imageUrl.split(',');
+            const [header, base64Data] = imageUrl.split(",");
             const mimeMatch = header.match(/data:([^;]+)/);
-            const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+            const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg";
 
             // Convert base64 to binary
             const binaryString = atob(base64Data);
@@ -142,22 +142,26 @@ export default function Index() {
             }
 
             const blob = new Blob([bytes], { type: mimeType });
-            file = new File([blob], `creation_${i + 1}.${getFileExtension(mimeType)}`, {
-              type: mimeType
-            });
-          } else if (imageUrl.startsWith('blob:')) {
+            file = new File(
+              [blob],
+              `creation_${i + 1}.${getFileExtension(mimeType)}`,
+              {
+                type: mimeType,
+              },
+            );
+          } else if (imageUrl.startsWith("blob:")) {
             // Handle blob URLs
             const response = await fetch(imageUrl);
             const blob = await response.blob();
             file = new File([blob], `creation_${i + 1}.jpg`, {
-              type: blob.type || 'image/jpeg'
+              type: blob.type || "image/jpeg",
             });
-          } else if (imageUrl.startsWith('http')) {
+          } else if (imageUrl.startsWith("http")) {
             // Handle remote URLs
-            const response = await fetch(imageUrl, { mode: 'cors' });
+            const response = await fetch(imageUrl, { mode: "cors" });
             const blob = await response.blob();
             file = new File([blob], `creation_${i + 1}.jpg`, {
-              type: blob.type || 'image/jpeg'
+              type: blob.type || "image/jpeg",
             });
           } else {
             // Skip if URL format is not recognized
@@ -168,40 +172,42 @@ export default function Index() {
           console.log(`Created file for image ${i}:`, {
             name: file.name,
             size: file.size,
-            type: file.type
+            type: file.type,
           });
 
-          formData.append('uploads', file);
+          formData.append("uploads", file);
         } catch (imageError) {
           console.error(`Failed to process image ${i}:`, imageError);
           // Continue with other images even if one fails
         }
       }
 
-      formData.append('title', title);
-      formData.append('description', description);
-      formData.append('user_id', '2404'); // dependent user ID
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("user_id", "2404"); // dependent user ID
 
-      console.log('FormData prepared, sending to API...');
+      console.log("FormData prepared, sending to API...");
 
-      const response = await fetch('/api/v2/creations_media', {
-        method: 'POST',
+      const response = await fetch("/api/v2/creations_media", {
+        method: "POST",
         body: formData,
       });
 
-      console.log('API Response status:', response.status);
+      console.log("API Response status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('API Error response:', errorText);
-        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+        console.error("API Error response:", errorText);
+        throw new Error(
+          `HTTP error! status: ${response.status} - ${errorText}`,
+        );
       }
 
       const result = await response.json();
-      console.log('Upload successful:', result);
+      console.log("Upload successful:", result);
       return result;
     } catch (error) {
-      console.error('Upload failed:', error);
+      console.error("Upload failed:", error);
       throw error;
     } finally {
       setIsUploading(false);
@@ -435,10 +441,10 @@ export default function Index() {
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
     // Check if we're in creation sharing flow
-    if (creationSharingStep === 'title') {
+    if (creationSharingStep === "title") {
       // User provided title
       setCreationTitle(message);
-      setCreationSharingStep('description');
+      setCreationSharingStep("description");
 
       // Add user message for title
       const titleMessage = {
@@ -456,17 +462,18 @@ export default function Index() {
           id: (Date.now() + 1).toString(),
           type: "text",
           sender: "AI",
-          content: "Great! Now let's take a moment to craft a detailed description of it.",
+          content:
+            "Great! Now let's take a moment to craft a detailed description of it.",
           timestamp: new Date(),
         };
         setChatMessages((prev) => [...prev, descriptionRequest]);
       }, 1000);
 
       return; // Don't proceed with normal message handling
-    } else if (creationSharingStep === 'description') {
+    } else if (creationSharingStep === "description") {
       // User provided description
       setCreationDescription(message);
-      setCreationSharingStep('uploading');
+      setCreationSharingStep("uploading");
 
       // Add user message for description
       const descriptionMessage = {
@@ -515,7 +522,8 @@ export default function Index() {
                 id: (Date.now() + 3).toString(),
                 type: "text",
                 sender: "AI",
-                content: "Please wait till I am reflecting on your creations...",
+                content:
+                  "Please wait till I am reflecting on your creations...",
                 timestamp: new Date(),
               };
               setChatMessages((prev) => [...prev, reflectionMessage]);
@@ -531,7 +539,7 @@ export default function Index() {
                     title: creationTitle,
                     description: message,
                     images: creationImages,
-                  }
+                  },
                 };
                 setChatMessages((prev) => [...prev, storybookMessage]);
 
@@ -539,8 +547,8 @@ export default function Index() {
                 setCreationSharingStep(null);
                 setCreationImages([]);
                 setCreationFiles([]);
-                setCreationTitle('');
-                setCreationDescription('');
+                setCreationTitle("");
+                setCreationDescription("");
               }, 300);
             }, 500);
           })
@@ -550,13 +558,14 @@ export default function Index() {
               id: (Date.now() + 2).toString(),
               type: "text",
               sender: "AI",
-              content: "I'm sorry, there was an issue uploading your creation. Please try again later.",
+              content:
+                "I'm sorry, there was an issue uploading your creation. Please try again later.",
               timestamp: new Date(),
             };
             setChatMessages((prev) => [...prev, errorMessage]);
 
             // Reset to description step to allow retry
-            setCreationSharingStep('description');
+            setCreationSharingStep("description");
           });
       }, 800);
 
@@ -755,7 +764,9 @@ export default function Index() {
   };
 
   const handleMyOwnCreation = () => {
-    console.log("My own creation clicked - clearing previous kid messages and adding AI media upload message");
+    console.log(
+      "My own creation clicked - clearing previous kid messages and adding AI media upload message",
+    );
 
     setShowUploadMenu(false); // Close upload menu
 
@@ -770,7 +781,7 @@ export default function Index() {
 
     // Filter out previous kid messages and keep only AI messages, then add new AI media message
     setChatMessages((prev) => {
-      const aiMessages = prev.filter(message => message.sender === "AI");
+      const aiMessages = prev.filter((message) => message.sender === "AI");
       return [...aiMessages, mediaMessage];
     });
   };
@@ -796,14 +807,15 @@ export default function Index() {
   const handleCreationSharing = (images) => {
     console.log("Starting creation sharing flow with images:", images);
     setCreationImages(images);
-    setCreationSharingStep('title');
+    setCreationSharingStep("title");
 
     // Add AI message asking for title
     const titleRequest = {
       id: Date.now().toString(),
       type: "text",
       sender: "AI",
-      content: "Great! Now let's give it a name. Tell me the name of your creation.",
+      content:
+        "Great! Now let's give it a name. Tell me the name of your creation.",
       timestamp: new Date(),
     };
     setChatMessages((prev) => [...prev, titleRequest]);
@@ -835,8 +847,6 @@ export default function Index() {
       setChatMessages((prev) => [...prev, aiResponse]);
     }, 1500);
   };
-
-
 
   return (
     <div
@@ -948,8 +958,6 @@ export default function Index() {
           onBackToMenu={cameFromUploadMenu ? handleBackToUploadMenu : null}
         />
       )}
-
-
     </div>
   );
 }
