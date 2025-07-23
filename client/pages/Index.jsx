@@ -214,7 +214,7 @@ export default function Index() {
         imageUrl:
           "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
         reflection:
-          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! 🌸",
+          "What a magical flower garden! I see so many different colors - pink roses, yellow sunflowers, and purple violets all growing together. The butterflies dancing around them make it look like a fairy tale! ����",
         badgeTitle: "Garden Wizard!",
         aiAvatarUrl:
           "https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Ff22c539957df4cf1b810be45844442be?format=webp&width=800",
@@ -347,7 +347,7 @@ export default function Index() {
       loadDependentChallenges();
       setShowAcceptedChallenges(true);
     } else if (itemAlt === "Reflect") {
-      console.log("Reflect icon clicked - showing CreationsPanel");
+      console.log("Reflect icon clicked - fetching creations from API");
       // Show thoughtful reaction
       setCompanionState("thinking");
       setCompanionEmotions(["🤔", "📖", "✨"]);
@@ -355,8 +355,9 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      // Toggle CreationsPanel when reflection icon is clicked
-      setShowCreationsPanel(prev => !prev);
+
+      // Fetch creations from API and show panel
+      fetchCreationsFromAPI();
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
