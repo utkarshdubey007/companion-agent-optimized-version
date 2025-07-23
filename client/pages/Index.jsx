@@ -177,7 +177,23 @@ export default function Index() {
             type: file.type,
           });
 
-          formData.append("uploads", file);
+          // Process image with compression and HEIC conversion
+          try {
+            console.log(`Processing image ${i} with imageUtils...`);
+            const processedFile = await imageUtils.getImagePromise(file);
+            console.log(`Processed file ${i}:`, {
+              name: processedFile.name,
+              size: processedFile.size,
+              type: processedFile.type,
+              originalSize: file.size,
+              compressionRatio: ((file.size - processedFile.size) / file.size * 100).toFixed(1) + '%'
+            });
+            formData.append("uploads", processedFile);
+          } catch (processingError) {
+            console.warn(`Image processing failed for image ${i}, using original:`, processingError);
+            // Fallback to original file if processing fails
+            formData.append("uploads", file);
+          }
         } catch (imageError) {
           console.error(`Failed to process image ${i}:`, imageError);
           // Continue with other images even if one fails
