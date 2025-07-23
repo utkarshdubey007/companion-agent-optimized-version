@@ -394,7 +394,7 @@ export default function Index() {
   // Generate AI response based on mood
   const generateMoodResponse = (mood) => {
     const responses = {
-      Happy: "That's wonderful! Your positive energy is contagious! ✨",
+      Happy: "That's wonderful! Your positive energy is contagious! ���",
       Excited: "That's wonderful! Your positive energy is contagious! ✨",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
@@ -480,7 +480,7 @@ export default function Index() {
           </div>
 
           {/* Fixed Input Box at Bottom */}
-          <div className="flex-shrink-0 sticky bottom-0 pt-6 pb-4">
+          <div className="flex-shrink-0 sticky bottom-0 pt-6 pb-8">
             <div className="max-w-2xl mx-auto px-4 md:px-6">
               <ChatInputBox
                 placeholder="Ask me anything..."
