@@ -55,6 +55,7 @@ export default function Index() {
   // Creation sharing flow state
   const [creationSharingStep, setCreationSharingStep] = useState(null); // null, 'title', 'description', 'uploading', 'complete'
   const [creationImages, setCreationImages] = useState([]);
+  const [creationFiles, setCreationFiles] = useState([]); // Store original File objects
   const [creationTitle, setCreationTitle] = useState('');
   const [creationDescription, setCreationDescription] = useState('');
   const [isUploading, setIsUploading] = useState(false);
@@ -616,7 +617,7 @@ export default function Index() {
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["���", "✨", "💡"]);
+      setCompanionEmotions(["🎨", "✨", "💡"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
