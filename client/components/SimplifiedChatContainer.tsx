@@ -168,14 +168,14 @@ export function SimplifiedChatContainer({
     // AI text messages
     if (message.sender === "AI") {
       return (
-        <div className="flex justify-start w-full">
-          <div className="max-w-xs">
-            <div className="bg-blue-500 text-white p-3 md:p-4 rounded-2xl rounded-bl-sm shadow-lg">
-              <p className="text-sm leading-relaxed">
+        <div className="flex justify-center w-full">
+          <div className="max-w-md w-full">
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
+              <p className="text-sm md:text-base leading-relaxed text-center">
                 {message.content}
               </p>
             </div>
-            <div className="text-xs text-gray-400 mt-1 ml-2">
+            <div className="text-xs text-gray-400 mt-2 text-center">
               {message.timestamp.toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -188,14 +188,14 @@ export function SimplifiedChatContainer({
 
     // Kid messages
     return (
-      <div className="flex justify-end w-full">
-        <div className="max-w-xs">
-          <div className="bg-green-500 text-white p-3 md:p-4 rounded-2xl rounded-br-sm shadow-lg">
-            <p className="text-sm leading-relaxed">
+      <div className="flex justify-center w-full">
+        <div className="max-w-md w-full">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 md:p-6 rounded-3xl shadow-xl border border-white/20 backdrop-blur-sm">
+            <p className="text-sm md:text-base leading-relaxed text-center">
               {message.content}
             </p>
           </div>
-          <div className="text-xs text-gray-400 mt-1 mr-2 text-right">
+          <div className="text-xs text-gray-400 mt-2 text-center">
             {message.timestamp.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
