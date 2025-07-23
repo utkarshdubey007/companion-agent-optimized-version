@@ -59,22 +59,27 @@ export function SimplifiedChatContainer({
   selectedCompanion,
   kidProfileImage,
 }: SimplifiedChatContainerProps) {
-  // Get only the latest message between AI and Kid
-  const getLatestMessage = () => {
-    if (messages.length === 0) return null;
-    
-    // Find the last message from either AI or Kid
+  // Get the latest AI and Kid messages separately
+  const getLatestMessages = () => {
+    let latestAI = null;
+    let latestKid = null;
+
+    // Find the most recent AI and Kid messages
     for (let i = messages.length - 1; i >= 0; i--) {
       const message = messages[i];
-      if (message.sender === "AI" || message.sender === "Kid") {
-        return message;
+      if (message.sender === "AI" && !latestAI) {
+        latestAI = message;
       }
+      if (message.sender === "Kid" && !latestKid) {
+        latestKid = message;
+      }
+      if (latestAI && latestKid) break;
     }
-    
-    return null;
+
+    return { latestAI, latestKid };
   };
 
-  const latestMessage = getLatestMessage();
+  const { latestAI, latestKid } = getLatestMessages();
 
   const renderMessage = (message: ChatMessage) => {
     if (message.type === "carousel") {
