@@ -258,7 +258,7 @@ export default function Index() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'X-Auth-Token': '_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753266506$o37$g1$t1753268076$j59$l0$h0'
+            'X-Auth-Token': '_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0'
           }
         }
       );
