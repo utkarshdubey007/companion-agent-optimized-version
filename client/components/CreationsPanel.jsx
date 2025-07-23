@@ -46,6 +46,10 @@ export function CreationsPanel({ creations }) {
   const currentCreation = creations[currentCreationIndex];
   const currentImage = currentCreation?.images[currentImageIndex];
 
+  // Debug logging
+  console.log("Current creation:", currentCreation);
+  console.log("Description:", currentCreation?.description);
+
   return (
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
       <div className="flex items-center">
