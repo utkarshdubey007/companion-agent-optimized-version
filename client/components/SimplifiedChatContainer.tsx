@@ -138,9 +138,9 @@ export function SimplifiedChatContainer({
 
     if (message.type === "media") {
       if (message.sender === "AI") {
-        // AI Media Upload message - positioned on the left like other AI messages
+        // AI Media Upload message - positioned lower to avoid header collision
         return (
-          <div className="absolute bottom-56 left-1/2" key={message.id}>
+          <div className="absolute bottom-32 left-1/2" key={message.id}>
             <div className="max-w-sm">
               <KidMediaMessage
                 images={message.images}
