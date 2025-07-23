@@ -20,6 +20,7 @@ export default function KidMediaMessage({
   timestamp = new Date(),
   className = "",
   mode = "upload",
+  isCompact = false,
 }: KidMediaMessageProps) {
   return (
     <div className={`flex justify-end mb-4 ${className}`}>
