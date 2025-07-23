@@ -138,7 +138,7 @@ export function SimplifiedChatContainer({
 
     if (message.type === "media") {
       if (message.sender === "AI") {
-        // AI Media Upload message - positioned with same horizontal gap as AI text messages
+        // AI Media Upload message - positioned with exact same horizontal gap as AI text messages
         return (
           <div className="absolute bottom-32 left-1/2" key={message.id}>
             <div className="max-w-sm">
