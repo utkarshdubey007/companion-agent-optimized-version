@@ -702,6 +702,7 @@ export default function Index() {
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
               onShowCarousel={handleShowCarousel}
+              onCreationSharing={handleCreationSharing}
               isAIThinking={isAIThinking}
               selectedCompanion={chatSelectedCompanion}
               kidProfileImage="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format"
