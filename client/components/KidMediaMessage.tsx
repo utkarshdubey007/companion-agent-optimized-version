@@ -26,14 +26,14 @@ export default function KidMediaMessage({
 
   return (
     <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} ${isLeftAlign ? 'mb-0' : 'mb-4'} ${className}`}>
-      <div className={`flex items-end gap-3 max-w-md ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
+      <div className={`flex items-end gap-2 max-w-sm ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
         {/* No avatar for AI messages since companion represents AI */}
 
         {/* Message Content */}
         <motion.div
           className="max-w-xs"
-          initial={{ opacity: 0, x: isLeftAlign ? -20 : 20, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
+          initial={{ opacity: 0, x: isLeftAlign ? -20 : 20, scale: 0.85 }}
+          animate={{ opacity: 1, x: 0, scale: 0.85 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
           {/* Conditional rendering based on mode */}
