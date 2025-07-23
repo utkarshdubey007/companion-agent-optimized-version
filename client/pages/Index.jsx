@@ -114,15 +114,25 @@ export default function Index() {
         try {
           let file;
 
-          if (imageUrl.startsWith('blob:')) {
-            // Handle blob URLs
-            const response = await fetch(imageUrl);
-            const blob = await response.blob();
-            file = new File([blob], `creation_${i + 1}.jpg`, {
-              type: blob.type || 'image/jpeg'
+          if (imageUrl.startsWith('data:')) {
+            // Handle base64 data URLs (most common from MultiImageUploadCard)
+            const [header, base64Data] = imageUrl.split(',');
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+
+            // Convert base64 to binary
+            const binaryString = atob(base64Data);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let j = 0; j < binaryString.length; j++) {
+              bytes[j] = binaryString.charCodeAt(j);
+            }
+
+            const blob = new Blob([bytes], { type: mimeType });
+            file = new File([blob], `creation_${i + 1}.${getFileExtension(mimeType)}`, {
+              type: mimeType
             });
-          } else if (imageUrl.startsWith('data:')) {
-            // Handle base64 data URLs
+          } else if (imageUrl.startsWith('blob:')) {
+            // Handle blob URLs
             const response = await fetch(imageUrl);
             const blob = await response.blob();
             file = new File([blob], `creation_${i + 1}.jpg`, {
