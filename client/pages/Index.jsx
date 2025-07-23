@@ -253,7 +253,14 @@ export default function Index() {
   const fetchCreationsFromAPI = async () => {
     try {
       const response = await fetch(
-        'http://localhost:8000/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0'
+        'http://localhost:8000/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0',
+        {
+          method: 'GET',
+          headers: {
+            'Cookie': '_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753266506$o37$g1$t1753266808$j15$l0$h0',
+            'Content-Type': 'application/json'
+          }
+        }
       );
       const data = await response.json();
 
