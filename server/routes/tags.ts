@@ -57,7 +57,7 @@ export const getCurrentUserTags: RequestHandler = (req, res) => {
     }
 
     // Validate sessionid (simple validation for demo)
-    const expectedSessionId = 'idzg7dkp3aiddmvrn78it4kaq9hl8yc4';
+    const expectedSessionId = 'w5f3jr2arpxfvxqt88eb9pi5b0dbcxdq';
     const isAuthenticated = sessionId === expectedSessionId;
 
     if (!isAuthenticated) {
