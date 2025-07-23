@@ -44,6 +44,7 @@ interface SimplifiedChatContainerProps {
   onRegenerateChallenge?: () => void;
   onChatMore?: () => void;
   onShowCarousel?: (images: string[]) => void;
+  onCreationSharing?: (images: string[]) => void;
   isAIThinking?: boolean;
   selectedCompanion?: any;
   kidProfileImage?: string;
