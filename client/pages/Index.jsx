@@ -101,17 +101,55 @@ export default function Index() {
   const uploadCreation = async (images, title, description) => {
     try {
       setIsUploading(true);
+      console.log('Starting upload with images:', images);
 
       const formData = new FormData();
 
-      // Convert image URLs to File objects (if they're blob URLs)
+      // Convert all image sources to binary File objects
       for (let i = 0; i < images.length; i++) {
         const imageUrl = images[i];
-        if (imageUrl.startsWith('blob:')) {
-          const response = await fetch(imageUrl);
-          const blob = await response.blob();
-          const file = new File([blob], `creation_${i}.jpg`, { type: 'image/jpeg' });
+        console.log(`Processing image ${i}:`, imageUrl);
+
+        try {
+          let file;
+
+          if (imageUrl.startsWith('blob:')) {
+            // Handle blob URLs
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            file = new File([blob], `creation_${i + 1}.jpg`, {
+              type: blob.type || 'image/jpeg'
+            });
+          } else if (imageUrl.startsWith('data:')) {
+            // Handle base64 data URLs
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            file = new File([blob], `creation_${i + 1}.jpg`, {
+              type: blob.type || 'image/jpeg'
+            });
+          } else if (imageUrl.startsWith('http')) {
+            // Handle remote URLs
+            const response = await fetch(imageUrl, { mode: 'cors' });
+            const blob = await response.blob();
+            file = new File([blob], `creation_${i + 1}.jpg`, {
+              type: blob.type || 'image/jpeg'
+            });
+          } else {
+            // Skip if URL format is not recognized
+            console.warn(`Skipping unrecognized image URL format: ${imageUrl}`);
+            continue;
+          }
+
+          console.log(`Created file for image ${i}:`, {
+            name: file.name,
+            size: file.size,
+            type: file.type
+          });
+
           formData.append('uploads', file);
+        } catch (imageError) {
+          console.error(`Failed to process image ${i}:`, imageError);
+          // Continue with other images even if one fails
         }
       }
 
@@ -119,16 +157,23 @@ export default function Index() {
       formData.append('description', description);
       formData.append('user_id', '2404'); // dependent user ID
 
+      console.log('FormData prepared, sending to API...');
+
       const response = await fetch('/api/v2/creations_media', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('API Response status:', response.status);
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('API Error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
 
       const result = await response.json();
+      console.log('Upload successful:', result);
       return result;
     } catch (error) {
       console.error('Upload failed:', error);
@@ -571,7 +616,7 @@ export default function Index() {
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["🎨", "✨", "💡"]);
+      setCompanionEmotions(["���", "✨", "💡"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
