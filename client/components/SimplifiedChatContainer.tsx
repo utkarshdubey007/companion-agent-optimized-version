@@ -58,6 +58,7 @@ export function SimplifiedChatContainer({
   onRegenerateChallenge,
   onChatMore,
   onShowCarousel = () => {},
+  onCreationSharing = () => {},
   isAIThinking = false,
   selectedCompanion,
   kidProfileImage,
