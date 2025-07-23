@@ -395,7 +395,7 @@ export default function Index() {
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["��", "✨", "💡"]);
+      setCompanionEmotions(["🎨", "✨", "💡"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
@@ -502,6 +502,7 @@ export default function Index() {
     if (challenges.length === 0) {
       loadDependentChallenges();
     }
+    setCameFromUploadMenu(true);
     setShowChallengeListView(true);
   };
 
