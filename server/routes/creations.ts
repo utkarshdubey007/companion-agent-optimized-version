@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { createAuthHeaders, validateAuthentication } from "../utils/auth";
 
 /**
  * Handle creations API request by proxying to localhost:8000
