@@ -320,9 +320,72 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
+    // Check if we're in creation sharing flow
+    if (creationSharingStep === 'title') {
+      // User provided title
+      setCreationTitle(message);
+      setCreationSharingStep('description');
+
+      // Add user message for title
+      const titleMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "Kid",
+        content: message,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, titleMessage]);
+
+      // Add AI message asking for description
+      setTimeout(() => {
+        const descriptionRequest = {
+          id: (Date.now() + 1).toString(),
+          type: "text",
+          sender: "AI",
+          content: "Great! Now let's take a moment to craft a detailed description of it.",
+          timestamp: new Date(),
+        };
+        setChatMessages((prev) => [...prev, descriptionRequest]);
+      }, 1000);
+
+      return; // Don't proceed with normal message handling
+    } else if (creationSharingStep === 'description') {
+      // User provided description
+      setCreationSharingStep('complete');
+
+      // Add user message for description
+      const descriptionMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "Kid",
+        content: message,
+        timestamp: new Date(),
+      };
+      setChatMessages((prev) => [...prev, descriptionMessage]);
+
+      // Complete the creation sharing process
+      setTimeout(() => {
+        const completionMessage = {
+          id: (Date.now() + 1).toString(),
+          type: "text",
+          sender: "AI",
+          content: `Perfect! "${creationTitle}" sounds amazing! 🌟 Thank you for sharing your wonderful creation with me. I love hearing about your creative process!`,
+          timestamp: new Date(),
+        };
+        setChatMessages((prev) => [...prev, completionMessage]);
+
+        // Reset creation sharing state
+        setCreationSharingStep(null);
+        setCreationImages([]);
+        setCreationTitle('');
+      }, 1000);
+
+      return; // Don't proceed with normal message handling
+    }
+
+    // Normal message handling
     // Set companion to thinking state
     setCompanionState("thinking");
-
     handleSendMessage(message);
   };
 
