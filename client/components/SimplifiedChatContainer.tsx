@@ -225,7 +225,7 @@ export function SimplifiedChatContainer({
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
       {/* Fixed Companion Character at exact red box location */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 hover:scale-105 transition-transform duration-300">
+      <div className="absolute bottom-16 left-1/4 transform -translate-x-1/2 z-20 hover:scale-105 transition-transform duration-300">
         <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
           {/* Magical glow effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-400/20 blur-xl animate-pulse"></div>
