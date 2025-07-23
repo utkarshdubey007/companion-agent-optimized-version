@@ -27,17 +27,7 @@ export default function KidMediaMessage({
   return (
     <div className={`flex ${isLeftAlign ? 'justify-start' : 'justify-end'} ${isLeftAlign ? 'mb-0' : 'mb-4'} ${className}`}>
       <div className={`flex items-end gap-3 max-w-md ${isLeftAlign ? 'flex-row' : 'flex-row'}`}>
-        {/* Avatar - show first for left align, last for right align */}
-        {isLeftAlign && (
-          <motion.div
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg"
-            initial={{ scale: 0, rotate: 180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.5, ease: "backOut" }}
-          >
-            <span className="text-white text-sm font-bold">🤖</span>
-          </motion.div>
-        )}
+        {/* No avatar for AI messages since companion represents AI */}
 
         {/* Message Content */}
         <motion.div
