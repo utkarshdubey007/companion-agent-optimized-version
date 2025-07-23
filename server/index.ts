@@ -3,6 +3,7 @@ import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { getCurrentUserTags } from "./routes/tags";
 import { getDependentChallengesWorking } from "./routes/challenges";
+import { getCreations } from "./routes/creations";
 
 export function createServer() {
   const app = express();
