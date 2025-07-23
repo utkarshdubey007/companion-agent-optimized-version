@@ -501,12 +501,15 @@ export default function Index() {
     if (challenges.length === 0) {
       loadDependentChallenges();
     }
+    setShowUploadMenu(false); // Close upload menu
     setCameFromUploadMenu(true);
     setShowChallengeListView(true);
   };
 
   const handleMyOwnCreation = () => {
     console.log("My own creation clicked - adding media upload to chat");
+
+    setShowUploadMenu(false); // Close upload menu
 
     // Add KidMediaMessage to chat
     const mediaMessage = {
