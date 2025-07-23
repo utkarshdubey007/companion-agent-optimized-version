@@ -23,32 +23,14 @@ const mockFallbackData: TagsResponse = {
  * API service for fetching current user tags
  */
 export class TagsApiService {
-  // Extract sessionid from the provided cookie string
-  private static readonly SESSION_ID = "w5f3jr2arpxfvxqt88eb9pi5b0dbcxdq";
-  private static readonly AUTH_COOKIES =
-    "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=w5f3jr2arpxfvxqt88eb9pi5b0dbcxdq; _ga_JN6T86SWNW=GS2.1.s1753266506$o37$g1$t1753270203$j56$l0$h0";
-
   /**
    * Fetch current user tags
    * @returns Promise<TagsResponse>
    */
   static async getCurrentUserTags(): Promise<TagsResponse> {
     try {
-      const response = await fetch("/api/v2/tags/current-user-tags", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Session-ID": this.SESSION_ID,
-          "X-Auth-Cookies": this.AUTH_COOKIES,
-        },
-        credentials: "include", // Include cookies in the request
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data: TagsResponse = await response.json();
+      const response = await authenticatedGet("/api/v2/tags/current-user-tags");
+      const data = await parseJsonResponse<TagsResponse>(response);
       return data;
     } catch (error) {
       console.error("Error fetching current user tags:", error);
