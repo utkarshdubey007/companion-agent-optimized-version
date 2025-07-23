@@ -6,6 +6,7 @@ interface Creation {
   id: string;
   title: string;
   images: string[];
+  description?: string;
 }
 
 interface CreationsPanelProps {
@@ -119,6 +120,11 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
             <div className="p-4 flex flex-col items-center justify-center h-[calc(100%-80px)]">
               {currentCreation ? (
                 <div className="flex flex-col items-center w-full">
+                  {/* Creation Title - Above Image */}
+                  <h3 className="text-white text-sm font-medium text-center mb-3">
+                    {currentCreation.title}
+                  </h3>
+
                   {/* Image Card */}
                   <div
                     className="relative rounded-2xl overflow-hidden shadow-lg mb-4"
@@ -162,7 +168,7 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
 
                   {/* Image Indicators */}
                   {currentCreation.images.length > 1 && (
-                    <div className="flex gap-1 mb-2">
+                    <div className="flex gap-1 mb-4">
                       {currentCreation.images.map((_, index) => (
                         <div
                           key={index}
@@ -176,10 +182,17 @@ export function CreationsPanel({ creations }: CreationsPanelProps) {
                     </div>
                   )}
 
-                  {/* Creation Title */}
-                  <h3 className="text-white text-sm font-medium text-center">
-                    {currentCreation.title}
-                  </h3>
+                  {/* Description - Below Image */}
+                  {currentCreation.description && (
+                    <div
+                      className="bg-red-500 text-white text-xs font-medium px-3 py-1 rounded-md text-center"
+                      style={{
+                        background: "#dc2626",
+                      }}
+                    >
+                      {currentCreation.description}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="text-white/50 text-center">

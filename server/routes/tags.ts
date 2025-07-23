@@ -8,28 +8,28 @@ import { TagsResponse } from "@shared/api";
 const mockTagsData = [
   {
     id: 1,
-    tag: "👾 Anime"
+    tag: "👾 Anime",
   },
   {
     id: 11,
-    tag: "❤️Kindness"
+    tag: "❤️Kindness",
   },
   {
     id: 13,
-    tag: "Family"
+    tag: "Family",
   },
   {
     id: 14,
-    tag: "Monsters"
+    tag: "Monsters",
   },
   {
     id: 2,
-    tag: "🐶 Animals"
+    tag: "🐶 Animals",
   },
   {
     id: 15,
-    tag: "Food"
-  }
+    tag: "Food",
+  },
 ];
 
 /**
@@ -39,40 +39,40 @@ const mockTagsData = [
 export const getCurrentUserTags: RequestHandler = (req, res) => {
   try {
     // Log authentication headers for debugging
-    const sessionId = req.headers['x-session-id'] as string;
-    const authCookies = req.headers['x-auth-cookies'] as string;
+    const sessionId = req.headers["x-session-id"] as string;
+    const authCookies = req.headers["x-auth-cookies"] as string;
 
-    console.log('Tags API Request Headers:', {
+    console.log("Tags API Request Headers:", {
       sessionId,
-      authCookies: authCookies ? 'Present' : 'Missing',
+      authCookies: authCookies ? "Present" : "Missing",
       cookie: req.headers.cookie,
-      userAgent: req.headers['user-agent']
+      userAgent: req.headers["user-agent"],
     });
 
     // Check for authentication
     if (sessionId) {
-      console.log('✅ Authentication detected - sessionid:', sessionId);
+      console.log("✅ Authentication detected - sessionid:", sessionId);
     } else {
-      console.log('⚠️ No sessionid found in custom headers');
+      console.log("⚠️ No sessionid found in custom headers");
     }
 
     // Validate sessionid (simple validation for demo)
-    const expectedSessionId = 'idzg7dkp3aiddmvrn78it4kaq9hl8yc4';
+    const expectedSessionId = "w5f3jr2arpxfvxqt88eb9pi5b0dbcxdq";
     const isAuthenticated = sessionId === expectedSessionId;
 
     if (!isAuthenticated) {
-      console.log('❌ Authentication failed - invalid or missing sessionid');
+      console.log("❌ Authentication failed - invalid or missing sessionid");
       const errorResponse: TagsResponse = {
         result_code: 0,
         error_info: "Authentication required",
         data: [],
         has_more: false,
-        total_count: 0
+        total_count: 0,
       };
       return res.status(401).json(errorResponse);
     }
 
-    console.log('🎉 Authentication successful - returning user tags');
+    console.log("🎉 Authentication successful - returning user tags");
 
     // Simulate a slight delay to mimic real API behavior
     setTimeout(() => {
@@ -81,20 +81,20 @@ export const getCurrentUserTags: RequestHandler = (req, res) => {
         error_info: "",
         data: mockTagsData,
         has_more: false,
-        total_count: mockTagsData.length
+        total_count: mockTagsData.length,
       };
 
       res.json(response);
     }, 100);
   } catch (error) {
-    console.error('Error in getCurrentUserTags:', error);
+    console.error("Error in getCurrentUserTags:", error);
 
     const errorResponse: TagsResponse = {
       result_code: 0,
       error_info: "Internal server error",
       data: [],
       has_more: false,
-      total_count: 0
+      total_count: 0,
     };
 
     res.status(500).json(errorResponse);
