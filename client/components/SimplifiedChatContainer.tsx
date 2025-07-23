@@ -210,17 +210,21 @@ export function SimplifiedChatContainer({
     <div className={`flex flex-col h-full relative ${className}`}>
       {/* Fixed Companion Character at bottom-left */}
       <div className="fixed bottom-20 left-8 z-20">
-        <div className="w-32 h-32 md:w-40 md:h-40">
+        <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2Fae5429317afa463b8668d5872bee2cf9%2Fb739432197b34209a365cd0320ed09a4?format=webp&width=800"
             alt="AI Companion"
-            className="w-full h-full object-contain animate-gentle-float"
+            className="w-full h-full object-contain animate-gentle-float drop-shadow-lg"
           />
         </div>
         {isAIThinking && (
-          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-            <div className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs">
-              Thinking...
+          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm shadow-lg">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              </div>
             </div>
           </div>
         )}
