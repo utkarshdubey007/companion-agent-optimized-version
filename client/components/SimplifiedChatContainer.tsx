@@ -20,7 +20,8 @@ interface ChatMessage {
     | "kid_media"
     | "image_display"
     | "mood"
-    | "carousel";
+    | "carousel"
+    | "storybook_reflection";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
