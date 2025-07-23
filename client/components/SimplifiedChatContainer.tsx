@@ -206,9 +206,9 @@ export function SimplifiedChatContainer({
       );
     }
 
-    // Kid messages - positioned on the right
+    // Kid messages - positioned below AI message on the right
     return (
-      <div className="absolute bottom-48 right-12" key={message.id}>
+      <div className="absolute bottom-20 right-8" key={message.id}>
         <div className="max-w-xs">
           <div className="bg-green-500 text-white p-3 rounded-2xl rounded-br-sm shadow-lg relative">
             <p className="text-sm leading-relaxed">
