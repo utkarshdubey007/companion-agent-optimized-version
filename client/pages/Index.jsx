@@ -621,6 +621,8 @@ export default function Index() {
                 placeholder="Ask me anything..."
                 onSendMessage={handleEnhancedSendMessage}
                 onAddAttachment={handleAddAttachment}
+                onSelectChallenge={handleSelectChallenge}
+                onMyOwnCreation={handleMyOwnCreation}
               />
             </div>
           </div>
