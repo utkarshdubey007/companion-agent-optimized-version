@@ -513,6 +513,13 @@ export default function Index() {
 
   const handleChallengeListClose = () => {
     setShowChallengeListView(false);
+    setCameFromUploadMenu(false);
+  };
+
+  const handleBackToUploadMenu = () => {
+    setShowChallengeListView(false);
+    // Don't reset cameFromUploadMenu here - keep the upload menu open
+    // The upload menu will close when user makes a selection
   };
 
   const handleChallengeSelect = (challenge) => {
