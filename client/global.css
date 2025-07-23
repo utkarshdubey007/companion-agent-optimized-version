@@ -891,6 +891,22 @@
   }
 }
 
+/* Compact KidMediaMessage styles */
+.compact-upload {
+  padding: 0;
+  margin: 0;
+}
+
+.compact-upload .upload-container {
+  min-height: 120px;
+  padding: 8px;
+}
+
+.compact-display {
+  padding: 0;
+  margin: 0;
+}
+
 /* Mood animation utility classes */
 .mood-happy {
   animation: moodHappy 1.5s ease-in-out infinite;
