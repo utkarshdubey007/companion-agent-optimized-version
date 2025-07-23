@@ -16,10 +16,10 @@ export default function KidMediaMessage({
     // Compact version for chat flow
     return (
       <div className={`flex justify-end mb-2 ${className}`}>
-        <div className="flex items-end gap-2 max-w-sm">
+        <div className="flex items-end gap-2 max-w-xs">
           {/* Message Content - Compact */}
           <motion.div
-            className="max-w-xs"
+            className="w-full"
             initial={{ opacity: 0, x: 20, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
