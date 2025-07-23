@@ -50,6 +50,7 @@ export default function Index() {
   // Upload menu state
   const [showChallengeListView, setShowChallengeListView] = useState(false);
   const [showKidMediaUpload, setShowKidMediaUpload] = useState(false);
+  const [cameFromUploadMenu, setCameFromUploadMenu] = useState(false);
 
   // Mood picker state
   const [showMoodPicker, setShowMoodPicker] = useState(false);
@@ -394,7 +395,7 @@ export default function Index() {
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["🎨", "✨", "💡"]);
+      setCompanionEmotions(["��", "✨", "💡"]);
       setTimeout(() => {
         setCompanionState("idle");
         setCompanionEmotions([]);
