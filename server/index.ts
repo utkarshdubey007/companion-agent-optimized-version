@@ -4,6 +4,7 @@ import { handleDemo } from "./routes/demo";
 import { getCurrentUserTags } from "./routes/tags";
 import { getDependentChallengesWorking } from "./routes/challenges";
 import { getCreations } from "./routes/creations";
+import { testAuthentication } from "./routes/auth-test";
 
 export function createServer() {
   const app = express();
