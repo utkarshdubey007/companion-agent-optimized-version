@@ -64,27 +64,53 @@ export default function MultiImageUploadCard({
   }, [emblaApi]);
 
   const handleFileUpload = useCallback(
-    (files) => {
+    async (files) => {
       if (!files) return;
 
       const fileArray = Array.from(files);
       const validFiles = fileArray.filter(
-        (file) => file.type.startsWith("image/") && images.length < maxImages,
+        (file) => file.type.startsWith("image/") || file.name.toLowerCase().endsWith('.heic')
       );
 
-      validFiles.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          if (e.target?.result) {
-            const imageUrl = e.target.result;
-            setImages((prev) => {
-              const newImages = [...prev, imageUrl];
-              return newImages.slice(0, maxImages);
-            });
-          }
-        };
-        reader.readAsDataURL(file);
-      });
+      // Only process files if we haven't reached the limit
+      const availableSlots = maxImages - images.length;
+      const filesToProcess = validFiles.slice(0, availableSlots);
+
+      // Process each file with image utilities (compression and HEIC conversion)
+      for (const file of filesToProcess) {
+        try {
+          console.log(`Processing file: ${file.name} (${file.type}, ${(file.size / 1024 / 1024).toFixed(2)}MB)`);
+
+          // Use imageUtils to process the file (handles HEIC conversion and compression)
+          const processedFile = await imageUtils.getImagePromise(file);
+
+          console.log(`Processed file: ${processedFile.name} (${processedFile.type}, ${(processedFile.size / 1024 / 1024).toFixed(2)}MB)`);
+
+          // Create preview URL from the processed file
+          const imageUrl = processedFile.preview;
+
+          setImages((prev) => {
+            const newImages = [...prev, imageUrl];
+            return newImages.slice(0, maxImages);
+          });
+
+        } catch (error) {
+          console.error(`Failed to process file ${file.name}:`, error);
+
+          // Fallback: use basic FileReader for unsupported files
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            if (e.target?.result) {
+              const imageUrl = e.target.result;
+              setImages((prev) => {
+                const newImages = [...prev, imageUrl];
+                return newImages.slice(0, maxImages);
+              });
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      }
     },
     [images.length, maxImages],
   );
