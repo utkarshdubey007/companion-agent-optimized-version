@@ -209,10 +209,15 @@ export function SimplifiedChatContainer({
       {/* Fixed Companion Character at exact red box location (bottom-left) */}
       <div className="absolute bottom-16 left-8 z-20">
         <div className="w-40 h-40 md:w-48 md:h-48">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F39f348f7483547d18b45c8bfcdc8ad42?format=webp&width=800"
-            alt="AI Companion"
-            className="w-full h-full object-contain animate-gentle-float drop-shadow-lg"
+          <Lottie
+            animationData={{
+              // Load animation from the provided JSON URL
+              url: "https://cdn.builder.io/o/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2Faf1bb45b193d45099ddf3851679da168?alt=media&token=e1de5c73-b4dc-4ba8-add2-191d7b69446e&apiKey=da24af11bdbb4585b8e6eb6406b2daf9"
+            }}
+            loop={true}
+            autoplay={true}
+            className="w-full h-full object-contain drop-shadow-lg"
+            style={{ width: '100%', height: '100%' }}
           />
         </div>
         {isAIThinking && (
