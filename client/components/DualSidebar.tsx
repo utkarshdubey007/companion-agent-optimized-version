@@ -31,6 +31,8 @@ export function DualSidebar({
   toggleTopSidebar,
   toggleBottomSidebar,
   onMenuItemClick,
+  highlightedTopIndex,
+  isLoading = false,
 }: DualSidebarProps) {
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
