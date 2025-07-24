@@ -328,8 +328,35 @@ export function useChatState() {
 
           formData.append('uploads', renamedFile);
         } catch (conversionError) {
-          console.error(`Failed to convert image ${i}:`, conversionError);
-          throw new Error(`Failed to process image ${i}: ${conversionError.message}`);
+          console.error(`Failed to convert image ${i} using imageUtils:`, conversionError);
+
+          // Fallback: try manual base64 conversion
+          try {
+            if (imageUrl.startsWith("data:")) {
+              const [header, base64Data] = imageUrl.split(",");
+              const mimeMatch = header.match(/data:([^;]+)/);
+              const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg";
+
+              const binaryString = atob(base64Data);
+              const bytes = new Uint8Array(binaryString.length);
+              for (let j = 0; j < binaryString.length; j++) {
+                bytes[j] = binaryString.charCodeAt(j);
+              }
+
+              const fallbackFile = new File([bytes], `creation_${i}_fallback.jpg`, {
+                type: mimeType,
+                lastModified: Date.now()
+              });
+
+              formData.append('uploads', fallbackFile);
+              console.log(`Used fallback conversion for image ${i}`);
+            } else {
+              throw new Error('Unsupported image format');
+            }
+          } catch (fallbackError) {
+            console.error(`Fallback conversion also failed for image ${i}:`, fallbackError);
+            throw new Error(`Failed to process image ${i}: ${conversionError.message}`);
+          }
         }
       }
 
