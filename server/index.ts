@@ -51,5 +51,8 @@ export function createServer() {
   // Authentication test route
   app.get("/api/auth-test", testAuthentication);
 
+  // OpenAI chat route
+  app.post("/api/v3/open-ai/chat", handleOpenAIChat);
+
   return app;
 }
