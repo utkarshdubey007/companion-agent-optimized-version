@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { RefreshCw, MessageCircle, ThumbsUp } from "lucide-react";
+import { useTypingEffect } from "@/hooks/useTypingEffect";
 
 export function AITextMessage({
   content,
@@ -11,11 +12,27 @@ export function AITextMessage({
   footerTip = "Every conversation with you is a new beginning! ✨",
   className = "",
   hasAvatar = false, // New prop to indicate if avatar is shown
+  enableTyping = true, // New prop to control typing effect
 }) {
   // Use exact default content as specified
   const defaultContent =
     "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?";
   const messageContent = content || defaultContent;
+
+  // Prepare sections for typing effect
+  const sections = [
+    { text: headerTitle, type: 'header' },
+    { text: messageContent, type: 'body' },
+    { text: footerTip, type: 'footer' }
+  ];
+
+  const {
+    getDisplayText,
+    isSectionVisible,
+    isSectionComplete,
+    isComplete,
+    currentSectionIndex
+  } = useTypingEffect(enableTyping ? sections : null, 30, 500);
 
   // Function to render content with emoji and line break support
   const renderContent = (text) => {
