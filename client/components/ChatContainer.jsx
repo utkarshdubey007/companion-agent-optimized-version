@@ -98,7 +98,7 @@ export function ChatContainer({
           key={message.id}
           images={message.images}
           onImagesUpdate={message.onImagesUpdate}
-          onShareCreation={onShowCarousel}
+          onShareCreation={message.onShareCreation || onShareCreation}
           timestamp={message.timestamp}
           mode="upload"
         />
