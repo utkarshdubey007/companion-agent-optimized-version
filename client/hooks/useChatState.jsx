@@ -190,9 +190,11 @@ export function useChatState() {
   };
 
   const handleCreationDescriptionSubmit = async (description) => {
-    // Store the description for API call
-    const currentTitle = getCreationTitle();
-    const currentImages = getCreationImages();
+    // Get current creation data from state
+    const currentTitle = creationTitle;
+    const currentImages = creationImages;
+
+    console.log('Starting upload with stored data:', { currentTitle, currentImages: currentImages.length });
 
     // Add kid's description response
     const descriptionMessage = {
