@@ -958,6 +958,8 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
+          activeAction={activeAction}
+          isApiLoading={isApiLoading}
           moodIconActivated={
             shouldAskForMood(dependent) && !hasMoodCheckinOccurred
           }
