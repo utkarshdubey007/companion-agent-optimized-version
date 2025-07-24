@@ -51,10 +51,10 @@ const StorybookPage = ({
               0 4px 16px ${currentTheme.shadowColor}15,
               inset 0 1px 4px rgba(255,255,255,0.6)
             `,
-            minHeight: "460px",
-            maxHeight: "500px",
+            minHeight: "400px",
+            maxHeight: "450px",
             aspectRatio: "3/4",
-            border: `3px solid ${currentTheme.borderColor}80`,
+            border: `3px solid ${currentTheme.borderColor}90`,
           }}
         >
           {/* Book Binding Edge */}
