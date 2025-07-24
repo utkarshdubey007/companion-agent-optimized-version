@@ -14,6 +14,15 @@ export function createServer() {
   // Middleware
   app.use(cors());
 
+  // Configure multer for file uploads (in memory storage for demo)
+  const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 50 * 1024 * 1024, // 50MB limit per file
+      files: 10 // Maximum 10 files
+    }
+  });
+
   // Increase size limits for file uploads (50MB for JSON, 100MB for URL-encoded data)
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ extended: true, limit: "100mb" }));
