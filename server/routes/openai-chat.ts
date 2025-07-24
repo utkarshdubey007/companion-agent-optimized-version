@@ -61,6 +61,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "play":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "play",
@@ -75,6 +76,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "create":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "create",
@@ -89,6 +91,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "store":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "store",
@@ -103,6 +106,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "reflect":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "reflect",
@@ -117,6 +121,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "reward":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "reward",
@@ -131,6 +136,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       default:
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: action,
