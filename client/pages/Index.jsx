@@ -480,7 +480,20 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
-    // Check if we're in creation sharing flow
+    // Check if the last AI message is waiting for specific input
+    const lastAIMessage = [...chatMessages].reverse().find(msg => msg.sender === "AI");
+
+    if (lastAIMessage?.awaitingInput === "title") {
+      // User provided title for creation
+      handleCreationTitleSubmit(message);
+      return; // Don't proceed with normal message handling
+    } else if (lastAIMessage?.awaitingInput === "description") {
+      // User provided description for creation
+      handleCreationDescriptionSubmit(message);
+      return; // Don't proceed with normal message handling
+    }
+
+    // Check if we're in old creation sharing flow (fallback for compatibility)
     if (creationSharingStep === "title") {
       // User provided title
       setCreationTitle(message);
@@ -751,7 +764,7 @@ export default function Index() {
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["💭", "🌟", "🔮"]);
+      setCompanionEmotions(["💭", "🌟", "���"]);
       setTimeout(() => {
         setCompanionState("thinking");
         setTimeout(() => {
