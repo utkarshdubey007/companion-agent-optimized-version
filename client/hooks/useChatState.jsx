@@ -290,25 +290,7 @@ export function useChatState() {
     }, 2000);
   };
 
-  // Helper functions to manage creation data
-  let creationTitle = "";
-  let creationImages = [];
-
-  const setCreationTitle = (title) => {
-    creationTitle = title;
-  };
-
-  const setCreationImages = (images) => {
-    creationImages = images;
-  };
-
-  const getCreationTitle = () => creationTitle;
-  const getCreationImages = () => creationImages;
-
-  const clearCreationData = () => {
-    creationTitle = "";
-    creationImages = [];
-  };
+  // Creation data is now managed via React state above
 
   // API call function
   const uploadCreationToAPI = async (images, title, description) => {
