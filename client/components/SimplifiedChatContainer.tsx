@@ -129,8 +129,10 @@ export function SimplifiedChatContainer({
         <div className="absolute bottom-32 left-1/2" key={message.id}>
           <div className="max-w-sm storybook-entrance">
             <StorybookReflectionCard
-              creationData={message.creationData}
-              timestamp={message.timestamp}
+              reflections={message.reflections || []}
+              onReactionClick={(reaction, reflection) => {
+                console.log("User reaction:", reaction, reflection);
+              }}
             />
           </div>
         </div>
