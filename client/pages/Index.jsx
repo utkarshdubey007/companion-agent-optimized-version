@@ -539,7 +539,10 @@ export default function Index() {
         // Step 2: Trigger API upload
         uploadCreation(creationImages, creationTitle, message)
           .then((uploadResult) => {
-            console.log("✅ Upload successful, proceeding with chat flow:", uploadResult);
+            console.log(
+              "✅ Upload successful, proceeding with chat flow:",
+              uploadResult,
+            );
 
             // Reset companion state
             setCompanionState("talking");
@@ -555,11 +558,14 @@ export default function Index() {
                 id: (Date.now() + 2).toString(),
                 type: "text",
                 sender: "AI",
-                content: "Amazing! Your creation has been successfully uploaded!",
+                content:
+                  "Amazing! Your creation has been successfully uploaded!",
                 timestamp: new Date(),
               };
 
-              console.log("✅ Cleaned up kid messages and added success message");
+              console.log(
+                "✅ Cleaned up kid messages and added success message",
+              );
               return [...aiMessages, successMessage];
             });
 
@@ -587,14 +593,20 @@ export default function Index() {
                   pages: [
                     {
                       badgeTitle: "Amazing Creation!",
-                      imageUrl: creationImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+                      imageUrl:
+                        creationImages[0] ||
+                        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
                       reflection: `What a wonderful creation! I can see you put so much creativity into "${creationTitle}". ${message ? message : "Your artistic vision truly shines through!"} This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
-                      aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-                    }
+                      aiAvatarUrl:
+                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+                    },
                   ],
-                  index: 0
+                  index: 0,
                 };
-                console.log("📖 FlippableStorybookCard message:", storybookMessage);
+                console.log(
+                  "📖 FlippableStorybookCard message:",
+                  storybookMessage,
+                );
                 setChatMessages((prev) => [...prev, storybookMessage]);
 
                 // Reset creation sharing state
