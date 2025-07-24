@@ -29,12 +29,15 @@ export class TagsApiService {
    */
   static async getCurrentUserTags(): Promise<TagsResponse> {
     try {
+      console.log("🏷️ Attempting to fetch current user tags...");
       const response = await authenticatedGet("/api/v2/tags/current-user-tags");
+      console.log("🏷️ Tags API response status:", response.status);
       const data = await parseJsonResponse<TagsResponse>(response);
+      console.log("🏷️ Tags API data received:", data);
       return data;
     } catch (error) {
-      console.error("Error fetching current user tags:", error);
-      console.log("Using fallback mock data");
+      console.error("❌ Error fetching current user tags:", error);
+      console.log("🔄 Using fallback mock data for tags");
       // Return fallback data instead of throwing error
       return mockFallbackData;
     }
