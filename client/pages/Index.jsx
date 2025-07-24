@@ -780,7 +780,8 @@ export default function Index() {
           setCompanionEmotions([]);
         }, 3000);
       }, 1000);
-      handleSendMessage();
+      // Trigger OpenAI API call
+      callOpenAIChat("imagine");
     } else if (itemAlt === "Friends") {
       console.log("Friends button clicked! Opening companion selector...");
       // Show excited reaction for friends
@@ -807,7 +808,7 @@ export default function Index() {
   const generateMoodResponse = (mood) => {
     const responses = {
       Happy: "That's wonderful! Your positive energy is contagious! ����",
-      Excited: "That's wonderful! Your positive energy is contagious! ✨",
+      Excited: "That's wonderful! Your positive energy is contagious! ��",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
