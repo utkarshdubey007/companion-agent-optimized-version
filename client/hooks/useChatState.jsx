@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { imageUtils } from "@/utils/imageUtils";
 
 export function useChatState() {
   const [chatMessages, setChatMessages] = useState([
