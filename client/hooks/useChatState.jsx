@@ -17,6 +17,10 @@ export function useChatState() {
   const [isAIThinking, setIsAIThinking] = useState(false);
   const [selectedCompanion, setSelectedCompanion] = useState(null);
 
+  // State for creation sharing flow
+  const [creationTitle, setCreationTitle] = useState("");
+  const [creationImages, setCreationImages] = useState([]);
+
   const handleShowCarousel = (images) => {
     // Create a carousel message in the chat
     const carouselMessage = {
