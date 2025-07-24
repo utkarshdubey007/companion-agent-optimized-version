@@ -538,7 +538,9 @@ export default function Index() {
 
         // Step 2: Trigger API upload
         uploadCreation(creationImages, creationTitle, message)
-          .then(() => {
+          .then((uploadResult) => {
+            console.log("✅ Upload successful, proceeding with chat flow:", uploadResult);
+
             // Reset companion state
             setCompanionState("talking");
             setTimeout(() => setCompanionState("idle"), 2000);
@@ -552,6 +554,7 @@ export default function Index() {
               timestamp: new Date(),
             };
             setChatMessages((prev) => [...prev, successMessage]);
+            console.log("✅ Success message added to chat");
 
             // Step 4: Show reflection message after 500ms
             setTimeout(() => {
