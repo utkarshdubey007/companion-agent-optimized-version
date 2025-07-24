@@ -36,7 +36,7 @@ const StorybookPage = ({
       <div className="max-w-full w-full">
         {/* Storybook Page Container */}
         <motion.div
-          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-2xl shadow-2xl overflow-hidden`}
+          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-2xl shadow-2xl overflow-hidden z-40`}
           style={{
             fontFamily: '"Kalam", "Comic Neue", cursive, sans-serif',
             backgroundImage: `
@@ -55,6 +55,8 @@ const StorybookPage = ({
             maxHeight: "450px",
             aspectRatio: "3/4",
             border: `3px solid ${currentTheme.borderColor}90`,
+            zIndex: 40,
+            position: "relative",
           }}
         >
           {/* Book Binding Edge */}
