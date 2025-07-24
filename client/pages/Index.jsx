@@ -206,7 +206,7 @@ export default function Index() {
         title: answer.header || "New Challenge!",
         description: answer.msg || "Ready for a new adventure?",
         timestamp: new Date(),
-        companion: selectedCompanion,
+        companion: chatSelectedCompanion,
         onAccept: handleAcceptChallenge,
         onRegenerate: handleRegenerateChallenge,
         onChatMore: handleChatMore,
@@ -475,7 +475,7 @@ export default function Index() {
       // Don't set error state since the service provides fallback data
       // Just use empty challenges array as fallback
       setChallenges([]);
-      console.log("🔄 Using empty challenges array as fallback");
+      console.log("�� Using empty challenges array as fallback");
     } finally {
       setChallengesLoading(false);
     }
