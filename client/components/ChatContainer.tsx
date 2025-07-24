@@ -8,6 +8,7 @@ import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
+import { TaleTreeAIMessage } from "./AIMessage";
 
 interface ChatMessage {
   id: string;
