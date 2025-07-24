@@ -161,6 +161,7 @@ export function AITextMessageThemed({
   theme = "default",
   footerTip,
   className = "",
+  enableTyping = true,
 }) {
   const themes = {
     default: {
