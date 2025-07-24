@@ -475,19 +475,19 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [direction, setDirection] = useState(0);
 
-  // Green companion matching theme for all pages
+  // Enhanced magical theme for all pages
   const companionTheme = {
-    name: "Companion Green",
-    background: "from-emerald-200 via-green-100 to-teal-50",
-    binding: "from-emerald-300 via-green-300 to-teal-400",
-    shadowColor: "#10b981",
-    borderColor: "#34d399",
-    textPrimary: "text-emerald-800",
-    textSecondary: "text-green-600",
-    decorative: "text-emerald-500",
-    accent: "#22c55e",
-    buttonBg: "#ecfdf5",
-    patternColors: ["#d1fae5", "#a7f3d0", "#6ee7b7"],
+    name: "Magical Emerald",
+    background: "from-emerald-100 via-green-50 to-teal-100",
+    binding: "from-emerald-400 via-green-400 to-teal-500",
+    shadowColor: "#059669",
+    borderColor: "#10b981",
+    textPrimary: "text-emerald-900",
+    textSecondary: "text-emerald-700",
+    decorative: "text-emerald-600",
+    accent: "#34d399",
+    buttonBg: "#f0fdf4",
+    patternColors: ["#dcfce7", "#bbf7d0", "#86efac"],
   };
 
   // Stagger animation entrance
