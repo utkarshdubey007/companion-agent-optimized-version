@@ -38,7 +38,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     else if (query.toLowerCase().includes("reflect")) action = "reflect";
     else if (query.toLowerCase().includes("reward")) action = "reward";
 
-    console.log(`🎯 Processing action: ${action} for user: ${user}`);
+    console.log(`🎯 Processing query: "${query}" with action: ${action}, conversation_id: ${responseConversationId}`);
 
     // Mock response based on action
     let mockResponse;
