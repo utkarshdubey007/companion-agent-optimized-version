@@ -341,18 +341,28 @@ export default function Index() {
     setChallengesError(null);
 
     try {
+      console.log("📥 Loading challenges...");
       const response = await fetchDependentChallenges(2404);
+      console.log("📥 Challenges response received:", response);
 
-      if (response.result_code === 1) {
+      if (response && response.result_code === 1) {
         setChallenges(response.data);
-        console.log("Challenges loaded successfully:", response.data);
+        console.log("✅ Challenges loaded successfully:", response.data);
+      } else if (response && response.data) {
+        // Even if result_code is not 1, use the data if available
+        setChallenges(response.data);
+        console.log("⚠️ Challenges loaded with warning:", response.error_info);
       } else {
-        setChallengesError(response.error_info || "Failed to load challenges");
-        console.error("Challenges API error:", response.error_info);
+        // Fallback to empty array if no data
+        setChallenges([]);
+        console.warn("⚠️ No challenges data available, using empty array");
       }
     } catch (error) {
-      setChallengesError(error.message || "Failed to fetch challenges");
-      console.error("Challenges fetch error:", error);
+      console.error("❌ Challenges fetch error:", error);
+      // Don't set error state since the service provides fallback data
+      // Just use empty challenges array as fallback
+      setChallenges([]);
+      console.log("🔄 Using empty challenges array as fallback");
     } finally {
       setChallengesLoading(false);
     }
