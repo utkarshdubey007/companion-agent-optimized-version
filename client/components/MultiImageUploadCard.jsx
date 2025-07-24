@@ -493,7 +493,12 @@ export default function MultiImageUploadCard({
       <AnimatePresence>
         {images.length > 0 && (
           <motion.button
-            onClick={() => onShareCreation(images)}
+            onClick={() => {
+              console.log('🎨 Share My Creation button clicked!');
+              console.log('🎨 Images to share:', images);
+              console.log('🎨 onShareCreation function:', onShareCreation);
+              onShareCreation(images);
+            }}
             className={`w-full mt-4 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white shadow-lg`}
             whileHover={{
               scale: 1.02,
