@@ -340,7 +340,7 @@ export function useChatState() {
 
       console.log('FormData prepared, making API call...');
 
-      const response = await fetch('http://localhost:8000/api/v2/creations_media', {
+      const response = await fetch('/api/v2/creations_media', {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer dummy-token', // Add auth header
