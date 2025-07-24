@@ -49,8 +49,12 @@ export function DualSidebar({
                       }}
                     >
                       <div
-                        className="w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
-                        onClick={() => onMenuItemClick?.(item.alt)}
+                        className={`w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm border ${
+                          activeAction === item.alt.toLowerCase()
+                            ? "ring-2 ring-yellow-400 border-yellow-400/50 bg-yellow-400/20 shadow-lg shadow-yellow-400/25"
+                            : "hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/30"
+                        } ${isApiLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                        onClick={() => !isApiLoading && onMenuItemClick?.(item.alt)}
                       >
                         <img
                           src={item.src}
