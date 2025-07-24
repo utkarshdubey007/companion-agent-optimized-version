@@ -82,6 +82,14 @@ export class TaleTreeApiService {
    * @returns Promise<TaleTreeChatResponse>
    */
   static async initializeChat(): Promise<TaleTreeChatResponse> {
+    // Clear any existing conversation_id for fresh start
+    try {
+      localStorage.removeItem(this.CONVERSATION_KEY);
+      console.log("🧹 Cleared existing conversation_id for fresh start");
+    } catch (error) {
+      console.warn("Failed to clear localStorage:", error);
+    }
+
     const initRequest: TaleTreeChatRequest = {
       query: "Hi",
       user: "oliver",
