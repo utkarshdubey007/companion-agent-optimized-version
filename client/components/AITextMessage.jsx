@@ -30,7 +30,7 @@ export function AITextMessage({
   return (
     <div className={`${className}`}>
       <div className="max-w-md">
-        {/* Compact Message Card */}
+        {/* AI Message Card */}
         <div className="relative">
           <div
             className="relative overflow-hidden rounded-2xl shadow-lg"
@@ -48,53 +48,53 @@ export function AITextMessage({
               <div className="absolute bottom-4 right-4 w-0.5 h-0.5 bg-blue-200 rounded-full animate-pulse opacity-60"></div>
             </div>
 
-            {/* 1. Header Section */}
-            <div className="relative px-3 py-2 border-b border-white/10">
-              <h3 className="text-white font-bold text-sm drop-shadow-sm">
+            {/* Header Section - Greeting/Title */}
+            <div className="relative px-4 py-3">
+              <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
                 {headerTitle}
               </h3>
             </div>
 
-            {/* 2. Main Message (Body) */}
-            <div className="relative px-3 py-3">
+            {/* Body Section - Main Content */}
+            <div className="relative px-4 py-2">
               <div
-                className="text-white leading-relaxed drop-shadow-sm"
+                className="text-white leading-relaxed drop-shadow-sm font-normal"
                 style={{
-                  fontSize: "15px",
-                  lineHeight: "1.5",
+                  fontSize: "14px",
+                  lineHeight: "1.4",
                 }}
               >
                 {renderContent(messageContent)}
               </div>
             </div>
 
-            {/* 3. Footer Message */}
-            <div className="relative px-3 py-2 text-left border-b border-white/10">
+            {/* Footer Section - Supportive Line */}
+            <div className="relative px-4 py-3">
               <div
-                className="text-white/90 text-xs font-medium"
+                className="text-white/95 text-sm font-medium leading-tight"
                 style={{
                   textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
-                  fontSize: "11px",
+                  fontSize: "13px",
                 }}
               >
                 {footerTip}
               </div>
             </div>
 
-            {/* 4. Footer Buttons */}
-            <div className="relative px-3 py-2 border-t border-white/10">
+            {/* Action Buttons */}
+            <div className="relative px-4 py-3 border-t border-white/10">
               <div className="flex justify-start gap-2">
                 <Button
                   onClick={onReply}
                   size="sm"
-                  className="h-6 px-2 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
                 >
                   🗨️ Reply
                 </Button>
                 <Button
                   onClick={onRegenerate}
                   size="sm"
-                  className="h-6 px-2 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
                 >
                   🔁 Regenerate
                 </Button>
@@ -102,9 +102,9 @@ export function AITextMessage({
             </div>
           </div>
 
-          {/* Compact message tail */}
+          {/* Message tail */}
           <div
-            className="w-3 h-3 transform -translate-x-1 -mt-3 ml-3"
+            className="w-3 h-3 transform -translate-x-1 -mt-3 ml-4"
             style={{
               background: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%)",
               clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
