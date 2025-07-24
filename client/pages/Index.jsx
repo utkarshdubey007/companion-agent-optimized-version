@@ -102,6 +102,9 @@ export default function Index() {
     handleSendMessage,
     handleAddAttachment,
     handleCompanionSelect: chatHandleCompanionSelect,
+    handleShareCreation,
+    handleCreationTitleSubmit,
+    handleCreationDescriptionSubmit,
   } = useChatState();
 
   // Helper function to get file extension from MIME type
