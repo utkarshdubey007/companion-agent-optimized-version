@@ -500,14 +500,19 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
+    console.log('📝 Message sent:', message);
+
     // Check if the last AI message is waiting for specific input
     const lastAIMessage = [...chatMessages].reverse().find(msg => msg.sender === "AI");
+    console.log('🤖 Last AI message:', lastAIMessage);
 
     if (lastAIMessage?.awaitingInput === "title") {
+      console.log('📝 Detected title input, calling handleCreationTitleSubmit');
       // User provided title for creation
       handleCreationTitleSubmit(message);
       return; // Don't proceed with normal message handling
     } else if (lastAIMessage?.awaitingInput === "description") {
+      console.log('📝 Detected description input, calling handleCreationDescriptionSubmit');
       // User provided description for creation
       handleCreationDescriptionSubmit(message);
       return; // Don't proceed with normal message handling
