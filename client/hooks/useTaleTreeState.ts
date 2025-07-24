@@ -10,8 +10,7 @@ export function useTaleTreeState() {
   const [isLoading, setIsLoading] = useState(false);
   const [chatResponse, setChatResponse] = useState<TaleTreeChatResponse | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [conversationId] = useState("a4490c53-de8f-484d-91d1-4cdd302dafca");
-  const [user] = useState("oliver");
+  const [conversationId, setConversationId] = useState<string | null>(null);
 
   // Action to icon index mapping
   const actionIconMap: Record<string, number> = {
@@ -32,14 +31,19 @@ export function useTaleTreeState() {
     setIsLoading(true);
     try {
       console.log("🌟 Initializing TaleTree chat...");
-      const response = await TaleTreeApiService.initializeChat(user, conversationId);
+      const response = await TaleTreeApiService.initializeChat();
       setChatResponse(response);
-      
+
+      // Store the conversation_id from response
+      if (response.conversation_id) {
+        setConversationId(response.conversation_id);
+      }
+
       // Set active action from response
       if (response.outputs?.answer?.action) {
         setActiveAction(response.outputs.answer.action);
       }
-      
+
       setIsInitialized(true);
       console.log("✅ TaleTree chat initialized successfully");
     } catch (error) {
@@ -47,30 +51,40 @@ export function useTaleTreeState() {
     } finally {
       setIsLoading(false);
     }
-  }, [isInitialized, isLoading, user, conversationId]);
+  }, [isInitialized, isLoading]);
 
   /**
-   * Send action request to TaleTree API
+   * Send message to TaleTree API
    */
-  const sendAction = useCallback(async (action: string) => {
+  const sendMessage = useCallback(async (query: string) => {
     if (isLoading) {
-      console.log("⏳ Request already in progress, ignoring click");
+      console.log("⏳ Request already in progress, ignoring request");
       return;
     }
 
     setIsLoading(true);
     try {
-      console.log(`🎯 Sending action: ${action}`);
-      const response = await TaleTreeApiService.sendActionMessage(action, user, conversationId);
+      console.log(`🎯 Sending message: ${query}`);
+      const response = await TaleTreeApiService.sendMessage(query);
       setChatResponse(response);
-      setActiveAction(action);
-      console.log(`✅ Action ${action} completed successfully`);
+
+      // Update conversation_id if it changed
+      if (response.conversation_id && response.conversation_id !== conversationId) {
+        setConversationId(response.conversation_id);
+      }
+
+      // Set active action from response if present
+      if (response.outputs?.answer?.action) {
+        setActiveAction(response.outputs.answer.action);
+      }
+
+      console.log(`✅ Message sent successfully`);
     } catch (error) {
-      console.error(`❌ Failed to send action ${action}:`, error);
+      console.error(`❌ Failed to send message:`, error);
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, user, conversationId]);
+  }, [isLoading, conversationId]);
 
   /**
    * Get highlighted icon index based on active action
@@ -103,7 +117,7 @@ export function useTaleTreeState() {
     user,
     
     // Actions
-    sendAction,
+    sendMessage,
     initializeChat,
     
     // Helpers
