@@ -276,9 +276,9 @@ const StorybookPage = ({
                     fontFamily: '"Kalam", cursive',
                     fontSize: "14px",
                     textAlign: "justify",
-                    textShadow: "1px 1px 3px rgba(255,255,255,0.8)",
-                    lineHeight: "1.6",
-                    maxHeight: "120px",
+                    textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                    lineHeight: "1.5",
+                    maxHeight: "100px",
                     paddingRight: "4px",
                   }}
                 >
