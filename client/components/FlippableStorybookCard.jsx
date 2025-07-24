@@ -32,29 +32,29 @@ const StorybookPage = ({
   };
 
   return (
-    <div className="flex justify-start w-full mb-8 px-4">
-      <div className="max-w-md w-full">
+    <div className="w-full">
+      <div className="max-w-full w-full">
         {/* Storybook Page Container */}
         <motion.div
-          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-l-2xl shadow-2xl overflow-hidden`}
+          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-2xl shadow-2xl overflow-hidden`}
           style={{
             fontFamily: '"Kalam", "Comic Neue", cursive, sans-serif',
             backgroundImage: `
-              radial-gradient(circle at 20% 20%, ${currentTheme.patternColors[0]}80 0%, ${currentTheme.buttonBg} 40%),
-              radial-gradient(circle at 80% 30%, ${currentTheme.patternColors[1]}60 0%, ${currentTheme.buttonBg} 40%),
-              radial-gradient(circle at 40% 80%, ${currentTheme.patternColors[2]}40 0%, ${currentTheme.buttonBg} 40%),
-              linear-gradient(45deg, ${currentTheme.patternColors[0]}20 0%, ${currentTheme.buttonBg} 2%),
-              repeating-linear-gradient(0deg, ${currentTheme.buttonBg}, ${currentTheme.buttonBg} 25px, ${currentTheme.patternColors[0]}30 26px, ${currentTheme.patternColors[0]}30 28px)
+              radial-gradient(circle at 20% 20%, ${currentTheme.patternColors[0]}60 0%, ${currentTheme.buttonBg} 50%),
+              radial-gradient(circle at 80% 30%, ${currentTheme.patternColors[1]}40 0%, ${currentTheme.buttonBg} 50%),
+              radial-gradient(circle at 40% 80%, ${currentTheme.patternColors[2]}30 0%, ${currentTheme.buttonBg} 50%),
+              linear-gradient(135deg, ${currentTheme.patternColors[0]}20 0%, ${currentTheme.buttonBg} 30%)
             `,
             boxShadow: `
-              inset 4px 0 12px ${currentTheme.shadowColor}20,
               0 0 0 2px ${currentTheme.borderColor}40,
-              0 12px 40px ${currentTheme.shadowColor}30,
-              0 6px 20px ${currentTheme.shadowColor}20
+              0 8px 32px ${currentTheme.shadowColor}20,
+              0 4px 16px ${currentTheme.shadowColor}15,
+              inset 0 1px 4px rgba(255,255,255,0.6)
             `,
-            minHeight: "520px",
+            minHeight: "460px",
+            maxHeight: "500px",
             aspectRatio: "3/4",
-            border: `2px solid ${currentTheme.borderColor}60`,
+            border: `3px solid ${currentTheme.borderColor}80`,
           }}
         >
           {/* Book Binding Edge */}
