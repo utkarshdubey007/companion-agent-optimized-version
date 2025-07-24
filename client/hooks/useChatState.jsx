@@ -306,27 +306,30 @@ export function useChatState() {
   // API call function
   const uploadCreationToAPI = async (images, title, description) => {
     try {
+      console.log('Starting upload with images:', images);
       const formData = new FormData();
 
-      // Add files (convert base64 to binary if needed)
+      // Convert all images to binary files using imageUtils
       for (let i = 0; i < images.length; i++) {
         const imageUrl = images[i];
+        console.log(`Processing image ${i}:`, imageUrl);
 
-        if (imageUrl.startsWith("data:")) {
-          // Handle base64 data URLs
-          const [header, base64Data] = imageUrl.split(",");
-          const mimeMatch = header.match(/data:([^;]+)/);
-          const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg";
+        try {
+          // Convert image URL to binary file using imageUtils
+          const binaryFile = await imageUtils.convertImageToBinary(imageUrl);
+          console.log(`Converted image ${i} to binary file:`, binaryFile.name, binaryFile.size);
 
-          // Convert base64 to binary
-          const binaryString = atob(base64Data);
-          const bytes = new Uint8Array(binaryString.length);
-          for (let j = 0; j < binaryString.length; j++) {
-            bytes[j] = binaryString.charCodeAt(j);
-          }
+          // Rename file with proper extension
+          const fileName = `creation_${i}_${Date.now()}.jpeg`;
+          const renamedFile = new File([binaryFile], fileName, {
+            type: 'image/jpeg',
+            lastModified: Date.now()
+          });
 
-          const file = new File([bytes], `creation_${i}.jpg`, { type: mimeType });
-          formData.append('uploads', file);
+          formData.append('uploads', renamedFile);
+        } catch (conversionError) {
+          console.error(`Failed to convert image ${i}:`, conversionError);
+          throw new Error(`Failed to process image ${i}: ${conversionError.message}`);
         }
       }
 
@@ -334,6 +337,8 @@ export function useChatState() {
       formData.append('title', title);
       formData.append('description', description);
       formData.append('user_id', '2404'); // Dependent ID as mentioned
+
+      console.log('FormData prepared, making API call...');
 
       const response = await fetch('/api/v2/creations_media', {
         method: 'POST',
@@ -344,11 +349,14 @@ export function useChatState() {
         body: formData,
       });
 
+      console.log('API response status:', response.status);
+
       if (!response.ok) {
         throw new Error(`Upload failed: ${response.status}`);
       }
 
       const result = await response.json();
+      console.log('API response:', result);
 
       if (result.result_code !== 1) {
         throw new Error(result.error_info || 'Upload failed');
