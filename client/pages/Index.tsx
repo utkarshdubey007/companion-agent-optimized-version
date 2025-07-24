@@ -442,6 +442,8 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
+          highlightedTopIndex={taleTreeState.getHighlightedIconIndex()}
+          isLoading={taleTreeState.isLoading}
         />
 
         {/* Center Content Area - Chat Interface */}
