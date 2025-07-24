@@ -57,9 +57,9 @@ export function AITextMessage({
   };
 
   const showHeader = !enableTyping || (typingEffect?.isSectionVisible(0) ?? true);
-  const showBody = !enableTyping || (typingEffect?.isSectionVisible(1) ?? false);
-  const showFooter = !enableTyping || (typingEffect?.isSectionVisible(2) ?? false);
-  const showButtons = !enableTyping || (typingEffect?.isComplete ?? false);
+  const showBody = !enableTyping || (typingEffect?.isSectionVisible(1) ?? true);
+  const showFooter = !enableTyping || (typingEffect?.isSectionVisible(2) ?? true);
+  const showButtons = !enableTyping || (typingEffect?.isComplete ?? true);
 
   return (
     <div className={`${className}`}>
