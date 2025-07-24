@@ -6,8 +6,22 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
   const [isComplete, setIsComplete] = useState(false);
   const [displayedSections, setDisplayedSections] = useState({});
 
+  // Reset when sections change
   useEffect(() => {
-    if (!sections || sections.length === 0) return;
+    if (!sections || sections.length === 0) {
+      setIsComplete(true);
+      return;
+    }
+
+    // Reset all state when sections change
+    setCurrentSectionIndex(0);
+    setCurrentText('');
+    setIsComplete(false);
+    setDisplayedSections({});
+  }, [sections]);
+
+  useEffect(() => {
+    if (!sections || sections.length === 0 || isComplete) return;
 
     let timeoutId;
     const currentSection = sections[currentSectionIndex];
