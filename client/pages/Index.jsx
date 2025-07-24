@@ -806,6 +806,8 @@ export default function Index() {
       localStorage.setItem("checkin_modal", "true");
     } else if (itemAlt === "Store") {
       handleAddAttachment();
+      // Trigger OpenAI API call
+      callOpenAIChat("store");
     }
   };
 
