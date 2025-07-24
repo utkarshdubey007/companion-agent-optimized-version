@@ -25,8 +25,18 @@ export async function handleOpenAIChat(req: Request, res: Response) {
       authResult.sessionId,
     );
 
-    const { query, user, conversation_id, inputs, files } = req.body;
-    const action = inputs?.action || "imagine";
+    const { query, conversation_id } = req.body;
+
+    // Generate conversation_id if not provided
+    const responseConversationId = conversation_id || `conv-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    // Extract action from query for demonstration
+    let action = "imagine";
+    if (query.toLowerCase().includes("play")) action = "play";
+    else if (query.toLowerCase().includes("create")) action = "create";
+    else if (query.toLowerCase().includes("store")) action = "store";
+    else if (query.toLowerCase().includes("reflect")) action = "reflect";
+    else if (query.toLowerCase().includes("reward")) action = "reward";
 
     console.log(`🎯 Processing action: ${action} for user: ${user}`);
 
