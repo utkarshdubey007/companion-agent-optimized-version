@@ -16,6 +16,8 @@ import { CreationsPanel } from "@/components/CreationsPanel";
 import { ChatInputBox } from "@/components/ChatInputBox";
 import { MagicalChallengeCard } from "@/components/MagicalChallengeCard";
 import { ChatContainer } from "@/components/ChatContainer";
+import { useTaleTreeState } from "@/hooks/useTaleTreeState";
+import { TaleTreeAIMessage } from "@/components/AIMessage";
 
 export default function Index() {
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
@@ -52,16 +54,7 @@ export default function Index() {
       setChatMessages((prev) => [...prev, aiResponse]);
     }, 1500);
   };
-  const [chatMessages, setChatMessages] = useState<any[]>([
-    {
-      id: "ai-welcome",
-      type: "text",
-      sender: "AI",
-      content:
-        "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?",
-      timestamp: new Date(Date.now() - 300000),
-    },
-  ]);
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
 
   // Auto-expand on page load - top first, then bottom
   useEffect(() => {
@@ -89,8 +82,59 @@ export default function Index() {
     setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
-  const handleMenuItemClick = (itemAlt: string) => {
-    console.log("Menu item clicked:", itemAlt); // Debug log
+  // TaleTree AI integration
+  const taleTreeState = useTaleTreeState();
+
+  // Add TaleTree response to chat when received
+  useEffect(() => {
+    if (taleTreeState.chatResponse && taleTreeState.isInitialized) {
+      const response = taleTreeState.chatResponse.outputs.answer;
+      console.log("🎯 Adding TaleTree response to chat:", response);
+
+      const aiMessage = {
+        id: `taletree-${Date.now()}`,
+        type: "taletree_ai" as const,
+        sender: "AI" as const,
+        taleTreeData: response,
+        timestamp: new Date(),
+      };
+
+      setChatMessages((prev) => {
+        // Check if this response is already added to avoid duplicates
+        const exists = prev.some((msg) =>
+          msg.type === "taletree_ai" &&
+          msg.taleTreeData?.action === response.action &&
+          Math.abs(msg.timestamp.getTime() - aiMessage.timestamp.getTime()) < 1000
+        );
+
+        if (!exists) {
+          return [...prev, aiMessage];
+        }
+        return prev;
+      });
+    }
+  }, [taleTreeState.chatResponse, taleTreeState.isInitialized]);
+
+  const handleMenuItemClick = (itemAlt: string, index: number) => {
+    console.log("Menu item clicked:", itemAlt, "index:", index); // Debug log
+
+    // Handle TaleTree actions (top menu items)
+    const actionMap: Record<string, string> = {
+      "Imagine": "imagine",
+      "Play": "play",
+      "Create": "create",
+      "Store": "store",
+      "Reflect": "reflect",
+      "Reward": "reward"
+    };
+
+    if (actionMap[itemAlt]) {
+      console.log(`🎯 Triggering TaleTree action: ${actionMap[itemAlt]}`);
+      taleTreeState.sendAction(actionMap[itemAlt]);
+      return;
+    }
+
+    // Handle other UI actions
     if (itemAlt === "Create") {
       setShowAcceptedChallenges(!showAcceptedChallenges);
     } else if (itemAlt === "Reflect") {
