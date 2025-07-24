@@ -132,7 +132,7 @@ export function ChatContainer({
 
     if (message.type === "flippable_storybook") {
       return (
-        <div key={message.id} className="flex justify-start w-full mb-6">
+        <div key={message.id} className="flex justify-start w-full mb-6 relative z-20">
           <div className="flex items-start gap-3 max-w-full">
             {/* AI Companion Avatar */}
             <div className="flex-shrink-0 mt-2">
@@ -142,7 +142,7 @@ export function ChatContainer({
             </div>
 
             {/* Storybook Card Container */}
-            <div className="flex-1 max-w-md storybook-entrance">
+            <div className="flex-1 max-w-md storybook-entrance relative z-10">
               <FlippableStorybookCard
                 pages={message.pages}
                 index={message.index || 0}
