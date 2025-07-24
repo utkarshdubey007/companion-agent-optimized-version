@@ -576,15 +576,15 @@ export default function Index() {
               };
               setChatMessages((prev) => [...prev, reflectionMessage]);
 
-              // Step 5: Add StorybookReflectionCard
+              // Step 5: Add FlippableStorybookCard
               setTimeout(() => {
-                console.log("✅ Adding StorybookReflectionCard message...");
+                console.log("✅ Adding FlippableStorybookCard message...");
                 const storybookMessage = {
                   id: (Date.now() + 4).toString(),
-                  type: "storybook_reflection",
+                  type: "flippable_storybook",
                   sender: "AI",
                   timestamp: new Date(),
-                  reflections: [
+                  pages: [
                     {
                       badgeTitle: "Amazing Creation!",
                       imageUrl: creationImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
@@ -592,8 +592,9 @@ export default function Index() {
                       aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
                     }
                   ],
+                  index: 0
                 };
-                console.log("📖 StorybookReflectionCard message:", storybookMessage);
+                console.log("📖 FlippableStorybookCard message:", storybookMessage);
                 setChatMessages((prev) => [...prev, storybookMessage]);
 
                 // Reset creation sharing state
