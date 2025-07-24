@@ -107,14 +107,17 @@ export class ChallengesApiService {
     dependentId: number = 2404,
   ): Promise<ChallengesResponse> {
     try {
+      console.log(`🎯 Attempting to fetch challenges for dependent ${dependentId}...`);
       const response = await authenticatedGet(
         `/api/v2/challenges/dependent-challenges/working?dependent_id=${dependentId}`,
       );
+      console.log("🎯 Challenges API response status:", response.status);
       const data = await parseJsonResponse<ChallengesResponse>(response);
+      console.log("🎯 Challenges API data received:", data);
       return data;
     } catch (error) {
-      console.error("Error fetching dependent challenges:", error);
-      console.log("Using fallback mock data for challenges");
+      console.error("❌ Error fetching dependent challenges:", error);
+      console.log("🔄 Using fallback mock data for challenges");
       // Return fallback data instead of throwing error
       return mockChallengesData;
     }
