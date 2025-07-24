@@ -178,7 +178,11 @@ export function useChatState() {
     }, 2000);
   };
 
-  const handleCreationDescriptionSubmit = (description) => {
+  const handleCreationDescriptionSubmit = async (description) => {
+    // Store the description for API call
+    const currentTitle = getCreationTitle();
+    const currentImages = getCreationImages();
+
     // Add kid's description response
     const descriptionMessage = {
       id: Date.now().toString(),
@@ -189,23 +193,161 @@ export function useChatState() {
     };
     setChatMessages((prev) => [...prev, descriptionMessage]);
 
-    // Show thinking mode
+    // Show thinking mode and upload message
     setIsAIThinking(true);
 
-    // AI gives final congratulations
     setTimeout(() => {
       setIsAIThinking(false);
 
-      const congratsMessage = {
+      const uploadingMessage = {
         id: (Date.now() + 1).toString(),
         type: "text",
         sender: "AI",
-        content: "Wonderful! Your creation is now complete with a beautiful title and description! 🎉 I'm so proud of your creativity and the story you've shared. Keep creating amazing things! ✨",
+        content: "Please wait I am uploading your creations...",
         timestamp: new Date(),
         companion: selectedCompanion,
       };
-      setChatMessages((prev) => [...prev, congratsMessage]);
-    }, 2500);
+      setChatMessages((prev) => [...prev, uploadingMessage]);
+
+      // Make API call to upload creation
+      uploadCreationToAPI(currentImages, currentTitle, description)
+        .then((result) => {
+          // Show success message
+          const successMessage = {
+            id: (Date.now() + 2).toString(),
+            type: "text",
+            sender: "AI",
+            content: "Amazing! Your creation has been successfully uploaded!",
+            timestamp: new Date(),
+            companion: selectedCompanion,
+          };
+          setChatMessages((prev) => [...prev, successMessage]);
+
+          // Show reflection message
+          setTimeout(() => {
+            const reflectionMessage = {
+              id: (Date.now() + 3).toString(),
+              type: "text",
+              sender: "AI",
+              content: "Please wait till I am reflecting on your creations...",
+              timestamp: new Date(),
+              companion: selectedCompanion,
+            };
+            setChatMessages((prev) => [...prev, reflectionMessage]);
+
+            // Show StorybookReflectionCard after 5 seconds
+            setTimeout(() => {
+              const storybookMessage = {
+                id: (Date.now() + 4).toString(),
+                type: "storybook",
+                sender: "AI",
+                timestamp: new Date(),
+                reflections: [
+                  {
+                    badgeTitle: "Amazing Creation!",
+                    imageUrl: currentImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+                    reflection: `What a wonderful creation! I can see you put so much creativity into "${currentTitle}". ${description} Your artistic vision truly shines through! This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
+                    aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+                  },
+                ],
+                onReactionClick: (reaction) => console.log("Reaction clicked:", reaction),
+                index: 0,
+              };
+              setChatMessages((prev) => [...prev, storybookMessage]);
+
+              // Clear creation data
+              clearCreationData();
+            }, 5000);
+          }, 1000);
+        })
+        .catch((error) => {
+          console.error("Upload failed:", error);
+
+          const errorMessage = {
+            id: (Date.now() + 2).toString(),
+            type: "text",
+            sender: "AI",
+            content: "I'm sorry, there was an issue uploading your creation. Please try again later.",
+            timestamp: new Date(),
+            companion: selectedCompanion,
+          };
+          setChatMessages((prev) => [...prev, errorMessage]);
+        });
+    }, 2000);
+  };
+
+  // Helper functions to manage creation data
+  let creationTitle = "";
+  let creationImages = [];
+
+  const setCreationTitle = (title) => {
+    creationTitle = title;
+  };
+
+  const setCreationImages = (images) => {
+    creationImages = images;
+  };
+
+  const getCreationTitle = () => creationTitle;
+  const getCreationImages = () => creationImages;
+
+  const clearCreationData = () => {
+    creationTitle = "";
+    creationImages = [];
+  };
+
+  // API call function
+  const uploadCreationToAPI = async (images, title, description) => {
+    try {
+      const formData = new FormData();
+
+      // Add files (convert base64 to binary if needed)
+      for (let i = 0; i < images.length; i++) {
+        const imageUrl = images[i];
+
+        if (imageUrl.startsWith("data:")) {
+          // Handle base64 data URLs
+          const [header, base64Data] = imageUrl.split(",");
+          const mimeMatch = header.match(/data:([^;]+)/);
+          const mimeType = mimeMatch ? mimeMatch[1] : "image/jpeg";
+
+          // Convert base64 to binary
+          const binaryString = atob(base64Data);
+          const bytes = new Uint8Array(binaryString.length);
+          for (let j = 0; j < binaryString.length; j++) {
+            bytes[j] = binaryString.charCodeAt(j);
+          }
+
+          const file = new File([bytes], `creation_${i}.jpg`, { type: mimeType });
+          formData.append('uploads', file);
+        }
+      }
+
+      // Add other fields
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('user_id', '2404'); // Dependent ID as mentioned
+
+      const response = await fetch('/api/v2/creations_media', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Upload failed: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.result_code !== 1) {
+        throw new Error(result.error_info || 'Upload failed');
+      }
+
+      return result.data;
+    } catch (error) {
+      console.error('API upload error:', error);
+      throw error;
+    }
   };
 
   const handleAddAttachment = () => {
