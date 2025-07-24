@@ -51,74 +51,57 @@ export function AITextMessage({
             </div>
 
             {/* Header Section - Greeting/Title */}
-            {showHeader && (
-              <div className="relative px-4 py-3">
-                <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
-                  {renderContent(getHeaderText())}
-                  {enableTyping && typingEffect?.currentSectionIndex === 0 && !(typingEffect?.isSectionComplete(0)) && (
-                    <span className="animate-pulse ml-1">|</span>
-                  )}
-                </h3>
-              </div>
-            )}
+            <div className="relative px-4 py-3">
+              <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
+                {renderContent(headerTitle)}
+              </h3>
+            </div>
 
             {/* Body Section - Main Content */}
-            {showBody && (
-              <div className="relative px-4 py-2">
-                <div
-                  className="text-white leading-relaxed drop-shadow-sm font-normal"
-                  style={{
-                    fontSize: "14px",
-                    lineHeight: "1.4",
-                  }}
-                >
-                  {renderContent(getBodyText())}
-                  {enableTyping && typingEffect?.currentSectionIndex === 1 && !(typingEffect?.isSectionComplete(1)) && (
-                    <span className="animate-pulse ml-1">|</span>
-                  )}
-                </div>
+            <div className="relative px-4 py-2">
+              <div
+                className="text-white leading-relaxed drop-shadow-sm font-normal"
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1.4",
+                }}
+              >
+                {renderContent(messageContent)}
               </div>
-            )}
+            </div>
 
             {/* Footer Section - Supportive Line */}
-            {showFooter && (
-              <div className="relative px-4 py-3">
-                <div
-                  className="text-white/95 text-sm font-medium leading-tight"
-                  style={{
-                    textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
-                    fontSize: "13px",
-                  }}
-                >
-                  {renderContent(getFooterText())}
-                  {enableTyping && typingEffect?.currentSectionIndex === 2 && !(typingEffect?.isSectionComplete(2)) && (
-                    <span className="animate-pulse ml-1">|</span>
-                  )}
-                </div>
+            <div className="relative px-4 py-3">
+              <div
+                className="text-white/95 text-sm font-medium leading-tight"
+                style={{
+                  textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
+                  fontSize: "13px",
+                }}
+              >
+                {renderContent(footerTip)}
               </div>
-            )}
+            </div>
 
-            {/* Action Buttons - Show only when typing is complete */}
-            {showButtons && (
-              <div className="relative px-4 py-3 border-t border-white/10">
-                <div className="flex justify-start gap-2">
-                  <Button
-                    onClick={onReply}
-                    size="sm"
-                    className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
-                  >
-                    🗨️ Reply
-                  </Button>
-                  <Button
-                    onClick={onRegenerate}
-                    size="sm"
-                    className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
-                  >
-                    🔁 Regenerate
-                  </Button>
-                </div>
+            {/* Action Buttons */}
+            <div className="relative px-4 py-3 border-t border-white/10">
+              <div className="flex justify-start gap-2">
+                <Button
+                  onClick={onReply}
+                  size="sm"
+                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                >
+                  🗨️ Reply
+                </Button>
+                <Button
+                  onClick={onRegenerate}
+                  size="sm"
+                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                >
+                  ��� Regenerate
+                </Button>
               </div>
-            )}
+            </div>
           </div>
 
           {/* Message tail */}
