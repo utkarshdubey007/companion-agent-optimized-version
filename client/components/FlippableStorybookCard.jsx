@@ -541,11 +541,11 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full relative z-20">
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="relative w-full max-w-sm"
+            className="relative w-full max-w-sm z-30"
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -20 }}
@@ -557,6 +557,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
             }}
             style={{
               perspective: "1200px",
+              zIndex: 30,
             }}
           >
             {/* Book Container with Navigation */}
