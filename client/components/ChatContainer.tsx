@@ -38,6 +38,8 @@ interface ChatMessage {
   onImagesUpdate?: (images: string[]) => void;
   // For mood messages
   onMoodSubmit?: (mood: any) => void;
+  // For TaleTree AI messages
+  taleTreeData?: any;
 }
 
 interface ChatContainerProps {
