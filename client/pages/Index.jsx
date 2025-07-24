@@ -89,6 +89,11 @@ export default function Index() {
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
 
+  // OpenAI Chat API state
+  const [activeAction, setActiveAction] = useState(null);
+  const [isApiLoading, setIsApiLoading] = useState(false);
+  const [conversationId] = useState("a4490c53-de8f-484d-91d1-4cdd302dafca");
+
   // Chat state management
   const {
     chatMessages,
