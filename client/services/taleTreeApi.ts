@@ -83,24 +83,53 @@ export class TaleTreeApiService {
    */
   static async initializeChat(): Promise<TaleTreeChatResponse> {
     const initRequest: TaleTreeChatRequest = {
+      query: "Hi",
+      user: "oliver",
       conversation_id: null,
-      query: "hi",
+      inputs: {
+        username: "oliver",
+        user_id: 2404,
+        companion: "rushmore",
+        birthdate: "2018-04-29",
+        accepted_challenge_count: 3,
+        challenge_id: null,
+        action: "imagine",
+        emotion: null,
+        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        challenge_details: null,
+      },
+      files: null,
     };
 
     return this.sendChatMessage(initRequest);
   }
 
   /**
-   * Send chat message with specific query
+   * Send chat message with specific query and action
    * @param query - The message query
+   * @param action - The action to perform
    * @returns Promise<TaleTreeChatResponse>
    */
-  static async sendMessage(query: string): Promise<TaleTreeChatResponse> {
+  static async sendMessage(query: string, action: string = "imagine"): Promise<TaleTreeChatResponse> {
     const conversationId = this.getStoredConversationId();
 
     const request: TaleTreeChatRequest = {
-      conversation_id: conversationId,
       query,
+      user: "oliver",
+      conversation_id: conversationId,
+      inputs: {
+        username: "oliver",
+        user_id: 2404,
+        companion: "rushmore",
+        birthdate: "2018-04-29",
+        accepted_challenge_count: 3,
+        challenge_id: null,
+        action,
+        emotion: null,
+        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        challenge_details: null,
+      },
+      files: null,
     };
 
     return this.sendChatMessage(request);
