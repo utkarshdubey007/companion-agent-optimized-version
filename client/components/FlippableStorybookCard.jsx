@@ -273,15 +273,17 @@ const StorybookPage = ({
 
                 {/* Scrollable text container */}
                 <div
-                  className={`${currentTheme.textPrimary} leading-relaxed overflow-y-auto`}
+                  className="leading-relaxed overflow-y-auto text-gray-800"
                   style={{
                     fontFamily: '"Kalam", cursive',
                     fontSize: "14px",
                     textAlign: "justify",
-                    textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                    textShadow: "1px 1px 2px rgba(255,255,255,0.9)",
                     lineHeight: "1.4",
                     maxHeight: "80px",
                     paddingRight: "4px",
+                    color: "#1f2937", // Ensure dark text color
+                    fontWeight: "500",
                   }}
                 >
                   <div
