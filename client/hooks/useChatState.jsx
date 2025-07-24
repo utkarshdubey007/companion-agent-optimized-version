@@ -227,7 +227,9 @@ export function useChatState() {
       // Make API call to upload creation
       uploadCreationToAPI(currentImages, currentTitle, description)
         .then((result) => {
-          // Show success message
+          console.log('✅ Upload successful, starting response flow');
+
+          // Show success message immediately
           const successMessage = {
             id: (Date.now() + 2).toString(),
             type: "text",
@@ -238,8 +240,9 @@ export function useChatState() {
           };
           setChatMessages((prev) => [...prev, successMessage]);
 
-          // Show reflection message
+          // Show reflection message after 500ms
           setTimeout(() => {
+            console.log('💭 Adding reflection message');
             const reflectionMessage = {
               id: (Date.now() + 3).toString(),
               type: "text",
@@ -250,14 +253,15 @@ export function useChatState() {
             };
             setChatMessages((prev) => [...prev, reflectionMessage]);
 
-            // Show StorybookReflectionCard after 5 seconds
+            // Show FlippableStorybookCard after another 500ms
             setTimeout(() => {
-              const storybookMessage = {
+              console.log('📖 Adding FlippableStorybookCard');
+              const flippableStorybookMessage = {
                 id: (Date.now() + 4).toString(),
-                type: "storybook",
+                type: "flippable_storybook",
                 sender: "AI",
                 timestamp: new Date(),
-                reflections: [
+                pages: [
                   {
                     badgeTitle: "Amazing Creation!",
                     imageUrl: currentImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
@@ -265,16 +269,15 @@ export function useChatState() {
                     aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
                   },
                 ],
-                onReactionClick: (reaction) => console.log("Reaction clicked:", reaction),
                 index: 0,
               };
-              setChatMessages((prev) => [...prev, storybookMessage]);
+              setChatMessages((prev) => [...prev, flippableStorybookMessage]);
 
               // Clear creation data
               setCreationTitle("");
               setCreationImages([]);
-            }, 5000);
-          }, 1000);
+            }, 500);
+          }, 500);
         })
         .catch((error) => {
           console.error("Upload failed:", error);
