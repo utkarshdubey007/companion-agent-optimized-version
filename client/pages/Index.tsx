@@ -74,6 +74,20 @@ export default function Index() {
     };
   }, []);
 
+  // Show loading indicator while TaleTree is initializing
+  useEffect(() => {
+    if (!taleTreeState.isInitialized && taleTreeState.isLoading) {
+      const loadingMessage = {
+        id: "taletree-loading",
+        type: "text" as const,
+        sender: "AI" as const,
+        content: "Hello! I'm getting ready to chat with you... ✨",
+        timestamp: new Date(),
+      };
+      setChatMessages([loadingMessage]);
+    }
+  }, [taleTreeState.isInitialized, taleTreeState.isLoading]);
+
   const toggleTopSidebar = () => {
     setTopSidebarCollapsed(!topSidebarCollapsed);
   };
