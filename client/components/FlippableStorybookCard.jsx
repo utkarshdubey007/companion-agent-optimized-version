@@ -569,7 +569,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
             {/* Book Container with Navigation */}
             <div className="relative">
               {/* Navigation Overlay */}
-              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-30 pointer-events-none">
+              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-50 pointer-events-none">
                 <motion.button
                   onClick={prevPage}
                   disabled={currentPage === 0}
