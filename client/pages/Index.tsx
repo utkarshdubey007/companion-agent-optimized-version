@@ -20,6 +20,9 @@ import { useTaleTreeState } from "@/hooks/useTaleTreeState";
 import { TaleTreeAIMessage } from "@/components/AIMessage";
 
 export default function Index() {
+  // TaleTree AI integration
+  const taleTreeState = useTaleTreeState();
+
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(true);
   const [bottomSidebarCollapsed, setBottomSidebarCollapsed] = useState(true);
   const [showTopWaveEffect, setShowTopWaveEffect] = useState(false);
