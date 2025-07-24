@@ -622,7 +622,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                     <motion.button
                       key={idx}
                       onClick={() => goToPage(idx)}
-                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative"
+                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative z-50"
                       style={{
                         background:
                           idx === currentPage
