@@ -112,6 +112,109 @@ export default function Index() {
     handleCreationDescriptionSubmit,
   } = useChatState();
 
+  // OpenAI Chat API function
+  const callOpenAIChat = async (action = "imagine") => {
+    if (isApiLoading) return; // Prevent multiple quick triggers
+
+    setIsApiLoading(true);
+    console.log(`🤖 Calling OpenAI API with action: ${action}`);
+
+    const payload = {
+      query: "We should continue where we left off?",
+      user: "oliver",
+      conversation_id: conversationId,
+      inputs: {
+        username: "oliver",
+        user_id: 2404,
+        companion: "rushmore",
+        birthdate: "2018-04-29",
+        accepted_challenge_count: 3,
+        challenge_id: null,
+        action: action,
+        emotion: null,
+        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        challenge_details: null
+      },
+      files: null
+    };
+
+    try {
+      const response = await fetch('/api/v3/open-ai/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer dummy-token',
+          'X-Session-ID': 'jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API call failed: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('🤖 OpenAI API response:', result);
+
+      // Set active action for sidebar highlighting
+      setActiveAction(action);
+
+      // Handle the response
+      handleOpenAIResponse(result);
+
+    } catch (error) {
+      console.error('❌ OpenAI API error:', error);
+      // Fallback to default message on error
+      const fallbackMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "AI",
+        content: "Hello! I'm here to help you explore your creativity! 🌟",
+        timestamp: new Date(),
+        companion: selectedCompanion,
+      };
+      setChatMessages((prev) => [...prev, fallbackMessage]);
+    } finally {
+      setIsApiLoading(false);
+    }
+  };
+
+  // Handle OpenAI response and update chat
+  const handleOpenAIResponse = (response) => {
+    const answer = response.outputs?.answer;
+    if (!answer) return;
+
+    console.log('📝 Processing AI response:', answer);
+
+    if (answer.conversation_type === "small_talk") {
+      // Show standard AI text message
+      const aiMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "AI",
+        content: `${answer.header || ""}\n\n${answer.msg || ""}\n\n${answer.footer || ""}`.trim(),
+        timestamp: new Date(),
+        companion: selectedCompanion,
+      };
+      setChatMessages((prev) => [...prev, aiMessage]);
+    } else if (answer.conversation_type === "new_challenge") {
+      // Show AI challenge message
+      const challengeMessage = {
+        id: Date.now().toString(),
+        type: "ai_challenge",
+        sender: "AI",
+        title: answer.header || "New Challenge!",
+        description: answer.msg || "Ready for a new adventure?",
+        timestamp: new Date(),
+        companion: selectedCompanion,
+        onAccept: handleAcceptChallenge,
+        onRegenerate: handleRegenerateChallenge,
+        onChatMore: handleChatMore,
+      };
+      setChatMessages((prev) => [...prev, challengeMessage]);
+    }
+  };
+
   // Helper function to get file extension from MIME type
   const getFileExtension = (mimeType) => {
     const extensions = {
