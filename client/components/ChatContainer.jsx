@@ -230,9 +230,8 @@ export function ChatContainer({
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
             hasAvatar={!!selectedCompanion?.imageUrl}
-            enableTyping={true}
-            headerTitle={message.headerTitle || "Hello there, imaginative friend! 🌟"}
-            footerTip={message.footerTip || "You're amazing—just as you are!"}
+            headerTitle="Hello there, imaginative friend! 🌟"
+            footerTip="You're amazing—just as you are!"
           />
         </div>
       );
