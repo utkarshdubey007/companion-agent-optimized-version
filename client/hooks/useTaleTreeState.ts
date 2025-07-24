@@ -114,7 +114,6 @@ export function useTaleTreeState() {
     chatResponse,
     isInitialized,
     conversationId,
-    user,
     
     // Actions
     sendMessage,
