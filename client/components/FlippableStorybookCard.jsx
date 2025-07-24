@@ -279,8 +279,8 @@ const StorybookPage = ({
                     fontSize: "14px",
                     textAlign: "justify",
                     textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
-                    lineHeight: "1.5",
-                    maxHeight: "100px",
+                    lineHeight: "1.4",
+                    maxHeight: "80px",
                     paddingRight: "4px",
                   }}
                 >
