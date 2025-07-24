@@ -26,16 +26,12 @@ export function AITextMessage({
     { text: footerTip, type: 'footer' }
   ];
 
-  const {
-    getDisplayText,
-    isSectionVisible,
-    isSectionComplete,
-    isComplete,
-    currentSectionIndex
-  } = useTypingEffect(enableTyping ? sections : null, 30, 500);
+  // Initialize typing effect
+  const typingEffect = useTypingEffect(enableTyping ? sections : null, 30, 500);
 
   // Function to render content with emoji and line break support
   const renderContent = (text) => {
+    if (!text) return '';
     return text.split("\n").map((line, index) => (
       <span key={index}>
         {line}
@@ -43,6 +39,27 @@ export function AITextMessage({
       </span>
     ));
   };
+
+  // Get display content for each section
+  const getHeaderText = () => {
+    if (!enableTyping) return headerTitle;
+    return typingEffect?.getDisplayText(0) || '';
+  };
+
+  const getBodyText = () => {
+    if (!enableTyping) return messageContent;
+    return typingEffect?.getDisplayText(1) || '';
+  };
+
+  const getFooterText = () => {
+    if (!enableTyping) return footerTip;
+    return typingEffect?.getDisplayText(2) || '';
+  };
+
+  const showHeader = !enableTyping || (typingEffect?.isSectionVisible(0) ?? true);
+  const showBody = !enableTyping || (typingEffect?.isSectionVisible(1) ?? false);
+  const showFooter = !enableTyping || (typingEffect?.isSectionVisible(2) ?? false);
+  const showButtons = !enableTyping || (typingEffect?.isComplete ?? false);
 
   return (
     <div className={`${className}`}>
@@ -66,11 +83,11 @@ export function AITextMessage({
             </div>
 
             {/* Header Section - Greeting/Title */}
-            {isSectionVisible(0) && (
+            {showHeader && (
               <div className="relative px-4 py-3">
                 <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
-                  {enableTyping ? getDisplayText(0) : headerTitle}
-                  {enableTyping && currentSectionIndex === 0 && !isSectionComplete(0) && (
+                  {renderContent(getHeaderText())}
+                  {enableTyping && typingEffect?.currentSectionIndex === 0 && !(typingEffect?.isSectionComplete(0)) && (
                     <span className="animate-pulse ml-1">|</span>
                   )}
                 </h3>
@@ -78,7 +95,7 @@ export function AITextMessage({
             )}
 
             {/* Body Section - Main Content */}
-            {isSectionVisible(1) && (
+            {showBody && (
               <div className="relative px-4 py-2">
                 <div
                   className="text-white leading-relaxed drop-shadow-sm font-normal"
@@ -87,8 +104,8 @@ export function AITextMessage({
                     lineHeight: "1.4",
                   }}
                 >
-                  {enableTyping ? renderContent(getDisplayText(1)) : renderContent(messageContent)}
-                  {enableTyping && currentSectionIndex === 1 && !isSectionComplete(1) && (
+                  {renderContent(getBodyText())}
+                  {enableTyping && typingEffect?.currentSectionIndex === 1 && !(typingEffect?.isSectionComplete(1)) && (
                     <span className="animate-pulse ml-1">|</span>
                   )}
                 </div>
@@ -96,7 +113,7 @@ export function AITextMessage({
             )}
 
             {/* Footer Section - Supportive Line */}
-            {isSectionVisible(2) && (
+            {showFooter && (
               <div className="relative px-4 py-3">
                 <div
                   className="text-white/95 text-sm font-medium leading-tight"
@@ -105,8 +122,8 @@ export function AITextMessage({
                     fontSize: "13px",
                   }}
                 >
-                  {enableTyping ? getDisplayText(2) : footerTip}
-                  {enableTyping && currentSectionIndex === 2 && !isSectionComplete(2) && (
+                  {renderContent(getFooterText())}
+                  {enableTyping && typingEffect?.currentSectionIndex === 2 && !(typingEffect?.isSectionComplete(2)) && (
                     <span className="animate-pulse ml-1">|</span>
                   )}
                 </div>
@@ -114,7 +131,7 @@ export function AITextMessage({
             )}
 
             {/* Action Buttons - Show only when typing is complete */}
-            {(!enableTyping || isComplete) && (
+            {showButtons && (
               <div className="relative px-4 py-3 border-t border-white/10">
                 <div className="flex justify-start gap-2">
                   <Button
