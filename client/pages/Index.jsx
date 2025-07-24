@@ -577,11 +577,14 @@ export default function Index() {
                   type: "storybook_reflection",
                   sender: "AI",
                   timestamp: new Date(),
-                  creationData: {
-                    title: creationTitle,
-                    description: message,
-                    images: creationImages,
-                  },
+                  reflections: [
+                    {
+                      badgeTitle: "Amazing Creation!",
+                      imageUrl: creationImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+                      reflection: `What a wonderful creation! I can see you put so much creativity into "${creationTitle}". ${message ? message : "Your artistic vision truly shines through!"} This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
+                      aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                    }
+                  ],
                 };
                 console.log("📖 StorybookReflectionCard message:", storybookMessage);
                 setChatMessages((prev) => [...prev, storybookMessage]);
