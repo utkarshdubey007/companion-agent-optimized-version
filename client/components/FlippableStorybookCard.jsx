@@ -51,8 +51,8 @@ const StorybookPage = ({
               0 4px 16px ${currentTheme.shadowColor}15,
               inset 0 1px 4px rgba(255,255,255,0.6)
             `,
-            minHeight: "400px",
-            maxHeight: "450px",
+            minHeight: "350px",
+            maxHeight: "400px",
             aspectRatio: "3/4",
             border: `3px solid ${currentTheme.borderColor}90`,
             zIndex: 40,
