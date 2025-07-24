@@ -8,6 +8,7 @@ import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import { CompanionChatMessage } from "./CompanionCharacter";
+import { TaleTreeAIMessage } from "./AIMessage";
 
 interface ChatMessage {
   id: string;
@@ -15,6 +16,7 @@ interface ChatMessage {
     | "text"
     | "challenge"
     | "ai_challenge"
+    | "taletree_ai"
     | "system"
     | "media"
     | "image_display"
@@ -36,6 +38,8 @@ interface ChatMessage {
   onImagesUpdate?: (images: string[]) => void;
   // For mood messages
   onMoodSubmit?: (mood: any) => void;
+  // For TaleTree AI messages
+  taleTreeData?: any;
 }
 
 interface ChatContainerProps {
@@ -72,19 +76,8 @@ export function ChatContainer({
     scrollToBottom();
   }, [messages, showMagicalCard]);
 
-  // Initial messages for the chat
-  const initialMessages: ChatMessage[] = [
-    {
-      id: "welcome-1",
-      type: "system",
-      sender: "AI",
-      content:
-        "Let's make some fun art together. What if the world was a peaceful place, let's start creating!",
-      timestamp: new Date(Date.now() - 300000),
-    },
-  ];
-
-  const allMessages = messages.length > 0 ? messages : initialMessages;
+  // Use only the messages passed from props (no static fallback)
+  const allMessages = messages;
 
   const renderMessage = (message: ChatMessage) => {
     if (message.type === "carousel") {
@@ -103,6 +96,19 @@ export function ChatContainer({
           key={message.id}
           onMoodSubmit={message.onMoodSubmit}
           timestamp={message.timestamp}
+        />
+      );
+    }
+
+    if (message.type === "taletree_ai") {
+      return (
+        <TaleTreeAIMessage
+          key={message.id}
+          data={message.taleTreeData}
+          timestamp={message.timestamp}
+          onAccept={() => console.log("Challenge accepted from TaleTree!")}
+          onRegenerate={() => console.log("Regenerate TaleTree challenge")}
+          onChatMore={() => console.log("Chat more about TaleTree challenge")}
         />
       );
     }

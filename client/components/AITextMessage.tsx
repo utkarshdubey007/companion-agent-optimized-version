@@ -73,7 +73,7 @@ export function AITextMessage({
             {/* 1. Header Section */}
             <div className="relative px-3 py-2">
               <h3 className="text-white font-bold text-sm drop-shadow-sm">
-                Hello, genuine friend! 🌟
+                {headerTitle}
               </h3>
             </div>
 
@@ -86,8 +86,7 @@ export function AITextMessage({
                   lineHeight: "1.5",
                 }}
               >
-                I'm feeling as bright as a sunbeam, ready to embark on new
-                adventures with you. How is your heart today?
+                {renderContent(messageContent)}
               </div>
             </div>
 
@@ -100,7 +99,7 @@ export function AITextMessage({
                   fontSize: "11px",
                 }}
               >
-                Every conversation with you is a new beginning! ✨
+                {footerTip}
               </div>
             </div>
 

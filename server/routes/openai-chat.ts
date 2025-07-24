@@ -28,7 +28,14 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     const { query, user, conversation_id, inputs, files } = req.body;
     const action = inputs?.action || "imagine";
 
-    console.log(`🎯 Processing action: ${action} for user: ${user}`);
+    // Generate conversation_id if not provided or null
+    const responseConversationId =
+      conversation_id ||
+      `conv-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    console.log(
+      `🎯 Processing action: ${action} for user: ${user}, conversation_id: ${responseConversationId}`,
+    );
 
     // Mock response based on action
     let mockResponse;
@@ -36,6 +43,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     switch (action) {
       case "imagine":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "imagine",
@@ -50,6 +58,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "play":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "play",
@@ -64,6 +73,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "create":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "create",
@@ -78,6 +88,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "store":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "store",
@@ -92,6 +103,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "reflect":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "reflect",
@@ -106,6 +118,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       case "reward":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "reward",
@@ -120,6 +133,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
 
       default:
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: action,
@@ -138,6 +152,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     console.error("Error in handleOpenAIChat:", error);
     res.status(500).json({
       error: "Internal server error",
+      conversation_id: `error-${Date.now()}`,
       outputs: {
         answer: {
           action: "imagine",
