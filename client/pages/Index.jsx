@@ -171,7 +171,7 @@ export default function Index() {
         sender: "AI",
         content: "Hello! I'm here to help you explore your creativity! 🌟",
         timestamp: new Date(),
-        companion: selectedCompanion,
+        companion: chatSelectedCompanion,
       };
       setChatMessages((prev) => [...prev, fallbackMessage]);
     } finally {
