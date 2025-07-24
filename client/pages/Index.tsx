@@ -115,10 +115,12 @@ export default function Index() {
 
       setChatMessages((prev) => {
         // Check if this response is already added to avoid duplicates
-        const exists = prev.some((msg) =>
-          msg.type === "taletree_ai" &&
-          msg.taleTreeData?.action === response.action &&
-          Math.abs(msg.timestamp.getTime() - aiMessage.timestamp.getTime()) < 1000
+        const exists = prev.some(
+          (msg) =>
+            msg.type === "taletree_ai" &&
+            msg.taleTreeData?.action === response.action &&
+            Math.abs(msg.timestamp.getTime() - aiMessage.timestamp.getTime()) <
+              1000,
         );
 
         if (!exists) {
@@ -134,17 +136,20 @@ export default function Index() {
 
     // Handle TaleTree actions (top menu items)
     const actionMap: Record<string, string> = {
-      "Imagine": "imagine",
-      "Play": "play",
-      "Create": "create",
-      "Store": "store",
-      "Reflect": "reflect",
-      "Reward": "reward"
+      Imagine: "imagine",
+      Play: "play",
+      Create: "create",
+      Store: "store",
+      Reflect: "reflect",
+      Reward: "reward",
     };
 
     if (actionMap[itemAlt]) {
       console.log(`🎯 Triggering TaleTree action: ${actionMap[itemAlt]}`);
-      taleTreeState.sendMessage(`Let's ${actionMap[itemAlt]}!`, actionMap[itemAlt]);
+      taleTreeState.sendMessage(
+        `Let's ${actionMap[itemAlt]}!`,
+        actionMap[itemAlt],
+      );
       return;
     }
 

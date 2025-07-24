@@ -103,7 +103,8 @@ export class TaleTreeApiService {
         challenge_id: null,
         action: "imagine",
         emotion: null,
-        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        branches:
+          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
         challenge_details: null,
       },
       files: null,
@@ -118,7 +119,10 @@ export class TaleTreeApiService {
    * @param action - The action to perform
    * @returns Promise<TaleTreeChatResponse>
    */
-  static async sendMessage(query: string, action: string = "imagine"): Promise<TaleTreeChatResponse> {
+  static async sendMessage(
+    query: string,
+    action: string = "imagine",
+  ): Promise<TaleTreeChatResponse> {
     const conversationId = this.getStoredConversationId();
 
     const request: TaleTreeChatRequest = {
@@ -134,7 +138,8 @@ export class TaleTreeApiService {
         challenge_id: null,
         action,
         emotion: null,
-        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        branches:
+          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
         challenge_details: null,
       },
       files: null,

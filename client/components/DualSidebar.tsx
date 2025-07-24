@@ -70,7 +70,9 @@ export function DualSidebar({
                           animation: showTopWaveEffect
                             ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
                             : "none",
-                          transform: showTopWaveEffect ? "scale(1)" : "scale(0)",
+                          transform: showTopWaveEffect
+                            ? "scale(1)"
+                            : "scale(0)",
                         }}
                       >
                         <div
@@ -83,7 +85,10 @@ export function DualSidebar({
                               ? "bg-chat-bubble/30 border-chat-bubble ring-2 ring-chat-bubble/50 shadow-lg scale-105"
                               : "bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/30"
                           }`}
-                          onClick={() => !isClickDisabled && onMenuItemClick?.(item.alt, index)}
+                          onClick={() =>
+                            !isClickDisabled &&
+                            onMenuItemClick?.(item.alt, index)
+                          }
                         >
                           <img
                             src={item.src}
