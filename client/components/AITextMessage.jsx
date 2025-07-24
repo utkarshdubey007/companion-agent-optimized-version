@@ -210,6 +210,7 @@ export function AITextMessageThemed({
       headerTitle={currentTheme.headerTitle}
       footerTip={footerTip}
       className={className}
+      enableTyping={enableTyping}
     />
   );
 }
