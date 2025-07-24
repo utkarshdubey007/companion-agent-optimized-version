@@ -144,7 +144,7 @@ export default function Index() {
 
     if (actionMap[itemAlt]) {
       console.log(`🎯 Triggering TaleTree action: ${actionMap[itemAlt]}`);
-      taleTreeState.sendAction(actionMap[itemAlt]);
+      taleTreeState.sendMessage(`Let's ${actionMap[itemAlt]}!`);
       return;
     }
 
