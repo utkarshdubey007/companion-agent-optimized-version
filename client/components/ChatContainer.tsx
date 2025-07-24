@@ -111,6 +111,19 @@ export function ChatContainer({
       );
     }
 
+    if (message.type === "taletree_ai") {
+      return (
+        <TaleTreeAIMessage
+          key={message.id}
+          data={message.taleTreeData}
+          timestamp={message.timestamp}
+          onAccept={() => console.log("Challenge accepted from TaleTree!")}
+          onRegenerate={() => console.log("Regenerate TaleTree challenge")}
+          onChatMore={() => console.log("Chat more about TaleTree challenge")}
+        />
+      );
+    }
+
     if (message.type === "image_display") {
       return (
         <KidMediaMessage
