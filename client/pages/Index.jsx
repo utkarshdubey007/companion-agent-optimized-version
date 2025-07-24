@@ -772,6 +772,8 @@ export default function Index() {
 
       // Fetch creations from API and show panel
       fetchCreationsFromAPI();
+      // Trigger OpenAI API call
+      callOpenAIChat("reflect");
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
