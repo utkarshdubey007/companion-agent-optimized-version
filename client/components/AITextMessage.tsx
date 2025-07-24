@@ -86,8 +86,7 @@ export function AITextMessage({
                   lineHeight: "1.5",
                 }}
               >
-                I'm feeling as bright as a sunbeam, ready to embark on new
-                adventures with you. How is your heart today?
+                {renderContent(messageContent)}
               </div>
             </div>
 
