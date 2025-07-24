@@ -132,7 +132,7 @@ const StorybookReflectionCard = ({
                   0 8px 32px rgba(0, 0, 0, 0.15),
                   0 4px 16px rgba(0, 0, 0, 0.1)
                 `,
-                minHeight: "480px",
+                minHeight: "320px",
                 aspectRatio: "3/4",
               }}
               whileHover={{

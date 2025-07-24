@@ -9,6 +9,7 @@ import KidMediaMessage from "./KidMediaMessage";
 import KidImageCarousel from "./KidImageCarousel";
 import MoodMessage from "./MoodMessage";
 import StorybookReflectionCard from "./StorybookReflectionCard";
+import FlippableStorybookCard from "./FlippableStorybookCard";
 
 interface ChatMessage {
   id: string;
@@ -22,7 +23,8 @@ interface ChatMessage {
     | "image_display"
     | "mood"
     | "carousel"
-    | "storybook_reflection";
+    | "storybook_reflection"
+    | "flippable_storybook";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
@@ -41,6 +43,18 @@ interface ChatMessage {
     description: string;
     images: string[];
   };
+  reflections?: Array<{
+    badgeTitle?: string;
+    imageUrl?: string;
+    reflection: string;
+    aiAvatarUrl?: string;
+  }>;
+  pages?: Array<{
+    imageUrl?: string;
+    reflection: string;
+    badgeTitle?: string;
+    aiAvatarUrl?: string;
+  }>;
 }
 
 interface SimplifiedChatContainerProps {
@@ -124,12 +138,41 @@ export function SimplifiedChatContainer({
     }
 
     if (message.type === "storybook_reflection") {
+      console.log("📖 Rendering StorybookReflectionCard message:", message);
       return (
-        <div className="absolute bottom-32 left-1/2" key={message.id}>
-          <div className="max-w-sm storybook-entrance">
+        <div
+          className="flex justify-center w-full mb-4 px-4 mt-6"
+          key={message.id}
+        >
+          <div
+            className="max-w-sm w-full storybook-entrance"
+            style={{ transform: "scale(0.7)" }}
+          >
             <StorybookReflectionCard
-              creationData={message.creationData}
-              timestamp={message.timestamp}
+              reflections={message.reflections || []}
+              onReactionClick={(reaction, reflection) => {
+                console.log("User reaction:", reaction, reflection);
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    if (message.type === "flippable_storybook") {
+      console.log("📖 Rendering FlippableStorybookCard message:", message);
+      return (
+        <div
+          className="flex justify-center w-full mb-4 px-4 mt-6"
+          key={message.id}
+        >
+          <div
+            className="max-w-sm w-full storybook-entrance"
+            style={{ transform: "scale(0.7)" }}
+          >
+            <FlippableStorybookCard
+              pages={message.pages || []}
+              index={message.index || 0}
             />
           </div>
         </div>

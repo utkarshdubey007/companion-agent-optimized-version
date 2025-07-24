@@ -24,6 +24,12 @@ import {
 import MoodPickerCard from "@/components/MoodPickerCard";
 import { fetchCurrentUserTags } from "@/services/tagsApi";
 import { fetchDependentChallenges } from "@/services/challengesApi";
+import {
+  authenticatedPost,
+  authenticatedGet,
+  parseJsonResponse,
+} from "@/utils/authClient";
+import { imageUtils } from "@/utils/imageUtils";
 
 export default function Index() {
   // Page state management
@@ -175,7 +181,29 @@ export default function Index() {
             type: file.type,
           });
 
-          formData.append("uploads", file);
+          // Process image with compression and HEIC conversion
+          try {
+            console.log(`Processing image ${i} with imageUtils...`);
+            const processedFile = await imageUtils.getImagePromise(file);
+            console.log(`Processed file ${i}:`, {
+              name: processedFile.name,
+              size: processedFile.size,
+              type: processedFile.type,
+              originalSize: file.size,
+              compressionRatio:
+                (((file.size - processedFile.size) / file.size) * 100).toFixed(
+                  1,
+                ) + "%",
+            });
+            formData.append("uploads", processedFile);
+          } catch (processingError) {
+            console.warn(
+              `Image processing failed for image ${i}, using original:`,
+              processingError,
+            );
+            // Fallback to original file if processing fails
+            formData.append("uploads", file);
+          }
         } catch (imageError) {
           console.error(`Failed to process image ${i}:`, imageError);
           // Continue with other images even if one fails
@@ -186,18 +214,35 @@ export default function Index() {
       formData.append("description", description);
       formData.append("user_id", "2404"); // dependent user ID
 
-      console.log("FormData prepared, sending to API...");
+      // Calculate total upload size
+      let totalSize = 0;
+      for (let pair of formData.entries()) {
+        if (pair[1] instanceof File) {
+          totalSize += pair[1].size;
+        }
+      }
+      console.log(
+        `FormData prepared, total upload size: ${(totalSize / 1024 / 1024).toFixed(2)}MB`,
+      );
 
-      const response = await fetch("/api/v2/creations_media", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await authenticatedPost(
+        "/api/v2/creations_media",
+        formData,
+      );
 
       console.log("API Response status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
         console.error("API Error response:", errorText);
+
+        // Provide specific error message for 413 Request Entity Too Large
+        if (response.status === 413) {
+          throw new Error(
+            `Upload size too large (${(totalSize / 1024 / 1024).toFixed(2)}MB). Please try with fewer or smaller images.`,
+          );
+        }
+
         throw new Error(
           `HTTP error! status: ${response.status} - ${errorText}`,
         );
@@ -387,18 +432,10 @@ export default function Index() {
   // Fetch creations from API
   const fetchCreationsFromAPI = async () => {
     try {
-      const response = await fetch(
+      const response = await authenticatedGet(
         "/api/v2/creations?dependent_id=2404&for_challenges=false&limit=9&starting_after=0",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Auth-Token":
-              "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0",
-          },
-        },
       );
-      const data = await response.json();
+      const data = await parseJsonResponse(response);
 
       if (data.result_code === 1 && data.data) {
         // Transform API data to match CreationsPanel interface
@@ -501,23 +538,40 @@ export default function Index() {
 
         // Step 2: Trigger API upload
         uploadCreation(creationImages, creationTitle, message)
-          .then(() => {
+          .then((uploadResult) => {
+            console.log(
+              "✅ Upload successful, proceeding with chat flow:",
+              uploadResult,
+            );
+
             // Reset companion state
             setCompanionState("talking");
             setTimeout(() => setCompanionState("idle"), 2000);
 
-            // Step 3: Show success message
-            const successMessage = {
-              id: (Date.now() + 2).toString(),
-              type: "text",
-              sender: "AI",
-              content: "Amazing! Your creation has been successfully uploaded!",
-              timestamp: new Date(),
-            };
-            setChatMessages((prev) => [...prev, successMessage]);
+            // Step 3: Hide previous kid messages and show success message
+            setChatMessages((prev) => {
+              // Filter out kid messages, keep only AI messages
+              const aiMessages = prev.filter((msg) => msg.sender === "AI");
+
+              // Add success message
+              const successMessage = {
+                id: (Date.now() + 2).toString(),
+                type: "text",
+                sender: "AI",
+                content:
+                  "Amazing! Your creation has been successfully uploaded!",
+                timestamp: new Date(),
+              };
+
+              console.log(
+                "✅ Cleaned up kid messages and added success message",
+              );
+              return [...aiMessages, successMessage];
+            });
 
             // Step 4: Show reflection message after 500ms
             setTimeout(() => {
+              console.log("✅ Adding reflection message...");
               const reflectionMessage = {
                 id: (Date.now() + 3).toString(),
                 type: "text",
@@ -528,19 +582,31 @@ export default function Index() {
               };
               setChatMessages((prev) => [...prev, reflectionMessage]);
 
-              // Step 5: Add StorybookReflectionCard
+              // Step 5: Add FlippableStorybookCard
               setTimeout(() => {
+                console.log("✅ Adding FlippableStorybookCard message...");
                 const storybookMessage = {
                   id: (Date.now() + 4).toString(),
-                  type: "storybook_reflection",
+                  type: "flippable_storybook",
                   sender: "AI",
                   timestamp: new Date(),
-                  creationData: {
-                    title: creationTitle,
-                    description: message,
-                    images: creationImages,
-                  },
+                  pages: [
+                    {
+                      badgeTitle: "Amazing Creation!",
+                      imageUrl:
+                        creationImages[0] ||
+                        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+                      reflection: `What a wonderful creation! I can see you put so much creativity into "${creationTitle}". ${message ? message : "Your artistic vision truly shines through!"} This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
+                      aiAvatarUrl:
+                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+                    },
+                  ],
+                  index: 0,
                 };
+                console.log(
+                  "📖 FlippableStorybookCard message:",
+                  storybookMessage,
+                );
                 setChatMessages((prev) => [...prev, storybookMessage]);
 
                 // Reset creation sharing state
@@ -549,6 +615,7 @@ export default function Index() {
                 setCreationFiles([]);
                 setCreationTitle("");
                 setCreationDescription("");
+                console.log("✅ Creation sharing state reset");
               }, 300);
             }, 500);
           })

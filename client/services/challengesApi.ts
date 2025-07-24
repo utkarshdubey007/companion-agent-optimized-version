@@ -1,4 +1,5 @@
 import { ChallengesResponse } from "@shared/api";
+import { authenticatedGet, parseJsonResponse } from "../utils/authClient";
 
 /**
  * Fallback mock data in case API fails
@@ -97,11 +98,6 @@ const mockChallengesData: ChallengesResponse = {
  * API service for fetching dependent challenges
  */
 export class ChallengesApiService {
-  // Updated authentication with new sessionid
-  private static readonly SESSION_ID = "ym7qxiur5kruzip1lv7jgrtp2fc9b7rt";
-  private static readonly AUTH_COOKIES =
-    "_fbp=fb.0.1752251216171.237035461266330472; _ga=GA1.1.760378924.1752251225; __stripe_mid=950d6f3c-dbf1-4223-856e-8c637002fc643f7797; sessionid=ym7qxiur5kruzip1lv7jgrtp2fc9b7rt; _ga_JN6T86SWNW=GS2.1.s1753188967$o35$g1$t1753190505$j60$l0$h0";
-
   /**
    * Fetch dependent challenges working
    * @param dependentId - The dependent ID (default: 2404)
@@ -111,24 +107,10 @@ export class ChallengesApiService {
     dependentId: number = 2404,
   ): Promise<ChallengesResponse> {
     try {
-      const response = await fetch(
+      const response = await authenticatedGet(
         `/api/v2/challenges/dependent-challenges/working?dependent_id=${dependentId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Session-ID": this.SESSION_ID,
-            "X-Auth-Cookies": this.AUTH_COOKIES,
-          },
-          credentials: "include",
-        },
       );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data: ChallengesResponse = await response.json();
+      const data = await parseJsonResponse<ChallengesResponse>(response);
       return data;
     } catch (error) {
       console.error("Error fetching dependent challenges:", error);

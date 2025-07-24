@@ -4,14 +4,18 @@ import { handleDemo } from "./routes/demo";
 import { getCurrentUserTags } from "./routes/tags";
 import { getDependentChallengesWorking } from "./routes/challenges";
 import { getCreations } from "./routes/creations";
+import { uploadCreationMedia } from "./routes/creations-media";
+import { testAuthentication } from "./routes/auth-test";
 
 export function createServer() {
   const app = express();
 
   // Middleware
   app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+
+  // Increase size limits for file uploads (50MB for JSON, 100MB for URL-encoded data)
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {
@@ -29,8 +33,12 @@ export function createServer() {
     getDependentChallengesWorking,
   );
 
-  // Creations API route
+  // Creations API routes
   app.get("/api/v2/creations", getCreations);
+  app.post("/api/v2/creations_media", uploadCreationMedia);
+
+  // Authentication test route
+  app.get("/api/auth-test", testAuthentication);
 
   return app;
 }
