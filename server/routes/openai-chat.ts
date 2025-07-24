@@ -31,7 +31,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     // Generate conversation_id if not provided or null
     const responseConversationId = conversation_id || `conv-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-    console.log(`🎯 Processing query: "${query}" with action: ${action}, conversation_id: ${responseConversationId}`);
+    console.log(`🎯 Processing action: ${action} for user: ${user}, conversation_id: ${responseConversationId}`);
 
     // Mock response based on action
     let mockResponse;
