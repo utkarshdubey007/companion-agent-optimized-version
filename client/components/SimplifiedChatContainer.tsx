@@ -41,6 +41,12 @@ interface ChatMessage {
     description: string;
     images: string[];
   };
+  reflections?: Array<{
+    badgeTitle?: string;
+    imageUrl?: string;
+    reflection: string;
+    aiAvatarUrl?: string;
+  }>;
 }
 
 interface SimplifiedChatContainerProps {
