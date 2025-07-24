@@ -594,7 +594,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                 <motion.button
                   onClick={nextPage}
                   disabled={currentPage === pages.length - 1}
-                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
+                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto relative z-50"
                   style={{
                     background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
                     border: `3px solid ${companionTheme.borderColor}`,
