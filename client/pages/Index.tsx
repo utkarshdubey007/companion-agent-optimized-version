@@ -99,9 +99,6 @@ export default function Index() {
     setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
-  // TaleTree AI integration
-  const taleTreeState = useTaleTreeState();
-
   // Add TaleTree response to chat when received
   useEffect(() => {
     if (taleTreeState.chatResponse && taleTreeState.isInitialized) {
