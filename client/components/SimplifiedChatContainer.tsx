@@ -226,7 +226,7 @@ export function SimplifiedChatContainer({
             key={message.id}
             images={message.images}
             onImagesUpdate={message.onImagesUpdate}
-            onShareCreation={onShowCarousel}
+            onShareCreation={message.onShareCreation || onCreationSharing}
             timestamp={message.timestamp}
             mode="upload"
           />
