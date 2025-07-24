@@ -309,10 +309,12 @@ const StorybookPage = ({
                   transition={{ delay: 1, duration: 0.6 }}
                 >
                   <span
-                    className={`text-xs ${currentTheme.textSecondary} italic font-medium`}
+                    className="text-xs italic font-medium text-gray-600"
                     style={{
                       fontFamily: '"Kalam", cursive',
-                      textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                      textShadow: "1px 1px 2px rgba(255,255,255,0.9)",
+                      color: "#4b5563",
+                      fontWeight: "500",
                     }}
                   >
                     🌟 Your Magical Friend 🌟
