@@ -16,7 +16,9 @@ interface DualSidebarProps {
   showBottomWaveEffect: boolean;
   toggleTopSidebar: () => void;
   toggleBottomSidebar: () => void;
-  onMenuItemClick?: (itemAlt: string) => void;
+  onMenuItemClick?: (itemAlt: string, index: number) => void;
+  highlightedTopIndex?: number;
+  isLoading?: boolean;
 }
 
 export function DualSidebar({
