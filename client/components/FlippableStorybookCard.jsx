@@ -148,13 +148,15 @@ const StorybookPage = ({
                 }}
               >
                 <h2
-                  className={`text-lg font-bold ${currentTheme.textPrimary} mb-2 transition-colors`}
+                  className="text-lg font-bold mb-2 transition-colors text-gray-800"
                   style={{
                     fontFamily: '"Kalam", cursive',
-                    textShadow: `2px 2px 4px rgba(255,255,255,0.9), 0 0 10px ${currentTheme.accent}30`,
+                    textShadow: `2px 2px 4px rgba(255,255,255,0.9)`,
                     fontSize: "18px",
                     lineHeight: "1.2",
-                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.1))",
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))",
+                    color: "#1f2937",
+                    fontWeight: "700",
                   }}
                 >
                   ✨ "{badgeTitle || "Amazing Creation!"}" ✨
