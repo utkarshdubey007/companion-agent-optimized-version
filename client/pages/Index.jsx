@@ -194,7 +194,7 @@ export default function Index() {
         sender: "AI",
         content: `${answer.header || ""}\n\n${answer.msg || ""}\n\n${answer.footer || ""}`.trim(),
         timestamp: new Date(),
-        companion: selectedCompanion,
+        companion: chatSelectedCompanion,
       };
       setChatMessages((prev) => [...prev, aiMessage]);
     } else if (answer.conversation_type === "new_challenge") {
