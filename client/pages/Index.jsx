@@ -413,6 +413,11 @@ export default function Index() {
     // Load user tags on component mount
     loadUserTags();
 
+    // Trigger OpenAI API call on page load
+    setTimeout(() => {
+      callOpenAIChat("imagine");
+    }, 1000);
+
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
       setShowTopWaveEffect(true);
@@ -826,7 +831,7 @@ export default function Index() {
 
     // Show excited reaction when companion is selected
     setCompanionState("reacting");
-    setCompanionEmotions(["🌟", "✨", "💫"]);
+    setCompanionEmotions(["🌟", "✨", "��"]);
     setTimeout(() => {
       setCompanionState("idle");
       setCompanionEmotions([]);
