@@ -65,7 +65,7 @@ export async function authenticatedFetch(
     return response;
   } catch (error) {
     clearTimeout(timeoutId);
-    if (error.name === 'AbortError') {
+    if (error.name === "AbortError") {
       throw new Error(`Request timeout after 10 seconds for ${url}`);
     }
     throw error;

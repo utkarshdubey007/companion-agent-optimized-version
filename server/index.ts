@@ -20,8 +20,8 @@ export function createServer() {
     storage: multer.memoryStorage(),
     limits: {
       fileSize: 50 * 1024 * 1024, // 50MB limit per file
-      files: 10 // Maximum 10 files
-    }
+      files: 10, // Maximum 10 files
+    },
   });
 
   // Increase size limits for file uploads (50MB for JSON, 100MB for URL-encoded data)
@@ -46,7 +46,11 @@ export function createServer() {
 
   // Creations API routes
   app.get("/api/v2/creations", getCreations);
-  app.post("/api/v2/creations_media", upload.array('uploads', 10), uploadCreationMedia);
+  app.post(
+    "/api/v2/creations_media",
+    upload.array("uploads", 10),
+    uploadCreationMedia,
+  );
 
   // Authentication test route
   app.get("/api/auth-test", testAuthentication);

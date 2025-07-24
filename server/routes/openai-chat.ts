@@ -20,7 +20,10 @@ export async function handleOpenAIChat(req: Request, res: Response) {
       });
     }
 
-    console.log("🎉 OpenAI Authentication successful - sessionid:", authResult.sessionId);
+    console.log(
+      "🎉 OpenAI Authentication successful - sessionid:",
+      authResult.sessionId,
+    );
 
     const { query, user, conversation_id, inputs, files } = req.body;
     const action = inputs?.action || "imagine";
@@ -39,9 +42,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "small_talk",
               header: "Let's Imagine Together! ✨",
               msg: "I can see your imagination sparkling! What magical world would you like to explore today? We could create anything from enchanted forests to space adventures!",
-              footer: "What comes to your mind first? 🌟"
-            }
-          }
+              footer: "What comes to your mind first? 🌟",
+            },
+          },
         };
         break;
 
@@ -50,12 +53,12 @@ export async function handleOpenAIChat(req: Request, res: Response) {
           outputs: {
             answer: {
               action: "play",
-              conversation_type: "small_talk", 
+              conversation_type: "small_talk",
               header: "Time to Play! 🎮",
               msg: "Hooray! Play time is the best time! I love how you're always ready for fun and games. What kind of adventure should we go on?",
-              footer: "Let's make this super fun! 🎉"
-            }
-          }
+              footer: "Let's make this super fun! 🎉",
+            },
+          },
         };
         break;
 
@@ -67,9 +70,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "new_challenge",
               header: "Creative Challenge! 🎨",
               msg: "I have an amazing creative challenge for you! Let's design a magical treehouse that can fly through the clouds. What special rooms would it have?",
-              footer: "Ready to build something incredible?"
-            }
-          }
+              footer: "Ready to build something incredible?",
+            },
+          },
         };
         break;
 
@@ -81,9 +84,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "small_talk",
               header: "Let's Store Our Treasures! 📦",
               msg: "Time to organize all your amazing creations! I love seeing how much you've accomplished. Each piece tells such a wonderful story!",
-              footer: "What would you like to save or share? ✨"
-            }
-          }
+              footer: "What would you like to save or share? ✨",
+            },
+          },
         };
         break;
 
@@ -95,9 +98,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "small_talk",
               header: "Reflection Time 🪞",
               msg: "Let's take a moment to think about all the amazing things you've created! I'm so proud of your creativity and imagination. What's your favorite creation so far?",
-              footer: "Your growth is truly inspiring! 🌱"
-            }
-          }
+              footer: "Your growth is truly inspiring! 🌱",
+            },
+          },
         };
         break;
 
@@ -109,9 +112,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "small_talk",
               header: "Celebration Time! 🏆",
               msg: "You've been doing such incredible work! Your creativity and effort deserve to be celebrated. I'm so excited to see what you'll create next!",
-              footer: "You're amazing! Keep being creative! 🌟"
-            }
-          }
+              footer: "You're amazing! Keep being creative! 🌟",
+            },
+          },
         };
         break;
 
@@ -123,15 +126,14 @@ export async function handleOpenAIChat(req: Request, res: Response) {
               conversation_type: "small_talk",
               header: "Hello there! 🌟",
               msg: "I'm excited to go on magical adventures with you! Your creativity always amazes me.",
-              footer: "What would you like to explore today? ✨"
-            }
-          }
+              footer: "What would you like to explore today? ✨",
+            },
+          },
         };
     }
 
     console.log("✅ OpenAI response generated:", mockResponse);
     res.json(mockResponse);
-
   } catch (error) {
     console.error("Error in handleOpenAIChat:", error);
     res.status(500).json({
@@ -142,9 +144,9 @@ export async function handleOpenAIChat(req: Request, res: Response) {
           conversation_type: "small_talk",
           header: "Hello! 🌟",
           msg: "I'm here to help you explore your creativity!",
-          footer: "What would you like to create today? ✨"
-        }
-      }
+          footer: "What would you like to create today? ✨",
+        },
+      },
     });
   }
 }

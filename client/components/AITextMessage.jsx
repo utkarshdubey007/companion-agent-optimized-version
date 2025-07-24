@@ -20,7 +20,7 @@ export function AITextMessage({
 
   // Function to render content with emoji and line break support
   const renderContent = (text) => {
-    if (!text) return '';
+    if (!text) return "";
     return text.split("\n").map((line, index) => (
       <span key={index}>
         {line}

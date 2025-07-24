@@ -122,9 +122,9 @@ export function useChatState() {
 
   const handleShareCreation = (images) => {
     // Store images for later API call
-    console.log('🎨 Share Creation flow started!');
-    console.log('🎨 Storing creation images:', images.length, 'images');
-    console.log('🎨 Images data:', images);
+    console.log("🎨 Share Creation flow started!");
+    console.log("🎨 Storing creation images:", images.length, "images");
+    console.log("🎨 Images data:", images);
     setCreationImages(images);
 
     // Create a display message for the shared creation
@@ -149,7 +149,8 @@ export function useChatState() {
         id: (Date.now() + 1).toString(),
         type: "text",
         sender: "AI",
-        content: "Great! Now let's give it a name. Tell me the title of your creation! 🌟",
+        content:
+          "Great! Now let's give it a name. Tell me the title of your creation! 🌟",
         timestamp: new Date(),
         companion: selectedCompanion,
         awaitingInput: "title", // Special flag to indicate what we're waiting for
@@ -160,7 +161,7 @@ export function useChatState() {
 
   const handleCreationTitleSubmit = (title) => {
     // Store title for later API call
-    console.log('📝 Storing creation title:', title);
+    console.log("📝 Storing creation title:", title);
     setCreationTitle(title);
 
     // Add kid's title response
@@ -184,7 +185,8 @@ export function useChatState() {
         id: (Date.now() + 1).toString(),
         type: "text",
         sender: "AI",
-        content: "Perfect! Now let's take a moment to craft a detailed description of it. Tell me all about your amazing creation! ✨",
+        content:
+          "Perfect! Now let's take a moment to craft a detailed description of it. Tell me all about your amazing creation! ✨",
         timestamp: new Date(),
         companion: selectedCompanion,
         awaitingInput: "description", // Special flag to indicate what we're waiting for
@@ -198,7 +200,10 @@ export function useChatState() {
     const currentTitle = creationTitle;
     const currentImages = creationImages;
 
-    console.log('Starting upload with stored data:', { currentTitle, currentImages: currentImages.length });
+    console.log("Starting upload with stored data:", {
+      currentTitle,
+      currentImages: currentImages.length,
+    });
 
     // Add kid's description response
     const descriptionMessage = {
@@ -229,7 +234,7 @@ export function useChatState() {
       // Make API call to upload creation
       uploadCreationToAPI(currentImages, currentTitle, description)
         .then((result) => {
-          console.log('✅ Upload successful, starting response flow');
+          console.log("✅ Upload successful, starting response flow");
 
           // Show success message immediately
           const successMessage = {
@@ -244,7 +249,7 @@ export function useChatState() {
 
           // Show reflection message after 500ms
           setTimeout(() => {
-            console.log('💭 Adding reflection message');
+            console.log("💭 Adding reflection message");
             const reflectionMessage = {
               id: (Date.now() + 3).toString(),
               type: "text",
@@ -257,7 +262,7 @@ export function useChatState() {
 
             // Show FlippableStorybookCard after another 500ms
             setTimeout(() => {
-              console.log('📖 Adding FlippableStorybookCard');
+              console.log("📖 Adding FlippableStorybookCard");
               const flippableStorybookMessage = {
                 id: (Date.now() + 4).toString(),
                 type: "flippable_storybook",
@@ -266,9 +271,12 @@ export function useChatState() {
                 pages: [
                   {
                     badgeTitle: "Amazing Creation!",
-                    imageUrl: currentImages[0] || "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+                    imageUrl:
+                      currentImages[0] ||
+                      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
                     reflection: `What a wonderful creation! I can see you put so much creativity into "${currentTitle}". ${description} Your artistic vision truly shines through! This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
-                    aiAvatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
+                    aiAvatarUrl:
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
                   },
                 ],
                 index: 0,
@@ -288,7 +296,8 @@ export function useChatState() {
             id: (Date.now() + 2).toString(),
             type: "text",
             sender: "AI",
-            content: "I'm sorry, there was an issue uploading your creation. Please try again later.",
+            content:
+              "I'm sorry, there was an issue uploading your creation. Please try again later.",
             timestamp: new Date(),
             companion: selectedCompanion,
           };
@@ -302,7 +311,7 @@ export function useChatState() {
   // API call function
   const uploadCreationToAPI = async (images, title, description) => {
     try {
-      console.log('Starting upload with images:', images);
+      console.log("Starting upload with images:", images);
       const formData = new FormData();
 
       // Convert all images to binary files using imageUtils
@@ -313,18 +322,25 @@ export function useChatState() {
         try {
           // Convert image URL to binary file using imageUtils
           const binaryFile = await imageUtils.convertImageToBinary(imageUrl);
-          console.log(`Converted image ${i} to binary file:`, binaryFile.name, binaryFile.size);
+          console.log(
+            `Converted image ${i} to binary file:`,
+            binaryFile.name,
+            binaryFile.size,
+          );
 
           // Rename file with proper extension
           const fileName = `creation_${i}_${Date.now()}.jpeg`;
           const renamedFile = new File([binaryFile], fileName, {
-            type: 'image/jpeg',
-            lastModified: Date.now()
+            type: "image/jpeg",
+            lastModified: Date.now(),
           });
 
-          formData.append('uploads', renamedFile);
+          formData.append("uploads", renamedFile);
         } catch (conversionError) {
-          console.error(`Failed to convert image ${i} using imageUtils:`, conversionError);
+          console.error(
+            `Failed to convert image ${i} using imageUtils:`,
+            conversionError,
+          );
 
           // Fallback: try manual base64 conversion
           try {
@@ -339,67 +355,81 @@ export function useChatState() {
                 bytes[j] = binaryString.charCodeAt(j);
               }
 
-              const fallbackFile = new File([bytes], `creation_${i}_fallback.jpg`, {
-                type: mimeType,
-                lastModified: Date.now()
-              });
+              const fallbackFile = new File(
+                [bytes],
+                `creation_${i}_fallback.jpg`,
+                {
+                  type: mimeType,
+                  lastModified: Date.now(),
+                },
+              );
 
-              formData.append('uploads', fallbackFile);
+              formData.append("uploads", fallbackFile);
               console.log(`Used fallback conversion for image ${i}`);
             } else {
-              throw new Error('Unsupported image format');
+              throw new Error("Unsupported image format");
             }
           } catch (fallbackError) {
-            console.error(`Fallback conversion also failed for image ${i}:`, fallbackError);
-            throw new Error(`Failed to process image ${i}: ${conversionError.message}`);
+            console.error(
+              `Fallback conversion also failed for image ${i}:`,
+              fallbackError,
+            );
+            throw new Error(
+              `Failed to process image ${i}: ${conversionError.message}`,
+            );
           }
         }
       }
 
       // Add other fields
-      formData.append('title', title);
-      formData.append('description', description);
-      formData.append('user_id', '2404'); // Dependent ID as mentioned
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("user_id", "2404"); // Dependent ID as mentioned
 
       // Debug FormData contents
-      console.log('FormData prepared with:');
-      console.log('- Title:', title);
-      console.log('- Description:', description);
-      console.log('- User ID: 2404');
-      console.log('- Number of files:', images.length);
+      console.log("FormData prepared with:");
+      console.log("- Title:", title);
+      console.log("- Description:", description);
+      console.log("- User ID: 2404");
+      console.log("- Number of files:", images.length);
 
       // Log FormData entries for debugging
       for (let [key, value] of formData.entries()) {
-        console.log(`FormData entry: ${key} =`, value instanceof File ? `File(${value.name}, ${value.size}b, ${value.type})` : value);
+        console.log(
+          `FormData entry: ${key} =`,
+          value instanceof File
+            ? `File(${value.name}, ${value.size}b, ${value.type})`
+            : value,
+        );
       }
 
-      console.log('Making API call...');
+      console.log("Making API call...");
 
-      const response = await fetch('/api/v2/creations_media', {
-        method: 'POST',
+      const response = await fetch("/api/v2/creations_media", {
+        method: "POST",
         headers: {
-          'Authorization': 'Bearer dummy-token', // Add auth header
-          'X-Session-ID': 'jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t', // Add session header
+          Authorization: "Bearer dummy-token", // Add auth header
+          "X-Session-ID": "jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t", // Add session header
         },
         body: formData,
       });
 
-      console.log('API response status:', response.status);
+      console.log("API response status:", response.status);
 
       if (!response.ok) {
         throw new Error(`Upload failed: ${response.status}`);
       }
 
       const result = await response.json();
-      console.log('API response:', result);
+      console.log("API response:", result);
 
       if (result.result_code !== 1) {
-        throw new Error(result.error_info || 'Upload failed');
+        throw new Error(result.error_info || "Upload failed");
       }
 
       return result.data;
     } catch (error) {
-      console.error('API upload error:', error);
+      console.error("API upload error:", error);
       throw error;
     }
   };

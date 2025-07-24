@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
+  const [currentText, setCurrentText] = useState("");
   const [isComplete, setIsComplete] = useState(false);
   const [displayedSections, setDisplayedSections] = useState({});
 
@@ -15,7 +15,7 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
 
     // Reset all state when sections change
     setCurrentSectionIndex(0);
-    setCurrentText('');
+    setCurrentText("");
     setIsComplete(false);
     setDisplayedSections({});
   }, [sections]);
@@ -25,14 +25,14 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
 
     let timeoutId;
     const currentSection = sections[currentSectionIndex];
-    
+
     if (!currentSection) {
       setIsComplete(true);
       return;
     }
 
     const { text } = currentSection;
-    
+
     if (currentText.length < text.length) {
       // Continue typing current section
       timeoutId = setTimeout(() => {
@@ -40,15 +40,15 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
       }, speed);
     } else {
       // Current section complete, store it and move to next after delay
-      setDisplayedSections(prev => ({
+      setDisplayedSections((prev) => ({
         ...prev,
-        [currentSectionIndex]: text
+        [currentSectionIndex]: text,
       }));
-      
+
       if (currentSectionIndex < sections.length - 1) {
         timeoutId = setTimeout(() => {
-          setCurrentSectionIndex(prev => prev + 1);
-          setCurrentText('');
+          setCurrentSectionIndex((prev) => prev + 1);
+          setCurrentText("");
         }, sectionDelay);
       } else {
         setIsComplete(true);
@@ -61,13 +61,13 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
   const getDisplayText = (sectionIndex) => {
     if (sectionIndex < currentSectionIndex) {
       // Previous sections - show complete
-      return displayedSections[sectionIndex] || '';
+      return displayedSections[sectionIndex] || "";
     } else if (sectionIndex === currentSectionIndex) {
       // Current section - show typing progress
       return currentText;
     } else {
       // Future sections - show nothing
-      return '';
+      return "";
     }
   };
 
@@ -76,7 +76,10 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
   };
 
   const isSectionComplete = (sectionIndex) => {
-    return sectionIndex < currentSectionIndex || (sectionIndex === currentSectionIndex && isComplete);
+    return (
+      sectionIndex < currentSectionIndex ||
+      (sectionIndex === currentSectionIndex && isComplete)
+    );
   };
 
   return {
@@ -84,6 +87,6 @@ export function useTypingEffect(sections, speed = 50, sectionDelay = 300) {
     isSectionVisible,
     isSectionComplete,
     isComplete,
-    currentSectionIndex
+    currentSectionIndex,
   };
 }

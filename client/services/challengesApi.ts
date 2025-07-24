@@ -107,7 +107,9 @@ export class ChallengesApiService {
     dependentId: number = 2404,
   ): Promise<ChallengesResponse> {
     try {
-      console.log(`🎯 Attempting to fetch challenges for dependent ${dependentId}...`);
+      console.log(
+        `🎯 Attempting to fetch challenges for dependent ${dependentId}...`,
+      );
       const response = await authenticatedGet(
         `/api/v2/challenges/dependent-challenges/working?dependent_id=${dependentId}`,
       );

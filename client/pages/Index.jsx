@@ -132,19 +132,20 @@ export default function Index() {
         challenge_id: null,
         action: action,
         emotion: null,
-        branches: "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
-        challenge_details: null
+        branches:
+          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        challenge_details: null,
       },
-      files: null
+      files: null,
     };
 
     try {
-      const response = await fetch('/api/v3/open-ai/chat', {
-        method: 'POST',
+      const response = await fetch("/api/v3/open-ai/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer dummy-token',
-          'X-Session-ID': 'jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t',
+          "Content-Type": "application/json",
+          Authorization: "Bearer dummy-token",
+          "X-Session-ID": "jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t",
         },
         body: JSON.stringify(payload),
       });
@@ -154,16 +155,15 @@ export default function Index() {
       }
 
       const result = await response.json();
-      console.log('🤖 OpenAI API response:', result);
+      console.log("🤖 OpenAI API response:", result);
 
       // Set active action for sidebar highlighting
       setActiveAction(action);
 
       // Handle the response
       handleOpenAIResponse(result);
-
     } catch (error) {
-      console.error('❌ OpenAI API error:', error);
+      console.error("❌ OpenAI API error:", error);
       // Fallback to default message on error
       const fallbackMessage = {
         id: Date.now().toString(),
@@ -184,7 +184,7 @@ export default function Index() {
     const answer = response.outputs?.answer;
     if (!answer) return;
 
-    console.log('📝 Processing AI response:', answer);
+    console.log("📝 Processing AI response:", answer);
 
     if (answer.conversation_type === "small_talk") {
       // Show standard AI text message
@@ -192,7 +192,8 @@ export default function Index() {
         id: Date.now().toString(),
         type: "text",
         sender: "AI",
-        content: `${answer.header || ""}\n\n${answer.msg || ""}\n\n${answer.footer || ""}`.trim(),
+        content:
+          `${answer.header || ""}\n\n${answer.msg || ""}\n\n${answer.footer || ""}`.trim(),
         timestamp: new Date(),
         companion: chatSelectedCompanion,
       };
@@ -613,19 +614,23 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
-    console.log('📝 Message sent:', message);
+    console.log("📝 Message sent:", message);
 
     // Check if the last AI message is waiting for specific input
-    const lastAIMessage = [...chatMessages].reverse().find(msg => msg.sender === "AI");
-    console.log('🤖 Last AI message:', lastAIMessage);
+    const lastAIMessage = [...chatMessages]
+      .reverse()
+      .find((msg) => msg.sender === "AI");
+    console.log("🤖 Last AI message:", lastAIMessage);
 
     if (lastAIMessage?.awaitingInput === "title") {
-      console.log('📝 Detected title input, calling handleCreationTitleSubmit');
+      console.log("📝 Detected title input, calling handleCreationTitleSubmit");
       // User provided title for creation
       handleCreationTitleSubmit(message);
       return; // Don't proceed with normal message handling
     } else if (lastAIMessage?.awaitingInput === "description") {
-      console.log('📝 Detected description input, calling handleCreationDescriptionSubmit');
+      console.log(
+        "📝 Detected description input, calling handleCreationDescriptionSubmit",
+      );
       // User provided description for creation
       handleCreationDescriptionSubmit(message);
       return; // Don't proceed with normal message handling

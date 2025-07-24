@@ -39,10 +39,14 @@ export async function uploadCreationMedia(req: Request, res: Response) {
     const processedFiles: string[] = [];
     if (files && files.length > 0) {
       for (const file of files) {
-        console.log(`Processing file: ${file.originalname}, size: ${file.size} bytes, type: ${file.mimetype}`);
+        console.log(
+          `Processing file: ${file.originalname}, size: ${file.size} bytes, type: ${file.mimetype}`,
+        );
         // In a real implementation, you would save the file to storage (S3, local disk, etc.)
         // For now, we'll create mock URLs
-        processedFiles.push(`https://mock-storage.com/uploads/${Date.now()}_${file.originalname}`);
+        processedFiles.push(
+          `https://mock-storage.com/uploads/${Date.now()}_${file.originalname}`,
+        );
       }
     }
 
@@ -55,13 +59,19 @@ export async function uploadCreationMedia(req: Request, res: Response) {
         description: req.body.description || "",
         user_id: req.body.user_id || "2404",
         created_at: new Date().toISOString(),
-        media_urls: processedFiles.length > 0 ? processedFiles : [
-          "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
-        ],
+        media_urls:
+          processedFiles.length > 0
+            ? processedFiles
+            : [
+                "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+              ],
       },
     };
 
-    console.log("✅ Upload processed successfully, returning response:", response);
+    console.log(
+      "✅ Upload processed successfully, returning response:",
+      response,
+    );
     res.json(response);
   } catch (error) {
     console.error("Error in uploadCreationMedia:", error);
