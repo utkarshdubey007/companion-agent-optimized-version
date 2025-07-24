@@ -616,7 +616,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
               </div>
 
               {/* Page Dots Indicator - moved above page number */}
-              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
+              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
                 <div className="flex gap-2">
                   {pages.map((_, idx) => (
                     <motion.button
