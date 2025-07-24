@@ -76,19 +76,8 @@ export function ChatContainer({
     scrollToBottom();
   }, [messages, showMagicalCard]);
 
-  // Initial messages for the chat
-  const initialMessages: ChatMessage[] = [
-    {
-      id: "welcome-1",
-      type: "system",
-      sender: "AI",
-      content:
-        "Let's make some fun art together. What if the world was a peaceful place, let's start creating!",
-      timestamp: new Date(Date.now() - 300000),
-    },
-  ];
-
-  const allMessages = messages.length > 0 ? messages : initialMessages;
+  // Use only the messages passed from props (no static fallback)
+  const allMessages = messages;
 
   const renderMessage = (message: ChatMessage) => {
     if (message.type === "carousel") {
