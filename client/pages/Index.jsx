@@ -558,6 +558,7 @@ export default function Index() {
 
             // Step 4: Show reflection message after 500ms
             setTimeout(() => {
+              console.log("✅ Adding reflection message...");
               const reflectionMessage = {
                 id: (Date.now() + 3).toString(),
                 type: "text",
@@ -570,6 +571,7 @@ export default function Index() {
 
               // Step 5: Add StorybookReflectionCard
               setTimeout(() => {
+                console.log("✅ Adding StorybookReflectionCard message...");
                 const storybookMessage = {
                   id: (Date.now() + 4).toString(),
                   type: "storybook_reflection",
@@ -581,6 +583,7 @@ export default function Index() {
                     images: creationImages,
                   },
                 };
+                console.log("📖 StorybookReflectionCard message:", storybookMessage);
                 setChatMessages((prev) => [...prev, storybookMessage]);
 
                 // Reset creation sharing state
@@ -589,6 +592,7 @@ export default function Index() {
                 setCreationFiles([]);
                 setCreationTitle("");
                 setCreationDescription("");
+                console.log("✅ Creation sharing state reset");
               }, 300);
             }, 500);
           })
