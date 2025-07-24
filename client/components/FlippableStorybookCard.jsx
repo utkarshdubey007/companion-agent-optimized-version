@@ -541,19 +541,19 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   };
 
   return (
-    <div className="flex justify-start w-full mb-8 px-4">
+    <div className="w-full">
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="relative max-w-md w-full"
-            initial={{ opacity: 0, x: 100, rotateY: -15, rotateX: 10 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0, rotateX: 0 }}
-            exit={{ opacity: 0, x: 100, rotateY: 15, rotateX: -10 }}
+            className="relative w-full max-w-sm"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
             transition={{
-              duration: 1,
+              duration: 0.8,
               type: "spring",
-              stiffness: 100,
-              damping: 25,
+              stiffness: 120,
+              damping: 20,
             }}
             style={{
               perspective: "1200px",
