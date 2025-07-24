@@ -464,7 +464,7 @@ export default function Index() {
       } else if (response && response.data) {
         // Even if result_code is not 1, use the data if available
         setChallenges(response.data);
-        console.log("⚠️ Challenges loaded with warning:", response.error_info);
+        console.log("⚠�� Challenges loaded with warning:", response.error_info);
       } else {
         // Fallback to empty array if no data
         setChallenges([]);
@@ -738,7 +738,8 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      handleChatMore();
+      // Trigger OpenAI API call
+      callOpenAIChat("play");
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
@@ -808,7 +809,7 @@ export default function Index() {
   const generateMoodResponse = (mood) => {
     const responses = {
       Happy: "That's wonderful! Your positive energy is contagious! ����",
-      Excited: "That's wonderful! Your positive energy is contagious! ��",
+      Excited: "That's wonderful! Your positive energy is contagious! ✨",
       Calm: "That's beautiful! Peace and calm are such gifts. 🌸",
       Tired: "Rest is so important! Take care of yourself. 💤",
       Sad: "It's okay to feel this way sometimes. I'm here if you want to talk about it. 🤗",
