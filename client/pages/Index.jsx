@@ -810,7 +810,7 @@ export default function Index() {
 
     // Show excited reaction when companion is selected
     setCompanionState("reacting");
-    setCompanionEmotions(["🌟", "✨", "��"]);
+    setCompanionEmotions(["🌟", "✨", "💫"]);
     setTimeout(() => {
       setCompanionState("idle");
       setCompanionEmotions([]);
@@ -947,7 +947,7 @@ export default function Index() {
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
               onShowCarousel={handleShowCarousel}
-              onCreationSharing={handleCreationSharing}
+              onCreationSharing={handleShareCreation}
               isAIThinking={isAIThinking}
               selectedCompanion={chatSelectedCompanion}
               kidProfileImage="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format"
