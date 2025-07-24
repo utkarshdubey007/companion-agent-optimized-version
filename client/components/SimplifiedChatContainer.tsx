@@ -163,11 +163,13 @@ export function SimplifiedChatContainer({
       console.log("📖 Rendering FlippableStorybookCard message:", message);
       return (
         <div className="absolute bottom-56 left-1/2 transform -translate-x-1/2 z-20" key={message.id}>
-          <div className="max-w-xs scale-90">
-            <FlippableStorybookCard
-              pages={message.pages || []}
-              index={message.index || 0}
-            />
+          <div className="max-w-sm">
+            <div className="relative">
+              <FlippableStorybookCard
+                pages={message.pages || []}
+                index={message.index || 0}
+              />
+            </div>
           </div>
         </div>
       );
