@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import multer from "multer";
 import { handleDemo } from "./routes/demo";
 import { getCurrentUserTags } from "./routes/tags";
 import { getDependentChallengesWorking } from "./routes/challenges";
