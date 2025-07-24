@@ -56,7 +56,7 @@ export function useTaleTreeState() {
   /**
    * Send message to TaleTree API
    */
-  const sendMessage = useCallback(async (query: string) => {
+  const sendMessage = useCallback(async (query: string, action: string = "imagine") => {
     if (isLoading) {
       console.log("⏳ Request already in progress, ignoring request");
       return;
@@ -64,8 +64,8 @@ export function useTaleTreeState() {
 
     setIsLoading(true);
     try {
-      console.log(`🎯 Sending message: ${query}`);
-      const response = await TaleTreeApiService.sendMessage(query);
+      console.log(`🎯 Sending message: ${query} with action: ${action}`);
+      const response = await TaleTreeApiService.sendMessage(query, action);
       setChatResponse(response);
 
       // Update conversation_id if it changed
