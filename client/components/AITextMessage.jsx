@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { RefreshCw, MessageCircle, ThumbsUp } from "lucide-react";
-import { useTypingEffect } from "@/hooks/useTypingEffect";
 
 export function AITextMessage({
   content,
@@ -8,26 +7,16 @@ export function AITextMessage({
   onReply,
   onRegenerate,
   onLike,
-  headerTitle = "Hello, genuine friend! 🌟",
-  footerTip = "Every conversation with you is a new beginning! ✨",
+  headerTitle = "Hello there, imaginative friend! 🌟",
+  footerTip = "You're amazing—just as you are!",
   className = "",
-  hasAvatar = false, // New prop to indicate if avatar is shown
-  enableTyping = true, // New prop to control typing effect
+  hasAvatar = false,
+  enableTyping = false, // Disable by default for now
 }) {
   // Use exact default content as specified
   const defaultContent =
-    "I'm feeling as bright as a sunbeam, ready to embark on new adventures with you. How is your heart today?";
+    "Let's keep the fun going! What shall we dream up next?";
   const messageContent = content || defaultContent;
-
-  // Prepare sections for typing effect
-  const sections = [
-    { text: headerTitle, type: 'header' },
-    { text: messageContent, type: 'body' },
-    { text: footerTip, type: 'footer' }
-  ];
-
-  // Initialize typing effect
-  const typingEffect = useTypingEffect(enableTyping ? sections : null, 30, 500);
 
   // Function to render content with emoji and line break support
   const renderContent = (text) => {
@@ -39,27 +28,6 @@ export function AITextMessage({
       </span>
     ));
   };
-
-  // Get display content for each section
-  const getHeaderText = () => {
-    if (!enableTyping) return headerTitle;
-    return typingEffect?.getDisplayText(0) || '';
-  };
-
-  const getBodyText = () => {
-    if (!enableTyping) return messageContent;
-    return typingEffect?.getDisplayText(1) || '';
-  };
-
-  const getFooterText = () => {
-    if (!enableTyping) return footerTip;
-    return typingEffect?.getDisplayText(2) || '';
-  };
-
-  const showHeader = !enableTyping || (typingEffect?.isSectionVisible(0) ?? true);
-  const showBody = !enableTyping || (typingEffect?.isSectionVisible(1) ?? true);
-  const showFooter = !enableTyping || (typingEffect?.isSectionVisible(2) ?? true);
-  const showButtons = !enableTyping || (typingEffect?.isComplete ?? true);
 
   return (
     <div className={`${className}`}>
