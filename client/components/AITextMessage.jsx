@@ -113,25 +113,27 @@ export function AITextMessage({
               </div>
             )}
 
-            {/* Action Buttons */}
-            <div className="relative px-4 py-3 border-t border-white/10">
-              <div className="flex justify-start gap-2">
-                <Button
-                  onClick={onReply}
-                  size="sm"
-                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
-                >
-                  🗨️ Reply
-                </Button>
-                <Button
-                  onClick={onRegenerate}
-                  size="sm"
-                  className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
-                >
-                  🔁 Regenerate
-                </Button>
+            {/* Action Buttons - Show only when typing is complete */}
+            {(!enableTyping || isComplete) && (
+              <div className="relative px-4 py-3 border-t border-white/10">
+                <div className="flex justify-start gap-2">
+                  <Button
+                    onClick={onReply}
+                    size="sm"
+                    className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                  >
+                    🗨️ Reply
+                  </Button>
+                  <Button
+                    onClick={onRegenerate}
+                    size="sm"
+                    className="h-7 px-3 text-xs bg-white/20 hover:bg-white/30 text-white border-0 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                  >
+                    🔁 Regenerate
+                  </Button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Message tail */}
