@@ -545,16 +545,23 @@ export default function Index() {
             setCompanionState("talking");
             setTimeout(() => setCompanionState("idle"), 2000);
 
-            // Step 3: Show success message
-            const successMessage = {
-              id: (Date.now() + 2).toString(),
-              type: "text",
-              sender: "AI",
-              content: "Amazing! Your creation has been successfully uploaded!",
-              timestamp: new Date(),
-            };
-            setChatMessages((prev) => [...prev, successMessage]);
-            console.log("✅ Success message added to chat");
+            // Step 3: Hide previous kid messages and show success message
+            setChatMessages((prev) => {
+              // Filter out kid messages, keep only AI messages
+              const aiMessages = prev.filter((msg) => msg.sender === "AI");
+
+              // Add success message
+              const successMessage = {
+                id: (Date.now() + 2).toString(),
+                type: "text",
+                sender: "AI",
+                content: "Amazing! Your creation has been successfully uploaded!",
+                timestamp: new Date(),
+              };
+
+              console.log("✅ Cleaned up kid messages and added success message");
+              return [...aiMessages, successMessage];
+            });
 
             // Step 4: Show reflection message after 500ms
             setTimeout(() => {
