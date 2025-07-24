@@ -183,3 +183,45 @@ export interface ChallengesResponse {
   has_more: boolean;
   total_count: number;
 }
+
+/**
+ * TaleTree Chat API interfaces
+ */
+export interface TaleTreeChatInputs {
+  username: string;
+  user_id: number;
+  companion: string;
+  birthdate: string;
+  accepted_challenge_count: number;
+  challenge_id: string | null;
+  action: string;
+  emotion: string | null;
+  branches: string;
+  challenge_details: string | null;
+}
+
+export interface TaleTreeChatRequest {
+  query: string;
+  user: string;
+  conversation_id: string;
+  inputs: TaleTreeChatInputs;
+  files: any[] | null;
+}
+
+export interface TaleTreeChatAnswer {
+  action: string;
+  conversation_type: "small_talk" | "new_challenge";
+  header: string;
+  msg: string;
+  footer: string;
+  title?: string;
+  description?: string;
+  mediaUrl?: string;
+  mediaType?: "image" | "video";
+}
+
+export interface TaleTreeChatResponse {
+  outputs: {
+    answer: TaleTreeChatAnswer;
+  };
+}
