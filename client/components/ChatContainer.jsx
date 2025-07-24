@@ -21,6 +21,7 @@ export function ChatContainer({
   onRegenerateChallenge,
   onChatMore,
   onShowCarousel = () => {},
+  onShareCreation = () => {},
   isAIThinking = false,
   selectedCompanion = null,
   kidProfileImage = null, // New prop for kid's profile image
