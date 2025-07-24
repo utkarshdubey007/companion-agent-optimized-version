@@ -11,6 +11,8 @@ export function DualSidebar({
   toggleTopSidebar,
   toggleBottomSidebar,
   onMenuItemClick,
+  activeAction = null,
+  isApiLoading = false,
   moodIconActivated = false,
   selectedMood = null,
   showMoodPicker = false,
@@ -47,8 +49,14 @@ export function DualSidebar({
                       }}
                     >
                       <div
-                        className="w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
-                        onClick={() => onMenuItemClick?.(item.alt)}
+                        className={`w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg backdrop-blur-sm border ${
+                          activeAction === item.alt.toLowerCase()
+                            ? "ring-2 ring-yellow-400 border-yellow-400/50 bg-yellow-400/20 shadow-lg shadow-yellow-400/25"
+                            : "hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/30"
+                        } ${isApiLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                        onClick={() =>
+                          !isApiLoading && onMenuItemClick?.(item.alt)
+                        }
                       >
                         <img
                           src={item.src}
@@ -101,62 +109,73 @@ export function DualSidebar({
                   {bottomMenuItems.map((item) => {
                     const isMoodItem = item.alt === "Mood";
                     const isMoodActivated = isMoodItem && moodIconActivated;
-                    const isMoodSelected = isMoodItem && (showMoodPicker || selectedMood);
+                    const isMoodSelected =
+                      isMoodItem && (showMoodPicker || selectedMood);
                     const hasSelectedMood = isMoodItem && selectedMood;
 
                     // Get mood-specific animation class
                     const getMoodAnimationClass = () => {
                       if (!hasSelectedMood) return "";
                       const moodId = selectedMood.id.toLowerCase();
-                      const entranceClass = moodAnimationTrigger ? "mood-entrance" : "";
+                      const entranceClass = moodAnimationTrigger
+                        ? "mood-entrance"
+                        : "";
                       const persistentClass = `mood-${moodId}`;
                       return `${entranceClass} ${persistentClass}`.trim();
                     };
 
                     return (
-                    <div
-                      key={item.alt}
-                      className="relative group"
-                      style={{
-                        animation: showBottomWaveEffect
-                          ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
-                          : "none",
-                        transform: showBottomWaveEffect
-                          ? "scale(1)"
-                          : "scale(0)",
-                      }}
-                    >
                       <div
-                        className={`w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 backdrop-blur-sm ${
-                          isMoodSelected
-                            ? hasSelectedMood
-                              ? "bg-gradient-to-br from-purple-500/30 to-pink-500/30 border-2 border-purple-400/70 ring-2 ring-purple-400/50 shadow-lg shadow-purple-400/30"
-                              : "bg-yellow-500/20 border-yellow-400/50 ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/20"
-                            : "bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30"
-                        } ${getMoodAnimationClass()}`}
-                        onClick={() => onMenuItemClick?.(item.alt)}
+                        key={item.alt}
+                        className="relative group"
+                        style={{
+                          animation: showBottomWaveEffect
+                            ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
+                            : "none",
+                          transform: showBottomWaveEffect
+                            ? "scale(1)"
+                            : "scale(0)",
+                        }}
                       >
-                        <img
-                          src={hasSelectedMood ? selectedMood.imageUrl : item.src}
-                          alt={item.alt}
-                          className={`w-full h-full object-contain transition-all duration-300 ${
-                            isMoodSelected ? "brightness-125 saturate-150" : ""
-                          }`}
-                        />
-                        {isMoodSelected && (
-                          <div className={`absolute top-0 right-0 w-2 h-2 rounded-full animate-pulse ${
-                            hasSelectedMood ? "bg-purple-400" : "bg-yellow-400"
-                          }`} />
+                        <div
+                          className={`w-10 h-10 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 backdrop-blur-sm ${
+                            isMoodSelected
+                              ? hasSelectedMood
+                                ? "bg-gradient-to-br from-purple-500/30 to-pink-500/30 border-2 border-purple-400/70 ring-2 ring-purple-400/50 shadow-lg shadow-purple-400/30"
+                                : "bg-yellow-500/20 border-yellow-400/50 ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/20"
+                              : "bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30"
+                          } ${getMoodAnimationClass()}`}
+                          onClick={() => onMenuItemClick?.(item.alt)}
+                        >
+                          <img
+                            src={
+                              hasSelectedMood ? selectedMood.imageUrl : item.src
+                            }
+                            alt={item.alt}
+                            className={`w-full h-full object-contain transition-all duration-300 ${
+                              isMoodSelected
+                                ? "brightness-125 saturate-150"
+                                : ""
+                            }`}
+                          />
+                          {isMoodSelected && (
+                            <div
+                              className={`absolute top-0 right-0 w-2 h-2 rounded-full animate-pulse ${
+                                hasSelectedMood
+                                  ? "bg-purple-400"
+                                  : "bg-yellow-400"
+                              }`}
+                            />
+                          )}
+                        </div>
+
+                        {!bottomSidebarCollapsed && (
+                          <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-[#1C2051] border border-white/20 rounded-md text-white text-[10px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none">
+                            {item.alt}
+                            <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
+                          </div>
                         )}
                       </div>
-
-                      {!bottomSidebarCollapsed && (
-                        <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-[#1C2051] border border-white/20 rounded-md text-white text-[10px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none">
-                          {item.alt}
-                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
-                        </div>
-                      )}
-                    </div>
                     );
                   })}
                 </div>

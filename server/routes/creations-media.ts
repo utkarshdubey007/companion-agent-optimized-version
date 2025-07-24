@@ -27,18 +27,30 @@ export async function uploadCreationMedia(req: Request, res: Response) {
       authResult.sessionId,
     );
 
-    // Log request details
-    console.log("Request body size:", JSON.stringify(req.body).length);
-    console.log("Request fields:", Object.keys(req.body));
+    // Log upload details
+    const files = req.files as Express.Multer.File[];
+    console.log("Uploaded files count:", files?.length || 0);
+    console.log("Request body fields:", Object.keys(req.body));
+    console.log("Title:", req.body.title);
+    console.log("Description:", req.body.description);
+    console.log("User ID:", req.body.user_id);
 
-    // For now, return a mock success response
-    // In a real implementation, you would:
-    // 1. Parse multipart/form-data
-    // 2. Save uploaded files
-    // 3. Store metadata in database
-    // 4. Return creation ID and details
+    // Process uploaded files
+    const processedFiles: string[] = [];
+    if (files && files.length > 0) {
+      for (const file of files) {
+        console.log(
+          `Processing file: ${file.originalname}, size: ${file.size} bytes, type: ${file.mimetype}`,
+        );
+        // In a real implementation, you would save the file to storage (S3, local disk, etc.)
+        // For now, we'll create mock URLs
+        processedFiles.push(
+          `https://mock-storage.com/uploads/${Date.now()}_${file.originalname}`,
+        );
+      }
+    }
 
-    const mockResponse = {
+    const response = {
       result_code: 1,
       error_info: "",
       data: {
@@ -47,14 +59,20 @@ export async function uploadCreationMedia(req: Request, res: Response) {
         description: req.body.description || "",
         user_id: req.body.user_id || "2404",
         created_at: new Date().toISOString(),
-        media_urls: [
-          "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
-        ],
+        media_urls:
+          processedFiles.length > 0
+            ? processedFiles
+            : [
+                "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
+              ],
       },
     };
 
-    console.log("Upload processed successfully, returning mock response");
-    res.json(mockResponse);
+    console.log(
+      "✅ Upload processed successfully, returning response:",
+      response,
+    );
+    res.json(response);
   } catch (error) {
     console.error("Error in uploadCreationMedia:", error);
     res.status(500).json({

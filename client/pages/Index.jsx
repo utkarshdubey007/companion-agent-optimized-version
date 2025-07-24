@@ -89,6 +89,11 @@ export default function Index() {
   const [companionState, setCompanionState] = useState("idle");
   const [companionEmotions, setCompanionEmotions] = useState([]);
 
+  // OpenAI Chat API state
+  const [activeAction, setActiveAction] = useState(null);
+  const [isApiLoading, setIsApiLoading] = useState(false);
+  const [conversationId] = useState("a4490c53-de8f-484d-91d1-4cdd302dafca");
+
   // Chat state management
   const {
     chatMessages,
@@ -102,7 +107,114 @@ export default function Index() {
     handleSendMessage,
     handleAddAttachment,
     handleCompanionSelect: chatHandleCompanionSelect,
+    handleShareCreation,
+    handleCreationTitleSubmit,
+    handleCreationDescriptionSubmit,
   } = useChatState();
+
+  // OpenAI Chat API function
+  const callOpenAIChat = async (action = "imagine") => {
+    if (isApiLoading) return; // Prevent multiple quick triggers
+
+    setIsApiLoading(true);
+    console.log(`🤖 Calling OpenAI API with action: ${action}`);
+
+    const payload = {
+      query: "We should continue where we left off?",
+      user: "oliver",
+      conversation_id: conversationId,
+      inputs: {
+        username: "oliver",
+        user_id: 2404,
+        companion: "rushmore",
+        birthdate: "2018-04-29",
+        accepted_challenge_count: 3,
+        challenge_id: null,
+        action: action,
+        emotion: null,
+        branches:
+          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
+        challenge_details: null,
+      },
+      files: null,
+    };
+
+    try {
+      const response = await fetch("/api/v3/open-ai/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer dummy-token",
+          "X-Session-ID": "jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API call failed: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("🤖 OpenAI API response:", result);
+
+      // Set active action for sidebar highlighting
+      setActiveAction(action);
+
+      // Handle the response
+      handleOpenAIResponse(result);
+    } catch (error) {
+      console.error("❌ OpenAI API error:", error);
+      // Fallback to default message on error
+      const fallbackMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "AI",
+        content: "Hello! I'm here to help you explore your creativity! 🌟",
+        timestamp: new Date(),
+        companion: chatSelectedCompanion,
+      };
+      setChatMessages((prev) => [...prev, fallbackMessage]);
+    } finally {
+      setIsApiLoading(false);
+    }
+  };
+
+  // Handle OpenAI response and update chat
+  const handleOpenAIResponse = (response) => {
+    const answer = response.outputs?.answer;
+    if (!answer) return;
+
+    console.log("📝 Processing AI response:", answer);
+
+    if (answer.conversation_type === "small_talk") {
+      // Show standard AI text message
+      const aiMessage = {
+        id: Date.now().toString(),
+        type: "text",
+        sender: "AI",
+        content:
+          `${answer.header || ""}\n\n${answer.msg || ""}\n\n${answer.footer || ""}`.trim(),
+        timestamp: new Date(),
+        companion: chatSelectedCompanion,
+      };
+      setChatMessages((prev) => [...prev, aiMessage]);
+    } else if (answer.conversation_type === "new_challenge") {
+      // Show AI challenge message
+      const challengeMessage = {
+        id: Date.now().toString(),
+        type: "ai_challenge",
+        sender: "AI",
+        title: answer.header || "New Challenge!",
+        description: answer.msg || "Ready for a new adventure?",
+        timestamp: new Date(),
+        companion: chatSelectedCompanion,
+        onAccept: handleAcceptChallenge,
+        onRegenerate: handleRegenerateChallenge,
+        onChatMore: handleChatMore,
+      };
+      setChatMessages((prev) => [...prev, challengeMessage]);
+    }
+  };
 
   // Helper function to get file extension from MIME type
   const getFileExtension = (mimeType) => {
@@ -265,18 +377,28 @@ export default function Index() {
     setTagsError(null);
 
     try {
+      console.log("📥 Loading user tags...");
       const response = await fetchCurrentUserTags();
+      console.log("📥 Tags response received:", response);
 
-      if (response.result_code === 1) {
+      if (response && response.result_code === 1) {
         setTags(response.data);
-        console.log("Tags loaded successfully:", response.data);
+        console.log("✅ Tags loaded successfully:", response.data);
+      } else if (response && response.data) {
+        // Even if result_code is not 1, use the data if available
+        setTags(response.data);
+        console.log("⚠️ Tags loaded with warning:", response.error_info);
       } else {
-        setTagsError(response.error_info || "Failed to load tags");
-        console.error("Tags API error:", response.error_info);
+        // Fallback to empty array if no data
+        setTags([]);
+        console.warn("⚠️ No tags data available, using empty array");
       }
     } catch (error) {
-      setTagsError(error.message || "Failed to fetch tags");
-      console.error("Tags fetch error:", error);
+      console.error("❌ Tags fetch error:", error);
+      // Don't set error state since the service provides fallback data
+      // Just use empty tags array as fallback
+      setTags([]);
+      console.log("🔄 Using empty tags array as fallback");
     } finally {
       setTagsLoading(false);
     }
@@ -291,6 +413,11 @@ export default function Index() {
 
     // Load user tags on component mount
     loadUserTags();
+
+    // Trigger OpenAI API call on page load
+    setTimeout(() => {
+      callOpenAIChat("imagine");
+    }, 1000);
 
     const topTimer = setTimeout(() => {
       setTopSidebarCollapsed(false);
@@ -328,18 +455,28 @@ export default function Index() {
     setChallengesError(null);
 
     try {
+      console.log("📥 Loading challenges...");
       const response = await fetchDependentChallenges(2404);
+      console.log("📥 Challenges response received:", response);
 
-      if (response.result_code === 1) {
+      if (response && response.result_code === 1) {
         setChallenges(response.data);
-        console.log("Challenges loaded successfully:", response.data);
+        console.log("✅ Challenges loaded successfully:", response.data);
+      } else if (response && response.data) {
+        // Even if result_code is not 1, use the data if available
+        setChallenges(response.data);
+        console.log("⚠️ Challenges loaded with warning:", response.error_info);
       } else {
-        setChallengesError(response.error_info || "Failed to load challenges");
-        console.error("Challenges API error:", response.error_info);
+        // Fallback to empty array if no data
+        setChallenges([]);
+        console.warn("⚠️ No challenges data available, using empty array");
       }
     } catch (error) {
-      setChallengesError(error.message || "Failed to fetch challenges");
-      console.error("Challenges fetch error:", error);
+      console.error("❌ Challenges fetch error:", error);
+      // Don't set error state since the service provides fallback data
+      // Just use empty challenges array as fallback
+      setChallenges([]);
+      console.log("�� Using empty challenges array as fallback");
     } finally {
       setChallengesLoading(false);
     }
@@ -477,7 +614,29 @@ export default function Index() {
 
   // Enhanced message sending with companion reactions
   const handleEnhancedSendMessage = (message) => {
-    // Check if we're in creation sharing flow
+    console.log("📝 Message sent:", message);
+
+    // Check if the last AI message is waiting for specific input
+    const lastAIMessage = [...chatMessages]
+      .reverse()
+      .find((msg) => msg.sender === "AI");
+    console.log("🤖 Last AI message:", lastAIMessage);
+
+    if (lastAIMessage?.awaitingInput === "title") {
+      console.log("📝 Detected title input, calling handleCreationTitleSubmit");
+      // User provided title for creation
+      handleCreationTitleSubmit(message);
+      return; // Don't proceed with normal message handling
+    } else if (lastAIMessage?.awaitingInput === "description") {
+      console.log(
+        "📝 Detected description input, calling handleCreationDescriptionSubmit",
+      );
+      // User provided description for creation
+      handleCreationDescriptionSubmit(message);
+      return; // Don't proceed with normal message handling
+    }
+
+    // Check if we're in old creation sharing flow (fallback for compatibility)
     if (creationSharingStep === "title") {
       // User provided title
       setCreationTitle(message);
@@ -505,136 +664,6 @@ export default function Index() {
         };
         setChatMessages((prev) => [...prev, descriptionRequest]);
       }, 1000);
-
-      return; // Don't proceed with normal message handling
-    } else if (creationSharingStep === "description") {
-      // User provided description
-      setCreationDescription(message);
-      setCreationSharingStep("uploading");
-
-      // Add user message for description
-      const descriptionMessage = {
-        id: Date.now().toString(),
-        type: "text",
-        sender: "Kid",
-        content: message,
-        timestamp: new Date(),
-      };
-      setChatMessages((prev) => [...prev, descriptionMessage]);
-
-      // Step 1: Show immediate feedback
-      setTimeout(() => {
-        // Set companion to thinking state during upload
-        setCompanionState("thinking");
-
-        const uploadingMessage = {
-          id: (Date.now() + 1).toString(),
-          type: "text",
-          sender: "AI",
-          content: "Please wait, I am uploading your creations...",
-          timestamp: new Date(),
-        };
-        setChatMessages((prev) => [...prev, uploadingMessage]);
-
-        // Step 2: Trigger API upload
-        uploadCreation(creationImages, creationTitle, message)
-          .then((uploadResult) => {
-            console.log(
-              "✅ Upload successful, proceeding with chat flow:",
-              uploadResult,
-            );
-
-            // Reset companion state
-            setCompanionState("talking");
-            setTimeout(() => setCompanionState("idle"), 2000);
-
-            // Step 3: Hide previous kid messages and show success message
-            setChatMessages((prev) => {
-              // Filter out kid messages, keep only AI messages
-              const aiMessages = prev.filter((msg) => msg.sender === "AI");
-
-              // Add success message
-              const successMessage = {
-                id: (Date.now() + 2).toString(),
-                type: "text",
-                sender: "AI",
-                content:
-                  "Amazing! Your creation has been successfully uploaded!",
-                timestamp: new Date(),
-              };
-
-              console.log(
-                "✅ Cleaned up kid messages and added success message",
-              );
-              return [...aiMessages, successMessage];
-            });
-
-            // Step 4: Show reflection message after 500ms
-            setTimeout(() => {
-              console.log("✅ Adding reflection message...");
-              const reflectionMessage = {
-                id: (Date.now() + 3).toString(),
-                type: "text",
-                sender: "AI",
-                content:
-                  "Please wait till I am reflecting on your creations...",
-                timestamp: new Date(),
-              };
-              setChatMessages((prev) => [...prev, reflectionMessage]);
-
-              // Step 5: Add FlippableStorybookCard
-              setTimeout(() => {
-                console.log("✅ Adding FlippableStorybookCard message...");
-                const storybookMessage = {
-                  id: (Date.now() + 4).toString(),
-                  type: "flippable_storybook",
-                  sender: "AI",
-                  timestamp: new Date(),
-                  pages: [
-                    {
-                      badgeTitle: "Amazing Creation!",
-                      imageUrl:
-                        creationImages[0] ||
-                        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
-                      reflection: `What a wonderful creation! I can see you put so much creativity into "${creationTitle}". ${message ? message : "Your artistic vision truly shines through!"} This piece tells a beautiful story and shows your unique perspective. Keep creating and sharing your amazing work!`,
-                      aiAvatarUrl:
-                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
-                    },
-                  ],
-                  index: 0,
-                };
-                console.log(
-                  "📖 FlippableStorybookCard message:",
-                  storybookMessage,
-                );
-                setChatMessages((prev) => [...prev, storybookMessage]);
-
-                // Reset creation sharing state
-                setCreationSharingStep(null);
-                setCreationImages([]);
-                setCreationFiles([]);
-                setCreationTitle("");
-                setCreationDescription("");
-                console.log("✅ Creation sharing state reset");
-              }, 300);
-            }, 500);
-          })
-          .catch((error) => {
-            // Handle upload error
-            const errorMessage = {
-              id: (Date.now() + 2).toString(),
-              type: "text",
-              sender: "AI",
-              content:
-                "I'm sorry, there was an issue uploading your creation. Please try again later.",
-              timestamp: new Date(),
-            };
-            setChatMessages((prev) => [...prev, errorMessage]);
-
-            // Reset to description step to allow retry
-            setCreationSharingStep("description");
-          });
-      }, 800);
 
       return; // Don't proceed with normal message handling
     }
@@ -714,7 +743,8 @@ export default function Index() {
         setCompanionState("idle");
         setCompanionEmotions([]);
       }, 2000);
-      handleChatMore();
+      // Trigger OpenAI API call
+      callOpenAIChat("play");
     } else if (itemAlt === "Create") {
       // Show creative reaction
       setCompanionState("reacting");
@@ -733,6 +763,8 @@ export default function Index() {
 
       // Also fetch creations from API
       fetchCreationsFromAPI();
+      // Trigger OpenAI API call
+      callOpenAIChat("create");
     } else if (itemAlt === "Reflect") {
       console.log("Reflect icon clicked - fetching creations from API");
       // Show thoughtful reaction
@@ -745,10 +777,12 @@ export default function Index() {
 
       // Fetch creations from API and show panel
       fetchCreationsFromAPI();
+      // Trigger OpenAI API call
+      callOpenAIChat("reflect");
     } else if (itemAlt === "Imagine") {
       // Show imaginative reaction
       setCompanionState("reacting");
-      setCompanionEmotions(["💭", "🌟", "🔮"]);
+      setCompanionEmotions(["💭", "🌟", "���"]);
       setTimeout(() => {
         setCompanionState("thinking");
         setTimeout(() => {
@@ -756,7 +790,8 @@ export default function Index() {
           setCompanionEmotions([]);
         }, 3000);
       }, 1000);
-      handleSendMessage();
+      // Trigger OpenAI API call
+      callOpenAIChat("imagine");
     } else if (itemAlt === "Friends") {
       console.log("Friends button clicked! Opening companion selector...");
       // Show excited reaction for friends
@@ -776,6 +811,8 @@ export default function Index() {
       localStorage.setItem("checkin_modal", "true");
     } else if (itemAlt === "Store") {
       handleAddAttachment();
+      // Trigger OpenAI API call
+      callOpenAIChat("store");
     }
   };
 
@@ -807,7 +844,7 @@ export default function Index() {
 
     // Show excited reaction when companion is selected
     setCompanionState("reacting");
-    setCompanionEmotions(["🌟", "✨", "💫"]);
+    setCompanionEmotions(["🌟", "✨", "��"]);
     setTimeout(() => {
       setCompanionState("idle");
       setCompanionEmotions([]);
@@ -870,23 +907,8 @@ export default function Index() {
     }
   };
 
-  // Handler for creation sharing flow
-  const handleCreationSharing = (images) => {
-    console.log("Starting creation sharing flow with images:", images);
-    setCreationImages(images);
-    setCreationSharingStep("title");
-
-    // Add AI message asking for title
-    const titleRequest = {
-      id: Date.now().toString(),
-      type: "text",
-      sender: "AI",
-      content:
-        "Great! Now let's give it a name. Tell me the name of your creation.",
-      timestamp: new Date(),
-    };
-    setChatMessages((prev) => [...prev, titleRequest]);
-  };
+  // Handler for creation sharing flow - now uses the useChatState hook function
+  // The handleShareCreation from useChatState handles the complete flow
 
   const handleChallengeSelect = (challenge) => {
     console.log("Challenge selected:", challenge);
@@ -941,6 +963,8 @@ export default function Index() {
           toggleTopSidebar={toggleTopSidebar}
           toggleBottomSidebar={toggleBottomSidebar}
           onMenuItemClick={handleMenuItemClick}
+          activeAction={activeAction}
+          isApiLoading={isApiLoading}
           moodIconActivated={
             shouldAskForMood(dependent) && !hasMoodCheckinOccurred
           }
@@ -959,7 +983,7 @@ export default function Index() {
               onRegenerateChallenge={handleRegenerateChallenge}
               onChatMore={handleChatMore}
               onShowCarousel={handleShowCarousel}
-              onCreationSharing={handleCreationSharing}
+              onCreationSharing={handleShareCreation}
               isAIThinking={isAIThinking}
               selectedCompanion={chatSelectedCompanion}
               kidProfileImage="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop&crop=face&auto=format"

@@ -21,6 +21,7 @@ export function ChatContainer({
   onRegenerateChallenge,
   onChatMore,
   onShowCarousel = () => {},
+  onShareCreation = () => {},
   isAIThinking = false,
   selectedCompanion = null,
   kidProfileImage = null, // New prop for kid's profile image
@@ -97,7 +98,7 @@ export function ChatContainer({
           key={message.id}
           images={message.images}
           onImagesUpdate={message.onImagesUpdate}
-          onShareCreation={onShowCarousel}
+          onShareCreation={message.onShareCreation || onShareCreation}
           timestamp={message.timestamp}
           mode="upload"
         />
@@ -131,11 +132,27 @@ export function ChatContainer({
 
     if (message.type === "flippable_storybook") {
       return (
-        <FlippableStorybookCard
+        <div
           key={message.id}
-          pages={message.pages}
-          index={message.index || 0}
-        />
+          className="flex justify-start w-full mb-6 relative z-20"
+        >
+          <div className="flex items-start gap-3 max-w-full">
+            {/* AI Companion Avatar */}
+            <div className="flex-shrink-0 mt-2">
+              <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg border-2 border-white/20">
+                <span className="text-white text-sm">🤖</span>
+              </div>
+            </div>
+
+            {/* Storybook Card Container */}
+            <div className="flex-1 max-w-md storybook-entrance relative z-10">
+              <FlippableStorybookCard
+                pages={message.pages}
+                index={message.index || 0}
+              />
+            </div>
+          </div>
+        </div>
       );
     }
 
@@ -216,6 +233,8 @@ export function ChatContainer({
             onReply={() => console.log("Reply to AI message")}
             onRegenerate={() => console.log("Regenerate AI message")}
             hasAvatar={!!selectedCompanion?.imageUrl}
+            headerTitle="Hello there, imaginative friend! 🌟"
+            footerTip="You're amazing—just as you are!"
           />
         </div>
       );

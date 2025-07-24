@@ -41,21 +41,35 @@ export function createAuthHeaders(): Record<string, string> {
 }
 
 /**
- * Make an authenticated fetch request
+ * Make an authenticated fetch request with timeout
  */
 export async function authenticatedFetch(
   url: string,
   options: RequestInit = {},
 ): Promise<Response> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
   const defaultOptions: RequestInit = {
     credentials: "include",
+    signal: controller.signal,
     headers: {
       ...createAuthHeaders(),
       ...options.headers,
     },
   };
 
-  return fetch(url, { ...defaultOptions, ...options });
+  try {
+    const response = await fetch(url, { ...defaultOptions, ...options });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === "AbortError") {
+      throw new Error(`Request timeout after 10 seconds for ${url}`);
+    }
+    throw error;
+  }
 }
 
 /**

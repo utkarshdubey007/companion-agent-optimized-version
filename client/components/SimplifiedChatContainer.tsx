@@ -162,18 +162,14 @@ export function SimplifiedChatContainer({
     if (message.type === "flippable_storybook") {
       console.log("📖 Rendering FlippableStorybookCard message:", message);
       return (
-        <div
-          className="flex justify-center w-full mb-4 px-4 mt-6"
-          key={message.id}
-        >
-          <div
-            className="max-w-sm w-full storybook-entrance"
-            style={{ transform: "scale(0.7)" }}
-          >
-            <FlippableStorybookCard
-              pages={message.pages || []}
-              index={message.index || 0}
-            />
+        <div className="absolute bottom-28 right-8 z-20" key={message.id}>
+          <div className="max-w-sm max-h-80 overflow-visible">
+            <div className="relative">
+              <FlippableStorybookCard
+                pages={message.pages || []}
+                index={message.index || 0}
+              />
+            </div>
           </div>
         </div>
       );
@@ -226,7 +222,7 @@ export function SimplifiedChatContainer({
             key={message.id}
             images={message.images}
             onImagesUpdate={message.onImagesUpdate}
-            onShareCreation={onShowCarousel}
+            onShareCreation={message.onShareCreation || onCreationSharing}
             timestamp={message.timestamp}
             mode="upload"
           />

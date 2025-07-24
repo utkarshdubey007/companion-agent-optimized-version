@@ -32,29 +32,31 @@ const StorybookPage = ({
   };
 
   return (
-    <div className="flex justify-start w-full mb-8 px-4">
-      <div className="max-w-md w-full">
+    <div className="w-full">
+      <div className="max-w-full w-full">
         {/* Storybook Page Container */}
         <motion.div
-          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-l-2xl shadow-2xl overflow-hidden`}
+          className={`relative bg-gradient-to-br ${currentTheme.background} rounded-2xl shadow-2xl overflow-hidden z-40`}
           style={{
             fontFamily: '"Kalam", "Comic Neue", cursive, sans-serif',
             backgroundImage: `
-              radial-gradient(circle at 20% 20%, ${currentTheme.patternColors[0]}80 0%, ${currentTheme.buttonBg} 40%),
-              radial-gradient(circle at 80% 30%, ${currentTheme.patternColors[1]}60 0%, ${currentTheme.buttonBg} 40%),
-              radial-gradient(circle at 40% 80%, ${currentTheme.patternColors[2]}40 0%, ${currentTheme.buttonBg} 40%),
-              linear-gradient(45deg, ${currentTheme.patternColors[0]}20 0%, ${currentTheme.buttonBg} 2%),
-              repeating-linear-gradient(0deg, ${currentTheme.buttonBg}, ${currentTheme.buttonBg} 25px, ${currentTheme.patternColors[0]}30 26px, ${currentTheme.patternColors[0]}30 28px)
+              radial-gradient(circle at 20% 20%, ${currentTheme.patternColors[0]}60 0%, ${currentTheme.buttonBg} 50%),
+              radial-gradient(circle at 80% 30%, ${currentTheme.patternColors[1]}40 0%, ${currentTheme.buttonBg} 50%),
+              radial-gradient(circle at 40% 80%, ${currentTheme.patternColors[2]}30 0%, ${currentTheme.buttonBg} 50%),
+              linear-gradient(135deg, ${currentTheme.patternColors[0]}20 0%, ${currentTheme.buttonBg} 30%)
             `,
             boxShadow: `
-              inset 4px 0 12px ${currentTheme.shadowColor}20,
               0 0 0 2px ${currentTheme.borderColor}40,
-              0 12px 40px ${currentTheme.shadowColor}30,
-              0 6px 20px ${currentTheme.shadowColor}20
+              0 8px 32px ${currentTheme.shadowColor}20,
+              0 4px 16px ${currentTheme.shadowColor}15,
+              inset 0 1px 4px rgba(255,255,255,0.6)
             `,
-            minHeight: "520px",
+            minHeight: "300px",
+            maxHeight: "320px",
             aspectRatio: "3/4",
-            border: `2px solid ${currentTheme.borderColor}60`,
+            border: `3px solid ${currentTheme.borderColor}90`,
+            zIndex: 40,
+            position: "relative",
           }}
         >
           {/* Book Binding Edge */}
@@ -146,13 +148,15 @@ const StorybookPage = ({
                 }}
               >
                 <h2
-                  className={`text-lg font-bold ${currentTheme.textPrimary} mb-2 transition-colors`}
+                  className="text-lg font-bold mb-2 transition-colors text-gray-800"
                   style={{
                     fontFamily: '"Kalam", cursive',
-                    textShadow: `2px 2px 4px rgba(255,255,255,0.9), 0 0 10px ${currentTheme.accent}30`,
+                    textShadow: `2px 2px 4px rgba(255,255,255,0.9)`,
                     fontSize: "18px",
                     lineHeight: "1.2",
-                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.1))",
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))",
+                    color: "#1f2937",
+                    fontWeight: "700",
                   }}
                 >
                   ✨ "{badgeTitle || "Amazing Creation!"}" ✨
@@ -207,11 +211,11 @@ const StorybookPage = ({
                     <img
                       src={imageUrl}
                       alt="A magical illustration"
-                      className="w-full h-40 object-cover rounded"
+                      className="w-full h-24 object-cover rounded"
                       style={{
                         filter:
-                          "contrast(1.15) saturate(1.3) brightness(1.08) hue-rotate(2deg)",
-                        boxShadow: `inset 0 0 8px rgba(0,0,0,0.1)`,
+                          "contrast(1.1) saturate(1.2) brightness(1.05) hue-rotate(1deg)",
+                        boxShadow: `inset 0 0 6px rgba(0,0,0,0.08)`,
                       }}
                     />
                     {/* Fun decorative corners */}
@@ -271,15 +275,17 @@ const StorybookPage = ({
 
                 {/* Scrollable text container */}
                 <div
-                  className={`${currentTheme.textPrimary} leading-relaxed overflow-y-auto`}
+                  className="leading-relaxed overflow-y-auto text-gray-800"
                   style={{
                     fontFamily: '"Kalam", cursive',
                     fontSize: "14px",
                     textAlign: "justify",
-                    textShadow: "1px 1px 3px rgba(255,255,255,0.8)",
-                    lineHeight: "1.6",
-                    maxHeight: "120px",
+                    textShadow: "1px 1px 2px rgba(255,255,255,0.9)",
+                    lineHeight: "1.4",
+                    maxHeight: "80px",
                     paddingRight: "4px",
+                    color: "#1f2937", // Ensure dark text color
+                    fontWeight: "500",
                   }}
                 >
                   <div
@@ -303,10 +309,12 @@ const StorybookPage = ({
                   transition={{ delay: 1, duration: 0.6 }}
                 >
                   <span
-                    className={`text-xs ${currentTheme.textSecondary} italic font-medium`}
+                    className="text-xs italic font-medium text-gray-600"
                     style={{
                       fontFamily: '"Kalam", cursive',
-                      textShadow: "1px 1px 2px rgba(255,255,255,0.8)",
+                      textShadow: "1px 1px 2px rgba(255,255,255,0.9)",
+                      color: "#4b5563",
+                      fontWeight: "500",
                     }}
                   >
                     🌟 Your Magical Friend 🌟
@@ -475,19 +483,19 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [direction, setDirection] = useState(0);
 
-  // Green companion matching theme for all pages
+  // Enhanced magical theme for all pages
   const companionTheme = {
-    name: "Companion Green",
-    background: "from-emerald-200 via-green-100 to-teal-50",
-    binding: "from-emerald-300 via-green-300 to-teal-400",
-    shadowColor: "#10b981",
-    borderColor: "#34d399",
-    textPrimary: "text-emerald-800",
-    textSecondary: "text-green-600",
-    decorative: "text-emerald-500",
-    accent: "#22c55e",
-    buttonBg: "#ecfdf5",
-    patternColors: ["#d1fae5", "#a7f3d0", "#6ee7b7"],
+    name: "Magical Emerald",
+    background: "from-emerald-100 via-green-50 to-teal-100",
+    binding: "from-emerald-400 via-green-400 to-teal-500",
+    shadowColor: "#059669",
+    borderColor: "#10b981",
+    textPrimary: "text-emerald-900",
+    textSecondary: "text-emerald-700",
+    decorative: "text-emerald-600",
+    accent: "#34d399",
+    buttonBg: "#f0fdf4",
+    patternColors: ["#dcfce7", "#bbf7d0", "#86efac"],
   };
 
   // Stagger animation entrance
@@ -541,32 +549,33 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
   };
 
   return (
-    <div className="flex justify-start w-full mb-8 px-4">
+    <div className="w-full relative z-20">
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="relative max-w-md w-full"
-            initial={{ opacity: 0, x: 100, rotateY: -15, rotateX: 10 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0, rotateX: 0 }}
-            exit={{ opacity: 0, x: 100, rotateY: 15, rotateX: -10 }}
+            className="relative w-full max-w-sm z-30"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
             transition={{
-              duration: 1,
+              duration: 0.8,
               type: "spring",
-              stiffness: 100,
-              damping: 25,
+              stiffness: 120,
+              damping: 20,
             }}
             style={{
               perspective: "1200px",
+              zIndex: 30,
             }}
           >
             {/* Book Container with Navigation */}
             <div className="relative">
               {/* Navigation Overlay */}
-              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-30 pointer-events-none">
+              <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-50 pointer-events-none">
                 <motion.button
                   onClick={prevPage}
                   disabled={currentPage === 0}
-                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
+                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto relative z-50"
                   style={{
                     background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
                     border: `3px solid ${companionTheme.borderColor}`,
@@ -587,7 +596,7 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
                 <motion.button
                   onClick={nextPage}
                   disabled={currentPage === pages.length - 1}
-                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto"
+                  className="w-12 h-12 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto relative z-50"
                   style={{
                     background: `linear-gradient(135deg, rgba(255,255,255,0.9), ${companionTheme.buttonBg})`,
                     border: `3px solid ${companionTheme.borderColor}`,
@@ -607,13 +616,13 @@ const FlippableStorybookCard = ({ pages = [], index = 0 }) => {
               </div>
 
               {/* Page Dots Indicator - moved above page number */}
-              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
+              <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
                 <div className="flex gap-2">
                   {pages.map((_, idx) => (
                     <motion.button
                       key={idx}
                       onClick={() => goToPage(idx)}
-                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative"
+                      className="w-3 h-3 rounded-full transition-all duration-300 pointer-events-auto relative z-50"
                       style={{
                         background:
                           idx === currentPage
