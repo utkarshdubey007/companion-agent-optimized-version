@@ -269,7 +269,8 @@ export function useChatState() {
               setChatMessages((prev) => [...prev, storybookMessage]);
 
               // Clear creation data
-              clearCreationData();
+              setCreationTitle("");
+              setCreationImages([]);
             }, 5000);
           }, 1000);
         })
