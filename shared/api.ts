@@ -201,8 +201,11 @@ export interface TaleTreeChatInputs {
 }
 
 export interface TaleTreeChatRequest {
-  conversation_id: string | null;
   query: string;
+  user: string;
+  conversation_id: string | null;
+  inputs: TaleTreeChatInputs;
+  files: any[] | null;
 }
 
 export interface TaleTreeChatAnswer {
