@@ -23,7 +23,8 @@ interface ChatMessage {
     | "image_display"
     | "mood"
     | "carousel"
-    | "storybook_reflection";
+    | "storybook_reflection"
+    | "flippable_storybook";
   sender: "AI" | "Kid";
   content?: string;
   timestamp: Date;
