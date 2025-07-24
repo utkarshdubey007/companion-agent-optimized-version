@@ -46,6 +46,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     switch (action) {
       case "imagine":
         mockResponse = {
+          conversation_id: responseConversationId,
           outputs: {
             answer: {
               action: "imagine",
