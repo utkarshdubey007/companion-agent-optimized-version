@@ -16,6 +16,7 @@ interface ChatMessage {
     | "text"
     | "challenge"
     | "ai_challenge"
+    | "taletree_ai"
     | "system"
     | "media"
     | "image_display"
