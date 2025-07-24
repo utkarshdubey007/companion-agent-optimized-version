@@ -115,6 +115,99 @@ export function useChatState() {
     }, 2500); // Extended thinking time for magical effect
   };
 
+  const handleShareCreation = (images) => {
+    // Create a display message for the shared creation
+    const sharedMessage = {
+      id: Date.now().toString(),
+      type: "image_display",
+      sender: "Kid",
+      content: `I want to share my creation! 🎨✨`,
+      timestamp: new Date(),
+      images: images,
+    };
+    setChatMessages((prev) => [...prev, sharedMessage]);
+
+    // Show thinking mode
+    setIsAIThinking(true);
+
+    // AI asks for the title
+    setTimeout(() => {
+      setIsAIThinking(false);
+
+      const titleRequestMessage = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: "Great! Now let's give it a name. Tell me the title of your creation! 🌟",
+        timestamp: new Date(),
+        companion: selectedCompanion,
+        awaitingInput: "title", // Special flag to indicate what we're waiting for
+      };
+      setChatMessages((prev) => [...prev, titleRequestMessage]);
+    }, 2000);
+  };
+
+  const handleCreationTitleSubmit = (title) => {
+    // Add kid's title response
+    const titleMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: title,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, titleMessage]);
+
+    // Show thinking mode
+    setIsAIThinking(true);
+
+    // AI asks for description
+    setTimeout(() => {
+      setIsAIThinking(false);
+
+      const descriptionRequestMessage = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: "Perfect! Now let's take a moment to craft a detailed description of it. Tell me all about your amazing creation! ✨",
+        timestamp: new Date(),
+        companion: selectedCompanion,
+        awaitingInput: "description", // Special flag to indicate what we're waiting for
+      };
+      setChatMessages((prev) => [...prev, descriptionRequestMessage]);
+    }, 2000);
+  };
+
+  const handleCreationDescriptionSubmit = (description) => {
+    // Add kid's description response
+    const descriptionMessage = {
+      id: Date.now().toString(),
+      type: "text",
+      sender: "Kid",
+      content: description,
+      timestamp: new Date(),
+    };
+    setChatMessages((prev) => [...prev, descriptionMessage]);
+
+    // Show thinking mode
+    setIsAIThinking(true);
+
+    // AI gives final congratulations
+    setTimeout(() => {
+      setIsAIThinking(false);
+
+      const congratsMessage = {
+        id: (Date.now() + 1).toString(),
+        type: "text",
+        sender: "AI",
+        content: "Wonderful! Your creation is now complete with a beautiful title and description! 🎉 I'm so proud of your creativity and the story you've shared. Keep creating amazing things! ✨",
+        timestamp: new Date(),
+        companion: selectedCompanion,
+      };
+      setChatMessages((prev) => [...prev, congratsMessage]);
+    }, 2500);
+  };
+
   const handleAddAttachment = () => {
     // Create a media upload message
     const mediaMessage = {
@@ -165,6 +258,7 @@ export function useChatState() {
           }, 2000);
         }
       },
+      onShareCreation: handleShareCreation, // Pass the share creation handler
     };
     setChatMessages((prev) => [...prev, mediaMessage]);
   };
