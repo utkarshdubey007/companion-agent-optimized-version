@@ -132,8 +132,8 @@ export function SimplifiedChatContainer({
     if (message.type === "storybook_reflection") {
       console.log("📖 Rendering StorybookReflectionCard message:", message);
       return (
-        <div className="absolute bottom-32 left-1/2" key={message.id}>
-          <div className="max-w-sm storybook-entrance">
+        <div className="flex justify-center w-full mb-4 px-4" key={message.id}>
+          <div className="max-w-md w-full storybook-entrance" style={{ transform: "scale(0.8)" }}>
             <StorybookReflectionCard
               reflections={message.reflections || []}
               onReactionClick={(reaction, reflection) => {
