@@ -162,25 +162,12 @@ export function SimplifiedChatContainer({
     if (message.type === "flippable_storybook") {
       console.log("📖 Rendering FlippableStorybookCard message:", message);
       return (
-        <div
-          className="flex justify-start w-full mb-6 px-4 mt-4"
-          key={message.id}
-        >
-          <div className="flex items-start gap-3 max-w-full">
-            {/* AI Companion Avatar */}
-            <div className="flex-shrink-0 mt-2">
-              <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg border-2 border-white/20">
-                <span className="text-white text-sm">🤖</span>
-              </div>
-            </div>
-
-            {/* Storybook Card Container */}
-            <div className="flex-1 max-w-md storybook-entrance">
-              <FlippableStorybookCard
-                pages={message.pages || []}
-                index={message.index || 0}
-              />
-            </div>
+        <div className="absolute bottom-80 left-1/2 transform -translate-x-1/2 z-20" key={message.id}>
+          <div className="max-w-sm w-full">
+            <FlippableStorybookCard
+              pages={message.pages || []}
+              index={message.index || 0}
+            />
           </div>
         </div>
       );
