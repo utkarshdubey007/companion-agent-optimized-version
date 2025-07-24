@@ -464,7 +464,7 @@ export default function Index() {
       } else if (response && response.data) {
         // Even if result_code is not 1, use the data if available
         setChallenges(response.data);
-        console.log("⚠�� Challenges loaded with warning:", response.error_info);
+        console.log("⚠️ Challenges loaded with warning:", response.error_info);
       } else {
         // Fallback to empty array if no data
         setChallenges([]);
@@ -758,6 +758,8 @@ export default function Index() {
 
       // Also fetch creations from API
       fetchCreationsFromAPI();
+      // Trigger OpenAI API call
+      callOpenAIChat("create");
     } else if (itemAlt === "Reflect") {
       console.log("Reflect icon clicked - fetching creations from API");
       // Show thoughtful reaction
