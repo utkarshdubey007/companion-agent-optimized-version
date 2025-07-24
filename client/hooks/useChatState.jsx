@@ -296,6 +296,9 @@ export function useChatState() {
     handleSendMessage,
     handleAddAttachment,
     handleCompanionSelect,
+    handleShareCreation,
+    handleCreationTitleSubmit,
+    handleCreationDescriptionSubmit,
     setIsAIThinking,
     setSelectedCompanion,
   };
