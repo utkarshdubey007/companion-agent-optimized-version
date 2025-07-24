@@ -810,7 +810,7 @@ export default function Index() {
 
     // Show excited reaction when companion is selected
     setCompanionState("reacting");
-    setCompanionEmotions(["🌟", "✨", "💫"]);
+    setCompanionEmotions(["🌟", "✨", "��"]);
     setTimeout(() => {
       setCompanionState("idle");
       setCompanionEmotions([]);
@@ -873,23 +873,8 @@ export default function Index() {
     }
   };
 
-  // Handler for creation sharing flow
-  const handleCreationSharing = (images) => {
-    console.log("Starting creation sharing flow with images:", images);
-    setCreationImages(images);
-    setCreationSharingStep("title");
-
-    // Add AI message asking for title
-    const titleRequest = {
-      id: Date.now().toString(),
-      type: "text",
-      sender: "AI",
-      content:
-        "Great! Now let's give it a name. Tell me the name of your creation.",
-      timestamp: new Date(),
-    };
-    setChatMessages((prev) => [...prev, titleRequest]);
-  };
+  // Handler for creation sharing flow - now uses the useChatState hook function
+  // The handleShareCreation from useChatState handles the complete flow
 
   const handleChallengeSelect = (challenge) => {
     console.log("Challenge selected:", challenge);
