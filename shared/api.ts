@@ -218,6 +218,7 @@ export interface TaleTreeChatAnswer {
 }
 
 export interface TaleTreeChatResponse {
+  conversation_id: string;
   outputs: {
     answer: TaleTreeChatAnswer;
   };
