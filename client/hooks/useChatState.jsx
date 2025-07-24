@@ -151,6 +151,9 @@ export function useChatState() {
   };
 
   const handleCreationTitleSubmit = (title) => {
+    // Store title for later API call
+    setCreationTitle(title);
+
     // Add kid's title response
     const titleMessage = {
       id: Date.now().toString(),
