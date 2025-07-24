@@ -66,37 +66,52 @@ export function AITextMessage({
             </div>
 
             {/* Header Section - Greeting/Title */}
-            <div className="relative px-4 py-3">
-              <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
-                {headerTitle}
-              </h3>
-            </div>
+            {isSectionVisible(0) && (
+              <div className="relative px-4 py-3">
+                <h3 className="text-white font-bold text-base leading-tight drop-shadow-sm">
+                  {enableTyping ? getDisplayText(0) : headerTitle}
+                  {enableTyping && currentSectionIndex === 0 && !isSectionComplete(0) && (
+                    <span className="animate-pulse ml-1">|</span>
+                  )}
+                </h3>
+              </div>
+            )}
 
             {/* Body Section - Main Content */}
-            <div className="relative px-4 py-2">
-              <div
-                className="text-white leading-relaxed drop-shadow-sm font-normal"
-                style={{
-                  fontSize: "14px",
-                  lineHeight: "1.4",
-                }}
-              >
-                {renderContent(messageContent)}
+            {isSectionVisible(1) && (
+              <div className="relative px-4 py-2">
+                <div
+                  className="text-white leading-relaxed drop-shadow-sm font-normal"
+                  style={{
+                    fontSize: "14px",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  {enableTyping ? renderContent(getDisplayText(1)) : renderContent(messageContent)}
+                  {enableTyping && currentSectionIndex === 1 && !isSectionComplete(1) && (
+                    <span className="animate-pulse ml-1">|</span>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Footer Section - Supportive Line */}
-            <div className="relative px-4 py-3">
-              <div
-                className="text-white/95 text-sm font-medium leading-tight"
-                style={{
-                  textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
-                  fontSize: "13px",
-                }}
-              >
-                {footerTip}
+            {isSectionVisible(2) && (
+              <div className="relative px-4 py-3">
+                <div
+                  className="text-white/95 text-sm font-medium leading-tight"
+                  style={{
+                    textShadow: "0 0 8px rgba(255, 255, 255, 0.4)",
+                    fontSize: "13px",
+                  }}
+                >
+                  {enableTyping ? getDisplayText(2) : footerTip}
+                  {enableTyping && currentSectionIndex === 2 && !isSectionComplete(2) && (
+                    <span className="animate-pulse ml-1">|</span>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Action Buttons */}
             <div className="relative px-4 py-3 border-t border-white/10">
