@@ -122,6 +122,7 @@ export function useChatState() {
 
   const handleShareCreation = (images) => {
     // Store images for later API call
+    console.log('🎨 Storing creation images:', images.length, 'images');
     setCreationImages(images);
 
     // Create a display message for the shared creation
