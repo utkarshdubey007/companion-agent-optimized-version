@@ -11,6 +11,8 @@ export function DualSidebar({
   toggleTopSidebar,
   toggleBottomSidebar,
   onMenuItemClick,
+  activeAction = null,
+  isApiLoading = false,
   moodIconActivated = false,
   selectedMood = null,
   showMoodPicker = false,
