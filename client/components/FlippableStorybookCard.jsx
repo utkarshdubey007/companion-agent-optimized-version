@@ -209,7 +209,7 @@ const StorybookPage = ({
                     <img
                       src={imageUrl}
                       alt="A magical illustration"
-                      className="w-full h-32 object-cover rounded"
+                      className="w-full h-24 object-cover rounded"
                       style={{
                         filter:
                           "contrast(1.1) saturate(1.2) brightness(1.05) hue-rotate(1deg)",
