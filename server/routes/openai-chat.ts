@@ -155,6 +155,7 @@ export async function handleOpenAIChat(req: Request, res: Response) {
     console.error("Error in handleOpenAIChat:", error);
     res.status(500).json({
       error: "Internal server error",
+      conversation_id: `error-${Date.now()}`,
       outputs: {
         answer: {
           action: "imagine",
