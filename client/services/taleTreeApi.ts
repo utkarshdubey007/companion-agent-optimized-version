@@ -7,6 +7,31 @@ import { TaleTreeChatRequest, TaleTreeChatResponse } from "@shared/api";
 export class TaleTreeApiService {
   private static readonly API_BASE_URL = "http://localhost:8000";
   private static readonly CHAT_ENDPOINT = "/api/v3/open-ai/chat";
+  private static readonly CONVERSATION_KEY = "taletree_conversation_id";
+
+  /**
+   * Get conversation ID from localStorage
+   */
+  static getStoredConversationId(): string | null {
+    try {
+      return localStorage.getItem(this.CONVERSATION_KEY);
+    } catch (error) {
+      console.warn("Failed to read from localStorage:", error);
+      return null;
+    }
+  }
+
+  /**
+   * Save conversation ID to localStorage
+   */
+  static saveConversationId(conversationId: string): void {
+    try {
+      localStorage.setItem(this.CONVERSATION_KEY, conversationId);
+      console.log("💾 Saved conversation_id to localStorage:", conversationId);
+    } catch (error) {
+      console.warn("Failed to save to localStorage:", error);
+    }
+  }
 
   /**
    * Send a chat request to TaleTree AI
@@ -18,7 +43,7 @@ export class TaleTreeApiService {
   ): Promise<TaleTreeChatResponse> {
     try {
       console.log("🚀 Sending TaleTree chat request:", request);
-      
+
       const response = await fetch(
         `${this.API_BASE_URL}${this.CHAT_ENDPOINT}`,
         {
@@ -39,6 +64,12 @@ export class TaleTreeApiService {
 
       const data = await response.json();
       console.log("✅ TaleTree chat response received:", data);
+
+      // Save conversation_id to localStorage if present
+      if (data.conversation_id) {
+        this.saveConversationId(data.conversation_id);
+      }
+
       return data;
     } catch (error) {
       console.error("❌ Error in TaleTree chat request:", error);
@@ -48,77 +79,38 @@ export class TaleTreeApiService {
 
   /**
    * Initialize chat on page load
-   * @param user - Username
-   * @param conversationId - Conversation ID
    * @returns Promise<TaleTreeChatResponse>
    */
-  static async initializeChat(
-    user: string = "oliver",
-    conversationId: string = "a4490c53-de8f-484d-91d1-4cdd302dafca",
-  ): Promise<TaleTreeChatResponse> {
+  static async initializeChat(): Promise<TaleTreeChatResponse> {
     const initRequest: TaleTreeChatRequest = {
-      query: "We should continue where we left off?",
-      user,
-      conversation_id: conversationId,
-      inputs: {
-        username: user,
-        user_id: 2404,
-        companion: "rushmore",
-        birthdate: "2018-04-29",
-        accepted_challenge_count: 3,
-        challenge_id: null,
-        action: "imagine",
-        emotion: null,
-        branches:
-          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
-        challenge_details: null,
-      },
-      files: null,
+      conversation_id: null,
+      query: "hi",
     };
 
     return this.sendChatMessage(initRequest);
   }
 
   /**
-   * Send chat message with specific action
-   * @param action - The action to trigger
-   * @param user - Username
-   * @param conversationId - Conversation ID
+   * Send chat message with specific query
+   * @param query - The message query
    * @returns Promise<TaleTreeChatResponse>
    */
-  static async sendActionMessage(
-    action: string,
-    user: string = "oliver",
-    conversationId: string = "a4490c53-de8f-484d-91d1-4cdd302dafca",
-  ): Promise<TaleTreeChatResponse> {
-    const actionRequest: TaleTreeChatRequest = {
-      query: `Let's ${action}!`,
-      user,
+  static async sendMessage(query: string): Promise<TaleTreeChatResponse> {
+    const conversationId = this.getStoredConversationId();
+
+    const request: TaleTreeChatRequest = {
       conversation_id: conversationId,
-      inputs: {
-        username: user,
-        user_id: 2404,
-        companion: "rushmore",
-        birthdate: "2018-04-29",
-        accepted_challenge_count: 3,
-        challenge_id: null,
-        action,
-        emotion: null,
-        branches:
-          "These are my current interest branches: Anime, Kindness, Family, Monsters, Animals, Food",
-        challenge_details: null,
-      },
-      files: null,
+      query,
     };
 
-    return this.sendChatMessage(actionRequest);
+    return this.sendChatMessage(request);
   }
 }
 
 /**
- * Hook-like function for easier usage in components
+ * Hook-like functions for easier usage in components
  */
 export const initializeTaleTreeChat = () => TaleTreeApiService.initializeChat();
 
-export const sendTaleTreeAction = (action: string) =>
-  TaleTreeApiService.sendActionMessage(action);
+export const sendTaleTreeMessage = (query: string) =>
+  TaleTreeApiService.sendMessage(query);
