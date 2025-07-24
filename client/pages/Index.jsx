@@ -268,18 +268,28 @@ export default function Index() {
     setTagsError(null);
 
     try {
+      console.log("📥 Loading user tags...");
       const response = await fetchCurrentUserTags();
+      console.log("📥 Tags response received:", response);
 
-      if (response.result_code === 1) {
+      if (response && response.result_code === 1) {
         setTags(response.data);
-        console.log("Tags loaded successfully:", response.data);
+        console.log("✅ Tags loaded successfully:", response.data);
+      } else if (response && response.data) {
+        // Even if result_code is not 1, use the data if available
+        setTags(response.data);
+        console.log("⚠️ Tags loaded with warning:", response.error_info);
       } else {
-        setTagsError(response.error_info || "Failed to load tags");
-        console.error("Tags API error:", response.error_info);
+        // Fallback to empty array if no data
+        setTags([]);
+        console.warn("⚠️ No tags data available, using empty array");
       }
     } catch (error) {
-      setTagsError(error.message || "Failed to fetch tags");
-      console.error("Tags fetch error:", error);
+      console.error("❌ Tags fetch error:", error);
+      // Don't set error state since the service provides fallback data
+      // Just use empty tags array as fallback
+      setTags([]);
+      console.log("🔄 Using empty tags array as fallback");
     } finally {
       setTagsLoading(false);
     }
