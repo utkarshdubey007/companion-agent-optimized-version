@@ -365,7 +365,19 @@ export function useChatState() {
       formData.append('description', description);
       formData.append('user_id', '2404'); // Dependent ID as mentioned
 
-      console.log('FormData prepared, making API call...');
+      // Debug FormData contents
+      console.log('FormData prepared with:');
+      console.log('- Title:', title);
+      console.log('- Description:', description);
+      console.log('- User ID: 2404');
+      console.log('- Number of files:', images.length);
+
+      // Log FormData entries for debugging
+      for (let [key, value] of formData.entries()) {
+        console.log(`FormData entry: ${key} =`, value instanceof File ? `File(${value.name}, ${value.size}b, ${value.type})` : value);
+      }
+
+      console.log('Making API call...');
 
       const response = await fetch('/api/v2/creations_media', {
         method: 'POST',
