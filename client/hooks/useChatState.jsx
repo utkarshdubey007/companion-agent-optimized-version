@@ -336,6 +336,10 @@ export function useChatState() {
 
       const response = await fetch('/api/v2/creations_media', {
         method: 'POST',
+        headers: {
+          'Authorization': 'Bearer dummy-token', // Add auth header
+          'X-Session-ID': 'jjyww1tp4zv8gwg1l9xvf0mckgwwcd3t', // Add session header
+        },
         body: formData,
       });
 
