@@ -45,7 +45,7 @@ export function createServer() {
 
   // Creations API routes
   app.get("/api/v2/creations", getCreations);
-  app.post("/api/v2/creations_media", uploadCreationMedia);
+  app.post("/api/v2/creations_media", upload.array('uploads', 10), uploadCreationMedia);
 
   // Authentication test route
   app.get("/api/auth-test", testAuthentication);
