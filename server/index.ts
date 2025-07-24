@@ -7,6 +7,7 @@ import { getDependentChallengesWorking } from "./routes/challenges";
 import { getCreations } from "./routes/creations";
 import { uploadCreationMedia } from "./routes/creations-media";
 import { testAuthentication } from "./routes/auth-test";
+import { handleOpenAIChat } from "./routes/openai-chat";
 
 export function createServer() {
   const app = express();
