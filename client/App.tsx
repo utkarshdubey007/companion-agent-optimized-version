@@ -39,6 +39,7 @@ const App = () => (
             path="/new-magical-portal"
             element={<MagicalPortalNewDemo />}
           />
+          <Route path="/taletree" element={<TaleTreeLanding />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
