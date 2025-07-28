@@ -17,6 +17,7 @@ import ExactPortalDemo from "./pages/ExactPortalDemo";
 import VerticalArchDemo from "./pages/VerticalArchDemo";
 import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 import TaleTreeLanding from "./pages/TaleTreeLanding";
+import TaleTreeExact from "./pages/TaleTreeExact";
 
 const queryClient = new QueryClient();
 
