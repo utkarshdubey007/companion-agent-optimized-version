@@ -25,7 +25,7 @@ const HeroSection = () => {
       />
 
       {/* SimplifiedChatContainer with companion positioned on ground */}
-      <div className="relative z-10 w-full h-full flex items-end justify-center pb-8">
+      <div className="relative z-10 w-full h-full overflow-visible">
         <SimplifiedChatContainer
           messages={sampleMessages}
           className="w-full h-full"
