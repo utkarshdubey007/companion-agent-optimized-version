@@ -1,4 +1,3 @@
-import SignupNavigation from "@/components/signup/SignupNavigation";
 import DecorativeStars from "@/components/signup/DecorativeStars";
 import HeroSection from "@/components/signup/HeroSection";
 import CreativitySection from "@/components/signup/CreativitySection";
@@ -11,10 +10,7 @@ import SignupFooter from "@/components/signup/SignupFooter";
 
 const Signup = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-800 overflow-x-hidden">
-      {/* Navigation Header */}
-      <SignupNavigation />
-
+    <div className="min-h-screen overflow-x-hidden">
       {/* Stars/Decorative Elements */}
       <DecorativeStars />
 
