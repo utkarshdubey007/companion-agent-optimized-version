@@ -1,8 +1,17 @@
-import BunnyCharacter from "./BunnyCharacter";
-import SpeechBubble from "./SpeechBubble";
-import SearchSection from "./SearchSection";
+import { SimplifiedChatContainer } from "@/components/SimplifiedChatContainer";
 
 const HeroSection = () => {
+  // Sample messages for the chat container
+  const sampleMessages = [
+    {
+      id: "1",
+      type: "text" as const,
+      sender: "AI" as const,
+      content: "It's time to start. Share the beautiful, magical stories and stories.",
+      timestamp: new Date(),
+    }
+  ];
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[70vh] px-4">
       {/* Background Landscape */}
@@ -15,14 +24,19 @@ const HeroSection = () => {
         <div className="w-28 h-20 bg-green-400 rounded-t-full"></div>
       </div>
 
-      {/* Character - Green Bunny */}
-      <BunnyCharacter />
+      {/* SimplifiedChatContainer replacing bunny and search */}
+      <div className="relative z-10 w-full h-96">
+        <SimplifiedChatContainer
+          messages={sampleMessages}
+          className="w-full h-full"
+          isAIThinking={false}
+        />
+      </div>
 
-      {/* Speech Bubble */}
-      <SpeechBubble message="It's time to start. Share the beautiful, magical stories and stories." />
-
-      {/* Search Input and Support Text */}
-      <SearchSection />
+      {/* Support Text */}
+      <p className="relative z-10 text-white/80 text-sm mt-4">
+        <span className="font-semibold">ADULTS</span> can get Support
+      </p>
     </div>
   );
 };
