@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { SimplifiedChatContainer } from "@/components/SimplifiedChatContainer";
+import SearchChatMessage from "./SearchChatMessage";
 
 const HeroSection = () => {
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
+
   // Sample messages for the chat container
   const sampleMessages = [
     {
@@ -11,6 +16,18 @@ const HeroSection = () => {
       timestamp: new Date(),
     }
   ];
+
+  const handleSearch = (query: string) => {
+    console.log("Searching for:", query);
+    setHasSearched(true);
+    // Simulate search results
+    const mockResults = [
+      `Creative stories about ${query}`,
+      `Educational content for ${query}`,
+      `Interactive activities with ${query}`,
+    ];
+    setSearchResults(mockResults);
+  };
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[80vh] px-4 overflow-hidden">
@@ -32,6 +49,33 @@ const HeroSection = () => {
           isAIThinking={false}
         />
       </div>
+
+      {/* Search using ChatMessage - positioned at bottom */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
+        <SearchChatMessage
+          onSearch={handleSearch}
+          placeholder="Ask me anything..."
+        />
+      </div>
+
+      {/* Search Results */}
+      {hasSearched && searchResults.length > 0 && (
+        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-md px-4">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/20">
+            <h4 className="text-sm font-bold text-purple-700 mb-2">Search Results:</h4>
+            <ul className="space-y-2">
+              {searchResults.map((result, index) => (
+                <li
+                  key={index}
+                  className="text-sm text-gray-700 p-2 bg-purple-50 rounded-lg hover:bg-purple-100 cursor-pointer transition-colors"
+                >
+                  {result}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
