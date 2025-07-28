@@ -13,7 +13,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[70vh] px-4">
+    <div className="relative flex flex-col items-center justify-center min-h-[80vh] px-4 overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
@@ -25,7 +25,7 @@ const HeroSection = () => {
       />
 
       {/* SimplifiedChatContainer with companion positioned on ground */}
-      <div className="relative z-10 w-full h-full overflow-visible">
+      <div className="relative z-10 w-full h-full">
         <SimplifiedChatContainer
           messages={sampleMessages}
           className="w-full h-full"
