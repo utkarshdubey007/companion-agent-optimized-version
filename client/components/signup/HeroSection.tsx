@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SignupChatContainer } from "./SignupChatContainer";
 import { SignupChatInput } from "./SignupChatInput";
 import { HeaderActions } from "./HeaderActions";
+import { SignupDualSidebar } from "./SignupDualSidebar";
 
 const HeroSection = () => {
   const [chatMessages, setChatMessages] = useState<any[]>([
