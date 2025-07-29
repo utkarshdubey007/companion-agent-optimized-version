@@ -21,7 +21,7 @@ export function HeaderActions() {
             <Search className="w-5 h-5 text-white" />
           </button>
         ) : (
-          <div className="bg-purple-600 backdrop-blur-sm border border-purple-500 rounded-full px-4 py-2 min-w-[240px] transition-all duration-300">
+          <div className="bg-transparent backdrop-blur-sm border border-white/40 rounded-full px-4 py-2 min-w-[240px] transition-all duration-300">
             <div className="flex items-center gap-2">
               <Search className="w-4 h-4 text-white" />
               <input
