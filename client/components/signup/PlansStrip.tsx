@@ -21,7 +21,10 @@ const PlansStrip = ({ onShowPlans }: PlansStripProps) => {
 
           {/* Right Side - See Plans Button */}
           <div className="flex-shrink-0">
-            <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-2 px-6 rounded-full transition-all duration-200 shadow-sm hover:shadow-md text-sm">
+            <button
+              onClick={onShowPlans}
+              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium py-2 px-6 rounded-full transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+            >
               See plans
             </button>
           </div>
