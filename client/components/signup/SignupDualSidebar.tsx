@@ -24,13 +24,7 @@ export function SignupDualSidebar({
       delay: 100
     }
   ],
-  bottomMenuItems = [
-    {
-      src: selectedCompanion.image,
-      alt: selectedCompanion.name,
-      delay: 100
-    }
-  ],
+  bottomMenuItems,
   onMenuItemClick,
 }: SignupDualSidebarProps) {
   const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(false);
