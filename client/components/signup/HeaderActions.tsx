@@ -37,43 +37,45 @@ export function HeaderActions() {
       </div>
 
       {/* Login Component */}
-      <div 
-        className="relative"
-        onMouseEnter={() => setIsLoginMenuOpen(true)}
-        onMouseLeave={() => setIsLoginMenuOpen(false)}
-      >
-        <button className="border border-white/40 text-white px-4 py-2 rounded-full font-medium text-sm hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-2">
-          <User className="w-4 h-4" />
-          Login
-        </button>
+      <div className="relative">
+        <div
+          onMouseEnter={() => setIsLoginMenuOpen(true)}
+          onMouseLeave={() => setIsLoginMenuOpen(false)}
+          className="relative"
+        >
+          <button className="border border-white/40 text-white px-4 py-2 rounded-full font-medium text-sm hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-2">
+            <User className="w-4 h-4" />
+            Login
+          </button>
 
-        {/* Login Dropdown Menu */}
-        {isLoginMenuOpen && (
-          <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
-            <div className="py-2">
-              <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
-                </div>
-                <span className="text-gray-800 font-medium text-sm">Kids</span>
-              </button>
-              
-              <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
-                </div>
-                <span className="text-gray-800 font-medium text-sm">Guardians</span>
-              </button>
-              
-              <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
-                </div>
-                <span className="text-gray-800 font-medium text-sm">Educator</span>
-              </button>
+          {/* Login Dropdown Menu */}
+          {isLoginMenuOpen && (
+            <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
+              <div className="py-2">
+                <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <span className="text-gray-800 font-medium text-sm">Kids</span>
+                </button>
+
+                <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <span className="text-gray-800 font-medium text-sm">Guardians</span>
+                </button>
+
+                <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <span className="text-gray-800 font-medium text-sm">Educator</span>
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
