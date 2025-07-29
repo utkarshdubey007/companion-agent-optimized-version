@@ -106,8 +106,9 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     >
       {/* Modal Content */}
       <div
-        className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col p-4"
+        className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col p-4 relative z-[99999]"
         onClick={(e) => e.stopPropagation()}
+        style={{ zIndex: 99999 }}
       >
           {/* Header */}
           <div className="flex justify-center items-center mb-6">
