@@ -31,7 +31,7 @@ const Signup = () => {
       {/* Content Sections - Below Hero */}
       <div className="relative z-10 bg-white">
         {/* Plans Strip - Inside content sections at top */}
-        <PlansStrip />
+        <PlansStrip onShowPlans={() => setShowPlans(true)} />
         <CreativitySection />
         <IntroducingSection />
         <LatestNewsSection />
