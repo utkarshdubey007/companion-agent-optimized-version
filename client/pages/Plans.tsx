@@ -8,92 +8,85 @@ const Plans = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 mr-3">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
-                  alt="TaleTree Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-xl font-semibold text-gray-900">
-                taleTree
-              </span>
-            </div>
-
-            {/* Search and Login */}
-            <div className="flex items-center gap-4">
-              {/* Search Component */}
-              <div className="relative">
-                <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600 transition-all duration-300 cursor-pointer group">
-                  <Search className="w-5 h-5 text-gray-600 group-hover:text-blue-600" />
-                </button>
-              </div>
-
-              {/* Login Component - Same as Signup */}
-              <div
-                className="relative"
-                onMouseEnter={() => setIsLoginMenuOpen(true)}
-                onMouseLeave={() => setIsLoginMenuOpen(false)}
-              >
-                <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-50 hover:text-gray-800 transition-all duration-300 flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  Login
-                </button>
-
-                {/* Login Dropdown Menu - Exact same as Signup */}
-                {isLoginMenuOpen && (
-                  <div className="absolute top-full right-0 pt-2">
-                    {/* Invisible bridge to prevent menu from closing */}
-                    <div className="absolute top-0 right-0 w-full h-2 bg-transparent"></div>
-                    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
-                      <div className="py-2">
-                        <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                          <img
-                            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800"
-                            alt="Kids"
-                            className="w-6 h-6 rounded-full object-cover"
-                          />
-                          <span className="text-gray-800 font-medium text-sm">
-                            Kids
-                          </span>
-                        </button>
-
-                        <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                          <img
-                            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800"
-                            alt="Parent"
-                            className="w-6 h-6 rounded-full object-cover"
-                          />
-                          <span className="text-gray-800 font-medium text-sm">
-                            Guardians
-                          </span>
-                        </button>
-
-                        <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                          <img
-                            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800"
-                            alt="Educator"
-                            className="w-6 h-6 rounded-full object-cover"
-                          />
-                          <span className="text-gray-800 font-medium text-sm">
-                            Educator
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+      {/* TaleTree Logo - Absolutely positioned like signup */}
+      <div className="absolute top-6 left-6 z-50 flex items-center">
+        <div className="w-8 h-8 mr-3">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
+            alt="TaleTree Logo"
+            className="w-full h-full object-contain"
+          />
         </div>
-      </header>
+        <span className="text-xl font-semibold text-gray-900">
+          taleTree
+        </span>
+      </div>
+
+      {/* Search and Login - Absolutely positioned like signup */}
+      <div className="absolute top-6 right-6 z-50 flex items-center gap-4">
+        {/* Search Component */}
+        <div className="relative">
+          <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-blue-50 hover:border-blue-400 hover:text-blue-600 transition-all duration-300 cursor-pointer group">
+            <Search className="w-5 h-5 text-gray-600 group-hover:text-blue-600" />
+          </button>
+        </div>
+
+        {/* Login Component - Same as Signup */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsLoginMenuOpen(true)}
+          onMouseLeave={() => setIsLoginMenuOpen(false)}
+        >
+          <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-50 hover:text-gray-800 transition-all duration-300 flex items-center gap-2">
+            <User className="w-4 h-4" />
+            Login
+          </button>
+
+          {/* Login Dropdown Menu - Exact same as Signup */}
+          {isLoginMenuOpen && (
+            <div className="absolute top-full right-0 pt-2">
+              {/* Invisible bridge to prevent menu from closing */}
+              <div className="absolute top-0 right-0 w-full h-2 bg-transparent"></div>
+              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
+                <div className="py-2">
+                  <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800"
+                      alt="Kids"
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span className="text-gray-800 font-medium text-sm">
+                      Kids
+                    </span>
+                  </button>
+
+                  <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800"
+                      alt="Parent"
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span className="text-gray-800 font-medium text-sm">
+                      Guardians
+                    </span>
+                  </button>
+
+                  <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800"
+                      alt="Educator"
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span className="text-gray-800 font-medium text-sm">
+                      Educator
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
