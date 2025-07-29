@@ -38,7 +38,7 @@ export function HeaderActions() {
         onMouseEnter={() => setIsLoginMenuOpen(true)}
         onMouseLeave={() => setIsLoginMenuOpen(false)}
       >
-        <button className="bg-white text-purple-800 px-4 py-2 rounded-full font-medium text-sm hover:bg-white/90 transition-all duration-300 flex items-center gap-2">
+        <button className="border border-white/40 text-white px-4 py-2 rounded-full font-medium text-sm hover:bg-white/10 transition-all duration-300 flex items-center gap-2">
           <User className="w-4 h-4" />
           Login
         </button>
