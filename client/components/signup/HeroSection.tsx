@@ -53,6 +53,9 @@ const HeroSection = () => {
         }}
       />
 
+      {/* Dual Sidebar */}
+      <SignupDualSidebar />
+
       {/* Header Actions - Search and Login */}
       <HeaderActions />
 
