@@ -32,6 +32,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-mui" element={<SignupMui />} />
           <Route path="/space-companion" element={<SpaceCompanionDemo />} />
           <Route path="/magical-portal" element={<MagicalPortalDemo />} />
           <Route path="/arch-portal" element={<ArchPortalDemo />} />
