@@ -19,7 +19,6 @@ import VerticalArchDemo from "./pages/VerticalArchDemo";
 import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 import TaleTreeLanding from "./pages/TaleTreeLanding";
 import TaleTreeExact from "./pages/TaleTreeExact";
-import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -45,7 +44,6 @@ const App = () => (
           />
           <Route path="/taletree" element={<TaleTreeLanding />} />
           <Route path="/taletree-exact" element={<TaleTreeExact />} />
-          <Route path="/signup" element={<Signup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
