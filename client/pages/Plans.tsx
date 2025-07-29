@@ -203,7 +203,7 @@ const Plans = () => {
           </div>
 
           {/* Villagers Plan */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative hover:border-purple-500 hover:border-2 transition-all duration-300 cursor-pointer">
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-purple-600 mb-2">
                 Villagers
