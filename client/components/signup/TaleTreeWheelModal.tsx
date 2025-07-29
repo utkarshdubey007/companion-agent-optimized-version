@@ -18,8 +18,6 @@ interface TaleTreeWheelModalProps {
 
 export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps) {
   const [hoveredAction, setHoveredAction] = useState<string | null>(null);
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Calculate circular positions using trigonometry
   const radius = 150; // Radius of the circle
