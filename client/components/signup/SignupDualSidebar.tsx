@@ -25,14 +25,9 @@ export function SignupDualSidebar({
   ],
   bottomMenuItems = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F5a2b8c3d4e5f6789012345678901234a?format=webp&width=800",
-      alt: "Settings",
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F39f348f7483547d18b45c8bfcdc8ad42?format=webp&width=800",
+      alt: "Selected Companion",
       delay: 100
-    },
-    {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F8c7a6d5b4e3f2a109876543210fedcba?format=webp&width=800",
-      alt: "Help",
-      delay: 200
     }
   ],
   onMenuItemClick,
