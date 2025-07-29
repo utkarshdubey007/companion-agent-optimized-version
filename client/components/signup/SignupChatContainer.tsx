@@ -94,9 +94,9 @@ export function SignupChatContainer({
 
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
-      {/* Fixed Companion Character on left side above chat input and on ground */}
-      <div className="absolute bottom-24 left-1/4 transform -translate-x-1/2 z-10 hover:scale-105 transition-transform duration-300">
-        <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
+      {/* Fixed Companion Character on left side above chat input and on ground - responsive */}
+      <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 left-1/4 transform -translate-x-1/2 z-10 hover:scale-105 transition-transform duration-300">
+        <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
           {/* Magical glow effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-400/20 blur-xl animate-pulse"></div>
           {animationData ? (
