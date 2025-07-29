@@ -156,7 +156,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
                     />
                   </div>
                   {/* Label */}
-                  <span className="text-white text-sm font-medium mt-2 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                  <span className={`text-white text-sm font-medium mt-2 ${action.color} px-3 py-1 rounded-full`}>
                     {action.label}
                   </span>
                 </div>
