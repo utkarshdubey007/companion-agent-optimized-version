@@ -21,15 +21,13 @@ const Plans = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-semibold text-gray-900">
-            taleTree
-          </span>
+          <span className="text-xl font-semibold text-gray-900">taleTree</span>
         </div>
 
         {/* Back Button */}
         <div className="relative">
           <button
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate("/signup")}
             onMouseEnter={() => setShowBackTooltip(true)}
             onMouseLeave={() => setShowBackTooltip(false)}
             className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-purple-50 hover:border-purple-400 hover:text-purple-600 transition-all duration-300 cursor-pointer group"
