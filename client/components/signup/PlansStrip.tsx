@@ -2,9 +2,8 @@ import React from 'react';
 
 const PlansStrip = () => {
   return (
-    <div className="relative z-10 bg-gray-50 border-t border-gray-200">
-      {/* Plans Strip Container */}
-      <div className="py-3 px-6 mx-auto max-w-6xl">
+    <div className="py-4 px-6 mx-auto max-w-6xl">
+      <div className="bg-gray-50 border border-gray-200 rounded-lg py-3 px-6">
         <div className="flex items-center justify-between">
           {/* Left Side - New Badge + Text */}
           <div className="flex items-center gap-3">
