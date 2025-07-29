@@ -215,6 +215,12 @@ export function SignupDualSidebar({
           </Button>
         </div>
       </div>
+
+      {/* TaleTree Wheel Modal */}
+      <TaleTreeWheelModal
+        isOpen={isWheelModalOpen}
+        onClose={() => setIsWheelModalOpen(false)}
+      />
     </div>
   );
 }
