@@ -53,6 +53,45 @@ export function SignupDualSidebar({
     setBottomSidebarCollapsed(!bottomSidebarCollapsed);
   };
 
+  // Companion mapping
+  const companionMapping = {
+    letsgo: {
+      name: "Letsgo",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800"
+    },
+    rushmore: {
+      name: "Rushmore",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F6b282f7859fa4a96aab4f5d21fe7d27d?format=webp&width=800"
+    },
+    uni: {
+      name: "Uni",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Ff6c3edc98a444c79ba1188aeab1c17f6?format=webp&width=800"
+    },
+    cody: {
+      name: "Cody",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F067d19c68a9149c6a32a29cf3f5ebb0d?format=webp&width=800"
+    },
+    doma: {
+      name: "Doma",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F12511fbec0c84354b93ec8ca250c92b6?format=webp&width=800"
+    },
+    rooty: {
+      name: "Rooty",
+      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fc2faa21a880b45d9be3c40dddb0cd20f?format=webp&width=800"
+    }
+  };
+
+  const handleCompanionSelect = (companionId: string) => {
+    const companion = companionMapping[companionId as keyof typeof companionMapping];
+    if (companion) {
+      setSelectedCompanion({
+        id: companionId,
+        name: companion.name,
+        image: companion.image
+      });
+    }
+  };
+
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
       {/* Container with zero margin, aligned to left edge */}
