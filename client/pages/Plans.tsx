@@ -1,9 +1,11 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Check, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Plans = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,18 +24,32 @@ const Plans = () => {
               </span>
             </div>
 
-            {/* Login Button */}
+            {/* Search and Login */}
             <div className="flex items-center gap-4">
-              <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
+              {/* Search Component */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  type="text"
+                  placeholder="Search..."
+                  className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-full text-sm"
+                />
+              </div>
+              
+              {/* Login Button */}
+              <Button 
+                variant="outline" 
+                className="border border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-50 transition-colors duration-200"
+              >
                 Login
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
         {/* Page Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -141,9 +157,9 @@ const Plans = () => {
               </li>
             </ul>
 
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition-colors duration-200">
+            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition-colors duration-200">
               Get Seedlings
-            </button>
+            </Button>
           </div>
 
           {/* Villagers Plan */}
@@ -195,9 +211,9 @@ const Plans = () => {
               </li>
             </ul>
 
-            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-full transition-colors duration-200">
+            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-full transition-colors duration-200">
               Get Villagers
-            </button>
+            </Button>
           </div>
         </div>
       </main>
