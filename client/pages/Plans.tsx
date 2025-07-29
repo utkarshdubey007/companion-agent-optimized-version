@@ -103,7 +103,7 @@ const Plans = () => {
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Emeralites Plan */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative hover:border-purple-500 hover:border-2 transition-all duration-300 cursor-pointer">
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-cyan-600 mb-2">
                 Emeralites
