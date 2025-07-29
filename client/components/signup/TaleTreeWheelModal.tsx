@@ -27,7 +27,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
   const wheelActions: WheelAction[] = [
     {
       id: "imagine",
-      icon: "💡",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fbe8068e94c034f37b80ff496f9836079?format=webp&width=800",
       label: "Imagine",
       color: "bg-orange-500",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet vel lectus sed varius.",
@@ -38,7 +38,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     },
     {
       id: "play",
-      icon: "🎮",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F392f37f775f74478ab0ebdf2db3f8b18?format=webp&width=800",
       label: "Play",
       color: "bg-blue-500",
       description: "Engage in interactive storytelling and creative play activities.",
@@ -49,7 +49,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     },
     {
       id: "create",
-      icon: "✨",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F084deab3e0e14195a8bd0e2f6adf11a8?format=webp&width=800",
       label: "Create",
       color: "bg-cyan-500",
       description: "Build and craft your own stories and creative content.",
@@ -60,7 +60,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     },
     {
       id: "store",
-      icon: "📚",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Ff5ca235dac1145ad9e9f34e3ffb685b1?format=webp&width=800",
       label: "Store",
       color: "bg-green-500",
       description: "Save and organize your creative works and stories.",
@@ -71,7 +71,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     },
     {
       id: "reflect",
-      icon: "🧠",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F84bf40f92efe4b4ea397148088e0ce03?format=webp&width=800",
       label: "Reflect",
       color: "bg-purple-500",
       description: "Think about your learning journey and growth.",
@@ -82,7 +82,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     },
     {
       id: "reward",
-      icon: "❤️",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F2728d898d1bb4efabee72f00d281e7cf?format=webp&width=800",
       label: "Reward",
       color: "bg-pink-500",
       description: "Celebrate achievements and milestones in your journey.",
