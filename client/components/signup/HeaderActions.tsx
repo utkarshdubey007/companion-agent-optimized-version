@@ -5,27 +5,31 @@ export function HeaderActions() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
 
+  const handleSearchClick = () => {
+    setIsSearchExpanded(!isSearchExpanded);
+  };
+
   return (
     <div className="absolute top-6 right-6 z-50 flex items-center gap-4">
       {/* Search Component */}
-      <div 
-        className="relative"
-        onMouseEnter={() => setIsSearchExpanded(true)}
-        onMouseLeave={() => setIsSearchExpanded(false)}
-      >
+      <div className="relative">
         {!isSearchExpanded ? (
-          <button className="w-10 h-10 border border-white/40 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 cursor-pointer">
+          <button
+            onClick={handleSearchClick}
+            className="w-10 h-10 border border-white/40 rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 cursor-pointer"
+          >
             <Search className="w-5 h-5 text-white" />
           </button>
         ) : (
-          <div className="bg-purple-800/90 backdrop-blur-sm border border-purple-600/30 rounded-full px-4 py-2 min-w-[200px] transition-all duration-300">
+          <div className="bg-purple-600 backdrop-blur-sm border border-purple-500 rounded-full px-4 py-2 min-w-[240px] transition-all duration-300">
             <div className="flex items-center gap-2">
-              <Search className="w-4 h-4 text-white/80" />
-              <input 
+              <Search className="w-4 h-4 text-white" />
+              <input
                 type="text"
                 placeholder="Search TaleTree"
                 className="bg-transparent text-white placeholder-white/70 border-none outline-none flex-1 text-sm"
                 autoFocus
+                onBlur={() => setIsSearchExpanded(false)}
               />
             </div>
           </div>
