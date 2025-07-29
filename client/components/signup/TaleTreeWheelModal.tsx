@@ -99,23 +99,15 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Backdrop with hero background blurred */}
-      <div
-        className="absolute inset-0 bg-cover bg-center backdrop-blur-md"
-        style={{
-          backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fdb72aca99fd341bf810b2c50e7d6006a?format=webp&width=800')`,
-          filter: 'blur(8px)'
-        }}
-        onClick={onClose}
-      />
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/30" />
-
+    <div
+      className="fixed top-0 left-0 w-full h-full z-[60] flex items-center justify-center backdrop-blur-md bg-black/40"
+      onClick={onClose}
+    >
       {/* Modal Content */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
-        <div className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col">
+      <div
+        className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
           {/* Header */}
           <div className="flex justify-center items-center mb-6">
             <div className="flex items-center gap-3">
@@ -192,9 +184,8 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
                 </div>
               </div>
             )}
-          </div>
         </div>
-      </div>
+    </div>
     </div>
   );
 }
