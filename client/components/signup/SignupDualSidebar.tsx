@@ -38,6 +38,7 @@ export function SignupDualSidebar({
   const [showTopWaveEffect, setShowTopWaveEffect] = useState(true);
   const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(true);
   const [isWheelModalOpen, setIsWheelModalOpen] = useState(false);
+  const [isCompanionModalOpen, setIsCompanionModalOpen] = useState(false);
 
   const toggleTopSidebar = () => {
     setTopSidebarCollapsed(!topSidebarCollapsed);
