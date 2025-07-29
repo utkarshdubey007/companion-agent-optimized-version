@@ -1,0 +1,222 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+interface MenuItem {
+  src: string;
+  alt: string;
+  delay: number;
+}
+
+interface SignupDualSidebarProps {
+  topMenuItems?: MenuItem[];
+  bottomMenuItems?: MenuItem[];
+  onMenuItemClick?: (itemAlt: string, index: number) => void;
+}
+
+export function SignupDualSidebar({
+  topMenuItems = [
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F84c034c3c89947f78ee894fd36bda6a7?format=webp&width=800",
+      alt: "Adventure",
+      delay: 100
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F93b5b6d2e89c4bb59a80b993bd48c56b?format=webp&width=800",
+      alt: "Fantasy",
+      delay: 200
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F7c1e3f89a2b4456c97e2b8f3d5e9c7a4?format=webp&width=800",
+      alt: "Science",
+      delay: 300
+    }
+  ],
+  bottomMenuItems = [
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F5a2b8c3d4e5f6789012345678901234a?format=webp&width=800",
+      alt: "Settings",
+      delay: 100
+    },
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F8c7a6d5b4e3f2a109876543210fedcba?format=webp&width=800",
+      alt: "Help",
+      delay: 200
+    }
+  ],
+  onMenuItemClick,
+}: SignupDualSidebarProps) {
+  const [topSidebarCollapsed, setTopSidebarCollapsed] = useState(false);
+  const [bottomSidebarCollapsed, setBottomSidebarCollapsed] = useState(false);
+  const [showTopWaveEffect, setShowTopWaveEffect] = useState(true);
+  const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(true);
+
+  const toggleTopSidebar = () => {
+    setTopSidebarCollapsed(!topSidebarCollapsed);
+  };
+
+  const toggleBottomSidebar = () => {
+    setBottomSidebarCollapsed(!bottomSidebarCollapsed);
+  };
+
+  return (
+    <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
+      {/* Container with zero margin, aligned to left edge */}
+      <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden">
+        {/* Top Sidebar Section */}
+        <div className="flex items-center relative">
+          {/* Top Section Content */}
+          <div
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+            }`}
+          >
+            <div
+              className="bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl flex flex-col p-4"
+              style={{
+                borderRadius: "0 15px 15px 0",
+                boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
+                height: "auto",
+                maxHeight: "calc(60vh)",
+              }}
+            >
+              {/* Menu Items */}
+              <div className="overflow-y-auto hide-scrollbar">
+                <div className="flex flex-col items-center gap-3">
+                  {topMenuItems.map((item, index) => (
+                    <div
+                      key={item.alt}
+                      className="relative group"
+                      style={{
+                        animation: showTopWaveEffect
+                          ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
+                          : "none",
+                        transform: showTopWaveEffect
+                          ? "scale(1)"
+                          : "scale(0)",
+                      }}
+                    >
+                      <div
+                        className="w-12 h-12 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
+                        onClick={() => onMenuItemClick?.(item.alt, index)}
+                      >
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Tooltip */}
+                      {!topSidebarCollapsed && (
+                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1C2051] border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none">
+                          {item.alt}
+                          {/* Tooltip arrow */}
+                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Top Section Toggle Button */}
+          <Button
+            onClick={toggleTopSidebar}
+            className="w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 flex-shrink-0 z-10 transition-all duration-500 ease-in-out"
+            style={{
+              borderRadius: "0 15px 15px 0",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              marginLeft: topSidebarCollapsed ? "0" : "-8px",
+            }}
+          >
+            {topSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white transition-transform duration-300" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white transition-transform duration-300" />
+            )}
+          </Button>
+        </div>
+
+        {/* Bottom Sidebar Section */}
+        <div className="flex items-center relative">
+          {/* Bottom Section Content */}
+          <div
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              bottomSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+            }`}
+          >
+            <div
+              className="bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl flex flex-col p-3"
+              style={{
+                borderRadius: "0 15px 15px 0",
+                boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
+                height: "auto",
+                maxHeight: "calc(30vh)",
+              }}
+            >
+              {/* Menu Items */}
+              <div className="overflow-y-auto hide-scrollbar">
+                <div className="flex flex-col items-center gap-2">
+                  {bottomMenuItems.map((item, index) => (
+                    <div
+                      key={item.alt}
+                      className="relative group"
+                      style={{
+                        animation: showBottomWaveEffect
+                          ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
+                          : "none",
+                        transform: showBottomWaveEffect
+                          ? "scale(1)"
+                          : "scale(0)",
+                      }}
+                    >
+                      <div
+                        className="w-12 h-12 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
+                        onClick={() => onMenuItemClick?.(item.alt, index)}
+                      >
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Tooltip */}
+                      {!bottomSidebarCollapsed && (
+                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1C2051] border border-white/20 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-40 pointer-events-none">
+                          {item.alt}
+                          {/* Tooltip arrow */}
+                          <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-[#1C2051]"></div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Section Toggle Button */}
+          <Button
+            onClick={toggleBottomSidebar}
+            className="w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 flex-shrink-0 z-10 transition-all duration-500 ease-in-out"
+            style={{
+              borderRadius: "0 15px 15px 0",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              marginLeft: bottomSidebarCollapsed ? "0" : "-8px",
+            }}
+          >
+            {bottomSidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4 text-white transition-transform duration-300" />
+            ) : (
+              <ChevronLeft className="w-4 h-4 text-white transition-transform duration-300" />
+            )}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
