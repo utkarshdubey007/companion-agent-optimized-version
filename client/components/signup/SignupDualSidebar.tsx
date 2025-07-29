@@ -86,6 +86,15 @@ export function SignupDualSidebar({
     }
   };
 
+  // Dynamic bottom menu items based on selected companion
+  const dynamicBottomMenuItems = bottomMenuItems || [
+    {
+      src: selectedCompanion.image,
+      alt: selectedCompanion.name,
+      delay: 100
+    }
+  ];
+
   return (
     <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
       {/* Container with zero margin, aligned to left edge */}
