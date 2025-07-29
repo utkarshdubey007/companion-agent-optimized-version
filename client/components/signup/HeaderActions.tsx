@@ -55,23 +55,29 @@ export function HeaderActions() {
             <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
               <div className="py-2">
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
-                  </div>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800"
+                    alt="Kids"
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
                   <span className="text-gray-800 font-medium text-sm">Kids</span>
                 </button>
 
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
-                  </div>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800"
+                    alt="Parent"
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
                   <span className="text-gray-800 font-medium text-sm">Guardians</span>
                 </button>
 
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
-                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
-                  </div>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800"
+                    alt="Educator"
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
                   <span className="text-gray-800 font-medium text-sm">Educator</span>
                 </button>
               </div>
