@@ -19,7 +19,7 @@ interface SignupDualSidebarProps {
 export function SignupDualSidebar({
   topMenuItems = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F616e1bb5209e4aa1a9344292cfe45f71?format=webp&width=800",
+      src: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fcb34a17284254803ab9d0f3977ab5c38?format=webp&width=800",
       alt: "Menu",
       delay: 100
     }
