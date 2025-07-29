@@ -10,9 +10,10 @@ const HeroSection = () => {
       id: "1",
       type: "text" as const,
       sender: "AI" as const,
-      content: "It's time to start. Share the beautiful, magical stories and stories.",
+      content:
+        "It's time to start. Share the beautiful, magical stories and stories.",
       timestamp: new Date(),
-    }
+    },
   ]);
 
   const handleSendMessage = (message: string) => {
@@ -24,7 +25,7 @@ const HeroSection = () => {
       content: message,
       timestamp: new Date(),
     };
-    setChatMessages(prev => [...prev, userMessage]);
+    setChatMessages((prev) => [...prev, userMessage]);
 
     // Simulate AI response after a delay
     setTimeout(() => {
@@ -35,11 +36,9 @@ const HeroSection = () => {
         content: `Thanks for sharing: "${message}". Let's explore this together!`,
         timestamp: new Date(),
       };
-      setChatMessages(prev => [...prev, aiResponse]);
+      setChatMessages((prev) => [...prev, aiResponse]);
     }, 1500);
   };
-
-
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -48,8 +47,8 @@ const HeroSection = () => {
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fdb72aca99fd341bf810b2c50e7d6006a?format=webp&width=800')`,
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover'
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
         }}
       />
 
@@ -106,7 +105,12 @@ const HeroSection = () => {
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
           </svg>
         </div>
       </div>

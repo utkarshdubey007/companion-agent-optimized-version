@@ -30,8 +30,6 @@ export function SignupChatInput({
     }
   };
 
-
-
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
       <div
@@ -40,8 +38,6 @@ export function SignupChatInput({
           boxShadow: "0px 6px 24px rgba(0, 0, 0, 0.12)",
         }}
       >
-
-
         {/* Text Input */}
         <div className="flex-1 relative">
           <Input
@@ -71,8 +67,8 @@ export function SignupChatInput({
           disabled={disabled || !message.trim()}
           className="w-9 h-9 rounded-full p-0 border-0 flex-shrink-0 transition-all duration-200 hover:scale-110"
           style={{
-            background: message.trim() 
-              ? "linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%)" 
+            background: message.trim()
+              ? "linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%)"
               : "linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%)",
             opacity: !message.trim() ? 0.6 : 1,
           }}

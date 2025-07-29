@@ -1,5 +1,5 @@
-import React from 'react';
-import { Check } from 'lucide-react';
+import React from "react";
+import { Check } from "lucide-react";
 
 const Plans = () => {
   return (
@@ -11,13 +11,15 @@ const Plans = () => {
             {/* Logo */}
             <div className="flex items-center">
               <div className="w-8 h-8 mr-3">
-                <img 
+                <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
                   alt="TaleTree Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-xl font-semibold text-gray-900">taleTree</span>
+              <span className="text-xl font-semibold text-gray-900">
+                taleTree
+              </span>
             </div>
 
             {/* Login Button */}
@@ -34,7 +36,9 @@ const Plans = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Page Title */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">TaleTree Pricing</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            TaleTree Pricing
+          </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Choose the plan that fits your family or organization.
           </p>
@@ -45,8 +49,12 @@ const Plans = () => {
           {/* Emeralites Plan */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative">
             <div className="mb-6">
-              <h3 className="text-xl font-semibold text-cyan-600 mb-2">Emeralites</h3>
-              <p className="text-gray-600 text-sm mb-4">For curious kids just starting out</p>
+              <h3 className="text-xl font-semibold text-cyan-600 mb-2">
+                Emeralites
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                For curious kids just starting out
+              </p>
               <div className="mb-6">
                 <span className="text-3xl font-bold text-gray-900">$0</span>
                 <span className="text-gray-600 ml-2">/ month</span>
@@ -56,19 +64,27 @@ const Plans = () => {
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Up to 20 TaleTree creations</span>
+                <span className="text-gray-700 text-sm">
+                  Up to 20 TaleTree creations
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">AI powered emotional reflections</span>
+                <span className="text-gray-700 text-sm">
+                  AI powered emotional reflections
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Guardian account verification required</span>
+                <span className="text-gray-700 text-sm">
+                  Guardian account verification required
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Limited access to the TaleTree Method</span>
+                <span className="text-gray-700 text-sm">
+                  Limited access to the TaleTree Method
+                </span>
               </li>
             </ul>
 
@@ -80,8 +96,12 @@ const Plans = () => {
           {/* Seedlings Plan */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative">
             <div className="mb-6">
-              <h3 className="text-xl font-semibold text-green-600 mb-2">Seedlings</h3>
-              <p className="text-gray-600 text-sm mb-4">For families ready to grow together</p>
+              <h3 className="text-xl font-semibold text-green-600 mb-2">
+                Seedlings
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                For families ready to grow together
+              </p>
               <div className="mb-6">
                 <span className="text-3xl font-bold text-gray-900">$10</span>
                 <span className="text-gray-600 ml-2">/ month per child</span>
@@ -91,23 +111,33 @@ const Plans = () => {
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Unlimited TaleTree creations</span>
+                <span className="text-gray-700 text-sm">
+                  Unlimited TaleTree creations
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Full access to AI companions</span>
+                <span className="text-gray-700 text-sm">
+                  Full access to AI companions
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Weekly guardian insights & reports</span>
+                <span className="text-gray-700 text-sm">
+                  Weekly guardian insights & reports
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">20-Minute Promise tools</span>
+                <span className="text-gray-700 text-sm">
+                  20-Minute Promise tools
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Daily emotional check-ins</span>
+                <span className="text-gray-700 text-sm">
+                  Daily emotional check-ins
+                </span>
               </li>
             </ul>
 
@@ -119,33 +149,49 @@ const Plans = () => {
           {/* Villagers Plan */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 relative">
             <div className="mb-6">
-              <h3 className="text-xl font-semibold text-purple-600 mb-2">Villagers</h3>
-              <p className="text-gray-600 text-sm mb-4">For schools, churches, and camps</p>
+              <h3 className="text-xl font-semibold text-purple-600 mb-2">
+                Villagers
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                For schools, churches, and camps
+              </p>
               <div className="mb-6">
-                <span className="text-3xl font-bold text-gray-900">Contact Sales</span>
+                <span className="text-3xl font-bold text-gray-900">
+                  Contact Sales
+                </span>
               </div>
             </div>
 
             <ul className="space-y-3 mb-8">
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Set up Camps & Tribes</span>
+                <span className="text-gray-700 text-sm">
+                  Set up Camps & Tribes
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Manage groups & progress</span>
+                <span className="text-gray-700 text-sm">
+                  Manage groups & progress
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">All Seedlings features included</span>
+                <span className="text-gray-700 text-sm">
+                  All Seedlings features included
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Institution-wide guardian engagement</span>
+                <span className="text-gray-700 text-sm">
+                  Institution-wide guardian engagement
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Custom challenge creation</span>
+                <span className="text-gray-700 text-sm">
+                  Custom challenge creation
+                </span>
               </li>
             </ul>
 
@@ -172,9 +218,21 @@ const Plans = () => {
             <div className="md:col-span-1">
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-indigo-200">
-                <li><a href="#" className="hover:text-white">Our story</a></li>
-                <li><a href="#" className="hover:text-white">TaleTree Friends</a></li>
-                <li><a href="#" className="hover:text-white">TaleTree Pledge</a></li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    Our story
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    TaleTree Friends
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    TaleTree Pledge
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -182,10 +240,26 @@ const Plans = () => {
             <div className="md:col-span-1">
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-sm text-indigo-200">
-                <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white">End User License Agreement</a></li>
-                <li><a href="#" className="hover:text-white">Email Us</a></li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    End User License Agreement
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white">
+                    Email Us
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -211,8 +285,12 @@ const Plans = () => {
 
           {/* Bottom Footer */}
           <div className="border-t border-indigo-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-indigo-200 text-sm">2025 TaleTree Inc. All rights reserved</p>
-            <p className="text-indigo-200 text-sm">Email: contact@taletree.com</p>
+            <p className="text-indigo-200 text-sm">
+              2025 TaleTree Inc. All rights reserved
+            </p>
+            <p className="text-indigo-200 text-sm">
+              Email: contact@taletree.com
+            </p>
           </div>
         </div>
       </footer>

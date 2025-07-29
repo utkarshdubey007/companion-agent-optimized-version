@@ -66,10 +66,15 @@ export function SignupChatContainer({
     // AI text messages - positioned at companion mouth level
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-56 sm:bottom-72 md:bottom-80 lg:bottom-96 left-3/5 sm:left-2/3 md:left-3/5 lg:left-3/5 transform -translate-x-1/2 z-10" key={message.id}>
+        <div
+          className="absolute bottom-56 sm:bottom-72 md:bottom-80 lg:bottom-96 left-3/5 sm:left-2/3 md:left-3/5 lg:left-3/5 transform -translate-x-1/2 z-10"
+          key={message.id}
+        >
           <div className="max-w-xs sm:max-w-sm md:max-w-md">
             <div className="bg-blue-500 text-white p-2 sm:p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
-              <p className="text-xs sm:text-sm leading-relaxed">{message.content}</p>
+              <p className="text-xs sm:text-sm leading-relaxed">
+                {message.content}
+              </p>
               {/* Speech bubble tail pointing to companion */}
               <div className="absolute bottom-0 left-4 sm:left-6 w-0 h-0 border-l-4 sm:border-l-8 border-r-4 sm:border-r-8 border-t-4 sm:border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
             </div>
@@ -162,7 +167,8 @@ export function SignupChatContainer({
                 <p className="text-xs sm:text-sm leading-relaxed">
                   Hello, brave explorer! 🌟
                   <br />
-                  Welcome to TaleTree! Share your magical stories and ideas with me.
+                  Welcome to TaleTree! Share your magical stories and ideas with
+                  me.
                   <br />
                   <br />
                   Let's create something amazing together!

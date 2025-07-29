@@ -21,8 +21,8 @@ export function SignupDualSidebar({
     {
       src: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fcb34a17284254803ab9d0f3977ab5c38?format=webp&width=800",
       alt: "Menu",
-      delay: 100
-    }
+      delay: 100,
+    },
   ],
   bottomMenuItems,
   onMenuItemClick,
@@ -36,7 +36,8 @@ export function SignupDualSidebar({
   const [selectedCompanion, setSelectedCompanion] = useState({
     id: "letsgo",
     name: "Letsgo",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800"
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800",
   });
 
   const toggleTopSidebar = () => {
@@ -51,37 +52,44 @@ export function SignupDualSidebar({
   const companionMapping = {
     letsgo: {
       name: "Letsgo",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800"
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800",
     },
     rushmore: {
       name: "Rushmore",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F6b282f7859fa4a96aab4f5d21fe7d27d?format=webp&width=800"
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F6b282f7859fa4a96aab4f5d21fe7d27d?format=webp&width=800",
     },
     uni: {
       name: "Uni",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Ff6c3edc98a444c79ba1188aeab1c17f6?format=webp&width=800"
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Ff6c3edc98a444c79ba1188aeab1c17f6?format=webp&width=800",
     },
     cody: {
       name: "Cody",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F067d19c68a9149c6a32a29cf3f5ebb0d?format=webp&width=800"
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F067d19c68a9149c6a32a29cf3f5ebb0d?format=webp&width=800",
     },
     doma: {
       name: "Doma",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F12511fbec0c84354b93ec8ca250c92b6?format=webp&width=800"
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F12511fbec0c84354b93ec8ca250c92b6?format=webp&width=800",
     },
     rooty: {
       name: "Rooty",
-      image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fc2faa21a880b45d9be3c40dddb0cd20f?format=webp&width=800"
-    }
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fc2faa21a880b45d9be3c40dddb0cd20f?format=webp&width=800",
+    },
   };
 
   const handleCompanionSelect = (companionId: string) => {
-    const companion = companionMapping[companionId as keyof typeof companionMapping];
+    const companion =
+      companionMapping[companionId as keyof typeof companionMapping];
     if (companion) {
       setSelectedCompanion({
         id: companionId,
         name: companion.name,
-        image: companion.image
+        image: companion.image,
       });
     }
   };
@@ -91,8 +99,8 @@ export function SignupDualSidebar({
     {
       src: selectedCompanion.image,
       alt: selectedCompanion.name,
-      delay: 100
-    }
+      delay: 100,
+    },
   ];
 
   return (
@@ -128,9 +136,7 @@ export function SignupDualSidebar({
                         animation: showTopWaveEffect
                           ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
                           : "none",
-                        transform: showTopWaveEffect
-                          ? "scale(1)"
-                          : "scale(0)",
+                        transform: showTopWaveEffect ? "scale(1)" : "scale(0)",
                       }}
                     >
                       <div
@@ -222,7 +228,10 @@ export function SignupDualSidebar({
                       <div
                         className="w-12 h-12 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
                         onClick={() => {
-                          if (item.alt === selectedCompanion.name || item.alt === "Selected Companion") {
+                          if (
+                            item.alt === selectedCompanion.name ||
+                            item.alt === "Selected Companion"
+                          ) {
                             setIsCompanionModalOpen(true);
                           } else {
                             onMenuItemClick?.(item.alt, index);

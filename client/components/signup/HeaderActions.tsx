@@ -60,7 +60,9 @@ export function HeaderActions() {
                     alt="Kids"
                     className="w-6 h-6 rounded-full object-cover"
                   />
-                  <span className="text-gray-800 font-medium text-sm">Kids</span>
+                  <span className="text-gray-800 font-medium text-sm">
+                    Kids
+                  </span>
                 </button>
 
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
@@ -69,7 +71,9 @@ export function HeaderActions() {
                     alt="Parent"
                     className="w-6 h-6 rounded-full object-cover"
                   />
-                  <span className="text-gray-800 font-medium text-sm">Guardians</span>
+                  <span className="text-gray-800 font-medium text-sm">
+                    Guardians
+                  </span>
                 </button>
 
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
@@ -78,7 +82,9 @@ export function HeaderActions() {
                     alt="Educator"
                     className="w-6 h-6 rounded-full object-cover"
                   />
-                  <span className="text-gray-800 font-medium text-sm">Educator</span>
+                  <span className="text-gray-800 font-medium text-sm">
+                    Educator
+                  </span>
                 </button>
               </div>
             </div>
