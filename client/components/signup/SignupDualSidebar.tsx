@@ -254,16 +254,18 @@ export function SignupDualSidebar({
             <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center">
               <Button
                 onClick={toggleBottomSidebar}
-                className="w-6 h-8 bg-[#252B5C] hover:bg-[#2A3175] border border-white/10 p-0 rounded-md transition-all duration-300 ease-in-out hover:scale-110 group"
+                className="w-6 h-8 bg-transparent hover:bg-white/10 border-0 p-0 rounded-md transition-all duration-300 ease-in-out hover:scale-110 group"
                 style={{
-                  boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
+                  boxShadow: "none",
                 }}
               >
-                {bottomSidebarCollapsed ? (
-                  <ChevronRight className="w-3 h-3 text-white transition-transform duration-300 group-hover:scale-125" />
-                ) : (
-                  <ChevronLeft className="w-3 h-3 text-white transition-transform duration-300 group-hover:scale-125" />
-                )}
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F7504875ba38348f8bb8df1ca5aaf3464?format=webp&width=800"
+                  alt="Toggle"
+                  className={`w-4 h-4 object-contain transition-transform duration-300 group-hover:scale-125 ${
+                    bottomSidebarCollapsed ? "" : "rotate-180"
+                  }`}
+                />
               </Button>
             </div>
           </div>
