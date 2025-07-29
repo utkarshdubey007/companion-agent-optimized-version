@@ -202,7 +202,7 @@ export function SignupDualSidebar({
               {/* Menu Items */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-2">
-                  {bottomMenuItems.map((item, index) => (
+                  {dynamicBottomMenuItems.map((item, index) => (
                     <div
                       key={item.alt}
                       className="relative group"
