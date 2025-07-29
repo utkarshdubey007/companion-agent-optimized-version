@@ -18,6 +18,11 @@ interface TaleTreeWheelModalProps {
 export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps) {
   const [hoveredAction, setHoveredAction] = useState<string | null>(null);
 
+  // Calculate circular positions using trigonometry
+  const radius = 150; // Radius of the circle
+  const centerX = 0; // Center X (will be positioned relative to container center)
+  const centerY = 0; // Center Y (will be positioned relative to container center)
+
   const wheelActions: WheelAction[] = [
     {
       id: "imagine",
@@ -25,7 +30,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Imagine",
       color: "bg-orange-500",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet vel lectus sed varius.",
-      position: { top: "15%", left: "50%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(-Math.PI/2)}px)`, // -90° (top)
+        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/2)}px)`
+      }
     },
     {
       id: "play",
@@ -33,7 +41,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Play",
       color: "bg-blue-500",
       description: "Engage in interactive storytelling and creative play activities.",
-      position: { top: "25%", left: "70%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(-Math.PI/6)}px)`, // -30° (top right)
+        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/6)}px)`
+      }
     },
     {
       id: "create",
@@ -41,7 +52,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Create",
       color: "bg-cyan-500",
       description: "Build and craft your own stories and creative content.",
-      position: { top: "55%", left: "75%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(Math.PI/6)}px)`, // 30° (bottom right)
+        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/6)}px)`
+      }
     },
     {
       id: "store",
@@ -49,7 +63,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Store",
       color: "bg-green-500",
       description: "Save and organize your creative works and stories.",
-      position: { top: "75%", left: "55%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(Math.PI/2)}px)`, // 90° (bottom)
+        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/2)}px)`
+      }
     },
     {
       id: "reflect",
@@ -57,7 +74,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Reflect",
       color: "bg-purple-500",
       description: "Think about your learning journey and growth.",
-      position: { top: "55%", left: "25%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(5*Math.PI/6)}px)`, // 150° (bottom left)
+        left: `calc(50% + ${centerX + radius * Math.cos(5*Math.PI/6)}px)`
+      }
     },
     {
       id: "reward",
@@ -65,7 +85,10 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       label: "Reward",
       color: "bg-pink-500",
       description: "Celebrate achievements and milestones in your journey.",
-      position: { top: "25%", left: "30%" }
+      position: {
+        top: `calc(50% + ${centerY + radius * Math.sin(-5*Math.PI/6)}px)`, // -150° (top left)
+        left: `calc(50% + ${centerX + radius * Math.cos(-5*Math.PI/6)}px)`
+      }
     }
   ];
 
