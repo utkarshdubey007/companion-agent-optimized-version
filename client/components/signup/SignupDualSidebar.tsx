@@ -100,23 +100,24 @@ export function SignupDualSidebar({
       {/* Container with zero margin, aligned to left edge */}
       <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden mt-20">
         {/* Top Sidebar Section */}
-        <div className="flex items-center relative">
-          {/* Top Section Content */}
+        <div className="relative">
           <div
-            className={`transition-all duration-500 ease-in-out overflow-hidden ${
-              topSidebarCollapsed ? "w-0 opacity-0" : "w-20 opacity-100"
+            className={`bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl transition-all duration-500 ease-in-out relative ${
+              topSidebarCollapsed ? "w-12" : "w-20"
             }`}
+            style={{
+              borderRadius: "0 15px 15px 0",
+              boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
+              height: "auto",
+              maxHeight: "calc(60vh)",
+            }}
           >
+            {/* Menu Items */}
             <div
-              className="bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl flex flex-col p-4"
-              style={{
-                borderRadius: "0 15px 15px 0",
-                boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.4)",
-                height: "auto",
-                maxHeight: "calc(60vh)",
-              }}
+              className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                topSidebarCollapsed ? "w-0 opacity-0" : "w-16 opacity-100"
+              } p-4`}
             >
-              {/* Menu Items */}
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-3">
                   {topMenuItems.map((item, index) => (
@@ -162,24 +163,24 @@ export function SignupDualSidebar({
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Top Section Toggle Button */}
-          <Button
-            onClick={toggleTopSidebar}
-            className="w-8 h-12 bg-[#1C2051] hover:bg-[#252B5C] border border-white/20 border-l-0 p-0 flex-shrink-0 z-10 transition-all duration-500 ease-in-out"
-            style={{
-              borderRadius: "0 15px 15px 0",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              marginLeft: topSidebarCollapsed ? "0" : "-8px",
-            }}
-          >
-            {topSidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-white transition-transform duration-300" />
-            ) : (
-              <ChevronLeft className="w-4 h-4 text-white transition-transform duration-300" />
-            )}
-          </Button>
+            {/* Toggle Button - Inside sidebar, right edge, vertically centered */}
+            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center">
+              <Button
+                onClick={toggleTopSidebar}
+                className="w-6 h-8 bg-[#252B5C] hover:bg-[#2A3175] border border-white/10 p-0 rounded-md transition-all duration-300 ease-in-out hover:scale-110 group"
+                style={{
+                  boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
+                }}
+              >
+                {topSidebarCollapsed ? (
+                  <ChevronRight className="w-3 h-3 text-white transition-transform duration-300 group-hover:scale-125" />
+                ) : (
+                  <ChevronLeft className="w-3 h-3 text-white transition-transform duration-300 group-hover:scale-125" />
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Sidebar Section */}
