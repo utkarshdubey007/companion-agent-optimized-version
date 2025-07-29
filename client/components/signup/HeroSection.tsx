@@ -47,8 +47,7 @@ const HeroSection = () => {
         style={{
           backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fdb72aca99fd341bf810b2c50e7d6006a?format=webp&width=800')`,
           backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-          backgroundAttachment: 'fixed'
+          backgroundSize: 'cover'
         }}
       />
 
