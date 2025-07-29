@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const Plans = () => {
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
+  const [showBackTooltip, setShowBackTooltip] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
