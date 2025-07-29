@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DecorativeStars from "@/components/signup/DecorativeStars";
 import HeroSection from "@/components/signup/HeroSection";
 import PlansStrip from "@/components/signup/PlansStrip";
@@ -8,8 +9,14 @@ import ParentsSection from "@/components/signup/ParentsSection";
 import EducatorsSection from "@/components/signup/EducatorsSection";
 import ExpertsSection from "@/components/signup/ExpertsSection";
 import SignupFooter from "@/components/signup/SignupFooter";
+import Plans from "./Plans";
 
 const Signup = () => {
+  const [showPlans, setShowPlans] = useState(false);
+
+  if (showPlans) {
+    return <Plans />;
+  }
   return (
     <div className="relative">
       {/* Hero Section - Full Viewport */}
