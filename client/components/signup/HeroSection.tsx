@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SimplifiedChatContainer } from "@/components/SimplifiedChatContainer";
+import { SignupChatContainer } from "./SignupChatContainer";
 import { ChatInputBox } from "@/components/ChatInputBox";
 
 const HeroSection = () => {
