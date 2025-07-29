@@ -151,13 +151,13 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
 
             {/* Hover Description */}
             {hoveredAction && (
-              <div className="absolute top-1/4 left-1/4 transform -translate-x-1/2">
-                <div className="bg-pink-500 text-white p-4 rounded-xl max-w-xs shadow-xl">
-                  <p className="text-sm leading-relaxed">
+              <div className="absolute top-20 left-12">
+                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl">
+                  <p className="text-xs leading-relaxed">
                     {getHoveredAction()?.description}
                   </p>
                   {/* Tooltip arrow */}
-                  <div className="absolute top-full left-8 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-pink-500"></div>
+                  <div className="absolute top-full left-6 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-pink-500"></div>
                 </div>
               </div>
             )}
