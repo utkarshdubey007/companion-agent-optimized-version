@@ -1,5 +1,6 @@
 import DecorativeStars from "@/components/signup/DecorativeStars";
 import HeroSection from "@/components/signup/HeroSection";
+import PlansStrip from "@/components/signup/PlansStrip";
 import CreativitySection from "@/components/signup/CreativitySection";
 import IntroducingSection from "@/components/signup/IntroducingSection";
 import LatestNewsSection from "@/components/signup/LatestNewsSection";
