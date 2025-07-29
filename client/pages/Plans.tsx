@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Check, Search, User } from "lucide-react";
+import { Check, Search, User, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Plans = () => {
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
