@@ -93,7 +93,7 @@ export function SignupDualSidebar({
                         <img
                           src={item.src}
                           alt={item.alt}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:rotate-12"
                         />
                       </div>
 
@@ -170,7 +170,7 @@ export function SignupDualSidebar({
                         <img
                           src={item.src}
                           alt={item.alt}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:rotate-12"
                         />
                       </div>
 
