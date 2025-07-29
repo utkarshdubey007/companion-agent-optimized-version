@@ -166,19 +166,29 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
             {/* Hover Description */}
             {hoveredAction && (
               <div
-                className="absolute z-30"
+                className="absolute z-30 transition-all duration-200 ease-in-out"
                 style={{
                   top: `calc(${getHoveredAction()?.position.top} - 80px)`,
                   left: getHoveredAction()?.position.left,
                   transform: "translate(-50%, 0)"
                 }}
               >
-                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl">
+                <div className={`${getHoveredAction()?.color} text-white p-3 rounded-lg max-w-xs shadow-xl`}>
                   <p className="text-xs leading-relaxed">
                     {getHoveredAction()?.description}
                   </p>
-                  {/* Tooltip arrow */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-pink-500"></div>
+                  {/* Tooltip arrow with matching color */}
+                  <div
+                    className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent`}
+                    style={{
+                      borderTopColor: getHoveredAction()?.color === 'bg-orange-500' ? '#f97316' :
+                                    getHoveredAction()?.color === 'bg-blue-500' ? '#3b82f6' :
+                                    getHoveredAction()?.color === 'bg-cyan-500' ? '#06b6d4' :
+                                    getHoveredAction()?.color === 'bg-green-500' ? '#22c55e' :
+                                    getHoveredAction()?.color === 'bg-purple-500' ? '#a855f7' :
+                                    getHoveredAction()?.color === 'bg-pink-500' ? '#ec4899' : '#ec4899'
+                    }}
+                  ></div>
                 </div>
               </div>
             )}
