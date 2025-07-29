@@ -117,7 +117,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
         <div className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col">
           {/* Header */}
-          <div className="flex justify-between items-start mb-6">
+          <div className="flex justify-center items-center mb-6">
             <div className="flex items-center gap-3">
               <div className="w-6 h-6">
                 <img
@@ -130,12 +130,6 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
                 The TaleTree Method
               </span>
             </div>
-            <button
-              onClick={onClose}
-              className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-200"
-            >
-              <X className="w-4 h-4 text-white" />
-            </button>
           </div>
 
           {/* Main Title */}
