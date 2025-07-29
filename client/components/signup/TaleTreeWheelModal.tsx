@@ -166,14 +166,12 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
             {/* Hover Description */}
             {hoveredAction && (
               <div
-                className={`absolute z-30 transition-all duration-300 ease-in-out ${
-                  showTooltip ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
+                className="absolute z-30 transition-opacity duration-150 ease-in-out opacity-100"
                 style={{
                   top: `calc(${getHoveredAction()?.position.top} - 80px)`,
                   left: getHoveredAction()?.position.left,
                   transform: "translate(-50%, 0)",
-                  pointerEvents: 'none' // Prevent tooltip from interfering with mouse events
+                  pointerEvents: 'none'
                 }}
               >
                 <div className={`${getHoveredAction()?.color} text-white p-3 rounded-lg max-w-xs shadow-xl`}>
