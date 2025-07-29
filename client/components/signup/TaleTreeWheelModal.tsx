@@ -165,13 +165,20 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
 
             {/* Hover Description */}
             {hoveredAction && (
-              <div className="absolute top-16 left-16">
-                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl z-30">
+              <div
+                className="absolute z-30"
+                style={{
+                  top: `calc(${getHoveredAction()?.position.top} - 80px)`,
+                  left: getHoveredAction()?.position.left,
+                  transform: "translate(-50%, 0)"
+                }}
+              >
+                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl">
                   <p className="text-xs leading-relaxed">
                     {getHoveredAction()?.description}
                   </p>
                   {/* Tooltip arrow */}
-                  <div className="absolute top-full left-6 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-pink-500"></div>
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-pink-500"></div>
                 </div>
               </div>
             )}
