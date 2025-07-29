@@ -39,6 +39,11 @@ export function SignupDualSidebar({
   const [showBottomWaveEffect, setShowBottomWaveEffect] = useState(true);
   const [isWheelModalOpen, setIsWheelModalOpen] = useState(false);
   const [isCompanionModalOpen, setIsCompanionModalOpen] = useState(false);
+  const [selectedCompanion, setSelectedCompanion] = useState({
+    id: "letsgo",
+    name: "Letsgo",
+    image: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800"
+  });
 
   const toggleTopSidebar = () => {
     setTopSidebarCollapsed(!topSidebarCollapsed);
