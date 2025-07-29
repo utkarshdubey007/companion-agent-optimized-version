@@ -113,25 +113,9 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       >
           {/* Header */}
           <div className="flex justify-center items-center mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
-                  alt="TaleTree Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-white text-xs bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
-                The TaleTree Method
-              </span>
-            </div>
-          </div>
-
-          {/* Main Title */}
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Welcome to TaleTree
-            </h1>
+            <span className="text-white text-xs bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
+              The TaleTree Method
+            </span>
           </div>
 
           {/* Wheel Container */}
