@@ -156,10 +156,10 @@ export function SignupChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute bottom-32 left-1/4 transform translate-x-24 z-10">
-            <div className="max-w-sm">
-              <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
-                <p className="text-sm leading-relaxed">
+          <div className="absolute bottom-24 sm:bottom-32 md:bottom-36 left-1/4 transform translate-x-12 sm:translate-x-16 md:translate-x-20 lg:translate-x-24 z-10">
+            <div className="max-w-xs sm:max-w-sm md:max-w-md">
+              <div className="bg-blue-500 text-white p-2 sm:p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
+                <p className="text-xs sm:text-sm leading-relaxed">
                   Hello, brave explorer! 🌟
                   <br />
                   Welcome to TaleTree! Share your magical stories and ideas with me.
@@ -168,7 +168,7 @@ export function SignupChatContainer({
                   Let's create something amazing together!
                 </p>
                 {/* Speech bubble tail pointing to companion */}
-                <div className="absolute bottom-0 left-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
+                <div className="absolute bottom-0 left-2 sm:left-4 w-0 h-0 border-l-4 sm:border-l-8 border-r-4 sm:border-r-8 border-t-4 sm:border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
               </div>
             </div>
           </div>
