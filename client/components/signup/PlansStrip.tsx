@@ -1,6 +1,10 @@
 import React from 'react';
 
-const PlansStrip = () => {
+interface PlansStripProps {
+  onShowPlans?: () => void;
+}
+
+const PlansStrip = ({ onShowPlans }: PlansStripProps) => {
   return (
     <div className="py-4 px-6 mx-auto max-w-6xl">
       <div className="bg-gray-50 border border-gray-200 rounded-lg py-3 px-6">
