@@ -52,6 +52,9 @@ const HeroSection = () => {
         }}
       />
 
+      {/* Header Actions - Search and Login */}
+      <HeaderActions />
+
       {/* SignupChatContainer with companion centered */}
       <div className="relative z-10 w-full h-full flex items-center justify-center">
         <SignupChatContainer
