@@ -96,9 +96,9 @@ export function SignupDualSidebar({
   ];
 
   return (
-    <div className="fixed left-0 top-0 z-30 flex flex-col h-screen w-auto">
+    <div className="absolute left-0 top-32 z-30 flex flex-col w-auto">
       {/* Container with zero margin, aligned to left edge */}
-      <div className="flex flex-col gap-3 py-4 h-screen max-h-screen overflow-hidden mt-20">
+      <div className="flex flex-col gap-3 py-4 overflow-hidden">
         {/* Top Sidebar Section */}
         <div className="relative">
           <div
