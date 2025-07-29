@@ -189,7 +189,7 @@ export function SignupDualSidebar({
         <div className="relative">
           <div
             className={`bg-[#1C2051] border border-white/20 border-l-0 shadow-2xl transition-all duration-500 ease-in-out relative ${
-              bottomSidebarCollapsed ? "w-12" : "w-20"
+              bottomSidebarCollapsed ? "w-8" : "w-20"
             }`}
             style={{
               borderRadius: "0 15px 15px 0",
