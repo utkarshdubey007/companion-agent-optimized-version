@@ -26,8 +26,8 @@ export function SignupDualSidebar({
   ],
   bottomMenuItems = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F39f348f7483547d18b45c8bfcdc8ad42?format=webp&width=800",
-      alt: "Selected Companion",
+      src: selectedCompanion.image,
+      alt: selectedCompanion.name,
       delay: 100
     }
   ],
