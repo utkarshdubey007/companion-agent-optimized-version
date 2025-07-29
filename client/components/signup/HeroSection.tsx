@@ -66,11 +66,9 @@ const HeroSection = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          {/* Title */}
-          <h1 className="text-white text-3xl md:text-4xl font-bold mb-2">taleTree</h1>
           {/* Subtitle */}
-          <p className="text-white/90 text-sm md:text-base max-w-md">
-            A New Kind of Curriculum for a New Kind of World
+          <p className="text-white/90 text-base md:text-lg max-w-md">
+            A New Kind of Curriculum
           </p>
         </div>
       </div>
