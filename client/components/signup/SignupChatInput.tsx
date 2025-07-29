@@ -5,14 +5,12 @@ import { useState } from "react";
 
 interface SignupChatInputProps {
   onSendMessage?: (message: string) => void;
-  onAddAttachment?: () => void;
   placeholder?: string;
   disabled?: boolean;
 }
 
 export function SignupChatInput({
   onSendMessage,
-  onAddAttachment,
   placeholder = "Ask me anything...",
   disabled = false,
 }: SignupChatInputProps) {
