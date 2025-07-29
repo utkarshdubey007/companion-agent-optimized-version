@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, ArrowUp, Mic } from "lucide-react";
+import { ArrowUp, Mic } from "lucide-react";
 import { useState } from "react";
 
 interface SignupChatInputProps {
