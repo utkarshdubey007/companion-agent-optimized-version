@@ -66,11 +66,11 @@ export function SignupChatContainer({
     // AI text messages - positioned at companion mouth level
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 translate-x-20" key={message.id}>
+        <div className="absolute bottom-32 left-1/4 transform translate-x-16" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">{message.content}</p>
-              {/* Speech bubble tail */}
+              {/* Speech bubble tail pointing to companion */}
               <div className="absolute bottom-0 left-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
             </div>
           </div>
