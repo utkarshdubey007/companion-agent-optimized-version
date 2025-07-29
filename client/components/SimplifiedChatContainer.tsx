@@ -288,7 +288,7 @@ export function SimplifiedChatContainer({
     // AI text messages - positioned at companion mouth level
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-56 left-1/2" key={message.id}>
+        <div className="absolute bottom-[-20px] left-1/2" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">{message.content}</p>
@@ -317,7 +317,7 @@ export function SimplifiedChatContainer({
   return (
     <div className={`flex flex-col h-full relative ${className}`}>
       {/* Fixed Companion Character grounded on landscape */}
-      <div className="absolute bottom-4 left-1/4 transform -translate-x-1/2 z-10 hover:scale-105 transition-transform duration-300">
+      <div className="absolute bottom-[-150px] left-1/4 transform -translate-x-1/2 z-10 hover:scale-105 transition-transform duration-300">
         <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
           {/* Magical glow effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-400/20 blur-xl animate-pulse"></div>
@@ -378,7 +378,7 @@ export function SimplifiedChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute bottom-56 left-1/2">
+          <div className="absolute bottom-[-20px] left-1/2">
             <div className="max-w-sm">
               <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-sm leading-relaxed">
