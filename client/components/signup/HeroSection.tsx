@@ -37,10 +37,7 @@ const HeroSection = () => {
     }, 1500);
   };
 
-  const handleAddAttachment = () => {
-    console.log("Add attachment clicked");
-    // You can implement file upload functionality here
-  };
+
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[80vh] px-4 overflow-hidden">
