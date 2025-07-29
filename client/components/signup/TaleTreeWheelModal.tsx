@@ -173,8 +173,8 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
                   left: action.position.left,
                   transform: "translate(-50%, -50%)"
                 }}
-                onMouseEnter={() => setHoveredAction(action.id)}
-                onMouseLeave={() => setHoveredAction(null)}
+                onMouseEnter={() => handleMouseEnter(action.id)}
+                onMouseLeave={handleMouseLeave}
               >
                 <div className="flex flex-col items-center">
                   {/* Action Icon */}
