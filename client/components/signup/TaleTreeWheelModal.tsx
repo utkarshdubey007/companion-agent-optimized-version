@@ -94,30 +94,30 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
       <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
         <div className="w-full max-w-5xl h-full max-h-[90vh] flex flex-col">
           {/* Header */}
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8">
-                <img 
+          <div className="flex justify-between items-start mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-6">
+                <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
                   alt="TaleTree Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-white text-sm bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
+              <span className="text-white text-xs bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
                 The TaleTree Method
               </span>
             </div>
             <button
               onClick={onClose}
-              className="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-200"
+              className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-200"
             >
-              <X className="w-5 h-5 text-white" />
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
 
           {/* Main Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               Welcome to TaleTree
             </h1>
           </div>
