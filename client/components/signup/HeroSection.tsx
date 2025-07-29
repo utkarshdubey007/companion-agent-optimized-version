@@ -63,9 +63,9 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* ChatInputBox for chatting */}
+      {/* SignupChatInput for chatting */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-2xl">
-        <ChatInputBox
+        <SignupChatInput
           onSendMessage={handleSendMessage}
           onAddAttachment={handleAddAttachment}
           placeholder="Ask me anything..."
