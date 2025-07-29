@@ -46,14 +46,7 @@ export function SignupChatInput({
           boxShadow: "0px 6px 24px rgba(0, 0, 0, 0.12)",
         }}
       >
-        {/* Add/Plus Button */}
-        <Button
-          onClick={handleAddClick}
-          disabled={disabled}
-          className="w-9 h-9 rounded-full bg-orange-100 hover:bg-orange-200 p-0 border-0 flex-shrink-0 transition-all duration-200"
-        >
-          <Plus className="w-4 h-4 text-orange-600" />
-        </Button>
+
 
         {/* Text Input */}
         <div className="flex-1 relative">
