@@ -156,7 +156,7 @@ export function SignupChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute top-20 sm:top-24 md:top-28 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="absolute bottom-32 sm:bottom-40 md:bottom-48 lg:bottom-56 left-1/2 transform -translate-x-1/2 z-10">
             <div className="max-w-xs sm:max-w-sm md:max-w-md">
               <div className="bg-blue-500 text-white p-2 sm:p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-xs sm:text-sm leading-relaxed">
@@ -167,8 +167,8 @@ export function SignupChatContainer({
                   <br />
                   Let's create something amazing together!
                 </p>
-                {/* Speech bubble tail pointing down to companion */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 sm:border-l-8 border-r-4 sm:border-r-8 border-t-4 sm:border-t-8 border-l-transparent border-r-transparent border-t-blue-500"></div>
+                {/* Speech bubble tail pointing to companion */}
+                <div className="absolute bottom-0 left-4 sm:left-6 w-0 h-0 border-l-4 sm:border-l-8 border-r-4 sm:border-r-8 border-t-4 sm:border-t-8 border-l-transparent border-r-transparent border-t-blue-500 transform translate-y-full"></div>
               </div>
             </div>
           </div>
