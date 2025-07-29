@@ -156,7 +156,7 @@ export function SignupChatContainer({
 
         {/* Default state when no messages */}
         {!latestAI && !latestKid && (
-          <div className="absolute bottom-32 sm:bottom-40 md:bottom-48 lg:bottom-56 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="absolute bottom-40 sm:bottom-48 md:bottom-56 lg:bottom-64 left-1/2 transform -translate-x-1/2 z-10">
             <div className="max-w-xs sm:max-w-sm md:max-w-md">
               <div className="bg-blue-500 text-white p-2 sm:p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
                 <p className="text-xs sm:text-sm leading-relaxed">
