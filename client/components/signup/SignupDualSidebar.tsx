@@ -17,19 +17,9 @@ interface SignupDualSidebarProps {
 export function SignupDualSidebar({
   topMenuItems = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F84c034c3c89947f78ee894fd36bda6a7?format=webp&width=800",
-      alt: "Adventure",
+      src: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F616e1bb5209e4aa1a9344292cfe45f71?format=webp&width=800",
+      alt: "Menu",
       delay: 100
-    },
-    {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F93b5b6d2e89c4bb59a80b993bd48c56b?format=webp&width=800",
-      alt: "Fantasy",
-      delay: 200
-    },
-    {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fda24af11bdbb4585b8e6eb6406b2daf9%2F7c1e3f89a2b4456c97e2b8f3d5e9c7a4?format=webp&width=800",
-      alt: "Science",
-      delay: 300
     }
   ],
   bottomMenuItems = [
