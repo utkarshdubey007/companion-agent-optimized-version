@@ -146,15 +146,29 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
           </div>
 
           {/* Wheel Container */}
-          <div className="flex-1 relative">
-            {/* Action Items */}
+          <div className="flex-1 relative flex items-center justify-center">
+            {/* Center Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg z-20"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              }}
+            >
+              <X className="w-8 h-8 text-white" />
+            </button>
+
+            {/* Action Items - Circular Layout */}
             {wheelActions.map((action) => (
               <div
                 key={action.id}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                className="absolute cursor-pointer"
                 style={{
                   top: action.position.top,
-                  left: action.position.left
+                  left: action.position.left,
+                  transform: "translate(-50%, -50%)"
                 }}
                 onMouseEnter={() => setHoveredAction(action.id)}
                 onMouseLeave={() => setHoveredAction(null)}
@@ -174,8 +188,8 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
 
             {/* Hover Description */}
             {hoveredAction && (
-              <div className="absolute top-20 left-12">
-                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl">
+              <div className="absolute top-16 left-16">
+                <div className="bg-pink-500 text-white p-3 rounded-lg max-w-xs shadow-xl z-30">
                   <p className="text-xs leading-relaxed">
                     {getHoveredAction()?.description}
                   </p>
