@@ -163,16 +163,16 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
                 onMouseLeave={() => setHoveredAction(null)}
               >
                 <div className="flex flex-col items-center">
-                  {/* Action Circle */}
-                  <div className={`w-16 h-16 ${action.color} rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-lg overflow-hidden`}>
+                  {/* Action Icon */}
+                  <div className="flex items-center justify-center hover:scale-110 transition-transform duration-200">
                     <img
                       src={action.icon}
                       alt={action.label}
-                      className="w-8 h-8 object-contain"
+                      className="w-16 h-16 object-contain"
                     />
                   </div>
                   {/* Label */}
-                  <span className="text-white text-sm font-medium mt-2 bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm">
+                  <span className="text-white text-sm font-medium mt-2 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
                     {action.label}
                   </span>
                 </div>
