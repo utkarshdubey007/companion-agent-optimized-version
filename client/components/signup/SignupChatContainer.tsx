@@ -63,10 +63,10 @@ export function SignupChatContainer({
   const { latestAI, latestKid } = getLatestMessages();
 
   const renderMessage = (message: ChatMessage) => {
-    // AI text messages - positioned at companion mouth level
+    // AI text messages - positioned near companion
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-[-20px] left-1/2" key={message.id}>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ml-48 -mt-16" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">{message.content}</p>
