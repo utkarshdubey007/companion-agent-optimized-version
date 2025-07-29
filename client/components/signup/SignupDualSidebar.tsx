@@ -165,7 +165,7 @@ export function SignupDualSidebar({
             </div>
 
             {/* Toggle Button - Inside sidebar, right edge, vertically centered */}
-            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center">
+            <div className="absolute right-0.5 top-1/2 -translate-y-1/2 flex items-center justify-center">
               <Button
                 onClick={toggleTopSidebar}
                 className="w-6 h-8 bg-transparent hover:bg-white/10 border-0 p-0 rounded-md transition-all duration-300 ease-in-out hover:scale-110 group"
@@ -251,7 +251,7 @@ export function SignupDualSidebar({
             </div>
 
             {/* Toggle Button - Inside sidebar, right edge, vertically centered */}
-            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center">
+            <div className="absolute right-0.5 top-1/2 -translate-y-1/2 flex items-center justify-center">
               <Button
                 onClick={toggleBottomSidebar}
                 className="w-6 h-8 bg-transparent hover:bg-white/10 border-0 p-0 rounded-md transition-all duration-300 ease-in-out hover:scale-110 group"
