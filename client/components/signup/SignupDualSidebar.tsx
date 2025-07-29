@@ -224,6 +224,16 @@ export function SignupDualSidebar({
         isOpen={isWheelModalOpen}
         onClose={() => setIsWheelModalOpen(false)}
       />
+
+      {/* Companion Selection Modal */}
+      <CompanionSelectionModal
+        isOpen={isCompanionModalOpen}
+        onClose={() => setIsCompanionModalOpen(false)}
+        onSelectCompanion={(companionId) => {
+          console.log("Selected companion:", companionId);
+          // Here you can add logic to update the selected companion
+        }}
+      />
     </div>
   );
 }
