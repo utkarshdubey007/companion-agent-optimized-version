@@ -21,6 +21,9 @@ const Signup = () => {
         <HeroSection />
       </div>
 
+      {/* Plans Strip - Between Hero and Content */}
+      <PlansStrip />
+
       {/* Content Sections - Below Hero */}
       <div className="relative z-10 bg-white">
         <CreativitySection />
