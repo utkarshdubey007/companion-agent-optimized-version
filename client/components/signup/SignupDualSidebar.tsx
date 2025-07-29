@@ -90,7 +90,13 @@ export function SignupDualSidebar({
                     >
                       <div
                         className="w-12 h-12 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
-                        onClick={() => onMenuItemClick?.(item.alt, index)}
+                        onClick={() => {
+                          if (item.alt === "Menu") {
+                            setIsWheelModalOpen(true);
+                          } else {
+                            onMenuItemClick?.(item.alt, index);
+                          }
+                        }}
                       >
                         <img
                           src={item.src}
