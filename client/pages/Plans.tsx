@@ -12,17 +12,40 @@ const Plans = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* TaleTree Logo - Absolutely positioned like signup */}
-      <div className="absolute top-6 left-6 z-50 flex items-center">
-        <div className="w-8 h-8 mr-3">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
-            alt="TaleTree Logo"
-            className="w-full h-full object-contain"
-          />
+      <div className="absolute top-6 left-6 z-50">
+        <div className="flex items-center mb-3">
+          <div className="w-8 h-8 mr-3">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
+              alt="TaleTree Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <span className="text-xl font-semibold text-gray-900">
+            taleTree
+          </span>
         </div>
-        <span className="text-xl font-semibold text-gray-900">
-          taleTree
-        </span>
+
+        {/* Back Button */}
+        <div className="relative">
+          <button
+            onClick={() => navigate('/signup')}
+            onMouseEnter={() => setShowBackTooltip(true)}
+            onMouseLeave={() => setShowBackTooltip(false)}
+            className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-purple-50 hover:border-purple-400 hover:text-purple-600 transition-all duration-300 cursor-pointer group"
+          >
+            <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-purple-600" />
+          </button>
+
+          {/* Tooltip */}
+          {showBackTooltip && (
+            <div className="absolute left-full ml-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap transition-all duration-200">
+              Back to Signup
+              {/* Tooltip arrow */}
+              <div className="absolute right-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-r-4 border-r-gray-900"></div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Search and Login - Absolutely positioned like signup */}
