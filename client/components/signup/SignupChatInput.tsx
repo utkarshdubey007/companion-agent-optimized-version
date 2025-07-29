@@ -33,7 +33,7 @@ export function SignupChatInput({
 
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4">
+    <div className="w-full max-w-4xl mx-auto px-4">
       <div
         className="flex items-center gap-2 bg-white rounded-full shadow-xl border border-gray-200 px-3 py-2"
         style={{
