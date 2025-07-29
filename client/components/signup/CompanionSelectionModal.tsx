@@ -28,68 +28,68 @@ export function CompanionSelectionModal({ isOpen, onClose, onSelectCompanion }: 
   const companionActions: CompanionAction[] = [
     {
       id: "letsgo",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F2a5ef44c7f3d49488cc73782bdf5cec4?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F5524e36757e049b29b018c866cb3f01e?format=webp&width=800",
       label: "Letsgo",
       color: "bg-green-500",
       description: "A friendly and energetic companion ready for adventures.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(-Math.PI/2)}px)`, // -90° (top)
-        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/2)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/2)}px)`
       }
     },
     {
       id: "rushmore",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fefc21cd16d284b21ae39c01cc9545eea?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F6b282f7859fa4a96aab4f5d21fe7d27d?format=webp&width=800",
       label: "Rushmore",
       color: "bg-blue-500",
       description: "A wise and thoughtful companion who loves to explore knowledge.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(-Math.PI/6)}px)`, // -30° (top right)
-        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/6)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(-Math.PI/6)}px)`
       }
     },
     {
       id: "uni",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fa67f6869fc244a548d248a492972e349?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Ff6c3edc98a444c79ba1188aeab1c17f6?format=webp&width=800",
       label: "Uni",
       color: "bg-pink-500",
       description: "A magical and creative companion with a love for imagination.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(Math.PI/6)}px)`, // 30° (bottom right)
-        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/6)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/6)}px)`
       }
     },
     {
       id: "cody",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fc9b30794969246aabdd31eadd2637e37?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F067d19c68a9149c6a32a29cf3f5ebb0d?format=webp&width=800",
       label: "Cody",
       color: "bg-red-500",
       description: "A brave and determined companion ready for any challenge.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(Math.PI/2)}px)`, // 90° (bottom)
-        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/2)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(Math.PI/2)}px)`
       }
     },
     {
       id: "doma",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fbc6b5df32a65496fbe94ca05152cd7b5?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F12511fbec0c84354b93ec8ca250c92b6?format=webp&width=800",
       label: "Doma",
       color: "bg-cyan-500",
       description: "A calm and peaceful companion who brings tranquility.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(5*Math.PI/6)}px)`, // 150° (bottom left)
-        left: `calc(50% + ${centerX + radius * Math.cos(5*Math.PI/6)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(5*Math.PI/6)}px)`
       }
     },
     {
       id: "rooty",
-      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F36e00ba92ccc4d928f7769dfccf431c9?format=webp&width=800",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2Fc2faa21a880b45d9be3c40dddb0cd20f?format=webp&width=800",
       label: "Rooty",
       color: "bg-orange-500",
       description: "A grounded and nurturing companion connected to nature.",
-      position: { 
+      position: {
         top: `calc(50% + ${centerY + radius * Math.sin(-5*Math.PI/6)}px)`, // -150° (top left)
-        left: `calc(50% + ${centerX + radius * Math.cos(-5*Math.PI/6)}px)` 
+        left: `calc(50% + ${centerX + radius * Math.cos(-5*Math.PI/6)}px)`
       }
     }
   ];
