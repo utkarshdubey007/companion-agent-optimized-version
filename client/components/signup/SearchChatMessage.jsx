@@ -3,10 +3,10 @@ import { ChatMessage } from "@/components/ChatMessage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const SearchChatMessage = ({ 
-  onSearch = () => {}, 
+const SearchChatMessage = ({
+  onSearch = () => {},
   placeholder = "Enter anything...",
-  className = ""
+  className = "",
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -17,7 +17,7 @@ const SearchChatMessage = ({
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch();
     }
   };
@@ -40,7 +40,7 @@ const SearchChatMessage = ({
           onKeyPress={handleKeyPress}
           className="w-full h-12 pl-4 pr-16 rounded-full border-2 border-orange-300 bg-white text-black placeholder-gray-500 text-sm focus:border-orange-400 focus:ring-2 focus:ring-orange-200"
         />
-        <Button 
+        <Button
           onClick={handleSearch}
           className="absolute right-2 top-2 h-8 w-8 bg-orange-400 hover:bg-orange-500 rounded-full p-0 transition-all duration-200 hover:scale-105"
         >

@@ -15,12 +15,8 @@ const ParentsSection = () => {
           <Card key={i} className="bg-gray-100 border-0">
             <CardContent className="p-4">
               <div className="w-full h-32 bg-gray-200 rounded mb-3"></div>
-              <p className="text-sm text-gray-700 mb-2">
-                Parent story title
-              </p>
-              <p className="text-xs text-gray-500">
-                Story description here
-              </p>
+              <p className="text-sm text-gray-700 mb-2">Parent story title</p>
+              <p className="text-xs text-gray-500">Story description here</p>
             </CardContent>
           </Card>
         ))}

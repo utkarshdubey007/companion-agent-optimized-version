@@ -26,9 +26,7 @@ const EducatorsSection = () => {
         <Card className="bg-gray-100 border-0">
           <CardContent className="p-6">
             <div className="w-full h-40 bg-gray-200 rounded mb-4"></div>
-            <p className="text-sm text-gray-700 mb-2">
-              The TaleTree Method
-            </p>
+            <p className="text-sm text-gray-700 mb-2">The TaleTree Method</p>
             <p className="text-xs text-gray-500">Jan 24, 2024</p>
           </CardContent>
         </Card>

@@ -15,9 +15,7 @@ const LatestNewsSection = () => {
           <Card key={i} className="bg-gray-100 border-0">
             <CardContent className="p-3">
               <div className="w-full h-20 bg-gray-200 rounded mb-2"></div>
-              <p className="text-xs text-gray-600 mb-1">
-                News headline here
-              </p>
+              <p className="text-xs text-gray-600 mb-1">News headline here</p>
               <p className="text-xs text-gray-500">Jan 24, 2024</p>
             </CardContent>
           </Card>

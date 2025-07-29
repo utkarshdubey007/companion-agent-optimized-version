@@ -2,10 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
-export function TaleTreeWheelModal({
-  isOpen,
-  onClose,
-}) {
+export function TaleTreeWheelModal({ isOpen, onClose }) {
   const [hoveredAction, setHoveredAction] = useState(null);
 
   // Calculate circular positions using trigonometry
