@@ -10,15 +10,18 @@ import SignupFooter from "@/components/signup/SignupFooter";
 
 const Signup = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      {/* Stars/Decorative Elements */}
-      <DecorativeStars />
+    <div className="relative">
+      {/* Hero Section - Full Viewport */}
+      <div className="relative z-0">
+        {/* Stars/Decorative Elements */}
+        <DecorativeStars />
 
-      {/* Main Hero Section */}
-      <HeroSection />
+        {/* Main Hero Section */}
+        <HeroSection />
+      </div>
 
-      {/* Content Sections */}
-      <div className="relative z-10 bg-white mt-8">
+      {/* Content Sections - Below Hero */}
+      <div className="relative z-10 bg-white">
         <CreativitySection />
         <IntroducingSection />
         <LatestNewsSection />
@@ -28,7 +31,9 @@ const Signup = () => {
       </div>
 
       {/* Footer */}
-      <SignupFooter />
+      <div className="relative z-10">
+        <SignupFooter />
+      </div>
     </div>
   );
 };
