@@ -28,19 +28,19 @@ const Plans = () => {
             <div className="flex items-center gap-4">
               {/* Search Component */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Search..."
-                  className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-full text-sm"
-                />
+                <button className="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 cursor-pointer">
+                  <Search className="w-5 h-5 text-gray-600" />
+                </button>
               </div>
-              
+
               {/* Login Button */}
-              <Button 
-                variant="outline" 
-                className="border border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-50 transition-colors duration-200"
+              <Button
+                variant="outline"
+                className="border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-full font-medium text-sm hover:bg-gray-100 hover:border-gray-400 hover:text-gray-900 transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md"
               >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
                 Login
               </Button>
             </div>
