@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
+import SignupMui from "./pages/SignupMui";
 import SpaceCompanionDemo from "./pages/SpaceCompanionDemo";
 import MagicalPortalDemo from "./pages/MagicalPortalDemo";
 import ArchPortalDemo from "./pages/ArchPortalDemo";
