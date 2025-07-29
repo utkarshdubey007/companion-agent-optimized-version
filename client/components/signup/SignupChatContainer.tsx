@@ -66,7 +66,7 @@ export function SignupChatContainer({
     // AI text messages - positioned near companion
     if (message.sender === "AI") {
       return (
-        <div className="absolute bottom-40 left-72" key={message.id}>
+        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 translate-x-32" key={message.id}>
           <div className="max-w-sm">
             <div className="bg-blue-500 text-white p-3 rounded-2xl rounded-bl-sm shadow-lg relative">
               <p className="text-sm leading-relaxed">{message.content}</p>
