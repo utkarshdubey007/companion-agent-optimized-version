@@ -99,7 +99,7 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
 
   if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <div
       className="fixed top-0 left-0 w-full h-full z-[99999] flex items-center justify-center backdrop-blur-md bg-black/40"
       onClick={onClose}
