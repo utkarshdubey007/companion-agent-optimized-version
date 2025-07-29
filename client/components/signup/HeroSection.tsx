@@ -54,9 +54,9 @@ const HeroSection = () => {
         }}
       />
 
-      {/* SimplifiedChatContainer with companion positioned on ground */}
+      {/* SignupChatContainer with companion positioned on ground */}
       <div className="relative z-10 w-full h-full">
-        <SimplifiedChatContainer
+        <SignupChatContainer
           messages={chatMessages}
           className="w-full h-full"
           isAIThinking={false}
