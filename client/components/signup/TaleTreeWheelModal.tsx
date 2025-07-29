@@ -191,4 +191,6 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }
