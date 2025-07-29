@@ -164,8 +164,12 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
               >
                 <div className="flex flex-col items-center">
                   {/* Action Circle */}
-                  <div className={`w-16 h-16 ${action.color} rounded-full flex items-center justify-center text-2xl hover:scale-110 transition-transform duration-200 shadow-lg`}>
-                    {action.icon}
+                  <div className={`w-16 h-16 ${action.color} rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-lg overflow-hidden`}>
+                    <img
+                      src={action.icon}
+                      alt={action.label}
+                      className="w-8 h-8 object-contain"
+                    />
                   </div>
                   {/* Label */}
                   <span className="text-white text-sm font-medium mt-2 bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm">
