@@ -55,6 +55,26 @@ const HeroSection = () => {
       {/* Header Actions - Search and Login */}
       <HeaderActions />
 
+      {/* TaleTree Logo and Title */}
+      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-40 text-center">
+        <div className="flex flex-col items-center">
+          {/* Logo */}
+          <div className="w-16 h-16 mb-4">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
+              alt="TaleTree Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          {/* Title */}
+          <h1 className="text-white text-3xl md:text-4xl font-bold mb-2">taleTree</h1>
+          {/* Subtitle */}
+          <p className="text-white/90 text-sm md:text-base max-w-md">
+            A New Kind of Curriculum for a New Kind of World
+          </p>
+        </div>
+      </div>
+
       {/* SignupChatContainer with companion centered */}
       <div className="relative z-10 w-full h-full flex items-center justify-center">
         <SignupChatContainer
