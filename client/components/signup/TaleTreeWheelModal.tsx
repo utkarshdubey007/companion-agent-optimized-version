@@ -97,34 +97,6 @@ export function TaleTreeWheelModal({ isOpen, onClose }: TaleTreeWheelModalProps)
     return wheelActions.find(action => action.id === hoveredAction);
   };
 
-  const handleMouseEnter = (actionId: string) => {
-    // Clear any existing timeout
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-    }
-
-    setHoveredAction(actionId);
-    // Show tooltip after a small delay
-    const timeout = setTimeout(() => {
-      setShowTooltip(true);
-    }, 300);
-    setHoverTimeout(timeout);
-  };
-
-  const handleMouseLeave = () => {
-    // Clear timeout
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-
-    // Hide tooltip immediately but keep hovered action for a moment
-    setShowTooltip(false);
-    setTimeout(() => {
-      setHoveredAction(null);
-    }, 150);
-  };
-
   if (!isOpen) return null;
 
   const modalContent = (
