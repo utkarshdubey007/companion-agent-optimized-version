@@ -174,6 +174,9 @@ export function MuiHeaderActionsLight() {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           disableScrollLock={true}
+          disableAutoFocus={true}
+          disableEnforceFocus={true}
+          disableRestoreFocus={true}
         >
           <MenuItem
             sx={{
