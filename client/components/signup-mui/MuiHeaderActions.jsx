@@ -141,7 +141,7 @@ export function MuiHeaderActions() {
         <Menu
           anchorEl={anchorEl}
           open={isLoginMenuOpen}
-          onClose={handleLoginClose}
+          onClose={handleLoginMouseLeave}
           sx={{
             "& .MuiPaper-root": {
               borderRadius: "16px",
