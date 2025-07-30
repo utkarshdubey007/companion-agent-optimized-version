@@ -182,8 +182,11 @@ const Plans = () => {
           </IconButton>
 
           {/* Login */}
-          <Button
-            onClick={handleLoginMenuOpen}
+          <Box
+            onMouseEnter={handleLoginMouseEnter}
+            onMouseLeave={handleLoginMouseLeave}
+          >
+            <Button
             startIcon={<Person sx={{ fontSize: 16 }} />}
             variant="outlined"
             sx={{
@@ -203,13 +206,18 @@ const Plans = () => {
             }}
           >
             Login
-          </Button>
+            </Button>
+          </Box>
 
           {/* Login Menu */}
           <Menu
             anchorEl={loginAnchorEl}
             open={isLoginMenuOpen}
-            onClose={handleLoginMenuClose}
+            onClose={handleMenuMouseLeave}
+            MenuListProps={{
+              onMouseEnter: handleMenuMouseEnter,
+              onMouseLeave: handleMenuMouseLeave,
+            }}
             sx={{
               "& .MuiPaper-root": {
                 borderRadius: 2,
@@ -223,7 +231,6 @@ const Plans = () => {
             {loginOptions.map((option, index) => (
               <MenuItem
                 key={index}
-                onClick={handleLoginMenuClose}
                 sx={{
                   py: 1.5,
                   px: 2,
