@@ -161,7 +161,7 @@ const Plans = () => {
           }}
         >
           {/* Emeralites Plan */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Card
               sx={{
                 height: "100%",
@@ -172,13 +172,13 @@ const Plans = () => {
                 borderRadius: 2,
                 boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                 "&:hover": {
-                  transform: "translateY(-8px)",
+                  transform: { xs: "translateY(-4px)", md: "translateY(-8px)" },
                   boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
                   border: "4px solid #a855f7",
                 },
               }}
             >
-              <CardContent sx={{ p: 4 }}>
+              <CardContent sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
                 <Box sx={{ mb: 3 }}>
                   <Typography
                     variant="h5"
