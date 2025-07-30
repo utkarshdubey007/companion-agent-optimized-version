@@ -42,6 +42,12 @@ const SignupMui = () => {
       <div className="signup-content-wrapper">
         {/* Plans Strip - Inside content sections at top */}
         <MuiPlansStrip onShowPlans={() => setShowPlans(true)} />
+
+        {/* Role Selection Component */}
+        <Box sx={{ bgcolor: 'white', py: 4 }}>
+          <RoleSelection onRoleSelect={handleRoleSelect} />
+        </Box>
+
         <MuiCreativitySection />
         <MuiIntroducingSection />
         <MuiLatestNewsSection />
