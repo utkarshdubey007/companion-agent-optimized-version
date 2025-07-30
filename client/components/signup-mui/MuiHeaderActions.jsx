@@ -108,9 +108,12 @@ export function MuiHeaderActions() {
       </Box>
 
       {/* Login Component */}
-      <Box sx={{ position: "relative" }}>
+      <Box
+        sx={{ position: "relative" }}
+        onMouseEnter={handleLoginMouseEnter}
+        onMouseLeave={handleLoginMouseLeave}
+      >
         <Button
-          onClick={handleLoginClick}
           sx={{
             border: "1px solid rgba(255, 255, 255, 0.4)",
             color: "white",
