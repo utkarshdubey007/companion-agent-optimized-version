@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Box, Modal, IconButton, Chip, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-export function MuiTaleTreeWheelModal({
-  isOpen,
-  onClose,
-}) {
+export function MuiTaleTreeWheelModal({ isOpen, onClose }) {
   const [hoveredAction, setHoveredAction] = useState(null);
 
   // Calculate circular positions using trigonometry
@@ -115,7 +112,14 @@ export function MuiTaleTreeWheelModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mb: 3,
+          }}
+        >
           <Chip
             label="The TaleTree Method"
             sx={{
@@ -128,7 +132,15 @@ export function MuiTaleTreeWheelModal({
         </Box>
 
         {/* Wheel Container */}
-        <Box sx={{ flex: 1, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Box
+          sx={{
+            flex: 1,
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {/* Center Close Button */}
           <IconButton
             onClick={onClose}
@@ -166,7 +178,13 @@ export function MuiTaleTreeWheelModal({
               onMouseEnter={() => setHoveredAction(action.id)}
               onMouseLeave={() => setHoveredAction(null)}
             >
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 {/* Action Icon */}
                 <Box
                   sx={{
@@ -226,7 +244,8 @@ export function MuiTaleTreeWheelModal({
                   p: 1.5,
                   borderRadius: "8px",
                   maxWidth: "300px",
-                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  boxShadow:
+                    "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                   position: "relative",
                 }}
               >

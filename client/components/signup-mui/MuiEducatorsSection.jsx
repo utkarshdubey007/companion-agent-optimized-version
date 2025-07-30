@@ -1,22 +1,38 @@
-import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
 
 const MuiEducatorsSection = () => {
   const educatorItems = [
-    { 
-      title: "Lorem ipsum dolor sit amet", 
+    {
+      title: "Lorem ipsum dolor sit amet",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=280&fit=crop&crop=center"
+      image:
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=280&fit=crop&crop=center",
     },
-    { 
-      title: "The TaleTree Method", 
+    {
+      title: "The TaleTree Method",
       date: "Jun 30,2025",
-      isMethodCard: true
+      isMethodCard: true,
     },
   ];
 
   return (
     <Container maxWidth="xl" sx={{ px: 4, py: 6 }}>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 4,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
@@ -89,7 +105,8 @@ const MuiEducatorsSection = () => {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%)",
+                      background:
+                        "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%)",
                       position: "relative",
                       display: "flex",
                       alignItems: "center",
@@ -102,7 +119,8 @@ const MuiEducatorsSection = () => {
                         width: 160,
                         height: 160,
                         borderRadius: "50%",
-                        background: "linear-gradient(45deg, #f59e0b, #22c55e, #3b82f6, #ef4444)",
+                        background:
+                          "linear-gradient(45deg, #f59e0b, #22c55e, #3b82f6, #ef4444)",
                         position: "relative",
                         display: "flex",
                         alignItems: "center",
@@ -161,13 +179,48 @@ const MuiEducatorsSection = () => {
 
                     {/* Method labels around the circle */}
                     {[
-                      { text: "IMAGINE", color: "#a855f7", top: "10%", right: "15%" },
-                      { text: "REWARD", color: "#f59e0b", top: "25%", left: "8%" },
-                      { text: "PLAY", color: "#3b82f6", bottom: "25%", right: "12%" },
-                      { text: "REFLECT", color: "#ef4444", bottom: "35%", left: "5%" },
-                      { text: "CREATE", color: "#22c55e", bottom: "15%", right: "8%" },
-                      { text: "SHARE", color: "#ec4899", bottom: "10%", left: "15%" },
-                      { text: "STORE", color: "#06b6d4", bottom: "20%", right: "25%" },
+                      {
+                        text: "IMAGINE",
+                        color: "#a855f7",
+                        top: "10%",
+                        right: "15%",
+                      },
+                      {
+                        text: "REWARD",
+                        color: "#f59e0b",
+                        top: "25%",
+                        left: "8%",
+                      },
+                      {
+                        text: "PLAY",
+                        color: "#3b82f6",
+                        bottom: "25%",
+                        right: "12%",
+                      },
+                      {
+                        text: "REFLECT",
+                        color: "#ef4444",
+                        bottom: "35%",
+                        left: "5%",
+                      },
+                      {
+                        text: "CREATE",
+                        color: "#22c55e",
+                        bottom: "15%",
+                        right: "8%",
+                      },
+                      {
+                        text: "SHARE",
+                        color: "#ec4899",
+                        bottom: "10%",
+                        left: "15%",
+                      },
+                      {
+                        text: "STORE",
+                        color: "#06b6d4",
+                        bottom: "20%",
+                        right: "25%",
+                      },
                     ].map((label, index) => (
                       <Box
                         key={index}

@@ -19,7 +19,8 @@ const MuiIntroducingSection = () => {
             {/* Fox character scene with starry night */}
             <Box
               sx={{
-                background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 100%)",
+                background:
+                  "linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 100%)",
                 height: "100%",
                 position: "relative",
                 display: "flex",
@@ -196,7 +197,7 @@ const MuiIntroducingSection = () => {
                         transform: "rotate(-15deg)",
                       }}
                     />
-                    
+
                     {/* Nose */}
                     <Box
                       sx={{
@@ -289,7 +290,8 @@ const MuiIntroducingSection = () => {
             <Box
               sx={{
                 height: "300px",
-                backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F70505802e34346039d2fb8ec7db34579%2F01c22825301043d9946881a73b08b4f9?format=webp&width=800')",
+                backgroundImage:
+                  "url('https://cdn.builder.io/api/v1/image/assets%2F70505802e34346039d2fb8ec7db34579%2F01c22825301043d9946881a73b08b4f9?format=webp&width=800')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 position: "relative",

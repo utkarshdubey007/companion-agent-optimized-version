@@ -82,7 +82,13 @@ const MuiHeroSection = () => {
           textAlign: "center",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           {/* Logo */}
           <Box sx={{ width: 64, height: 64, mb: 2 }}>
             <img
@@ -118,10 +124,7 @@ const MuiHeroSection = () => {
           justifyContent: "center",
         }}
       >
-        <MuiSignupChatContainer
-          messages={chatMessages}
-          isAIThinking={false}
-        />
+        <MuiSignupChatContainer messages={chatMessages} isAIThinking={false} />
       </Box>
 
       {/* SignupChatInput for chatting */}

@@ -5,38 +5,51 @@ const MuiLatestNewsSection = () => {
     {
       title: "Set up camp in TaleTree Village",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=150&h=150&fit=crop&crop=face"
+      image:
+        "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=150&h=150&fit=crop&crop=face",
     },
     {
       title: "Amplify Your Impact",
-      date: "Jun 30,2025", 
-      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=center"
+      date: "Jun 30,2025",
+      image:
+        "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=center",
     },
     {
       title: "Become an expert in Emerald City",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
+      image:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
     },
     {
       title: "Join our movement",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=150&h=150&fit=crop&crop=face"
+      image:
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=150&h=150&fit=crop&crop=face",
     },
     {
       title: "Acquire a Treehouse in Emerald City",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=150&fit=crop&crop=center"
+      image:
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=150&fit=crop&crop=center",
     },
     {
       title: "Dream With Experts",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     },
   ];
 
   return (
     <Container maxWidth="xl" sx={{ px: 4, py: 6 }}>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 4,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
@@ -98,7 +111,7 @@ const MuiLatestNewsSection = () => {
                       borderRadius: "8px",
                     }}
                   />
-                  
+
                   {/* Content */}
                   <Box sx={{ flex: 1, p: 2, pl: 0 }}>
                     <Typography
@@ -161,7 +174,7 @@ const MuiLatestNewsSection = () => {
                       borderRadius: "8px",
                     }}
                   />
-                  
+
                   {/* Content */}
                   <Box sx={{ flex: 1, p: 2, pl: 0 }}>
                     <Typography

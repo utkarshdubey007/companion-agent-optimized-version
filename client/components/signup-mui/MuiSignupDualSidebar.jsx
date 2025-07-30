@@ -131,7 +131,15 @@ export function MuiSignupDualSidebar({
       }}
     >
       {/* Container with zero margin, aligned to left edge */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, py: 2, overflow: "hidden" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 1.5,
+          py: 2,
+          overflow: "hidden",
+        }}
+      >
         {/* Top Sidebar Section */}
         <Box sx={{ position: "relative" }}>
           <Box
@@ -153,7 +161,14 @@ export function MuiSignupDualSidebar({
               }}
             >
               <Box sx={{ overflowY: "auto", maxHeight: "calc(60vh - 32px)" }}>
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: 1.5,
+                  }}
+                >
                   {topMenuItems.map((item, index) => (
                     <Box
                       key={item.alt}
@@ -241,8 +256,6 @@ export function MuiSignupDualSidebar({
                 </Box>
               </Box>
             </Box>
-
-
           </Box>
         </Box>
 
@@ -267,7 +280,14 @@ export function MuiSignupDualSidebar({
               }}
             >
               <Box sx={{ overflowY: "auto", maxHeight: "calc(30vh - 24px)" }}>
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
                   {dynamicBottomMenuItems.map((item, index) => (
                     <Box
                       key={item.alt}
@@ -276,7 +296,9 @@ export function MuiSignupDualSidebar({
                         animation: showBottomWaveEffect
                           ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
                           : "none",
-                        transform: showBottomWaveEffect ? "scale(1)" : "scale(0)",
+                        transform: showBottomWaveEffect
+                          ? "scale(1)"
+                          : "scale(0)",
                       }}
                     >
                       <Tooltip
@@ -331,8 +353,6 @@ export function MuiSignupDualSidebar({
                 </Box>
               </Box>
             </Box>
-
-
           </Box>
         </Box>
       </Box>

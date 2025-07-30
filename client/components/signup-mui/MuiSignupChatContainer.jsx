@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import Lottie from "lottie-react";
 
-export function MuiSignupChatContainer({
-  messages,
-  isAIThinking = false,
-}) {
+export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
   // State for Lottie animation data
   const [animationData, setAnimationData] = useState(null);
 
@@ -103,9 +100,18 @@ export function MuiSignupChatContainer({
                   left: { xs: "8px", sm: "12px" },
                   width: 0,
                   height: 0,
-                  borderLeft: { xs: "4px solid transparent", sm: "8px solid transparent" },
-                  borderRight: { xs: "4px solid transparent", sm: "8px solid transparent" },
-                  borderTop: { xs: "4px solid #3b82f6", sm: "8px solid #3b82f6" },
+                  borderLeft: {
+                    xs: "4px solid transparent",
+                    sm: "8px solid transparent",
+                  },
+                  borderRight: {
+                    xs: "4px solid transparent",
+                    sm: "8px solid transparent",
+                  },
+                  borderTop: {
+                    xs: "4px solid #3b82f6",
+                    sm: "8px solid #3b82f6",
+                  },
                   transform: "translateY(100%)",
                 }}
               />
@@ -179,7 +185,14 @@ export function MuiSignupChatContainer({
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        position: "relative",
+      }}
+    >
       {/* Fixed Companion Character on left side above chat input and on ground - responsive */}
       <Box
         sx={{
@@ -207,7 +220,8 @@ export function MuiSignupChatContainer({
               position: "absolute",
               inset: 0,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2))",
+              background:
+                "radial-gradient(circle, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2))",
               filter: "blur(40px)",
               animation: "pulse 2s infinite",
             }}
@@ -327,7 +341,7 @@ export function MuiSignupChatContainer({
             sx={{
               position: "absolute",
               bottom: { xs: "200px", sm: "240px", md: "280px", lg: "320px" },
-            left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" },
+              left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" },
               transform: "translateX(-50%)",
               zIndex: 10,
             }}
@@ -368,9 +382,18 @@ export function MuiSignupChatContainer({
                     left: { xs: "8px", sm: "12px" },
                     width: 0,
                     height: 0,
-                    borderLeft: { xs: "4px solid transparent", sm: "8px solid transparent" },
-                    borderRight: { xs: "4px solid transparent", sm: "8px solid transparent" },
-                    borderTop: { xs: "4px solid #3b82f6", sm: "8px solid #3b82f6" },
+                    borderLeft: {
+                      xs: "4px solid transparent",
+                      sm: "8px solid transparent",
+                    },
+                    borderRight: {
+                      xs: "4px solid transparent",
+                      sm: "8px solid transparent",
+                    },
+                    borderTop: {
+                      xs: "4px solid #3b82f6",
+                      sm: "8px solid #3b82f6",
+                    },
                     transform: "translateY(100%)",
                   }}
                 />

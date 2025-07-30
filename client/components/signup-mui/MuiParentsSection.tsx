@@ -1,28 +1,46 @@
-import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
 
 const MuiParentsSection = () => {
   const parentStories = [
-    { 
-      title: "Lorem ipsum dolor sit amet", 
-      date: "Jun 30,2025", 
-      image: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=240&fit=crop&crop=face"
+    {
+      title: "Lorem ipsum dolor sit amet",
+      date: "Jun 30,2025",
+      image:
+        "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=240&fit=crop&crop=face",
     },
-    { 
-      title: "Lorem ipsum dolor sit amet", 
-      date: "Jun 30,2025", 
-      image: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&h=240&fit=crop&crop=center",
-      hasAvatars: true
+    {
+      title: "Lorem ipsum dolor sit amet",
+      date: "Jun 30,2025",
+      image:
+        "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&h=240&fit=crop&crop=center",
+      hasAvatars: true,
     },
-    { 
-      title: "Lorem ipsum dolor sit amet", 
-      date: "Jun 30,2025", 
-      image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&h=240&fit=crop&crop=center"
+    {
+      title: "Lorem ipsum dolor sit amet",
+      date: "Jun 30,2025",
+      image:
+        "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&h=240&fit=crop&crop=center",
     },
   ];
 
   return (
     <Container maxWidth="xl" sx={{ px: 4, py: 6 }}>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 4,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
@@ -162,7 +180,7 @@ const MuiParentsSection = () => {
                     }}
                   />
                 </Box>
-                
+
                 {/* Orange avatar */}
                 <Box
                   sx={{

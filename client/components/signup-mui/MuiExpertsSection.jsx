@@ -1,27 +1,45 @@
-import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
 
 const MuiExpertsSection = () => {
   const expertItems = [
-    { 
-      title: "Lorem ipsum dolor sit amet", 
+    {
+      title: "Lorem ipsum dolor sit amet",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=240&fit=crop&crop=face"
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=240&fit=crop&crop=face",
     },
-    { 
-      title: "Lorem ipsum dolor sit amet", 
+    {
+      title: "Lorem ipsum dolor sit amet",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=240&fit=crop&crop=center"
+      image:
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=240&fit=crop&crop=center",
     },
-    { 
-      title: "Lorem ipsum dolor sit amet", 
+    {
+      title: "Lorem ipsum dolor sit amet",
       date: "Jun 30,2025",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=240&fit=crop&crop=center"
+      image:
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=240&fit=crop&crop=center",
     },
   ];
 
   return (
     <Container maxWidth="xl" sx={{ px: 4, py: 6 }}>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 4,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
