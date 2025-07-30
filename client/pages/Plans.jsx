@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Container,
@@ -12,16 +12,11 @@ import {
   ListItemText,
   Grid,
   IconButton,
-  Menu,
-  MenuItem,
-  Avatar,
   Tooltip,
   Link,
 } from "@mui/material";
 import {
   Check,
-  Search,
-  Person,
   ArrowBack,
   Facebook,
   Twitter,
@@ -37,7 +32,7 @@ const Plans = () => {
   const planFeatures = {
     emeralites: [
       "Up to 20 TaleTree creations",
-      "AI powered emotional reflections",
+      "AI powered emotional reflections", 
       "Guardian account verification required",
       "Limited access to the TaleTree Method",
     ],
@@ -59,155 +54,56 @@ const Plans = () => {
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "white" }}>
-      {/* Header */}
+      {/* Logo and Back Button */}
       <Box
         sx={{
           position: "absolute",
           top: 24,
-          left: 0,
-          right: 0,
+          left: 24,
           zIndex: 50,
-          px: 3,
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
+          alignItems: "center",
+          gap: 2,
         }}
       >
-        {/* TaleTree Logo and Back Button */}
-        <Box>
-          <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-            <Box sx={{ width: 32, height: 32, mr: 2 }}>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
-                alt="TaleTree Logo"
-                style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              />
-            </Box>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: 600, color: "#111827" }}
-            >
-              taleTree
-            </Typography>
-          </Box>
-
-          {/* Back Button */}
-          <Tooltip title="Back to Signup" placement="right">
-            <IconButton
-              onClick={() => navigate("/signup")}
-              sx={{
-                width: 40,
-                height: 40,
-                border: "1px solid #d1d5db",
-                borderRadius: "50%",
-                color: "#6b7280",
-                "&:hover": {
-                  bgcolor: "#f3f4f6",
-                  borderColor: "#9ca3af",
-                  color: "#374151",
-                },
-                transition: "all 0.3s",
-              }}
-            >
-              <ArrowBack sx={{ fontSize: 20 }} />
-            </IconButton>
-          </Tooltip>
+        <Box sx={{ width: 32, height: 32 }}>
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
+            alt="TaleTree Logo"
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          />
         </Box>
-
-        {/* Search and Login */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          {/* Search */}
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: 600, color: "#111827", mr: 2 }}
+        >
+          taleTree
+        </Typography>
+        
+        <Tooltip title="Back to Signup" placement="right">
           <IconButton
+            onClick={() => navigate("/signup")}
             sx={{
-              width: 40,
-              height: 40,
+              width: 32,
+              height: 32,
               border: "1px solid #d1d5db",
               borderRadius: "50%",
               color: "#6b7280",
               "&:hover": {
-                bgcolor: "#eff6ff",
-                borderColor: "#60a5fa",
-                color: "#2563eb",
-              },
-              transition: "all 0.3s",
-            }}
-          >
-            <Search sx={{ fontSize: 20 }} />
-          </IconButton>
-
-          {/* Login with Menu Area */}
-          <Box
-            sx={{ position: "relative" }}
-            onMouseEnter={handleLoginAreaEnter}
-            onMouseLeave={handleLoginAreaLeave}
-          >
-            <Button
-            startIcon={<Person sx={{ fontSize: 16 }} />}
-            variant="outlined"
-            sx={{
-              borderColor: "#d1d5db",
-              color: "#374151",
-              borderRadius: "20px",
-              textTransform: "none",
-              fontWeight: 500,
-              fontSize: "14px",
-              px: 2,
-              py: 1,
-              "&:hover": {
-                bgcolor: "#f9fafb",
+                bgcolor: "#f3f4f6",
                 borderColor: "#9ca3af",
+                color: "#374151",
               },
               transition: "all 0.3s",
             }}
           >
-            Login
-            </Button>
-          </Box>
-
-          {/* Login Menu */}
-          <Menu
-            anchorEl={loginAnchorEl}
-            open={isLoginMenuOpen}
-            onClose={handleLoginAreaLeave}
-            MenuListProps={{
-              onMouseEnter: () => {
-                // Keep menu open when hovering over it
-              },
-              onMouseLeave: handleLoginAreaLeave,
-              sx: { py: 0 }
-            }}
-            sx={{
-              "& .MuiPaper-root": {
-                borderRadius: 2,
-                mt: 1,
-                minWidth: 140,
-                boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                border: "1px solid #f3f4f6",
-              },
-            }}
-            disableScrollLock={true}
-          >
-            {loginOptions.map((option, index) => (
-              <MenuItem
-                key={index}
-                sx={{
-                  py: 1.5,
-                  px: 2,
-                  "&:hover": { bgcolor: "#f9fafb" },
-                }}
-              >
-                <Avatar
-                  src={option.avatar}
-                  sx={{ width: 24, height: 24, mr: 1.5 }}
-                />
-                <Typography variant="body2" fontWeight={500} sx={{ fontSize: "14px" }}>
-                  {option.label}
-                </Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
+            <ArrowBack sx={{ fontSize: 16 }} />
+          </IconButton>
+        </Tooltip>
       </Box>
+
+      {/* MUI Header Actions for Search and Login */}
+      <MuiHeaderActions />
 
       {/* Main Content */}
       <Container maxWidth="lg" sx={{ pt: 20, pb: 12 }}>
