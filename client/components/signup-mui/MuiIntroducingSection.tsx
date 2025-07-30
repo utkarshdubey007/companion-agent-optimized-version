@@ -1,134 +1,145 @@
-import { Box, Container, Typography, Grid } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 const MuiIntroducingSection = () => {
   return (
-    <Container maxWidth="xl" sx={{ px: 4, py: 4 }}>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 3 }}>
-        <Typography
-          variant="h4"
+    <Container maxWidth="xl" sx={{ px: 4, py: 6 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          fontSize: "24px",
+          fontWeight: 700,
+          color: "#111827",
+          mb: 4,
+        }}
+      >
+        Introducing TaleTree
+      </Typography>
+
+      {/* Single centered card with fox character */}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
           sx={{
-            fontSize: "24px",
-            fontWeight: 700,
-            color: "#111827",
+            width: { xs: "100%", md: "70%" },
+            maxWidth: "600px",
+            bgcolor: "white",
+            borderRadius: "12px",
+            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            overflow: "hidden",
           }}
         >
-          Introducing TaleTree
-        </Typography>
-      </Box>
-
-      <Grid container spacing={3}>
-        {/* Left - Character illustration */}
-        <Grid item xs={12} md={6}>
+          {/* Image section with fox character */}
           <Box
             sx={{
-              background: "linear-gradient(135deg, #fb923c 0%, #ef4444 100%)",
-              borderRadius: "12px",
-              p: 3,
-              height: 256,
+              background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)",
+              height: 300,
               position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 16,
-                left: 16,
-              }}
-            >
-              <Box
-                sx={{
-                  width: 64,
-                  height: 80,
-                  bgcolor: "#ea580c",
-                  borderRadius: "50%",
-                  position: "relative",
-                }}
-              >
-                {/* Simple character representation */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: 8,
-                    left: 12,
-                    width: 8,
-                    height: 8,
-                    bgcolor: "white",
-                    borderRadius: "50%",
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: 8,
-                    right: 12,
-                    width: 8,
-                    height: 8,
-                    bgcolor: "white",
-                    borderRadius: "50%",
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: 24,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: 4,
-                    height: 4,
-                    bgcolor: "white",
-                    borderRadius: "50%",
-                  }}
-                />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to top, rgba(34, 197, 94, 0.2) 0%, transparent 100%)",
-                borderRadius: "12px",
-              }}
-            />
-          </Box>
-        </Grid>
-
-        {/* Right - Family photo placeholder */}
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              bgcolor: "#e5e7eb",
-              borderRadius: "12px",
-              height: 256,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Box sx={{ textAlign: "center" }}>
+            {/* Fox character placeholder */}
+            <Box
+              sx={{
+                width: 120,
+                height: 120,
+                bgcolor: "#ef4444",
+                borderRadius: "50% 50% 0 50%",
+                position: "relative",
+                transform: "rotate(-15deg)",
+              }}
+            >
+              {/* Fox ears */}
               <Box
                 sx={{
-                  width: 80,
-                  height: 80,
-                  bgcolor: "#d1d5db",
-                  borderRadius: "50%",
-                  mx: "auto",
-                  mb: 2,
+                  position: "absolute",
+                  top: -20,
+                  left: 20,
+                  width: 20,
+                  height: 30,
+                  bgcolor: "#ef4444",
+                  borderRadius: "50% 50% 0 0",
+                  transform: "rotate(-30deg)",
                 }}
               />
-              <Typography
-                variant="body2"
+              <Box
                 sx={{
-                  color: "#6b7280",
-                  fontSize: "14px",
+                  position: "absolute",
+                  top: -20,
+                  right: 20,
+                  width: 20,
+                  height: 30,
+                  bgcolor: "#ef4444",
+                  borderRadius: "50% 50% 0 0",
+                  transform: "rotate(30deg)",
                 }}
-              >
-                Families that talk
-              </Typography>
+              />
+              {/* Fox eyes */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 30,
+                  left: 25,
+                  width: 15,
+                  height: 15,
+                  bgcolor: "white",
+                  borderRadius: "50%",
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 30,
+                  right: 25,
+                  width: 15,
+                  height: 15,
+                  bgcolor: "white",
+                  borderRadius: "50%",
+                }}
+              />
+              {/* Fox nose */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 50,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 8,
+                  height: 6,
+                  bgcolor: "white",
+                  borderRadius: "50%",
+                }}
+              />
             </Box>
+
+            {/* Green ground area */}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 80,
+                background: "linear-gradient(to top, #22c55e, #16a34a)",
+                borderRadius: "0 0 50% 50% / 0 0 100px 100px",
+              }}
+            />
           </Box>
-        </Grid>
-      </Grid>
+
+          {/* Caption */}
+          <Box sx={{ p: 3, textAlign: "center" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#6b7280",
+                fontSize: "14px",
+              }}
+            >
+              Families that talk
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
     </Container>
   );
 };
