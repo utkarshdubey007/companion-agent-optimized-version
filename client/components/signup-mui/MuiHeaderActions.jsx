@@ -21,11 +21,11 @@ export function MuiHeaderActions() {
     setIsSearchExpanded(!isSearchExpanded);
   };
 
-  const handleLoginClick = (event) => {
+  const handleLoginMouseEnter = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLoginClose = () => {
+  const handleLoginMouseLeave = () => {
     setAnchorEl(null);
   };
 
