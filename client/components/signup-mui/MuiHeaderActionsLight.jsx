@@ -143,7 +143,7 @@ export function MuiHeaderActionsLight() {
         <Menu
           anchorEl={anchorEl}
           open={isLoginMenuOpen}
-          onClose={handleMenuMouseLeave}
+          onClose={handleLoginAreaLeave}
           sx={{
             "& .MuiPaper-root": {
               borderRadius: "16px",
@@ -155,8 +155,10 @@ export function MuiHeaderActionsLight() {
             },
           }}
           MenuListProps={{
-            onMouseEnter: handleMenuMouseEnter,
-            onMouseLeave: handleMenuMouseLeave,
+            onMouseEnter: () => {
+              // Keep menu open when hovering over it
+            },
+            onMouseLeave: handleLoginAreaLeave,
             sx: { py: 0 }
           }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
