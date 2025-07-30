@@ -150,7 +150,7 @@ export function MuiSignupDualSidebar({
           <Box
             sx={{
               ...sidebarStyle,
-              width: topSidebarCollapsed ? 32 : 80,
+              width: 80,
               height: "auto",
               maxHeight: "calc(60vh)",
             }}
