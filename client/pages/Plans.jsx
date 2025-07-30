@@ -120,7 +120,10 @@ const Plans = () => {
         sx={{
           pt: { xs: 12, sm: 16, md: 20 },
           pb: { xs: 6, sm: 8, md: 12 },
-          px: { xs: 2, sm: 3 }
+          px: { xs: 2, sm: 3 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
         }}
       >
         {/* Page Title */}
