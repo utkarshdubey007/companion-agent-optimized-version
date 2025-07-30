@@ -51,77 +51,77 @@ const RoleSelection = ({ onRoleSelect }) => {
 
   return (
     <Container maxWidth="sm" sx={{ py: 4 }}>
-      {/* Role Cards Container - Relative positioned for badge */}
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          gap: '16px', 
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          pt: 4 // Space for the floating badge
-        }}
-      >
-        {roles.map((role, index) => {
-          const IconComponent = role.icon;
-          const isSelected = selectedRole === role.id;
-          const isHovered = hoveredRole === role.id;
-          const isActive = isSelected || isHovered;
-          
-          return (
-            <Box
-              key={role.id}
-              sx={{
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer'
-              }}
-              onClick={() => handleRoleClick(role.id)}
-              onMouseEnter={() => setHoveredRole(role.id)}
-              onMouseLeave={() => setHoveredRole(null)}
-            >
-              {/* Dynamic "I'm a" Badge - Only above selected card */}
-              {isSelected && (
-                <Chip
-                  label="I'm a"
-                  sx={{
-                    position: 'absolute',
-                    top: -20,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    backgroundColor: '#8000b3',
-                    color: 'white',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    height: 'auto',
-                    borderRadius: '9999px',
-                    zIndex: 10,
-                    boxShadow: '0 2px 8px rgba(128, 0, 179, 0.4)',
-                    transition: 'all 0.3s ease',
-                    '& .MuiChip-label': {
-                      padding: '6px 16px'
-                    }
-                  }}
-                />
-              )}
+      <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* Speech-bubble style "I'm a" label positioned above cards */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: -16,
+            left: '20px',
+            zIndex: 10
+          }}
+        >
+          <Chip
+            label="I'm a"
+            sx={{
+              backgroundColor: (theme) => theme.palette.primary.main || '#8000b3',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '0.75rem',
+              borderRadius: '12px',
+              px: 2,
+              py: 0.5,
+              height: 'auto',
+              boxShadow: '0 2px 8px rgba(128, 0, 179, 0.3)',
+              '& .MuiChip-label': {
+                padding: '4px 12px'
+              }
+            }}
+          />
+        </Box>
 
-              {/* Compact Role Card */}
+        {/* Role Cards Container */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            gap: '12px', 
+            justifyContent: 'center',
+            alignItems: 'center',
+            pt: 3 // Space for the floating label
+          }}
+        >
+          {roles.map((role) => {
+            const IconComponent = role.icon;
+            const isSelected = selectedRole === role.id;
+            const isHovered = hoveredRole === role.id;
+            const isActive = isSelected || isHovered;
+            
+            return (
               <Card
+                key={role.id}
+                onMouseEnter={() => setHoveredRole(role.id)}
+                onMouseLeave={() => setHoveredRole(null)}
+                onClick={() => handleRoleClick(role.id)}
                 sx={{
-                  width: '100px',
+                  width: '90px',
                   height: '120px',
-                  border: isActive ? '2px solid #8000b3' : '1px solid transparent',
-                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  border: isSelected 
+                    ? `2px solid ${(theme) => theme.palette.primary.main || '#8000b3'}` 
+                    : isHovered 
+                      ? `2px solid ${(theme) => theme.palette.primary.main || '#8000b3'}`
+                      : '1px solid transparent',
+                  borderRadius: '16px',
                   transition: 'all 0.3s ease',
-                  backgroundColor: 'white',
+                  backgroundColor: isSelected 
+                    ? (theme) => theme.palette.primary.light || 'rgba(128, 0, 179, 0.04)'
+                    : 'white',
                   boxShadow: isActive 
-                    ? '0 4px 16px rgba(128, 0, 179, 0.2)' 
-                    : '0 2px 8px rgba(0, 0, 0, 0.08)',
+                    ? 4
+                    : 1,
                   '&:hover': {
-                    border: '2px solid #8000b3',
-                    boxShadow: '0 4px 16px rgba(128, 0, 179, 0.2)',
+                    border: `2px solid ${(theme) => theme.palette.primary.main || '#8000b3'}`,
+                    boxShadow: 4,
                   },
                 }}
               >
@@ -132,54 +132,59 @@ const RoleSelection = ({ onRoleSelect }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 0.5,
-                    padding: '16px !important',
+                    px: 1,
+                    py: 1.5,
                     height: '100%',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    '&:last-child': {
+                      pb: 1.5
+                    }
                   }}
                 >
-                  {/* Subtitle (top text) */}
+                  {/* Small gray label above */}
                   <Typography
                     variant="caption"
                     sx={{
-                      fontSize: '12px',
+                      fontSize: '10px',
                       color: '#9E9E9E',
                       fontWeight: 400,
                       lineHeight: 1,
-                      mb: 0.5
+                      mb: 0.25
                     }}
                   >
                     {role.subtitle}
                   </Typography>
 
-                  {/* Clean Avatar - No borders */}
+                  {/* Circular Avatar - 48x48 pixels */}
                   <Avatar
                     src={role.avatar}
                     sx={{
-                      width: 50,
-                      height: 50,
-                      mb: 0.5
+                      width: 48,
+                      height: 48,
+                      mb: 0.25
                     }}
                   >
                     <IconComponent sx={{ fontSize: 24, color: '#6A1B9A' }} />
                   </Avatar>
 
-                  {/* Title (bottom text) */}
+                  {/* Bold main label below */}
                   <Typography
-                    variant="subtitle1"
+                    variant="body2"
                     sx={{
-                      fontWeight: 700,
+                      fontWeight: 'bold',
                       color: '#000000',
-                      fontSize: '16px',
-                      lineHeight: 1.2
+                      fontSize: '12px',
+                      lineHeight: 1.2,
+                      textTransform: 'capitalize'
                     }}
                   >
                     {role.name}
                   </Typography>
                 </CardContent>
               </Card>
-            </Box>
-          );
-        })}
+            );
+          })}
+        </Box>
       </Box>
     </Container>
   );
