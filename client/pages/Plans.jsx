@@ -414,7 +414,14 @@ const Plans = () => {
       {/* Footer */}
       <Box sx={{ bgcolor: "#312e81", color: "white", mt: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 }, px: { xs: 2, sm: 3 } }}>
-          <Grid container spacing={{ xs: 3, md: 4 }}>
+          <Grid
+            container
+            spacing={{ xs: 3, md: 4 }}
+            sx={{
+              justifyContent: "center",
+              textAlign: { xs: "center", md: "left" }
+            }}
+          >
             {/* Company Info */}
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: { xs: "1rem", md: "1.25rem" } }}>
