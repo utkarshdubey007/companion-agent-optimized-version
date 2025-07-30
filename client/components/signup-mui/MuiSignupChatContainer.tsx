@@ -198,12 +198,12 @@ export function MuiSignupChatContainer({
         sx={{
           position: "absolute",
           bottom: { xs: 64, sm: 80, md: 96 },
-          left: { xs: "15%", sm: "18%", md: "20%", lg: "22%" },
-          transform: "translateX(-50%)",
+          left: { xs: "100px", sm: "120px", md: "150px", lg: "200px" },
+          transform: "translateX(0)",
           zIndex: 10,
           transition: "transform 0.3s ease",
           "&:hover": {
-            transform: "translateX(-50%) scale(1.05)",
+            transform: "scale(1.05)",
           },
         }}
       >
