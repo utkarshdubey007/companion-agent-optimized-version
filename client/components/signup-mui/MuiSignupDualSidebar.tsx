@@ -345,50 +345,7 @@ export function MuiSignupDualSidebar({
               </Box>
             </Box>
 
-            {/* Toggle Button - Inside sidebar, right edge, vertically centered */}
-            <Box
-              sx={{
-                position: "absolute",
-                right: 2,
-                top: "50%",
-                transform: "translateY(-50%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <IconButton
-                onClick={toggleBottomSidebar}
-                sx={{
-                  width: 24,
-                  height: 32,
-                  bgcolor: "transparent",
-                  "&:hover": {
-                    bgcolor: "rgba(255, 255, 255, 0.1)",
-                    transform: "scale(1.1)",
-                  },
-                  borderRadius: "6px",
-                  transition: "all 0.3s ease",
-                  p: 0,
-                }}
-              >
-                <Box
-                  component="img"
-                  src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F7504875ba38348f8bb8df1ca5aaf3464?format=webp&width=800"
-                  alt="Toggle"
-                  sx={{
-                    width: 16,
-                    height: 16,
-                    objectFit: "contain",
-                    transition: "transform 0.3s ease",
-                    transform: bottomSidebarCollapsed ? "rotate(0deg)" : "rotate(180deg)",
-                    "&:hover": {
-                      transform: bottomSidebarCollapsed ? "scale(1.25)" : "rotate(180deg) scale(1.25)",
-                    },
-                  }}
-                />
-              </IconButton>
-            </Box>
+
           </Box>
         </Box>
       </Box>
