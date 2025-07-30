@@ -2,9 +2,22 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mu
 
 const MuiParentsSection = () => {
   const parentStories = [
-    { title: "Lorem ipsum dolor sit amet", date: "Jun 23, 2025", image: "family1" },
-    { title: "Consectetur adipiscing elit", date: "Jun 22, 2025", image: "family2" },
-    { title: "Sed do eiusmod tempor", date: "Jun 21, 2025", image: "family3" },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025", 
+      image: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=240&fit=crop&crop=face"
+    },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025", 
+      image: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&h=240&fit=crop&crop=center",
+      hasAvatars: true
+    },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025", 
+      image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&h=240&fit=crop&crop=center"
+    },
   ];
 
   return (
@@ -13,7 +26,7 @@ const MuiParentsSection = () => {
         <Typography
           variant="h5"
           sx={{
-            fontSize: "20px",
+            fontSize: "18px",
             fontWeight: 600,
             color: "#111827",
           }}
@@ -37,88 +50,267 @@ const MuiParentsSection = () => {
         </Button>
       </Box>
 
-      {/* 3 cards with family photos */}
-      <Grid container spacing={4}>
-        {parentStories.map((story, i) => (
-          <Grid item xs={12} md={4} key={i}>
-            <Card
+      {/* 3 cards with different proportions */}
+      <Grid container spacing={3}>
+        {/* First card - larger */}
+        <Grid item xs={12} md={5}>
+          <Card
+            sx={{
+              bgcolor: "white",
+              borderRadius: "16px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+              overflow: "hidden",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              "&:hover": {
+                transform: "translateY(-2px)",
+                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)",
+              },
+            }}
+          >
+            {/* Family photo */}
+            <Box
               sx={{
-                bgcolor: "white",
-                borderRadius: "12px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)",
-                overflow: "hidden",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                "&:hover": {
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
-                },
+                width: "100%",
+                height: 200,
+                backgroundImage: `url(${parentStories[0].image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
-            >
-              {/* Real family photo placeholder */}
-              <Box
+            />
+
+            <CardContent sx={{ p: 3 }}>
+              <Typography
+                variant="body1"
                 sx={{
-                  width: "100%",
-                  height: 180,
-                  bgcolor: "#fef3c7",
-                  position: "relative",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#111827",
+                  mb: 1,
+                  lineHeight: 1.4,
                 }}
               >
-                {/* Simulated family photo with warm colors */}
+                {parentStories[0].title}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: "12px",
+                  color: "#6b7280",
+                }}
+              >
+                {parentStories[0].date}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Second card - medium with avatars */}
+        <Grid item xs={12} md={3.5}>
+          <Card
+            sx={{
+              bgcolor: "white",
+              borderRadius: "16px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+              overflow: "hidden",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              "&:hover": {
+                transform: "translateY(-2px)",
+                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)",
+              },
+            }}
+          >
+            {/* Family photo with avatars overlay */}
+            <Box
+              sx={{
+                width: "100%",
+                height: 200,
+                backgroundImage: `url(${parentStories[1].image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                position: "relative",
+              }}
+            >
+              {/* Cartoon avatars overlay */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 16,
+                  right: 16,
+                  display: "flex",
+                  gap: 1,
+                }}
+              >
+                {/* Purple avatar */}
                 <Box
                   sx={{
-                    width: "80%",
-                    height: "70%",
+                    width: 32,
+                    height: 32,
+                    bgcolor: "#a855f7",
                     borderRadius: "50%",
-                    background: i === 0
-                      ? "linear-gradient(135deg, #fed7aa, #fb923c)"
-                      : i === 1
-                      ? "linear-gradient(135deg, #ddd6fe, #a855f7)"
-                      : "linear-gradient(135deg, #bbf7d0, #22c55e)",
+                    border: "2px solid white",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    position: "relative",
                   }}
                 >
-                  {/* Simple family representation */}
-                  <Box sx={{ display: "flex", gap: 0.5 }}>
-                    <Box sx={{ width: 12, height: 16, bgcolor: "white", borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }} />
-                    <Box sx={{ width: 10, height: 14, bgcolor: "white", borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }} />
-                    <Box sx={{ width: 8, height: 10, bgcolor: "white", borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" }} />
-                  </Box>
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      bgcolor: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Box>
+                
+                {/* Orange avatar */}
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    bgcolor: "#f97316",
+                    borderRadius: "50%",
+                    border: "2px solid white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      bgcolor: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Box>
+
+                {/* Blue avatar */}
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    bgcolor: "#3b82f6",
+                    borderRadius: "50%",
+                    border: "2px solid white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      bgcolor: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Box>
+
+                {/* Green avatar */}
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    bgcolor: "#22c55e",
+                    borderRadius: "50%",
+                    border: "2px solid white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      bgcolor: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
                 </Box>
               </Box>
+            </Box>
 
-              <CardContent sx={{ p: 3 }}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: "16px",
-                    fontWeight: 600,
-                    color: "#111827",
-                    mb: 1,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {story.title}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: "12px",
-                    color: "#6b7280",
-                  }}
-                >
-                  {story.date}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+            <CardContent sx={{ p: 3 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#111827",
+                  mb: 1,
+                  lineHeight: 1.4,
+                }}
+              >
+                {parentStories[1].title}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: "12px",
+                  color: "#6b7280",
+                }}
+              >
+                {parentStories[1].date}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Third card - medium */}
+        <Grid item xs={12} md={3.5}>
+          <Card
+            sx={{
+              bgcolor: "white",
+              borderRadius: "16px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+              overflow: "hidden",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              "&:hover": {
+                transform: "translateY(-2px)",
+                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)",
+              },
+            }}
+          >
+            {/* Family photo */}
+            <Box
+              sx={{
+                width: "100%",
+                height: 200,
+                backgroundImage: `url(${parentStories[2].image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+
+            <CardContent sx={{ p: 3 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  color: "#111827",
+                  mb: 1,
+                  lineHeight: 1.4,
+                }}
+              >
+                {parentStories[2].title}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: "12px",
+                  color: "#6b7280",
+                }}
+              >
+                {parentStories[2].date}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
     </Container>
   );
