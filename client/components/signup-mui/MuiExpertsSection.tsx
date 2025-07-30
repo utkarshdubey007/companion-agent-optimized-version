@@ -2,9 +2,21 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mu
 
 const MuiExpertsSection = () => {
   const expertItems = [
-    { title: "Lorem ipsum dolor sit amet", date: "Jun 23, 2025", category: "Expert Opinion" },
-    { title: "Consectetur adipiscing elit", date: "Jun 22, 2025", category: "Brand Partnership" },
-    { title: "Sed do eiusmod tempor", date: "Jun 21, 2025", category: "Research Study" },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=240&fit=crop&crop=face"
+    },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=240&fit=crop&crop=center"
+    },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=240&fit=crop&crop=center"
+    },
   ];
 
   return (
@@ -13,12 +25,12 @@ const MuiExpertsSection = () => {
         <Typography
           variant="h5"
           sx={{
-            fontSize: "20px",
+            fontSize: "18px",
             fontWeight: 600,
             color: "#111827",
           }}
         >
-          Experts and Brands
+          Experts and brands
         </Typography>
         <Button
           sx={{
@@ -37,71 +49,33 @@ const MuiExpertsSection = () => {
         </Button>
       </Box>
 
-      {/* 3 cards for experts and brands */}
+      {/* 3 equal cards for experts and brands */}
       <Grid container spacing={4}>
         {expertItems.map((item, i) => (
           <Grid item xs={12} md={4} key={i}>
             <Card
               sx={{
                 bgcolor: "white",
-                borderRadius: "12px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)",
+                borderRadius: "16px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                 overflow: "hidden",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 "&:hover": {
                   transform: "translateY(-2px)",
-                  boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)",
                 },
               }}
             >
-              {/* Expert/Brand image with professional look */}
+              {/* Professional/Expert image */}
               <Box
                 sx={{
                   width: "100%",
-                  height: 160,
-                  bgcolor: i === 0 ? "#f8fafc" : i === 1 ? "#fefbf3" : "#f0fdf4",
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  height: 200,
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
-              >
-                {/* Professional/Business icon representation */}
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "12px",
-                    bgcolor: i === 0 ? "#64748b" : i === 1 ? "#f59e0b" : "#10b981",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  {/* Professional icon (briefcase/building representation) */}
-                  <Box
-                    sx={{
-                      width: 30,
-                      height: 20,
-                      bgcolor: "white",
-                      borderRadius: "4px",
-                      position: "relative",
-                      "&::before": {
-                        content: '""',
-                        position: "absolute",
-                        top: -5,
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        width: 20,
-                        height: 8,
-                        bgcolor: "white",
-                        borderRadius: "4px 4px 0 0",
-                      },
-                    }}
-                  />
-                </Box>
-              </Box>
+              />
 
               <CardContent sx={{ p: 3 }}>
                 <Typography
