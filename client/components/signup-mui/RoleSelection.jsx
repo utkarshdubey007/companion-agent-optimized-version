@@ -18,7 +18,7 @@ import {
 const RoleSelection = ({ onRoleSelect }) => {
   const [selectedRole, setSelectedRole] = useState(null);
   const [hoveredRole, setHoveredRole] = useState(null);
-  const [badgePos, setBadgePos] = useState({ left: 0, top: -8 });
+  const [badgePos, setBadgePos] = useState({ left: 0, top: 1 });
   const [showBadge, setShowBadge] = useState(true);
 
   const containerRef = useRef(null);
