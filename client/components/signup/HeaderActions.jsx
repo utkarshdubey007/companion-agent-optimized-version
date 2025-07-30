@@ -4,6 +4,7 @@ import { Search, User } from "lucide-react";
 export function HeaderActions() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
 
   const handleSearchClick = () => {
     setIsSearchExpanded(!isSearchExpanded);
