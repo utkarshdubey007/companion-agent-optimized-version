@@ -190,9 +190,8 @@ const RoleSelection = ({ onRoleSelect }) => {
                 sx={{
                   p: 2,
                   borderRadius: '12px',
-                  border: isActive 
-                    ? '2px solid #A020F0' 
-                    : '1px solid #e0e0e0',
+                  border: '2px solid',
+                  borderColor: isActive ? '#A020F0' : 'transparent',
                   boxShadow: isActive 
                     ? '0 8px 20px rgba(160, 32, 240, 0.15)' 
                     : '0 2px 4px rgba(0, 0, 0, 0.1)',
