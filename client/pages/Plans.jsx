@@ -102,8 +102,8 @@ const Plans = () => {
         </Tooltip>
       </Box>
 
-      {/* MUI Header Actions for Search and Login */}
-      <MuiHeaderActions />
+      {/* MUI Header Actions Light for Search and Login */}
+      <MuiHeaderActionsLight />
 
       {/* Main Content */}
       <Container maxWidth="lg" sx={{ pt: 20, pb: 12 }}>
