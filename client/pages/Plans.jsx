@@ -58,18 +58,18 @@ const Plans = () => {
       <Box
         sx={{
           position: "absolute",
-          top: 24,
-          left: 24,
+          top: { xs: 16, sm: 24 },
+          left: { xs: 16, sm: 24 },
           zIndex: 50,
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          gap: 2,
+          gap: { xs: 1, sm: 2 },
         }}
       >
         {/* Logo and Title */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Box sx={{ width: 32, height: 32 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 1, sm: 2 } }}>
+          <Box sx={{ width: { xs: 24, sm: 32 }, height: { xs: 24, sm: 32 } }}>
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
               alt="TaleTree Logo"
@@ -77,8 +77,12 @@ const Plans = () => {
             />
           </Box>
           <Typography
-            variant="h5"
-            sx={{ fontWeight: 600, color: "#111827" }}
+            variant={{ xs: "h6", sm: "h5" }}
+            sx={{
+              fontWeight: 600,
+              color: "#111827",
+              fontSize: { xs: "1.1rem", sm: "1.5rem" }
+            }}
           >
             taleTree
           </Typography>
@@ -89,8 +93,8 @@ const Plans = () => {
           <IconButton
             onClick={() => navigate("/signup")}
             sx={{
-              width: 32,
-              height: 32,
+              width: { xs: 28, sm: 32 },
+              height: { xs: 28, sm: 32 },
               border: "1px solid #d1d5db",
               borderRadius: "50%",
               color: "#6b7280",
@@ -102,7 +106,7 @@ const Plans = () => {
               transition: "all 0.3s",
             }}
           >
-            <ArrowBack sx={{ fontSize: 16 }} />
+            <ArrowBack sx={{ fontSize: { xs: 14, sm: 16 } }} />
           </IconButton>
         </Tooltip>
       </Box>
