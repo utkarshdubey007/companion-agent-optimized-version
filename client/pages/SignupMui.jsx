@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Box, Container } from "@mui/material";
-import MuiDecorativeStars from "@/components/signup-mui/MuiDecorativeStars";
-import MuiHeroSection from "@/components/signup-mui/MuiHeroSection";
-import MuiPlansStrip from "@/components/signup-mui/MuiPlansStrip";
-import MuiCreativitySection from "@/components/signup-mui/MuiCreativitySection";
-import MuiIntroducingSection from "@/components/signup-mui/MuiIntroducingSection";
-import MuiLatestNewsSection from "@/components/signup-mui/MuiLatestNewsSection";
-import MuiParentsSection from "@/components/signup-mui/MuiParentsSection";
-import MuiEducatorsSection from "@/components/signup-mui/MuiEducatorsSection";
-import MuiExpertsSection from "@/components/signup-mui/MuiExpertsSection";
-import MuiSignupFooter from "@/components/signup-mui/MuiSignupFooter";
+import MuiDecorativeStars from "@/components/signup-mui/MuiDecorativeStars.jsx";
+import MuiHeroSection from "@/components/signup-mui/MuiHeroSection.jsx";
+import MuiPlansStrip from "@/components/signup-mui/MuiPlansStrip.jsx";
+import MuiCreativitySection from "@/components/signup-mui/MuiCreativitySection.jsx";
+import MuiIntroducingSection from "@/components/signup-mui/MuiIntroducingSection.jsx";
+import MuiLatestNewsSection from "@/components/signup-mui/MuiLatestNewsSection.jsx";
+import MuiParentsSection from "@/components/signup-mui/MuiParentsSection.jsx";
+import MuiEducatorsSection from "@/components/signup-mui/MuiEducatorsSection.jsx";
+import MuiExpertsSection from "@/components/signup-mui/MuiExpertsSection.jsx";
+import MuiSignupFooter from "@/components/signup-mui/MuiSignupFooter.jsx";
 import Plans from "./Plans";
 import "../styles/signup-mui.css";
 
