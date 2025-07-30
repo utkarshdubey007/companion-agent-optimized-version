@@ -36,11 +36,13 @@ const Plans = () => {
   const navigate = useNavigate();
 
   const handleLoginAreaEnter = (event) => {
+    console.log("Login area enter");
     setLoginAnchorEl(event.currentTarget);
     setIsLoginMenuOpen(true);
   };
 
   const handleLoginAreaLeave = () => {
+    console.log("Login area leave");
     setLoginAnchorEl(null);
     setIsLoginMenuOpen(false);
   };
