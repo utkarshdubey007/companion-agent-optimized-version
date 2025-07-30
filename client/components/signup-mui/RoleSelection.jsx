@@ -15,24 +15,28 @@ import {
 } from '@mui/icons-material';
 
 const RoleSelection = ({ onRoleSelect }) => {
-  const [selectedRole, setSelectedRole] = useState('kid'); // Default to 'kid' to match the image
+  const [selectedRole, setSelectedRole] = useState('kid');
+  const [hoveredRole, setHoveredRole] = useState(null);
 
   const roles = [
     {
       id: 'kid',
       name: 'Kid',
+      subtitle: 'Child',
       icon: ChildCare,
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800'
     },
     {
       id: 'guardian',
       name: 'Guardian',
+      subtitle: 'Parent',
       icon: FamilyRestroom,
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800'
     },
     {
       id: 'educator',
       name: 'Educator',
+      subtitle: 'Partner',
       icon: School,
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800'
     }
@@ -47,124 +51,135 @@ const RoleSelection = ({ onRoleSelect }) => {
 
   return (
     <Container maxWidth="sm" sx={{ py: 4 }}>
-      {/* Main Container with rounded rectangle background */}
+      {/* Role Cards Container - Relative positioned for badge */}
       <Box 
         sx={{ 
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          border: '2px solid #E0E0E0',
-          padding: '32px 24px',
+          display: 'flex', 
+          gap: '16px', 
+          justifyContent: 'center',
+          alignItems: 'center',
           position: 'relative',
-          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)'
+          pt: 4 // Space for the floating badge
         }}
       >
-        {/* "I'm a" Badge positioned in top-left inside container */}
-        <Chip
-          label="I'm a"
-          sx={{
-            position: 'absolute',
-            top: 16,
-            left: 24,
-            backgroundColor: '#8000b3',
-            color: 'white',
-            fontWeight: 700,
-            fontSize: '12px',
-            px: 2,
-            py: 0.5,
-            height: 'auto',
-            borderRadius: '9999px',
-            zIndex: 10,
-            boxShadow: '0 2px 8px rgba(128, 0, 179, 0.3)',
-            '& .MuiChip-label': {
-              padding: '4px 12px'
-            }
-          }}
-        />
-
-        {/* Role Cards Container */}
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            gap: '16px', 
-            justifyContent: 'center',
-            alignItems: 'center',
-            pt: 2
-          }}
-        >
-          {roles.map((role) => {
-            const IconComponent = role.icon;
-            const isSelected = selectedRole === role.id;
-            
-            return (
-              <Box
-                key={role.id}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  cursor: 'pointer'
-                }}
-                onClick={() => handleRoleClick(role.id)}
-              >
-                {/* Role Card */}
-                <Card
+        {roles.map((role, index) => {
+          const IconComponent = role.icon;
+          const isSelected = selectedRole === role.id;
+          const isHovered = hoveredRole === role.id;
+          const isActive = isSelected || isHovered;
+          
+          return (
+            <Box
+              key={role.id}
+              sx={{
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                cursor: 'pointer'
+              }}
+              onClick={() => handleRoleClick(role.id)}
+              onMouseEnter={() => setHoveredRole(role.id)}
+              onMouseLeave={() => setHoveredRole(null)}
+            >
+              {/* Dynamic "I'm a" Badge - Only above selected card */}
+              {isSelected && (
+                <Chip
+                  label="I'm a"
                   sx={{
-                    width: '120px',
-                    height: '140px',
-                    border: isSelected ? '3px solid #8000b3' : '2px solid #E0E0E0',
-                    borderRadius: '12px',
+                    position: 'absolute',
+                    top: -20,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    backgroundColor: '#8000b3',
+                    color: 'white',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    height: 'auto',
+                    borderRadius: '9999px',
+                    zIndex: 10,
+                    boxShadow: '0 2px 8px rgba(128, 0, 179, 0.4)',
                     transition: 'all 0.3s ease',
-                    backgroundColor: 'white',
-                    boxShadow: isSelected 
-                      ? '0 4px 16px rgba(128, 0, 179, 0.2)' 
-                      : '0 1px 4px rgba(0, 0, 0, 0.08)',
-                    '&:hover': {
-                      borderColor: '#8000b3',
-                      boxShadow: '0 4px 16px rgba(128, 0, 179, 0.2)',
-                    },
+                    '& .MuiChip-label': {
+                      padding: '6px 16px'
+                    }
+                  }}
+                />
+              )}
+
+              {/* Compact Role Card */}
+              <Card
+                sx={{
+                  width: '100px',
+                  height: '120px',
+                  border: isActive ? '2px solid #8000b3' : '1px solid transparent',
+                  borderRadius: '12px',
+                  transition: 'all 0.3s ease',
+                  backgroundColor: 'white',
+                  boxShadow: isActive 
+                    ? '0 4px 16px rgba(128, 0, 179, 0.2)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.08)',
+                  '&:hover': {
+                    border: '2px solid #8000b3',
+                    boxShadow: '0 4px 16px rgba(128, 0, 179, 0.2)',
+                  },
+                }}
+              >
+                <CardContent 
+                  sx={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 0.5,
+                    padding: '16px !important',
+                    height: '100%',
+                    textAlign: 'center'
                   }}
                 >
-                  <CardContent 
-                    sx={{ 
-                      display: 'flex', 
-                      flexDirection: 'column', 
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 1.5,
-                      padding: '20px 16px !important',
-                      height: '100%'
+                  {/* Subtitle (top text) */}
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontSize: '12px',
+                      color: '#9E9E9E',
+                      fontWeight: 400,
+                      lineHeight: 1,
+                      mb: 0.5
                     }}
                   >
-                    {/* Avatar */}
-                    <Avatar
-                      src={role.avatar}
-                      sx={{
-                        width: 56,
-                        height: 56,
-                      }}
-                    >
-                      <IconComponent sx={{ fontSize: 28, color: '#6A1B9A' }} />
-                    </Avatar>
+                    {role.subtitle}
+                  </Typography>
 
-                    {/* Role Name */}
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: 600,
-                        color: '#000000',
-                        fontSize: '14px',
-                        textAlign: 'center',
-                        lineHeight: 1.2
-                      }}
-                    >
-                      {role.name}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
-            );
-          })}
-        </Box>
+                  {/* Clean Avatar - No borders */}
+                  <Avatar
+                    src={role.avatar}
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      mb: 0.5
+                    }}
+                  >
+                    <IconComponent sx={{ fontSize: 24, color: '#6A1B9A' }} />
+                  </Avatar>
+
+                  {/* Title (bottom text) */}
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      fontWeight: 700,
+                      color: '#000000',
+                      fontSize: '16px',
+                      lineHeight: 1.2
+                    }}
+                  >
+                    {role.name}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          );
+        })}
       </Box>
     </Container>
   );
