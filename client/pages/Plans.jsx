@@ -511,19 +511,20 @@ const Plans = () => {
           <Box
             sx={{
               borderTop: "1px solid #4338ca",
-              mt: 4,
-              pt: 4,
+              mt: { xs: 3, md: 4 },
+              pt: { xs: 3, md: 4 },
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               justifyContent: "space-between",
               alignItems: "center",
-              gap: 2,
+              gap: { xs: 1, md: 2 },
+              textAlign: { xs: "center", md: "left" }
             }}
           >
-            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: "14px" }}>
+            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: { xs: "12px", md: "14px" } }}>
               2025 TaleTree Inc. All rights reserved
             </Typography>
-            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: "14px" }}>
+            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: { xs: "12px", md: "14px" } }}>
               Email: contact@taletree.com
             </Typography>
           </Box>
