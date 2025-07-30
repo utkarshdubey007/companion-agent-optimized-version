@@ -21,29 +21,11 @@ export function MuiHeaderActionsLight() {
     setIsSearchExpanded(!isSearchExpanded);
   };
 
-  const handleLoginMouseEnter = (event) => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
+  const handleLoginAreaEnter = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLoginMouseLeave = () => {
-    const timeout = setTimeout(() => {
-      setAnchorEl(null);
-    }, 200);
-    setHoverTimeout(timeout);
-  };
-
-  const handleMenuMouseEnter = () => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-  };
-
-  const handleMenuMouseLeave = () => {
+  const handleLoginAreaLeave = () => {
     setAnchorEl(null);
   };
 
