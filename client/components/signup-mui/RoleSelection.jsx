@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Card,
@@ -18,6 +18,11 @@ import {
 const RoleSelection = ({ onRoleSelect }) => {
   const [selectedRole, setSelectedRole] = useState('kid');
   const [hoveredRole, setHoveredRole] = useState(null);
+  const [badgePos, setBadgePos] = useState({ left: 0, top: -16 });
+  const [showBadge, setShowBadge] = useState(true);
+
+  const containerRef = useRef(null);
+  const cardRefs = useRef({});
 
   const roles = [
     {
@@ -40,16 +45,69 @@ const RoleSelection = ({ onRoleSelect }) => {
     }
   ];
 
+  const updateBadgePosition = useCallback((role) => {
+    const el = cardRefs.current[role];
+    const container = containerRef.current;
+    if (!el || !container) return;
+
+    const cardRect = el.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const badgeLeft = cardRect.left + cardRect.width / 2 - containerRect.left;
+    const badgeTop = cardRect.top - containerRect.top - 16; // 16px offset above card
+
+    setBadgePos({ left: badgeLeft, top: badgeTop });
+    setShowBadge(true);
+  }, []);
+
   const handleRoleClick = (roleValue) => {
     setSelectedRole(roleValue);
+    updateBadgePosition(roleValue);
     if (onRoleSelect) {
       onRoleSelect(roleValue);
     }
   };
 
+  const handleMouseEnter = (roleValue) => {
+    setHoveredRole(roleValue);
+    updateBadgePosition(roleValue);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRole(null);
+    // Keep badge on selected card when mouse leaves
+    if (selectedRole) {
+      updateBadgePosition(selectedRole);
+    }
+  };
+
+  // Initialize badge position on selected card
+  useEffect(() => {
+    if (selectedRole) {
+      // Small delay to ensure DOM is rendered
+      setTimeout(() => updateBadgePosition(selectedRole), 100);
+    }
+  }, [selectedRole, updateBadgePosition]);
+
+  // Handle window resize to recompute badge position
+  useEffect(() => {
+    const handleResize = () => {
+      const activeRole = hoveredRole || selectedRole;
+      if (activeRole) {
+        updateBadgePosition(activeRole);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [hoveredRole, selectedRole, updateBadgePosition]);
+
+  const activeRole = hoveredRole || selectedRole;
+
   return (
     <Container maxWidth="sm" sx={{ py: 4 }}>
       <Box
+        ref={containerRef}
         sx={{
           position: 'relative',
           backgroundColor: 'white',
@@ -63,21 +121,24 @@ const RoleSelection = ({ onRoleSelect }) => {
           margin: '0 auto',
         }}
       >
-        {/* "I'm a" Badge - Overlapping the top border */}
+        {/* Dynamic "I'm a" Badge */}
         <Box
           sx={{
             position: 'absolute',
-            top: '-12px',
-            left: '50%',
+            zIndex: 3,
             transform: 'translateX(-50%)',
+            top: `${badgePos.top}px`,
+            left: `${badgePos.left}px`,
             backgroundColor: '#A020F0',
             color: 'white',
-            px: 3,
-            py: 1,
-            borderRadius: '20px',
-            fontSize: '14px',
+            px: 2,
+            py: 0.5,
+            borderRadius: '9999px',
             fontWeight: 600,
-            zIndex: 10,
+            fontSize: 14,
+            transition: 'top 0.25s ease, left 0.25s ease, opacity 0.25s ease',
+            pointerEvents: 'none',
+            opacity: showBadge && activeRole ? 1 : 0,
             boxShadow: '0 2px 8px rgba(160, 32, 240, 0.3)',
           }}
         >
@@ -122,8 +183,9 @@ const RoleSelection = ({ onRoleSelect }) => {
             return (
               <Card
                 key={role.value}
-                onMouseEnter={() => setHoveredRole(role.value)}
-                onMouseLeave={() => setHoveredRole(null)}
+                ref={(el) => (cardRefs.current[role.value] = el)}
+                onMouseEnter={() => handleMouseEnter(role.value)}
+                onMouseLeave={handleMouseLeave}
                 onClick={() => handleRoleClick(role.value)}
                 sx={{
                   p: 2,
@@ -138,7 +200,7 @@ const RoleSelection = ({ onRoleSelect }) => {
                   cursor: 'pointer',
                   width: '90px',
                   backgroundColor: '#fff',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.25s ease',
                   transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
                   '&:hover': {
                     border: '2px solid #A020F0',
