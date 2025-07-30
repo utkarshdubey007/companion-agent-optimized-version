@@ -161,8 +161,9 @@ const Plans = () => {
             <Search sx={{ fontSize: 20 }} />
           </IconButton>
 
-          {/* Login */}
+          {/* Login with Menu Area */}
           <Box
+            sx={{ position: "relative" }}
             onMouseEnter={handleLoginAreaEnter}
             onMouseLeave={handleLoginAreaLeave}
           >
