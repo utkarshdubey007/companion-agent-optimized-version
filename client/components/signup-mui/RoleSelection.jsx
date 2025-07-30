@@ -23,21 +23,18 @@ const RoleSelection = ({ onRoleSelect }) => {
       id: 'kid',
       name: 'Kid',
       icon: ChildCare,
-      color: '#FF6B9D', // Pink
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800'
     },
     {
       id: 'guardian',
       name: 'Guardian',
       icon: FamilyRestroom,
-      color: '#FF6B6B', // Red
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800'
     },
     {
       id: 'educator',
       name: 'Educator',
       icon: School,
-      color: '#6A1B9A', // Purple
       avatar: 'https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800'
     }
   ];
@@ -52,114 +49,129 @@ const RoleSelection = ({ onRoleSelect }) => {
   const isActive = (roleId) => selectedRole === roleId || hoveredRole === roleId;
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      {/* I'm a Badge */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
-        <Chip
-          label="I'm a"
-          sx={{
-            backgroundColor: '#6A1B9A',
-            color: 'white',
-            fontWeight: 600,
-            fontSize: '16px',
-            px: 2,
-            py: 1,
-            height: 'auto',
-            borderRadius: '20px',
-            border: hoveredRole || selectedRole ? '2px solid #6A1B9A' : '2px solid transparent',
-            transition: 'all 0.3s ease',
-            boxShadow: hoveredRole || selectedRole ? '0 4px 12px rgba(106, 27, 154, 0.3)' : 'none',
-          }}
-        />
-      </Box>
-
-      {/* Role Cards */}
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      {/* Role Cards Container */}
       <Box 
         sx={{ 
           display: 'flex', 
-          gap: 3, 
+          gap: '24px', 
           justifyContent: 'center',
-          flexWrap: { xs: 'wrap', sm: 'nowrap' }
+          flexWrap: { xs: 'wrap', sm: 'nowrap' },
+          position: 'relative'
         }}
       >
         {roles.map((role) => {
           const IconComponent = role.icon;
           const active = isActive(role.id);
+          const isSelected = selectedRole === role.id;
           
           return (
-            <Card
+            <Box
               key={role.id}
-              onMouseEnter={() => setHoveredRole(role.id)}
-              onMouseLeave={() => setHoveredRole(null)}
-              onClick={() => handleRoleClick(role.id)}
               sx={{
-                minWidth: { xs: '140px', sm: '160px' },
-                maxWidth: { xs: '140px', sm: '160px' },
-                cursor: 'pointer',
-                border: active ? '3px solid #6A1B9A' : '3px solid transparent',
-                borderRadius: '12px',
-                transition: 'all 0.3s ease',
-                transform: active ? 'translateY(-4px)' : 'translateY(0)',
-                boxShadow: active 
-                  ? '0 8px 24px rgba(106, 27, 154, 0.2)' 
-                  : '0 2px 8px rgba(0, 0, 0, 0.1)',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: '0 8px 24px rgba(106, 27, 154, 0.2)',
-                },
-                backgroundColor: active ? 'rgba(106, 27, 154, 0.02)' : 'white',
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
               }}
             >
-              <CardContent 
-                sx={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center',
-                  gap: 2,
-                  py: 3,
-                  px: 2
+              {/* "I'm a" Badge - Only shows above selected card */}
+              {isSelected && (
+                <Chip
+                  label="I'm a"
+                  sx={{
+                    position: 'absolute',
+                    top: -20,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    backgroundColor: '#8000b3',
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '14px',
+                    px: 2,
+                    py: 0.5,
+                    height: 'auto',
+                    borderRadius: '9999px',
+                    zIndex: 10,
+                    boxShadow: '0 2px 8px rgba(128, 0, 179, 0.3)',
+                    '& .MuiChip-label': {
+                      padding: '4px 12px'
+                    }
+                  }}
+                />
+              )}
+
+              {/* Role Card */}
+              <Card
+                onMouseEnter={() => setHoveredRole(role.id)}
+                onMouseLeave={() => setHoveredRole(null)}
+                onClick={() => handleRoleClick(role.id)}
+                sx={{
+                  width: '160px',
+                  cursor: 'pointer',
+                  border: active ? '3px solid #6A1B9A' : '3px solid transparent',
+                  borderRadius: '12px',
+                  transition: 'all 0.3s ease',
+                  transform: active ? 'translateY(-4px)' : 'translateY(0)',
+                  boxShadow: active 
+                    ? '0 8px 24px rgba(106, 27, 154, 0.2)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.1)',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 24px rgba(106, 27, 154, 0.2)',
+                  },
+                  backgroundColor: 'white',
                 }}
               >
-                {/* Avatar */}
-                <Avatar
-                  src={role.avatar}
-                  sx={{
-                    width: 64,
-                    height: 64,
-                    border: active ? `3px solid ${role.color}` : '3px solid transparent',
-                    transition: 'all 0.3s ease',
+                <CardContent 
+                  sx={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    gap: 2,
+                    padding: '24px !important'
                   }}
                 >
-                  <IconComponent sx={{ fontSize: 32, color: role.color }} />
-                </Avatar>
+                  {/* Avatar - Clean without borders */}
+                  <Avatar
+                    src={role.avatar}
+                    sx={{
+                      width: 64,
+                      height: 64,
+                      // No borders on avatar
+                    }}
+                  >
+                    <IconComponent sx={{ fontSize: 32, color: '#6A1B9A' }} />
+                  </Avatar>
 
-                {/* Role Name */}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    color: active ? '#6A1B9A' : '#333',
-                    fontSize: { xs: '14px', sm: '16px' },
-                    textAlign: 'center',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {role.name}
-                </Typography>
-              </CardContent>
-            </Card>
+                  {/* Role Name - Always black text */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 700,
+                      color: '#000000', // Always black, never purple
+                      fontSize: '16px',
+                      textAlign: 'center',
+                      transition: 'all 0.3s ease',
+                    }}
+                  >
+                    {role.name}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
           );
         })}
       </Box>
 
       {/* Selected Role Indicator */}
       {selectedRole && (
-        <Box sx={{ textAlign: 'center', mt: 3 }}>
+        <Box sx={{ textAlign: 'center', mt: 4 }}>
           <Typography
-            variant="body1"
+            variant="body2"
             sx={{
-              color: '#6A1B9A',
-              fontWeight: 600,
+              color: '#666',
+              fontWeight: 400,
               fontSize: '14px'
             }}
           >
