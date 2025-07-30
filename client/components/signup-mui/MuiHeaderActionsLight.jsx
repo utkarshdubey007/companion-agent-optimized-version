@@ -15,7 +15,6 @@ import { Search, Person } from "@mui/icons-material";
 export function MuiHeaderActionsLight() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [hoverTimeout, setHoverTimeout] = useState(null);
   const isLoginMenuOpen = Boolean(anchorEl);
 
   const handleSearchClick = () => {
