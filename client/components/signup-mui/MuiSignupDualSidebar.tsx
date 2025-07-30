@@ -160,8 +160,8 @@ export function MuiSignupDualSidebar({
               sx={{
                 transition: "all 0.5s ease-in-out",
                 overflow: "hidden",
-                width: topSidebarCollapsed ? 0 : 64,
-                opacity: topSidebarCollapsed ? 0 : 1,
+                width: 64,
+                opacity: 1,
                 p: 2,
               }}
             >
