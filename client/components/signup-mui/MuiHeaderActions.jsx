@@ -23,10 +23,28 @@ export function MuiHeaderActions() {
   };
 
   const handleLoginMouseEnter = (event) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
     setAnchorEl(event.currentTarget);
   };
 
   const handleLoginMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setAnchorEl(null);
+    }, 200); // 200ms delay before closing
+    setHoverTimeout(timeout);
+  };
+
+  const handleMenuMouseEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  };
+
+  const handleMenuMouseLeave = () => {
     setAnchorEl(null);
   };
 
