@@ -33,7 +33,6 @@ import { useNavigate } from "react-router-dom";
 const Plans = () => {
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
   const [loginAnchorEl, setLoginAnchorEl] = useState(null);
-  const [hoverTimeout, setHoverTimeout] = useState(null);
   const navigate = useNavigate();
 
   const handleLoginAreaEnter = (event) => {
