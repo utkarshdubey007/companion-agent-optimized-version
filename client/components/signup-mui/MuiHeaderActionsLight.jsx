@@ -183,7 +183,13 @@ export function MuiHeaderActionsLight() {
               px: 2,
               py: 1.5,
               "&:hover": {
-                bgcolor: "#f9fafb",
+                bgcolor: "#f9fafb !important",
+              },
+              "&.Mui-focusVisible": {
+                bgcolor: "transparent !important",
+              },
+              "&:focus": {
+                bgcolor: "transparent !important",
               },
               transition: "background-color 0.2s ease",
             }}
@@ -210,7 +216,13 @@ export function MuiHeaderActionsLight() {
               px: 2,
               py: 1.5,
               "&:hover": {
-                bgcolor: "#f9fafb",
+                bgcolor: "#f9fafb !important",
+              },
+              "&.Mui-focusVisible": {
+                bgcolor: "transparent !important",
+              },
+              "&:focus": {
+                bgcolor: "transparent !important",
               },
               transition: "background-color 0.2s ease",
             }}
@@ -237,7 +249,13 @@ export function MuiHeaderActionsLight() {
               px: 2,
               py: 1.5,
               "&:hover": {
-                bgcolor: "#f9fafb",
+                bgcolor: "#f9fafb !important",
+              },
+              "&.Mui-focusVisible": {
+                bgcolor: "transparent !important",
+              },
+              "&:focus": {
+                bgcolor: "transparent !important",
               },
               transition: "background-color 0.2s ease",
             }}
