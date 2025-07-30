@@ -194,10 +194,10 @@ const Plans = () => {
           <Menu
             anchorEl={loginAnchorEl}
             open={isLoginMenuOpen}
-            onClose={handleMenuMouseLeave}
+            onClose={handleLoginAreaLeave}
             MenuListProps={{
-              onMouseEnter: handleMenuMouseEnter,
-              onMouseLeave: handleMenuMouseLeave,
+              onMouseEnter: handleLoginAreaEnter,
+              onMouseLeave: handleLoginAreaLeave,
               sx: { py: 0 }
             }}
             sx={{
