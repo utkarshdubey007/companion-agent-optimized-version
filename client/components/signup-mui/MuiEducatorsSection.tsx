@@ -2,8 +2,16 @@ import { Box, Container, Typography, Grid, Card, CardContent, Button } from "@mu
 
 const MuiEducatorsSection = () => {
   const educatorItems = [
-    { title: "Lorem ipsum dolor sit amet", date: "Jun 23, 2025" },
-    { title: "The TaleTree Method", date: "Jun 22, 2025" },
+    { 
+      title: "Lorem ipsum dolor sit amet", 
+      date: "Jun 30,2025",
+      image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=280&fit=crop&crop=center"
+    },
+    { 
+      title: "The TaleTree Method", 
+      date: "Jun 30,2025",
+      isMethodCard: true
+    },
   ];
 
   return (
@@ -12,12 +20,12 @@ const MuiEducatorsSection = () => {
         <Typography
           variant="h5"
           sx={{
-            fontSize: "20px",
+            fontSize: "18px",
             fontWeight: 600,
             color: "#111827",
           }}
         >
-          TaleTree for Educators
+          TaleTree for educators
         </Typography>
         <Button
           sx={{
@@ -43,13 +51,13 @@ const MuiEducatorsSection = () => {
             <Card
               sx={{
                 bgcolor: "white",
-                borderRadius: "12px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.07)",
+                borderRadius: "16px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
                 overflow: "hidden",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 "&:hover": {
                   transform: "translateY(-2px)",
-                  boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)",
                 },
               }}
             >
@@ -57,47 +65,155 @@ const MuiEducatorsSection = () => {
               <Box
                 sx={{
                   width: "100%",
-                  height: 200,
-                  bgcolor: i === 0 ? "#eff6ff" : "#f0f9ff",
+                  height: 240,
                   position: "relative",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                {/* Educational icon/illustration */}
-                <Box
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: "50%",
-                    bgcolor: i === 0 ? "#3b82f6" : "#06b6d4",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {/* Book/Education icon representation */}
+                {i === 0 ? (
+                  // First card - classroom image
                   <Box
                     sx={{
-                      width: 40,
-                      height: 30,
-                      bgcolor: "white",
-                      borderRadius: "4px",
-                      position: "relative",
-                      "&::after": {
-                        content: '""',
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 2,
-                        height: 20,
-                        bgcolor: i === 0 ? "#3b82f6" : "#06b6d4",
-                      },
+                      width: "100%",
+                      height: "100%",
+                      backgroundImage: `url(${item.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   />
-                </Box>
+                ) : (
+                  // Second card - TaleTree Method diagram
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%)",
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {/* Central circular diagram */}
+                    <Box
+                      sx={{
+                        width: 160,
+                        height: 160,
+                        borderRadius: "50%",
+                        background: "linear-gradient(45deg, #f59e0b, #22c55e, #3b82f6, #ef4444)",
+                        position: "relative",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* Inner circle */}
+                      <Box
+                        sx={{
+                          width: 120,
+                          height: 120,
+                          borderRadius: "50%",
+                          bgcolor: "#1e1b4b",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {/* Tree symbol */}
+                        <Box
+                          sx={{
+                            width: 40,
+                            height: 60,
+                            position: "relative",
+                          }}
+                        >
+                          {/* Tree trunk */}
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              bottom: 0,
+                              left: "50%",
+                              transform: "translateX(-50%)",
+                              width: 8,
+                              height: 20,
+                              bgcolor: "#a855f7",
+                              borderRadius: "2px",
+                            }}
+                          />
+                          {/* Tree crown */}
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              top: 0,
+                              left: "50%",
+                              transform: "translateX(-50%)",
+                              width: 32,
+                              height: 32,
+                              bgcolor: "#22c55e",
+                              borderRadius: "50%",
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    {/* Method labels around the circle */}
+                    {[
+                      { text: "IMAGINE", color: "#a855f7", top: "10%", right: "15%" },
+                      { text: "REWARD", color: "#f59e0b", top: "25%", left: "8%" },
+                      { text: "PLAY", color: "#3b82f6", bottom: "25%", right: "12%" },
+                      { text: "REFLECT", color: "#ef4444", bottom: "35%", left: "5%" },
+                      { text: "CREATE", color: "#22c55e", bottom: "15%", right: "8%" },
+                      { text: "SHARE", color: "#ec4899", bottom: "10%", left: "15%" },
+                      { text: "STORE", color: "#06b6d4", bottom: "20%", right: "25%" },
+                    ].map((label, index) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          position: "absolute",
+                          ...label,
+                          bgcolor: label.color,
+                          color: "white",
+                          px: 1.5,
+                          py: 0.5,
+                          borderRadius: "20px",
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          textAlign: "center",
+                          minWidth: "60px",
+                        }}
+                      >
+                        {label.text}
+                      </Box>
+                    ))}
+
+                    {/* Small connecting elements */}
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "30%",
+                        right: "30%",
+                        width: 6,
+                        height: 6,
+                        bgcolor: "#fbbf24",
+                        borderRadius: "50%",
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        bottom: "40%",
+                        left: "25%",
+                        width: 8,
+                        height: 8,
+                        bgcolor: "#34d399",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </Box>
+                )}
               </Box>
 
               <CardContent sx={{ p: 3 }}>
