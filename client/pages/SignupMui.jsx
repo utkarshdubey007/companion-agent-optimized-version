@@ -11,6 +11,7 @@ import MuiEducatorsSection from "@/components/signup-mui/MuiEducatorsSection.jsx
 import MuiExpertsSection from "@/components/signup-mui/MuiExpertsSection.jsx";
 import MuiSignupFooter from "@/components/signup-mui/MuiSignupFooter.jsx";
 import Plans from "./Plans.jsx";
+import RoleSelection from "@/components/signup-mui/RoleSelection.jsx";
 import "../styles/signup-mui.css";
 
 const SignupMui = () => {
