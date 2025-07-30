@@ -24,7 +24,7 @@ import {
   LinkedIn,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { MuiHeaderActions } from "@/components/signup-mui/MuiHeaderActions.jsx";
+import { MuiHeaderActionsLight } from "@/components/signup-mui/MuiHeaderActionsLight.jsx";
 
 const Plans = () => {
   const navigate = useNavigate();
