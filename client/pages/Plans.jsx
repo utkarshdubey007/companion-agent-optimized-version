@@ -29,6 +29,7 @@ import {
   LinkedIn,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { MuiHeaderActions } from "@/components/signup-mui/MuiHeaderActions.jsx";
 
 const Plans = () => {
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
