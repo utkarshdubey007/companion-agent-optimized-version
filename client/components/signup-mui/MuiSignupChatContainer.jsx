@@ -56,8 +56,8 @@ export function MuiSignupChatContainer({
           key={message.id}
           sx={{
             position: "absolute",
-            bottom: { xs: "280px", sm: "350px", md: "400px", lg: "450px" },
-            left: { xs: "20%", sm: "25%", md: "30%", lg: "35%" },
+            bottom: { xs: "200px", sm: "240px", md: "280px", lg: "320px" },
+            left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" },
             transform: "translateX(-50%)",
             zIndex: 10,
             animation: "slideInLeft 0.6s ease-out",
@@ -326,8 +326,8 @@ export function MuiSignupChatContainer({
           <Box
             sx={{
               position: "absolute",
-              bottom: { xs: "280px", sm: "350px", md: "400px", lg: "450px" },
-              left: { xs: "20%", sm: "25%", md: "30%", lg: "35%" },
+              bottom: { xs: "200px", sm: "240px", md: "280px", lg: "320px" },
+            left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" },
               transform: "translateX(-50%)",
               zIndex: 10,
             }}
