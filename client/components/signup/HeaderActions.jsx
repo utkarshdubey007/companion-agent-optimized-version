@@ -48,12 +48,17 @@ export function HeaderActions() {
         </button>
 
         {/* Login Dropdown Menu */}
-        {isLoginMenuOpen && (
-          <div className="absolute top-full right-0 pt-2">
-            {/* Invisible bridge to prevent menu from closing */}
-            <div className="absolute top-0 right-0 w-full h-2 bg-transparent"></div>
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] transition-all duration-300">
-              <div className="py-2">
+        <div
+          className={`absolute top-full right-0 pt-2 pointer-events-none transition-all duration-200 ${
+            isLoginMenuOpen
+              ? 'opacity-100 visible pointer-events-auto translate-y-0'
+              : 'opacity-0 invisible -translate-y-2'
+          }`}
+        >
+          {/* Invisible bridge to prevent menu from closing */}
+          <div className="absolute top-0 right-0 w-full h-2 bg-transparent pointer-events-auto"></div>
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden min-w-[140px] pointer-events-auto">
+            <div className="py-2">
                 <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center gap-3">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800"
