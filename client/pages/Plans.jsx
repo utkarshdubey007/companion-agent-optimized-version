@@ -37,7 +37,7 @@ const Plans = () => {
   const planFeatures = {
     emeralites: [
       "Up to 20 TaleTree creations",
-      "AI powered emotional reflections", 
+      "AI powered emotional reflections",
       "Guardian account verification required",
       "Limited access to the TaleTree Method",
     ],
@@ -56,21 +56,6 @@ const Plans = () => {
       "Custom challenge creation",
     ],
   };
-
-  const loginOptions = [
-    {
-      label: "Kids",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F8ade38e9e3ed4481823af4c44b90eec8?format=webp&width=800",
-    },
-    {
-      label: "Guardians", 
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F70906b39ddd5462b8740ab078244aace?format=webp&width=800",
-    },
-    {
-      label: "Educator",
-      avatar: "https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F79afaa309c38474ba6bc9b0f00dbac56?format=webp&width=800",
-    },
-  ];
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "white" }}>
