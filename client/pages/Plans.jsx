@@ -217,6 +217,7 @@ const Plans = () => {
             MenuListProps={{
               onMouseEnter: handleMenuMouseEnter,
               onMouseLeave: handleMenuMouseLeave,
+              sx: { py: 0 }
             }}
             sx={{
               "& .MuiPaper-root": {
@@ -227,6 +228,7 @@ const Plans = () => {
                 border: "1px solid #f3f4f6",
               },
             }}
+            disableScrollLock={true}
           >
             {loginOptions.map((option, index) => (
               <MenuItem
