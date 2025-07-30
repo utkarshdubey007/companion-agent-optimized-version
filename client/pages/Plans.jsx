@@ -164,8 +164,8 @@ const Plans = () => {
 
           {/* Login */}
           <Box
-            onMouseEnter={handleLoginMouseEnter}
-            onMouseLeave={handleLoginMouseLeave}
+            onMouseEnter={handleLoginAreaEnter}
+            onMouseLeave={handleLoginAreaLeave}
           >
             <Button
             startIcon={<Person sx={{ fontSize: 16 }} />}
