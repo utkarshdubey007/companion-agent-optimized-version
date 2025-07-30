@@ -115,16 +115,23 @@ const Plans = () => {
       <MuiHeaderActionsLight />
 
       {/* Main Content */}
-      <Container maxWidth="lg" sx={{ pt: 20, pb: 12 }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          pt: { xs: 12, sm: 16, md: 20 },
+          pb: { xs: 6, sm: 8, md: 12 },
+          px: { xs: 2, sm: 3 }
+        }}
+      >
         {/* Page Title */}
-        <Box sx={{ textAlign: "center", mb: 6 }}>
+        <Box sx={{ textAlign: "center", mb: { xs: 4, sm: 5, md: 6 } }}>
           <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
               color: "#111827",
-              mb: 2,
-              fontSize: { xs: "2.25rem", md: "3rem" },
+              mb: { xs: 1, sm: 2 },
+              fontSize: { xs: "1.75rem", sm: "2.25rem", md: "3rem" },
             }}
           >
             TaleTree Pricing
@@ -133,10 +140,11 @@ const Plans = () => {
             variant="h6"
             sx={{
               color: "#6b7280",
-              maxWidth: "512px",
+              maxWidth: { xs: "300px", sm: "400px", md: "512px" },
               mx: "auto",
               lineHeight: 1.5,
-              fontSize: "1.125rem",
+              fontSize: { xs: "0.875rem", sm: "1rem", md: "1.125rem" },
+              px: { xs: 2, sm: 0 }
             }}
           >
             Choose the plan that fits your family or organization.
@@ -144,7 +152,14 @@ const Plans = () => {
         </Box>
 
         {/* Pricing Cards */}
-        <Grid container spacing={4} sx={{ maxWidth: "1200px", mx: "auto" }}>
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 4 }}
+          sx={{
+            maxWidth: { xs: "100%", sm: "800px", md: "1200px" },
+            mx: "auto"
+          }}
+        >
           {/* Emeralites Plan */}
           <Grid item xs={12} md={4}>
             <Card
