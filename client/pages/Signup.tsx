@@ -10,6 +10,7 @@ import EducatorsSection from "@/components/signup/EducatorsSection";
 import ExpertsSection from "@/components/signup/ExpertsSection";
 import SignupFooter from "@/components/signup/SignupFooter";
 import Plans from "./Plans";
+import "../styles/signup.css";
 
 const Signup = () => {
   const [showPlans, setShowPlans] = useState(false);
@@ -18,9 +19,9 @@ const Signup = () => {
     return <Plans />;
   }
   return (
-    <div className="relative">
+    <div className="signup-page">
       {/* Hero Section - Full Viewport */}
-      <div className="relative z-0">
+      <div className="signup-hero-container">
         {/* Stars/Decorative Elements */}
         <DecorativeStars />
 
@@ -29,7 +30,7 @@ const Signup = () => {
       </div>
 
       {/* Content Sections - Below Hero */}
-      <div className="relative z-10 bg-white">
+      <div className="signup-content-container">
         {/* Plans Strip - Inside content sections at top */}
         <PlansStrip onShowPlans={() => setShowPlans(true)} />
         <CreativitySection />
@@ -41,7 +42,7 @@ const Signup = () => {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10">
+      <div className="signup-footer-container">
         <SignupFooter />
       </div>
     </div>
