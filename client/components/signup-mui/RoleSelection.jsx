@@ -54,7 +54,7 @@ const RoleSelection = ({ onRoleSelect }) => {
     const containerRect = container.getBoundingClientRect();
 
     const badgeLeft = cardRect.left + cardRect.width / 2 - containerRect.left;
-    const badgeTop = cardRect.top - containerRect.top - 8; // Flush with card's top border
+    const badgeTop = cardRect.top - containerRect.top + 1; // Perfectly flush with card's top border
 
     setBadgePos({ left: badgeLeft, top: badgeTop });
     setShowBadge(true);
