@@ -113,7 +113,7 @@ export function MuiSignupChatContainer({
                 sx={{
                   position: "absolute",
                   bottom: 0,
-                  left: { xs: "16px", sm: "24px" },
+                  left: { xs: "8px", sm: "12px" },
                   width: 0,
                   height: 0,
                   borderLeft: { xs: "4px solid transparent", sm: "8px solid transparent" },
@@ -378,7 +378,7 @@ export function MuiSignupChatContainer({
                   sx={{
                     position: "absolute",
                     bottom: 0,
-                    left: { xs: "16px", sm: "24px" },
+                    left: { xs: "8px", sm: "12px" },
                     width: 0,
                     height: 0,
                     borderLeft: { xs: "4px solid transparent", sm: "8px solid transparent" },
