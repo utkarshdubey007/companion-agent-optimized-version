@@ -159,6 +159,7 @@ const Plans = () => {
           container
           spacing={{ xs: 2, sm: 3, md: 4 }}
           sx={{
+            width: "100%",
             maxWidth: { xs: "100%", sm: "800px", md: "1200px" },
             mx: "auto",
             justifyContent: "center",
