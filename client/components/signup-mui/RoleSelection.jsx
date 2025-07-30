@@ -201,7 +201,7 @@ const RoleSelection = ({ onRoleSelect }) => {
                   backgroundColor: '#fff',
                   transition: 'all 0.25s ease',
                   '&:hover': {
-                    border: '2px solid #A020F0',
+                    borderColor: '#A020F0',
                     boxShadow: '0 8px 20px rgba(160, 32, 240, 0.15)',
                   },
                 }}
