@@ -32,21 +32,7 @@ import { useNavigate } from "react-router-dom";
 import { MuiHeaderActions } from "@/components/signup-mui/MuiHeaderActions.jsx";
 
 const Plans = () => {
-  const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
-  const [loginAnchorEl, setLoginAnchorEl] = useState(null);
   const navigate = useNavigate();
-
-  const handleLoginAreaEnter = (event) => {
-    console.log("Login area enter");
-    setLoginAnchorEl(event.currentTarget);
-    setIsLoginMenuOpen(true);
-  };
-
-  const handleLoginAreaLeave = () => {
-    console.log("Login area leave");
-    setLoginAnchorEl(null);
-    setIsLoginMenuOpen(false);
-  };
 
   const planFeatures = {
     emeralites: [
