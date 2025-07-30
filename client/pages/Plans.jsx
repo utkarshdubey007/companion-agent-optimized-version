@@ -195,7 +195,9 @@ const Plans = () => {
             open={isLoginMenuOpen}
             onClose={handleLoginAreaLeave}
             MenuListProps={{
-              onMouseEnter: handleLoginAreaEnter,
+              onMouseEnter: () => {
+                // Keep menu open when hovering over it
+              },
               onMouseLeave: handleLoginAreaLeave,
               sx: { py: 0 }
             }}
