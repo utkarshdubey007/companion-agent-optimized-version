@@ -174,9 +174,11 @@ export function MuiHeaderActions() {
           MenuListProps={{
             onMouseEnter: handleMenuMouseEnter,
             onMouseLeave: handleMenuMouseLeave,
+            sx: { py: 0 }
           }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          disableScrollLock={true}
         >
           <MenuItem
             sx={{
