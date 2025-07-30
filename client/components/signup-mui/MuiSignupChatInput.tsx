@@ -30,7 +30,7 @@ export function MuiSignupChatInput({
   };
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "80rem", mx: "auto", px: 2 }}>
+    <Box sx={{ width: "100%", maxWidth: "90rem", mx: "auto", px: 1 }}>
       <Box
         sx={{
           display: "flex",
