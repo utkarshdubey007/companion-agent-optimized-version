@@ -40,8 +40,19 @@ export function HeaderActions() {
       {/* Login Component */}
       <div
         className="relative"
-        onMouseEnter={() => setIsLoginMenuOpen(true)}
-        onMouseLeave={() => setIsLoginMenuOpen(false)}
+        onMouseEnter={() => {
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            setHoverTimeout(null);
+          }
+          setIsLoginMenuOpen(true);
+        }}
+        onMouseLeave={() => {
+          const timeout = setTimeout(() => {
+            setIsLoginMenuOpen(false);
+          }, 150);
+          setHoverTimeout(timeout);
+        }}
       >
         <button className="border border-white/40 text-white px-4 py-2 rounded-full font-medium text-sm hover:bg-white hover:text-gray-800 transition-all duration-300 flex items-center gap-2">
           <User className="w-4 h-4" />
