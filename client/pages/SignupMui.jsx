@@ -16,6 +16,12 @@ import "../styles/signup-mui.css";
 
 const SignupMui = () => {
   const [showPlans, setShowPlans] = useState(false);
+  const [selectedRole, setSelectedRole] = useState(null);
+
+  const handleRoleSelect = (roleId) => {
+    setSelectedRole(roleId);
+    console.log('Selected role:', roleId);
+  };
 
   if (showPlans) {
     return <Plans />;
