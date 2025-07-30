@@ -36,12 +36,31 @@ const Plans = () => {
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const navigate = useNavigate();
 
-  const handleLoginMenuOpen = (event) => {
+  const handleLoginMouseEnter = (event) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
     setLoginAnchorEl(event.currentTarget);
     setIsLoginMenuOpen(true);
   };
 
-  const handleLoginMenuClose = () => {
+  const handleLoginMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setLoginAnchorEl(null);
+      setIsLoginMenuOpen(false);
+    }, 200); // 200ms delay before closing
+    setHoverTimeout(timeout);
+  };
+
+  const handleMenuMouseEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  };
+
+  const handleMenuMouseLeave = () => {
     setLoginAnchorEl(null);
     setIsLoginMenuOpen(false);
   };
