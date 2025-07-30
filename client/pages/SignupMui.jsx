@@ -10,7 +10,7 @@ import MuiParentsSection from "@/components/signup-mui/MuiParentsSection.jsx";
 import MuiEducatorsSection from "@/components/signup-mui/MuiEducatorsSection.jsx";
 import MuiExpertsSection from "@/components/signup-mui/MuiExpertsSection.jsx";
 import MuiSignupFooter from "@/components/signup-mui/MuiSignupFooter.jsx";
-import Plans from "./Plans";
+import Plans from "./Plans.jsx";
 import "../styles/signup-mui.css";
 
 const SignupMui = () => {
