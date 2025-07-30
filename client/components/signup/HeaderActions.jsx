@@ -94,7 +94,6 @@ export function HeaderActions() {
               </div>
             </div>
           </div>
-        )}
       </div>
     </div>
   );
