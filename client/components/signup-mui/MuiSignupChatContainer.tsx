@@ -70,7 +70,7 @@ export function MuiSignupChatContainer({
           sx={{
             position: "absolute",
             bottom: { xs: "280px", sm: "350px", md: "400px", lg: "450px" },
-            left: { xs: "150px", sm: "200px", md: "250px", lg: "300px" },
+            left: { xs: "250px", sm: "300px", md: "400px", lg: "500px" },
             transform: "translateX(-50%)",
             zIndex: 10,
             animation: "slideInLeft 0.6s ease-out",
@@ -340,7 +340,7 @@ export function MuiSignupChatContainer({
             sx={{
               position: "absolute",
               bottom: { xs: "280px", sm: "350px", md: "400px", lg: "450px" },
-              left: { xs: "150px", sm: "200px", md: "250px", lg: "300px" },
+              left: { xs: "250px", sm: "300px", md: "400px", lg: "500px" },
               transform: "translateX(-50%)",
               zIndex: 10,
             }}
