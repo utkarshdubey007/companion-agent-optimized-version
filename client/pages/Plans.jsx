@@ -157,7 +157,9 @@ const Plans = () => {
           spacing={{ xs: 2, sm: 3, md: 4 }}
           sx={{
             maxWidth: { xs: "100%", sm: "800px", md: "1200px" },
-            mx: "auto"
+            mx: "auto",
+            justifyContent: "center",
+            alignItems: "stretch"
           }}
         >
           {/* Emeralites Plan */}
