@@ -16,7 +16,7 @@ import {
 } from '@mui/icons-material';
 
 const RoleSelection = ({ onRoleSelect }) => {
-  const [selectedRole, setSelectedRole] = useState('kid');
+  const [selectedRole, setSelectedRole] = useState(null);
   const [hoveredRole, setHoveredRole] = useState(null);
   const [badgePos, setBadgePos] = useState({ left: 0, top: -16 });
   const [showBadge, setShowBadge] = useState(true);
