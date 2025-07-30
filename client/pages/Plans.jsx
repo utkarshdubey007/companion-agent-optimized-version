@@ -450,8 +450,8 @@ const Plans = () => {
             </Grid>
 
             {/* Support Links */}
-            <Grid item xs={12} md={3}>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: { xs: "1rem", md: "1.25rem" } }}>
                 Support
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
@@ -468,7 +468,7 @@ const Plans = () => {
                     sx={{
                       color: "#c7d2fe",
                       textDecoration: "none",
-                      fontSize: "14px",
+                      fontSize: { xs: "12px", md: "14px" },
                       "&:hover": { color: "white" },
                     }}
                   >
@@ -479,7 +479,7 @@ const Plans = () => {
             </Grid>
 
             {/* Follow Us */}
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
                 Follow us
               </Typography>
