@@ -136,6 +136,7 @@ const RoleSelection = ({ onRoleSelect }) => {
             borderRadius: '12px',
             fontWeight: 600,
             fontSize: 12,
+            border: '2px solid #A020F0',
             transition: 'top 0.25s ease, left 0.25s ease, opacity 0.25s ease',
             pointerEvents: 'none',
             opacity: showBadge && activeRole ? 1 : 0,
