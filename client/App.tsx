@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
+import SignupMui from "./pages/SignupMui";
 import SpaceCompanionDemo from "./pages/SpaceCompanionDemo";
 import MagicalPortalDemo from "./pages/MagicalPortalDemo";
 import ArchPortalDemo from "./pages/ArchPortalDemo";
@@ -31,6 +32,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-mui" element={<SignupMui />} />
           <Route path="/space-companion" element={<SpaceCompanionDemo />} />
           <Route path="/magical-portal" element={<MagicalPortalDemo />} />
           <Route path="/arch-portal" element={<ArchPortalDemo />} />
