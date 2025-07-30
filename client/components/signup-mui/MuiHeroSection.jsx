@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
-import { MuiSignupChatContainer } from "./MuiSignupChatContainer";
-import { MuiSignupChatInput } from "./MuiSignupChatInput";
-import { MuiHeaderActions } from "./MuiHeaderActions";
-import { MuiSignupDualSidebar } from "./MuiSignupDualSidebar";
+import { MuiSignupChatContainer } from "./MuiSignupChatContainer.jsx";
+import { MuiSignupChatInput } from "./MuiSignupChatInput.jsx";
+import { MuiHeaderActions } from "./MuiHeaderActions.jsx";
+import { MuiSignupDualSidebar } from "./MuiSignupDualSidebar.jsx";
 
 const MuiHeroSection = () => {
   const [chatMessages, setChatMessages] = useState([
