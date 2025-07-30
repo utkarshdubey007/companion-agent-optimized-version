@@ -160,7 +160,7 @@ export function MuiHeaderActions() {
         <Menu
           anchorEl={anchorEl}
           open={isLoginMenuOpen}
-          onClose={handleLoginMouseLeave}
+          onClose={handleMenuMouseLeave}
           sx={{
             "& .MuiPaper-root": {
               borderRadius: "16px",
@@ -170,6 +170,10 @@ export function MuiHeaderActions() {
               minWidth: "140px",
               mt: 1,
             },
+          }}
+          MenuListProps={{
+            onMouseEnter: handleMenuMouseEnter,
+            onMouseLeave: handleMenuMouseLeave,
           }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
