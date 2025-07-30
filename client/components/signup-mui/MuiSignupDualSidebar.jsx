@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { ChevronLeft } from "@mui/icons-material";
-import { MuiTaleTreeWheelModal } from "./MuiTaleTreeWheelModal";
-import { MuiCompanionSelectionModal } from "./MuiCompanionSelectionModal";
+import { MuiTaleTreeWheelModal } from "./MuiTaleTreeWheelModal.jsx";
+import { MuiCompanionSelectionModal } from "./MuiCompanionSelectionModal.jsx";
 
 export function MuiSignupDualSidebar({
   topMenuItems = [
