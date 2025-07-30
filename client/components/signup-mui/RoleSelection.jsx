@@ -126,7 +126,7 @@ const RoleSelection = ({ onRoleSelect }) => {
           sx={{
             position: 'absolute',
             zIndex: 3,
-            transform: 'translateX(-50%)',
+            transform: 'translateX(-50%) translateY(-50%)',
             top: `${badgePos.top}px`,
             left: `${badgePos.left}px`,
             backgroundColor: '#A020F0',
