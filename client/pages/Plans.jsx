@@ -16,7 +16,6 @@ import {
   MenuItem,
   Avatar,
   Tooltip,
-  Paper,
   Link,
 } from "@mui/material";
 import {
@@ -85,7 +84,7 @@ const Plans = () => {
   ];
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "white", position: "relative" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "white" }}>
       {/* Header */}
       <Box
         sx={{
@@ -112,7 +111,7 @@ const Plans = () => {
             </Box>
             <Typography
               variant="h5"
-              sx={{ fontWeight: 600, color: "gray.900" }}
+              sx={{ fontWeight: 600, color: "#111827" }}
             >
               taleTree
             </Typography>
@@ -125,17 +124,18 @@ const Plans = () => {
               sx={{
                 width: 40,
                 height: 40,
-                border: "1px solid",
-                borderColor: "grey.300",
+                border: "1px solid #d1d5db",
+                borderRadius: "50%",
+                color: "#6b7280",
                 "&:hover": {
-                  bgcolor: "purple.50",
-                  borderColor: "purple.400",
-                  color: "purple.600",
+                  bgcolor: "#f3f4f6",
+                  borderColor: "#9ca3af",
+                  color: "#374151",
                 },
                 transition: "all 0.3s",
               }}
             >
-              <ArrowBack sx={{ color: "grey.600" }} />
+              <ArrowBack sx={{ fontSize: 20 }} />
             </IconButton>
           </Tooltip>
         </Box>
@@ -147,32 +147,37 @@ const Plans = () => {
             sx={{
               width: 40,
               height: 40,
-              border: "1px solid",
-              borderColor: "grey.300",
+              border: "1px solid #d1d5db",
+              borderRadius: "50%",
+              color: "#6b7280",
               "&:hover": {
-                bgcolor: "blue.50",
-                borderColor: "blue.400",
-                color: "blue.600",
+                bgcolor: "#eff6ff",
+                borderColor: "#60a5fa",
+                color: "#2563eb",
               },
               transition: "all 0.3s",
             }}
           >
-            <Search sx={{ color: "grey.600" }} />
+            <Search sx={{ fontSize: 20 }} />
           </IconButton>
 
           {/* Login */}
           <Button
             onClick={handleLoginMenuOpen}
-            startIcon={<Person />}
+            startIcon={<Person sx={{ fontSize: 16 }} />}
             variant="outlined"
             sx={{
-              borderColor: "grey.300",
-              color: "grey.700",
+              borderColor: "#d1d5db",
+              color: "#374151",
               borderRadius: "20px",
               textTransform: "none",
+              fontWeight: 500,
+              fontSize: "14px",
+              px: 2,
+              py: 1,
               "&:hover": {
-                bgcolor: "grey.50",
-                borderColor: "grey.400",
+                bgcolor: "#f9fafb",
+                borderColor: "#9ca3af",
               },
               transition: "all 0.3s",
             }}
@@ -189,8 +194,9 @@ const Plans = () => {
               "& .MuiPaper-root": {
                 borderRadius: 2,
                 mt: 1,
-                minWidth: 180,
-                boxShadow: "0 10px 40px rgba(0,0,0,0.12)",
+                minWidth: 140,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                border: "1px solid #f3f4f6",
               },
             }}
           >
@@ -201,14 +207,14 @@ const Plans = () => {
                 sx={{
                   py: 1.5,
                   px: 2,
-                  "&:hover": { bgcolor: "grey.50" },
+                  "&:hover": { bgcolor: "#f9fafb" },
                 }}
               >
                 <Avatar
                   src={option.avatar}
-                  sx={{ width: 24, height: 24, mr: 2 }}
+                  sx={{ width: 24, height: 24, mr: 1.5 }}
                 />
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" fontWeight={500} sx={{ fontSize: "14px" }}>
                   {option.label}
                 </Typography>
               </MenuItem>
@@ -218,16 +224,16 @@ const Plans = () => {
       </Box>
 
       {/* Main Content */}
-      <Container maxWidth="lg" sx={{ pt: 15, pb: 6 }}>
+      <Container maxWidth="lg" sx={{ pt: 20, pb: 12 }}>
         {/* Page Title */}
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
-              color: "grey.900",
+              color: "#111827",
               mb: 2,
-              fontSize: { xs: "2rem", md: "3rem" },
+              fontSize: { xs: "2.25rem", md: "3rem" },
             }}
           >
             TaleTree Pricing
@@ -235,10 +241,11 @@ const Plans = () => {
           <Typography
             variant="h6"
             sx={{
-              color: "grey.600",
-              maxWidth: "600px",
+              color: "#6b7280",
+              maxWidth: "512px",
               mx: "auto",
               lineHeight: 1.5,
+              fontSize: "1.125rem",
             }}
           >
             Choose the plan that fits your family or organization.
@@ -246,7 +253,7 @@ const Plans = () => {
         </Box>
 
         {/* Pricing Cards */}
-        <Grid container spacing={4} sx={{ maxWidth: "1000px", mx: "auto" }}>
+        <Grid container spacing={4} sx={{ maxWidth: "1200px", mx: "auto" }}>
           {/* Emeralites Plan */}
           <Grid item xs={12} md={4}>
             <Card
@@ -255,54 +262,53 @@ const Plans = () => {
                 position: "relative",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
+                border: "1px solid #e5e7eb",
+                borderRadius: 2,
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                 "&:hover": {
                   transform: "translateY(-8px)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                  borderColor: "purple.500",
-                  borderWidth: 2,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  border: "4px solid #a855f7",
                 },
-                border: "1px solid",
-                borderColor: "grey.200",
-                borderRadius: 3,
               }}
             >
               <CardContent sx={{ p: 4 }}>
                 <Box sx={{ mb: 3 }}>
                   <Typography
                     variant="h5"
-                    sx={{ fontWeight: 600, color: "cyan.600", mb: 1 }}
+                    sx={{ fontWeight: 600, color: "#0891b2", mb: 1 }}
                   >
                     Emeralites
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "grey.600", mb: 3 }}>
+                  <Typography variant="body2" sx={{ color: "#6b7280", mb: 3, fontSize: "14px" }}>
                     For curious kids just starting out
                   </Typography>
                   <Box sx={{ mb: 3 }}>
                     <Typography
                       component="span"
                       variant="h3"
-                      sx={{ fontWeight: "bold", color: "grey.900" }}
+                      sx={{ fontWeight: "bold", color: "#111827" }}
                     >
                       $0
                     </Typography>
                     <Typography
                       component="span"
                       variant="body1"
-                      sx={{ color: "grey.600", ml: 1 }}
+                      sx={{ color: "#6b7280", ml: 1 }}
                     >
                       / month
                     </Typography>
                   </Box>
                 </Box>
 
-                <List sx={{ mb: 4 }}>
+                <List sx={{ mb: 4, p: 0 }}>
                   {planFeatures.emeralites.map((feature, index) => (
-                    <ListItem key={index} sx={{ px: 0, py: 0.5 }}>
+                    <ListItem key={index} sx={{ px: 0, py: 0.75 }}>
                       <ListItemIcon sx={{ minWidth: 32 }}>
-                        <Check sx={{ color: "green.500", fontSize: 20 }} />
+                        <Check sx={{ color: "#10b981", fontSize: 20 }} />
                       </ListItemIcon>
                       <ListItemText>
-                        <Typography variant="body2" sx={{ color: "grey.700" }}>
+                        <Typography variant="body2" sx={{ color: "#374151", fontSize: "14px" }}>
                           {feature}
                         </Typography>
                       </ListItemText>
@@ -314,15 +320,19 @@ const Plans = () => {
                   fullWidth
                   disabled
                   sx={{
-                    bgcolor: "grey.100",
-                    color: "grey.500",
+                    bgcolor: "#f3f4f6",
+                    color: "#6b7280",
                     py: 1.5,
                     borderRadius: "25px",
                     textTransform: "none",
                     fontWeight: 500,
+                    "&:disabled": {
+                      bgcolor: "#f3f4f6",
+                      color: "#6b7280",
+                    },
                   }}
                 >
-                  Your current plan
+                  You current plan
                 </Button>
               </CardContent>
             </Card>
@@ -336,54 +346,53 @@ const Plans = () => {
                 position: "relative",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
+                border: "1px solid #e5e7eb",
+                borderRadius: 2,
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                 "&:hover": {
                   transform: "translateY(-8px)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                  borderColor: "purple.500",
-                  borderWidth: 2,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  border: "4px solid #a855f7",
                 },
-                border: "1px solid",
-                borderColor: "grey.200",
-                borderRadius: 3,
               }}
             >
               <CardContent sx={{ p: 4 }}>
                 <Box sx={{ mb: 3 }}>
                   <Typography
                     variant="h5"
-                    sx={{ fontWeight: 600, color: "green.600", mb: 1 }}
+                    sx={{ fontWeight: 600, color: "#059669", mb: 1 }}
                   >
                     Seedlings
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "grey.600", mb: 3 }}>
+                  <Typography variant="body2" sx={{ color: "#6b7280", mb: 3, fontSize: "14px" }}>
                     For families ready to grow together
                   </Typography>
                   <Box sx={{ mb: 3 }}>
                     <Typography
                       component="span"
                       variant="h3"
-                      sx={{ fontWeight: "bold", color: "grey.900" }}
+                      sx={{ fontWeight: "bold", color: "#111827" }}
                     >
                       $10
                     </Typography>
                     <Typography
                       component="span"
                       variant="body1"
-                      sx={{ color: "grey.600", ml: 1 }}
+                      sx={{ color: "#6b7280", ml: 1 }}
                     >
                       / month per child
                     </Typography>
                   </Box>
                 </Box>
 
-                <List sx={{ mb: 4 }}>
+                <List sx={{ mb: 4, p: 0 }}>
                   {planFeatures.seedlings.map((feature, index) => (
-                    <ListItem key={index} sx={{ px: 0, py: 0.5 }}>
+                    <ListItem key={index} sx={{ px: 0, py: 0.75 }}>
                       <ListItemIcon sx={{ minWidth: 32 }}>
-                        <Check sx={{ color: "green.500", fontSize: 20 }} />
+                        <Check sx={{ color: "#10b981", fontSize: 20 }} />
                       </ListItemIcon>
                       <ListItemText>
-                        <Typography variant="body2" sx={{ color: "grey.700" }}>
+                        <Typography variant="body2" sx={{ color: "#374151", fontSize: "14px" }}>
                           {feature}
                         </Typography>
                       </ListItemText>
@@ -395,12 +404,17 @@ const Plans = () => {
                   fullWidth
                   variant="contained"
                   sx={{
-                    bgcolor: "blue.600",
-                    "&:hover": { bgcolor: "blue.700" },
+                    bgcolor: "#2563eb",
+                    "&:hover": { bgcolor: "#1d4ed8" },
                     py: 1.5,
                     borderRadius: "25px",
                     textTransform: "none",
                     fontWeight: 500,
+                    boxShadow: "none",
+                    "&:hover": {
+                      bgcolor: "#1d4ed8",
+                      boxShadow: "none",
+                    },
                   }}
                 >
                   Get Seedlings
@@ -417,47 +431,46 @@ const Plans = () => {
                 position: "relative",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
+                border: "1px solid #e5e7eb",
+                borderRadius: 2,
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                 "&:hover": {
                   transform: "translateY(-8px)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                  borderColor: "purple.500",
-                  borderWidth: 2,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  border: "4px solid #a855f7",
                 },
-                border: "1px solid",
-                borderColor: "grey.200",
-                borderRadius: 3,
               }}
             >
               <CardContent sx={{ p: 4 }}>
                 <Box sx={{ mb: 3 }}>
                   <Typography
                     variant="h5"
-                    sx={{ fontWeight: 600, color: "purple.600", mb: 1 }}
+                    sx={{ fontWeight: 600, color: "#9333ea", mb: 1 }}
                   >
                     Villagers
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "grey.600", mb: 3 }}>
+                  <Typography variant="body2" sx={{ color: "#6b7280", mb: 3, fontSize: "14px" }}>
                     For schools, churches, and camps
                   </Typography>
                   <Box sx={{ mb: 3 }}>
                     <Typography
                       component="span"
                       variant="h4"
-                      sx={{ fontWeight: "bold", color: "grey.900" }}
+                      sx={{ fontWeight: "bold", color: "#111827" }}
                     >
                       Contact Sales
                     </Typography>
                   </Box>
                 </Box>
 
-                <List sx={{ mb: 4 }}>
+                <List sx={{ mb: 4, p: 0 }}>
                   {planFeatures.villagers.map((feature, index) => (
-                    <ListItem key={index} sx={{ px: 0, py: 0.5 }}>
+                    <ListItem key={index} sx={{ px: 0, py: 0.75 }}>
                       <ListItemIcon sx={{ minWidth: 32 }}>
-                        <Check sx={{ color: "green.500", fontSize: 20 }} />
+                        <Check sx={{ color: "#10b981", fontSize: 20 }} />
                       </ListItemIcon>
                       <ListItemText>
-                        <Typography variant="body2" sx={{ color: "grey.700" }}>
+                        <Typography variant="body2" sx={{ color: "#374151", fontSize: "14px" }}>
                           {feature}
                         </Typography>
                       </ListItemText>
@@ -469,12 +482,17 @@ const Plans = () => {
                   fullWidth
                   variant="contained"
                   sx={{
-                    bgcolor: "purple.600",
-                    "&:hover": { bgcolor: "purple.700" },
+                    bgcolor: "#9333ea",
+                    "&:hover": { bgcolor: "#7c3aed" },
                     py: 1.5,
                     borderRadius: "25px",
                     textTransform: "none",
                     fontWeight: 500,
+                    boxShadow: "none",
+                    "&:hover": {
+                      bgcolor: "#7c3aed",
+                      boxShadow: "none",
+                    },
                   }}
                 >
                   Get Villagers
@@ -486,7 +504,7 @@ const Plans = () => {
       </Container>
 
       {/* Footer */}
-      <Box sx={{ bgcolor: "indigo.900", color: "white", mt: 10 }}>
+      <Box sx={{ bgcolor: "#312e81", color: "white", mt: 10 }}>
         <Container maxWidth="lg" sx={{ py: 6 }}>
           <Grid container spacing={4}>
             {/* Company Info */}
@@ -494,7 +512,7 @@ const Plans = () => {
               <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
                 TaleTree Inc.
               </Typography>
-              <Typography variant="body2" sx={{ color: "indigo.200" }}>
+              <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: "14px" }}>
                 470 Ramona St. Palo Alto, CA 94301, USA
               </Typography>
             </Grid>
@@ -512,8 +530,9 @@ const Plans = () => {
                       href="#"
                       variant="body2"
                       sx={{
-                        color: "indigo.200",
+                        color: "#c7d2fe",
                         textDecoration: "none",
+                        fontSize: "14px",
                         "&:hover": { color: "white" },
                       }}
                     >
@@ -541,8 +560,9 @@ const Plans = () => {
                     href="#"
                     variant="body2"
                     sx={{
-                      color: "indigo.200",
+                      color: "#c7d2fe",
                       textDecoration: "none",
+                      fontSize: "14px",
                       "&:hover": { color: "white" },
                     }}
                   >
@@ -567,14 +587,14 @@ const Plans = () => {
                   <IconButton
                     key={index}
                     sx={{
-                      bgcolor: "indigo.700",
+                      bgcolor: "#4338ca",
                       color: "white",
                       width: 32,
                       height: 32,
-                      "&:hover": { bgcolor: "indigo.600" },
+                      "&:hover": { bgcolor: "#3730a3" },
                     }}
                   >
-                    <social.icon sx={{ fontSize: 16 }} />
+                    <social.icon sx={{ fontSize: 12 }} />
                   </IconButton>
                 ))}
               </Box>
@@ -584,8 +604,7 @@ const Plans = () => {
           {/* Bottom Footer */}
           <Box
             sx={{
-              borderTop: "1px solid",
-              borderColor: "indigo.800",
+              borderTop: "1px solid #4338ca",
               mt: 4,
               pt: 4,
               display: "flex",
@@ -595,10 +614,10 @@ const Plans = () => {
               gap: 2,
             }}
           >
-            <Typography variant="body2" sx={{ color: "indigo.200" }}>
+            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: "14px" }}>
               2025 TaleTree Inc. All rights reserved
             </Typography>
-            <Typography variant="body2" sx={{ color: "indigo.200" }}>
+            <Typography variant="body2" sx={{ color: "#c7d2fe", fontSize: "14px" }}>
               Email: contact@taletree.com
             </Typography>
           </Box>
