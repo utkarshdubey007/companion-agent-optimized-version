@@ -434,7 +434,7 @@ const Plans = () => {
 
             {/* Company Links */}
             <Grid item xs={12} sm={6} md={3}>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, fontSize: { xs: "1rem", md: "1.25rem" } }}>
                 Company
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
