@@ -62,24 +62,29 @@ const Plans = () => {
           left: 24,
           zIndex: 50,
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
+          alignItems: "flex-start",
           gap: 2,
         }}
       >
-        <Box sx={{ width: 32, height: 32 }}>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
-            alt="TaleTree Logo"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          />
+        {/* Logo and Title */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ width: 32, height: 32 }}>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F956eb6364f77469eb6b19c2791e6b43a?format=webp&width=800"
+              alt="TaleTree Logo"
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            />
+          </Box>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 600, color: "#111827" }}
+          >
+            taleTree
+          </Typography>
         </Box>
-        <Typography
-          variant="h5"
-          sx={{ fontWeight: 600, color: "#111827", mr: 2 }}
-        >
-          taleTree
-        </Typography>
-        
+
+        {/* Back Button */}
         <Tooltip title="Back to Signup" placement="right">
           <IconButton
             onClick={() => navigate("/signup")}
