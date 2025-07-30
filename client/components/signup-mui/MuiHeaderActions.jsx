@@ -156,7 +156,7 @@ export function MuiHeaderActions() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem
-            onClick={handleLoginClose}
+            onClick={handleLoginMouseLeave}
             sx={{
               px: 2,
               py: 1.5,
@@ -184,7 +184,7 @@ export function MuiHeaderActions() {
           </MenuItem>
 
           <MenuItem
-            onClick={handleLoginClose}
+            onClick={handleLoginMouseLeave}
             sx={{
               px: 2,
               py: 1.5,
@@ -212,7 +212,7 @@ export function MuiHeaderActions() {
           </MenuItem>
 
           <MenuItem
-            onClick={handleLoginClose}
+            onClick={handleLoginMouseLeave}
             sx={{
               px: 2,
               py: 1.5,
