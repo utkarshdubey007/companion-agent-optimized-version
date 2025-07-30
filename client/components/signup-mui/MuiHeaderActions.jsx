@@ -157,7 +157,17 @@ export function MuiHeaderActions() {
               // Keep menu open when hovering over it
             },
             onMouseLeave: handleLoginAreaLeave,
-            sx: { py: 0 }
+            sx: {
+              py: 0,
+              "& .MuiMenuItem-root": {
+                "&:hover": {
+                  backgroundColor: "#f9fafb !important",
+                },
+                "&.Mui-focusVisible": {
+                  backgroundColor: "transparent",
+                },
+              }
+            }
           }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
