@@ -11,6 +11,7 @@ import MuiEducatorsSection from "@/components/signup-mui/MuiEducatorsSection";
 import MuiExpertsSection from "@/components/signup-mui/MuiExpertsSection";
 import MuiSignupFooter from "@/components/signup-mui/MuiSignupFooter";
 import Plans from "./Plans";
+import "../styles/signup-mui.css";
 
 const SignupMui = () => {
   const [showPlans, setShowPlans] = useState(false);
@@ -20,18 +21,18 @@ const SignupMui = () => {
   }
 
   return (
-    <Box sx={{ position: "relative" }}>
+    <div className="signup-mui-page">
       {/* Hero Section - Full Viewport */}
-      <Box sx={{ position: "relative", zIndex: 0 }}>
+      <div className="signup-hero-wrapper">
         {/* Stars/Decorative Elements */}
         <MuiDecorativeStars />
 
         {/* Main Hero Section */}
         <MuiHeroSection />
-      </Box>
+      </div>
 
       {/* Content Sections - Below Hero */}
-      <Box sx={{ position: "relative", zIndex: 10, bgcolor: "white" }}>
+      <div className="signup-content-wrapper">
         {/* Plans Strip - Inside content sections at top */}
         <MuiPlansStrip onShowPlans={() => setShowPlans(true)} />
         <MuiCreativitySection />
@@ -40,13 +41,13 @@ const SignupMui = () => {
         <MuiParentsSection />
         <MuiEducatorsSection />
         <MuiExpertsSection />
-      </Box>
+      </div>
 
       {/* Footer */}
-      <Box sx={{ position: "relative", zIndex: 10 }}>
+      <div className="signup-footer-wrapper">
         <MuiSignupFooter />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
