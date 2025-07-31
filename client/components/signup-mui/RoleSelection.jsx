@@ -189,7 +189,7 @@ const RoleSelection = ({ onRoleSelect }) => {
                 onMouseLeave={handleMouseLeave}
                 onClick={() => handleRoleClick(role.value)}
                 sx={{
-                  p: 2,
+                  p: 1.5,
                   borderRadius: '12px',
                   border: '2px solid',
                   borderColor: isActive ? '#A020F0' : 'transparent',
