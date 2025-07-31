@@ -193,17 +193,17 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
         position: "relative",
       }}
     >
-      {/* Fixed Companion Character in upper-left position as marked in red box */}
+      {/* Fixed Companion Character in center-right position as marked in red box */}
       <Box
         sx={{
           position: "absolute",
-          top: { xs: 40, sm: 60, md: 80 },
-          left: { xs: "5%", sm: "8%", md: "10%", lg: "12%" },
-          transform: "translateX(0)",
+          top: "50%",
+          right: { xs: "15%", sm: "20%", md: "25%", lg: "30%" },
+          transform: "translateY(-50%)",
           zIndex: 10,
           transition: "transform 0.3s ease",
           "&:hover": {
-            transform: "scale(1.05)",
+            transform: "translateY(-50%) scale(1.05)",
           },
         }}
       >
