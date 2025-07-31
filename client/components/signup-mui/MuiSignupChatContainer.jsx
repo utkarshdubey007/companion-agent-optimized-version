@@ -45,145 +45,6 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
 
   const { latestAI, latestKid } = getLatestMessages();
 
-  const renderMessage = (message) => {
-    // AI text messages - positioned at companion mouth level
-    if (message.sender === "AI") {
-      return (
-        <Box
-          key={message.id}
-          sx={{
-            position: "absolute",
-            bottom: { xs: "200px", sm: "240px", md: "280px", lg: "320px" },
-            left: { xs: "15%", sm: "20%", md: "25%", lg: "30%" },
-            transform: "translateX(-50%)",
-            zIndex: 10,
-            animation: "slideInLeft 0.6s ease-out",
-            "@keyframes slideInLeft": {
-              "0%": {
-                opacity: 0,
-                transform: "translateX(-70px) scale(0.95)",
-              },
-              "100%": {
-                opacity: 1,
-                transform: "translateX(-50%) scale(1)",
-              },
-            },
-          }}
-        >
-          <Box sx={{ maxWidth: { xs: "300px", sm: "384px", md: "448px" } }}>
-            <Box
-              sx={{
-                bgcolor: "#3b82f6",
-                color: "white",
-                p: { xs: 1, sm: 1.5 },
-                borderRadius: "16px",
-                borderBottomLeftRadius: "4px",
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                position: "relative",
-              }}
-            >
-              <Box
-                component="p"
-                sx={{
-                  fontSize: { xs: "12px", sm: "14px" },
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
-                {message.content}
-              </Box>
-              {/* Speech bubble tail pointing to companion */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: { xs: "8px", sm: "12px" },
-                  width: 0,
-                  height: 0,
-                  borderLeft: {
-                    xs: "4px solid transparent",
-                    sm: "8px solid transparent",
-                  },
-                  borderRight: {
-                    xs: "4px solid transparent",
-                    sm: "8px solid transparent",
-                  },
-                  borderTop: {
-                    xs: "4px solid #3b82f6",
-                    sm: "8px solid #3b82f6",
-                  },
-                  transform: "translateY(100%)",
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
-      );
-    }
-
-    // Kid messages - positioned below AI message on the right
-    return (
-      <Box
-        key={message.id}
-        sx={{
-          position: "absolute",
-          bottom: "112px",
-          right: "32px",
-          animation: "slideInRight 0.6s ease-out",
-          "@keyframes slideInRight": {
-            "0%": {
-              opacity: 0,
-              transform: "translateX(20px) scale(0.95)",
-            },
-            "100%": {
-              opacity: 1,
-              transform: "translateX(0) scale(1)",
-            },
-          },
-        }}
-      >
-        <Box sx={{ maxWidth: "300px" }}>
-          <Box
-            sx={{
-              bgcolor: "#22c55e",
-              color: "white",
-              p: 1.5,
-              borderRadius: "16px",
-              borderBottomRightRadius: "4px",
-              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-              position: "relative",
-            }}
-          >
-            <Box
-              component="p"
-              sx={{
-                fontSize: "14px",
-                lineHeight: 1.6,
-                margin: 0,
-              }}
-            >
-              {message.content}
-            </Box>
-            {/* Speech bubble tail */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                right: "16px",
-                width: 0,
-                height: 0,
-                borderLeft: "8px solid transparent",
-                borderRight: "8px solid transparent",
-                borderTop: "8px solid #22c55e",
-                transform: "translateY(100%)",
-              }}
-            />
-          </Box>
-        </Box>
-      </Box>
-    );
-  };
-
   return (
     <Box
       sx={{
@@ -193,7 +54,7 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
         position: "relative",
       }}
     >
-      {/* Fixed Companion Character on the ground */}
+      {/* Companion Character on the ground center-right */}
       <Box
         sx={{
           position: "absolute",
@@ -327,31 +188,35 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
         )}
       </Box>
 
-      {/* Messages Container - positioned absolutely for precise placement */}
+      {/* Simple Message Container */}
       <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-        {/* Latest AI Message - above companion */}
-        {latestAI && renderMessage(latestAI)}
-
-        {/* Latest Kid Message - on the right */}
-        {latestKid && renderMessage(latestKid)}
-
-        {/* Default state when no messages */}
-        {!latestAI && !latestKid && (
+        {/* AI Message - At companion's mouth vertical level */}
+        {(latestAI || (!latestAI && !latestKid)) && (
           <Box
             sx={{
               position: "absolute",
-              bottom: { xs: "200px", sm: "240px", md: "280px", lg: "320px" },
-              left: { xs: "15%", sm: "20%", md: "25%", lg: "30%" },
-              transform: "translateX(-50%)",
-              zIndex: 10,
+              bottom: { xs: "180px", sm: "220px", md: "260px", lg: "300px" }, // Companion mouth level
+              left: { xs: "10%", sm: "15%", md: "20%", lg: "25%" },
+              zIndex: 15,
+              animation: latestAI ? "slideInLeft 0.6s ease-out" : "none",
+              "@keyframes slideInLeft": {
+                "0%": {
+                  opacity: 0,
+                  transform: "translateX(-30px) scale(0.95)",
+                },
+                "100%": {
+                  opacity: 1,
+                  transform: "translateX(0) scale(1)",
+                },
+              },
             }}
           >
-            <Box sx={{ maxWidth: { xs: "300px", sm: "384px", md: "448px" } }}>
+            <Box sx={{ maxWidth: { xs: "280px", sm: "320px", md: "360px" } }}>
               <Box
                 sx={{
                   bgcolor: "#3b82f6",
                   color: "white",
-                  p: { xs: 1, sm: 1.5 },
+                  p: { xs: 1.5, sm: 2 },
                   borderRadius: "16px",
                   borderBottomLeftRadius: "4px",
                   boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
@@ -361,39 +226,87 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
                 <Box
                   component="p"
                   sx={{
-                    fontSize: { xs: "12px", sm: "14px" },
+                    fontSize: { xs: "13px", sm: "14px" },
                     lineHeight: 1.6,
                     margin: 0,
                   }}
                 >
-                  Hello, brave explorer! 🌟
-                  <br />
-                  Welcome to TaleTree! Share your magical stories and ideas with
-                  me.
-                  <br />
-                  <br />
-                  Let's create something amazing together!
+                  {latestAI ? latestAI.content : 
+                    `Hello, brave explorer! 🌟\nWelcome to TaleTree! Share your magical stories and ideas with me.\n\nLet's create something amazing together!`}
                 </Box>
                 {/* Speech bubble tail pointing to companion */}
                 <Box
                   sx={{
                     position: "absolute",
                     bottom: 0,
-                    left: { xs: "8px", sm: "12px" },
+                    left: { xs: "12px", sm: "16px" },
                     width: 0,
                     height: 0,
-                    borderLeft: {
-                      xs: "4px solid transparent",
-                      sm: "8px solid transparent",
-                    },
-                    borderRight: {
-                      xs: "4px solid transparent",
-                      sm: "8px solid transparent",
-                    },
-                    borderTop: {
-                      xs: "4px solid #3b82f6",
-                      sm: "8px solid #3b82f6",
-                    },
+                    borderLeft: { xs: "6px solid transparent", sm: "8px solid transparent" },
+                    borderRight: { xs: "6px solid transparent", sm: "8px solid transparent" },
+                    borderTop: { xs: "6px solid #3b82f6", sm: "8px solid #3b82f6" },
+                    transform: "translateY(100%)",
+                  }}
+                />
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        {/* Kid Message - Below AI message and slightly to the right */}
+        {latestKid && (
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: { xs: "100px", sm: "120px", md: "140px", lg: "160px" }, // Below AI message
+              left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" }, // Slightly to the right
+              zIndex: 15,
+              animation: "slideInRight 0.6s ease-out",
+              "@keyframes slideInRight": {
+                "0%": {
+                  opacity: 0,
+                  transform: "translateX(20px) scale(0.95)",
+                },
+                "100%": {
+                  opacity: 1,
+                  transform: "translateX(0) scale(1)",
+                },
+              },
+            }}
+          >
+            <Box sx={{ maxWidth: { xs: "260px", sm: "300px" } }}>
+              <Box
+                sx={{
+                  bgcolor: "#22c55e",
+                  color: "white",
+                  p: { xs: 1.5, sm: 2 },
+                  borderRadius: "16px",
+                  borderBottomRightRadius: "4px",
+                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
+                  position: "relative",
+                }}
+              >
+                <Box
+                  component="p"
+                  sx={{
+                    fontSize: { xs: "13px", sm: "14px" },
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {latestKid.content}
+                </Box>
+                {/* Speech bubble tail */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: { xs: "12px", sm: "16px" },
+                    width: 0,
+                    height: 0,
+                    borderLeft: { xs: "6px solid transparent", sm: "8px solid transparent" },
+                    borderRight: { xs: "6px solid transparent", sm: "8px solid transparent" },
+                    borderTop: { xs: "6px solid #22c55e", sm: "8px solid #22c55e" },
                     transform: "translateY(100%)",
                   }}
                 />
