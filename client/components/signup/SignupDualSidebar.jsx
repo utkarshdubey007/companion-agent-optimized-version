@@ -279,7 +279,16 @@ export function SignupDualSidebar({
 
                       {/* Tooltip */}
                       {!bottomSidebarCollapsed && (
-                        <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 border border-green-300/40 rounded-lg text-white text-sm font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl shadow-green-500/30 z-50 pointer-events-none transform group-hover:scale-105">
+                        <div
+                          className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 border border-green-300/40 rounded-lg text-white text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-xl shadow-green-500/30 z-50 pointer-events-none"
+                          style={{
+                            opacity: 0,
+                            transform: 'translateY(-50%) scale(0.95)',
+                            background: 'linear-gradient(90deg, #22c55e, #16a34a)',
+                            borderColor: 'rgba(134, 239, 172, 0.4)',
+                            boxShadow: '0 25px 50px -12px rgba(34, 197, 94, 0.3)',
+                          }}
+                        >
                           {item.alt}
                           {/* Tooltip arrow */}
                           <div className="absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-r-[8px] border-transparent border-r-green-500"></div>
