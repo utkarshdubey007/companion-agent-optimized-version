@@ -231,8 +231,8 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
                     margin: 0,
                   }}
                 >
-                  {latestAI ? latestAI.content : 
-                    `Hello, brave explorer! 🌟\nWelcome to TaleTree! Share your magical stories and ideas with me.\n\nLet's create something amazing together!`}
+                  {latestAI ? latestAI.content :
+                    `It's free to start. Enter the Emerald Forest and begin your journey.`}
                 </Box>
                 {/* Speech bubble tail pointing to companion */}
                 <Box
