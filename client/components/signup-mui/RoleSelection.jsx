@@ -210,11 +210,11 @@ const RoleSelection = ({ onRoleSelect }) => {
                 {/* Avatar - 48x48, centered */}
                 <Avatar
                   src={role.avatar}
-                  sx={{ 
-                    width: 48, 
-                    height: 48, 
-                    margin: '0 auto', 
-                    mb: 1,
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    margin: '0 auto',
+                    mb: 0.5,
                     border: 'none'
                   }}
                 />
