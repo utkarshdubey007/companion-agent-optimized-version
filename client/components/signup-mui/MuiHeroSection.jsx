@@ -12,7 +12,7 @@ const MuiHeroSection = () => {
       type: "text",
       sender: "AI",
       content:
-        "It's time to start. Share the beautiful, magical stories and stories.",
+        "It's free to start. Enter the Emerald Forest and begin your journey.",
       timestamp: new Date(),
     },
   ]);
