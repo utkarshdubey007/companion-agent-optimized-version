@@ -198,7 +198,7 @@ const RoleSelection = ({ onRoleSelect }) => {
                     : '0 2px 4px rgba(0, 0, 0, 0.1)',
                   textAlign: 'center',
                   cursor: 'pointer',
-                  width: '90px',
+                  width: '80px',
                   backgroundColor: '#fff',
                   transition: 'all 0.25s ease',
                   '&:hover': {
