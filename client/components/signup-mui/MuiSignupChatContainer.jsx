@@ -209,8 +209,8 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
       >
         <Box
           sx={{
-            width: { xs: 192, sm: 256, md: 320, lg: 384 },
-            height: { xs: 192, sm: 256, md: 320, lg: 384 },
+            width: { xs: 120, sm: 150, md: 180, lg: 200 },
+            height: { xs: 120, sm: 150, md: 180, lg: 200 },
             position: "relative",
           }}
         >
