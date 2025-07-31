@@ -193,12 +193,12 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
         position: "relative",
       }}
     >
-      {/* Fixed Companion Character on left side above chat input and on ground - responsive */}
+      {/* Fixed Companion Character in upper-left position as marked in red box */}
       <Box
         sx={{
           position: "absolute",
-          bottom: { xs: 40, sm: 60, md: 80 },
-          left: { xs: "8%", sm: "10%", md: "15%", lg: "20%" },
+          top: { xs: 40, sm: 60, md: 80 },
+          left: { xs: "5%", sm: "8%", md: "10%", lg: "12%" },
           transform: "translateX(0)",
           zIndex: 10,
           transition: "transform 0.3s ease",
