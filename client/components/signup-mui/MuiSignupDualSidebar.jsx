@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Box, IconButton, Tooltip } from "@mui/material";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { Box, Tooltip, Button } from "@mui/material";
 import { MuiTaleTreeWheelModal } from "./MuiTaleTreeWheelModal.jsx";
 import { MuiCompanionSelectionModal } from "./MuiCompanionSelectionModal.jsx";
 
@@ -75,17 +74,6 @@ export function MuiSignupDualSidebar({
     }
   };
 
-  // Combined menu items - wheel actions at top, companion at bottom
-  const allMenuItems = [
-    ...topMenuItems,
-    {
-      src: selectedCompanion.image,
-      alt: selectedCompanion.name,
-      delay: 200,
-      isCompanion: true,
-    },
-  ];
-
   const sidebarStyle = {
     bgcolor: "#1C2051",
     border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -132,222 +120,149 @@ export function MuiSignupDualSidebar({
           ...sidebarStyle,
           width: sidebarCollapsed ? 20 : 80,
           height: "auto",
-          maxHeight: "calc(70vh)",
-          minHeight: "200px",
+          minHeight: "160px", // Fixed height to prevent scroll
+          maxHeight: "160px", // Fixed height to prevent scroll
         }}
       >
-        {/* Toggle Button */}
-        <IconButton
-          onClick={toggleSidebar}
+        {/* Original Style Toggle Button */}
+        <Box
           sx={{
             position: "absolute",
+            right: 2,
             top: "50%",
-            right: sidebarCollapsed ? -20 : -16,
             transform: "translateY(-50%)",
-            width: 32,
-            height: 32,
-            bgcolor: "#1C2051",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            borderRadius: "50%",
-            color: "white",
-            zIndex: 35,
-            transition: "all 0.3s ease",
-            "&:hover": {
-              bgcolor: "#2A3063",
-              transform: "translateY(-50%) scale(1.1)",
-            },
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {sidebarCollapsed ? (
-            <ChevronRight sx={{ fontSize: 16 }} />
-          ) : (
-            <ChevronLeft sx={{ fontSize: 16 }} />
-          )}
-        </IconButton>
+          <Button
+            onClick={toggleSidebar}
+            sx={{
+              width: 24,
+              height: 32,
+              bgcolor: "transparent",
+              border: 0,
+              p: 0,
+              borderRadius: "6px",
+              transition: "all 0.3s ease-in-out",
+              minWidth: "auto",
+              "&:hover": {
+                bgcolor: "rgba(255, 255, 255, 0.1)",
+                transform: "scale(1.1)",
+              },
+            }}
+          >
+            <Box
+              component="img"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0b5ad4e8e5f84db5a19db37317c1643d%2F7504875ba38348f8bb8df1ca5aaf3464?format=webp&width=800"
+              alt="Toggle"
+              sx={{
+                width: 16,
+                height: 16,
+                objectFit: "contain",
+                transition: "transform 0.3s ease",
+                transform: sidebarCollapsed ? "rotate(0deg)" : "rotate(180deg)",
+                "&:hover": {
+                  transform: sidebarCollapsed ? "rotate(0deg) scale(1.25)" : "rotate(180deg) scale(1.25)",
+                },
+              }}
+            />
+          </Button>
+        </Box>
 
-        {/* Menu Items Container */}
+        {/* Menu Items Container - No scroll, fixed content */}
         <Box
           sx={{
             transition: "all 0.5s ease-in-out",
-            overflow: "hidden",
+            overflow: "hidden", // Prevent scroll
             width: sidebarCollapsed ? 0 : 64,
             opacity: sidebarCollapsed ? 0 : 1,
             p: sidebarCollapsed ? 0 : 2,
+            height: "100%",
           }}
         >
-          <Box sx={{ overflowY: "auto", maxHeight: "calc(70vh - 32px)" }}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 1.5,
-              }}
-            >
-              {/* Label for TaleTree Wheel */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1.5,
+              height: "100%",
+              justifyContent: "center",
+            }}
+          >
+            {/* TaleTree Wheel Actions - NO TITLE */}
+            {topMenuItems.map((item, index) => (
               <Box
-                sx={{
-                  fontSize: "10px",
-                  color: "rgba(255, 255, 255, 0.7)",
-                  textAlign: "center",
-                  mb: 0.5,
-                  fontWeight: 600,
-                  letterSpacing: "0.5px",
-                }}
-              >
-                The TaleTree Method
-              </Box>
-
-              {/* TaleTree Wheel Actions */}
-              {topMenuItems.map((item, index) => (
-                <Box
-                  key={item.alt}
-                  sx={{
-                    position: "relative",
-                    animation: showWaveEffect
-                      ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
-                      : "none",
-                    transform: showWaveEffect ? "scale(1)" : "scale(0)",
-                    "@keyframes popIn": {
-                      "0%": {
-                        transform: "scale(0) rotate(0deg)",
-                        opacity: 0,
-                      },
-                      "50%": {
-                        transform: "scale(1.2) rotate(5deg)",
-                      },
-                      "100%": {
-                        transform: "scale(1) rotate(0deg)",
-                        opacity: 1,
-                      },
-                    },
-                    "@keyframes wave": {
-                      "0%, 100%": {
-                        transform: "scale(1) translateY(0px)",
-                      },
-                      "25%": {
-                        transform: "scale(1.05) translateY(-2px)",
-                      },
-                      "50%": {
-                        transform: "scale(1) translateY(0px)",
-                      },
-                      "75%": {
-                        transform: "scale(1.05) translateY(2px)",
-                      },
-                    },
-                  }}
-                >
-                  <Tooltip
-                    title={item.alt}
-                    placement="right"
-                    arrow
-                    sx={{
-                      "& .MuiTooltip-tooltip": {
-                        bgcolor: "#1C2051",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                        borderRadius: "12px",
-                        color: "white",
-                        fontSize: "12px",
-                        fontWeight: 500,
-                      },
-                      "& .MuiTooltip-arrow": {
-                        color: "#1C2051",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={menuItemStyle}
-                      onClick={() => {
-                        if (item.alt === "Menu") {
-                          setIsWheelModalOpen(true);
-                        } else {
-                          onMenuItemClick?.(item.alt, index);
-                        }
-                      }}
-                    >
-                      <Box
-                        component="img"
-                        src={item.src}
-                        alt={item.alt}
-                        sx={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          transition: "transform 0.3s ease",
-                          "&:hover": {
-                            transform: "rotate(12deg)",
-                          },
-                        }}
-                      />
-                    </Box>
-                  </Tooltip>
-                </Box>
-              ))}
-
-              {/* Divider */}
-              <Box
-                sx={{
-                  width: "60%",
-                  height: "1px",
-                  bgcolor: "rgba(255, 255, 255, 0.2)",
-                  my: 1,
-                }}
-              />
-
-              {/* Label for Companion */}
-              <Box
-                sx={{
-                  fontSize: "10px",
-                  color: "rgba(255, 255, 255, 0.7)",
-                  textAlign: "center",
-                  mb: 0.5,
-                  fontWeight: 600,
-                  letterSpacing: "0.5px",
-                }}
-              >
-                Companion
-              </Box>
-
-              {/* Companion Selection */}
-              <Box
+                key={item.alt}
                 sx={{
                   position: "relative",
                   animation: showWaveEffect
-                    ? `popIn 0.6s ease-out 200ms both, wave 2s ease-in-out 800ms both`
+                    ? `popIn 0.6s ease-out ${item.delay}ms both, wave 2s ease-in-out ${item.delay + 600}ms both`
                     : "none",
                   transform: showWaveEffect ? "scale(1)" : "scale(0)",
+                  "@keyframes popIn": {
+                    "0%": {
+                      transform: "scale(0) rotate(0deg)",
+                      opacity: 0,
+                    },
+                    "50%": {
+                      transform: "scale(1.2) rotate(5deg)",
+                    },
+                    "100%": {
+                      transform: "scale(1) rotate(0deg)",
+                      opacity: 1,
+                    },
+                  },
+                  "@keyframes wave": {
+                    "0%, 100%": {
+                      transform: "scale(1) translateY(0px)",
+                    },
+                    "25%": {
+                      transform: "scale(1.05) translateY(-2px)",
+                    },
+                    "50%": {
+                      transform: "scale(1) translateY(0px)",
+                    },
+                    "75%": {
+                      transform: "scale(1.05) translateY(2px)",
+                    },
+                  },
                 }}
               >
                 <Tooltip
-                  title={`Select ${selectedCompanion.name}`}
+                  title={item.alt}
                   placement="right"
                   arrow
                   sx={{
                     "& .MuiTooltip-tooltip": {
-                      bgcolor: "#1C2051",
-                      border: "1px solid rgba(255, 255, 255, 0.2)",
-                      borderRadius: "12px",
+                      bgcolor: "rgba(0, 0, 0, 0.8)", // Dark background
+                      border: "none",
+                      borderRadius: "6px",
                       color: "white",
                       fontSize: "12px",
                       fontWeight: 500,
                     },
                     "& .MuiTooltip-arrow": {
-                      color: "#1C2051",
+                      color: "rgba(0, 0, 0, 0.8)", // Match tooltip background
                     },
                   }}
                 >
                   <Box
-                    sx={{
-                      ...menuItemStyle,
-                      border: "2px solid rgba(255, 255, 255, 0.3)",
-                      boxShadow: "0 0 15px rgba(255, 255, 255, 0.1)",
+                    sx={menuItemStyle}
+                    onClick={() => {
+                      if (item.alt === "Menu") {
+                        setIsWheelModalOpen(true);
+                      } else {
+                        onMenuItemClick?.(item.alt, index);
+                      }
                     }}
-                    onClick={() => setIsCompanionModalOpen(true)}
                   >
                     <Box
                       component="img"
-                      src={selectedCompanion.image}
-                      alt={selectedCompanion.name}
+                      src={item.src}
+                      alt={item.alt}
                       sx={{
                         width: "100%",
                         height: "100%",
@@ -361,6 +276,60 @@ export function MuiSignupDualSidebar({
                   </Box>
                 </Tooltip>
               </Box>
+            ))}
+
+            {/* Companion Selection - NO TITLE */}
+            <Box
+              sx={{
+                position: "relative",
+                animation: showWaveEffect
+                  ? `popIn 0.6s ease-out 200ms both, wave 2s ease-in-out 800ms both`
+                  : "none",
+                transform: showWaveEffect ? "scale(1)" : "scale(0)",
+              }}
+            >
+              <Tooltip
+                title={`Select ${selectedCompanion.name}`}
+                placement="right"
+                arrow
+                sx={{
+                  "& .MuiTooltip-tooltip": {
+                    bgcolor: "rgba(0, 0, 0, 0.8)", // Dark background
+                    border: "none",
+                    borderRadius: "6px",
+                    color: "white",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                  },
+                  "& .MuiTooltip-arrow": {
+                    color: "rgba(0, 0, 0, 0.8)", // Match tooltip background
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    ...menuItemStyle,
+                    border: "2px solid rgba(255, 255, 255, 0.3)",
+                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.1)",
+                  }}
+                  onClick={() => setIsCompanionModalOpen(true)}
+                >
+                  <Box
+                    component="img"
+                    src={selectedCompanion.image}
+                    alt={selectedCompanion.name}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.3s ease",
+                      "&:hover": {
+                        transform: "rotate(12deg)",
+                      },
+                    }}
+                  />
+                </Box>
+              </Tooltip>
             </Box>
           </Box>
         </Box>
