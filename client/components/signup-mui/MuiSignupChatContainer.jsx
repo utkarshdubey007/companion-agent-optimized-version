@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import Lottie from "lottie-react";
+import AISpeechBubble from "./AISpeechBubble.jsx";
+import KidSpeechBubble from "./KidSpeechBubble.jsx";
 
 export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
   // State for Lottie animation data
   const [animationData, setAnimationData] = useState(null);
+  
+  // Simple state management for speech bubbles
+  const [aiMessage, setAiMessage] = useState("It's free to start. Enter the Emerald Forest and begin your journey.");
+  const [kidMessage, setKidMessage] = useState("");
+  const [showKidMessage, setShowKidMessage] = useState(false);
 
   // Load Lottie animation data
   useEffect(() => {
@@ -23,27 +30,23 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
     loadAnimation();
   }, []);
 
-  // Get the latest AI and Kid messages separately
-  const getLatestMessages = () => {
-    let latestAI = null;
-    let latestKid = null;
+  // Update messages based on incoming messages array
+  useEffect(() => {
+    if (messages && messages.length > 0) {
+      // Find latest AI message
+      const latestAI = messages.filter(msg => msg.sender === "AI").pop();
+      if (latestAI) {
+        setAiMessage(latestAI.content);
+      }
 
-    // Find the most recent AI and Kid messages
-    for (let i = messages.length - 1; i >= 0; i--) {
-      const message = messages[i];
-      if (message.sender === "AI" && !latestAI) {
-        latestAI = message;
+      // Find latest Kid message
+      const latestKid = messages.filter(msg => msg.sender === "Kid").pop();
+      if (latestKid) {
+        setKidMessage(latestKid.content);
+        setShowKidMessage(true);
       }
-      if (message.sender === "Kid" && !latestKid) {
-        latestKid = message;
-      }
-      if (latestAI && latestKid) break;
     }
-
-    return { latestAI, latestKid };
-  };
-
-  const { latestAI, latestKid } = getLatestMessages();
+  }, [messages]);
 
   return (
     <Box
@@ -188,133 +191,25 @@ export function MuiSignupChatContainer({ messages, isAIThinking = false }) {
         )}
       </Box>
 
-      {/* Simple Message Container */}
+      {/* Speech Bubbles Container */}
       <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-        {/* AI Message - At companion's mouth vertical level */}
-        {(latestAI || (!latestAI && !latestKid)) && (
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: { xs: "180px", sm: "220px", md: "260px", lg: "300px" }, // Companion mouth level
-              left: { xs: "10%", sm: "15%", md: "20%", lg: "25%" },
-              zIndex: 15,
-              animation: latestAI ? "slideInLeft 0.6s ease-out" : "none",
-              "@keyframes slideInLeft": {
-                "0%": {
-                  opacity: 0,
-                  transform: "translateX(-30px) scale(0.95)",
-                },
-                "100%": {
-                  opacity: 1,
-                  transform: "translateX(0) scale(1)",
-                },
-              },
-            }}
-          >
-            <Box sx={{ maxWidth: { xs: "280px", sm: "320px", md: "360px" } }}>
-              <Box
-                sx={{
-                  bgcolor: "#3b82f6",
-                  color: "white",
-                  p: { xs: 1.5, sm: 2 },
-                  borderRadius: "16px",
-                  borderBottomLeftRadius: "4px",
-                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component="p"
-                  sx={{
-                    fontSize: { xs: "13px", sm: "14px" },
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {latestAI ? latestAI.content :
-                    `It's free to start. Enter the Emerald Forest and begin your journey.`}
-                </Box>
-                {/* Speech bubble tail pointing to companion */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: { xs: "12px", sm: "16px" },
-                    width: 0,
-                    height: 0,
-                    borderLeft: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                    borderRight: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                    borderTop: { xs: "6px solid #3b82f6", sm: "8px solid #3b82f6" },
-                    transform: "translateY(100%)",
-                  }}
-                />
-              </Box>
-            </Box>
-          </Box>
-        )}
+        {/* AI Speech Bubble - Always visible with current AI message */}
+        <AISpeechBubble message={aiMessage} isVisible={true} />
 
-        {/* Kid Message - Below AI message and slightly to the right */}
-        {latestKid && (
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: { xs: "100px", sm: "120px", md: "140px", lg: "160px" }, // Below AI message
-              left: { xs: "25%", sm: "30%", md: "35%", lg: "40%" }, // Slightly to the right
-              zIndex: 15,
-              animation: "slideInRight 0.6s ease-out",
-              "@keyframes slideInRight": {
-                "0%": {
-                  opacity: 0,
-                  transform: "translateX(20px) scale(0.95)",
-                },
-                "100%": {
-                  opacity: 1,
-                  transform: "translateX(0) scale(1)",
-                },
-              },
-            }}
-          >
-            <Box sx={{ maxWidth: { xs: "260px", sm: "300px" } }}>
-              <Box
-                sx={{
-                  bgcolor: "#22c55e",
-                  color: "white",
-                  p: { xs: 1.5, sm: 2 },
-                  borderRadius: "16px",
-                  borderBottomRightRadius: "4px",
-                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component="p"
-                  sx={{
-                    fontSize: { xs: "13px", sm: "14px" },
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {latestKid.content}
-                </Box>
-                {/* Speech bubble tail */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    right: { xs: "12px", sm: "16px" },
-                    width: 0,
-                    height: 0,
-                    borderLeft: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                    borderRight: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                    borderTop: { xs: "6px solid #22c55e", sm: "8px solid #22c55e" },
-                    transform: "translateY(100%)",
-                  }}
-                />
-              </Box>
-            </Box>
-          </Box>
-        )}
+        {/* Kid Speech Bubble - Only visible when user has replied */}
+        <KidSpeechBubble message={kidMessage} isVisible={showKidMessage} />
       </Box>
     </Box>
   );
 }
+
+// Export functions to control speech bubbles from parent components
+export const updateAIMessage = (newMessage) => {
+  // This will be used by parent components to update AI message
+  return newMessage;
+};
+
+export const updateKidMessage = (newMessage) => {
+  // This will be used by parent components to update Kid message
+  return newMessage;
+};
