@@ -195,7 +195,7 @@ export function SignupDualSidebar({
             <div
               className={`transition-all duration-500 ease-in-out overflow-hidden ${
                 bottomSidebarCollapsed ? "w-0 opacity-0" : "w-16 opacity-100"
-              } p-3`}
+              } p-4`}
             >
               <div className="overflow-y-auto hide-scrollbar">
                 <div className="flex flex-col items-center gap-2">
