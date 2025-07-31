@@ -125,6 +125,20 @@ export function SignupDualSidebar({
                           : "none",
                         transform: showTopWaveEffect ? "scale(1)" : "scale(0)",
                       }}
+                      onMouseEnter={(e) => {
+                        const tooltip = e.currentTarget.querySelector('.absolute.left-full');
+                        if (tooltip) {
+                          tooltip.style.opacity = '1';
+                          tooltip.style.transform = 'translateY(-50%) scale(1.05)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        const tooltip = e.currentTarget.querySelector('.absolute.left-full');
+                        if (tooltip) {
+                          tooltip.style.opacity = '0';
+                          tooltip.style.transform = 'translateY(-50%) scale(0.95)';
+                        }
+                      }}
                     >
                       <div
                         className="w-12 h-12 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/30"
