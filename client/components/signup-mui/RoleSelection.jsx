@@ -226,7 +226,7 @@ const RoleSelection = ({ onRoleSelect }) => {
                     display: 'block',
                     color: 'text.secondary',
                     fontSize: '12px',
-                    mb: 0.5,
+                    mb: 0.25,
                     lineHeight: 1.2
                   }}
                 >
