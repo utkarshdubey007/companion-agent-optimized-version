@@ -292,7 +292,10 @@ export function MuiSignupChatContainer({ onSendMessage }) {
                   fontSize: { xs: "13px", sm: "14px" },
                   lineHeight: 1.6,
                   margin: 0,
-                  minHeight: "20px",
+                  minHeight: { xs: "40px", sm: "45px" },
+                  display: "flex",
+                  alignItems: "flex-start",
+                  width: "100%",
                 }}
               >
                 {shouldStartTyping && pendingMessage ? (
