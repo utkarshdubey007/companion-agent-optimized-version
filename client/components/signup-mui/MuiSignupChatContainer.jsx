@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Box, TextField, IconButton } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import Lottie from "lottie-react";
-import Typewriter from "typewriter-effect";
 import AISpeechBubble from "./AISpeechBubble.jsx";
 import KidSpeechBubble from "./KidSpeechBubble.jsx";
 
