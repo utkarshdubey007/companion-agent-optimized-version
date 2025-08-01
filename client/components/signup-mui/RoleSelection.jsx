@@ -105,14 +105,23 @@ const RoleSelection = ({ onRoleSelect }) => {
   const activeRole = hoveredRole || selectedRole;
 
   return (
-    <Container maxWidth="sm" sx={{ py: 4 }}>
+    <Box
+      sx={{
+        position: 'absolute',
+        bottom: { xs: "50px", sm: "60px", md: "70px", lg: "80px" }, // Below AI message
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 20, // Higher than AI message
+        width: 'auto',
+      }}
+    >
       <Box
         ref={containerRef}
         sx={{
           position: 'relative',
           backgroundColor: 'white',
           borderRadius: '16px',
-          padding: '24px',
+          padding: '20px',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           display: 'flex',
           flexDirection: 'column',
@@ -251,7 +260,7 @@ const RoleSelection = ({ onRoleSelect }) => {
           })}
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
