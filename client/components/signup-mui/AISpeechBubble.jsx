@@ -1,7 +1,45 @@
+import React, { useRef, useEffect } from "react";
 import { Box } from "@mui/material";
+import Typed from "typed.js";
 
-const AISpeechBubble = ({ message, isVisible = true }) => {
+const AISpeechBubble = ({ message, isVisible = true, onTypingStart, onTypingComplete }) => {
   if (!isVisible) return null;
+  
+  const textElement = useRef(null);
+
+  useEffect(() => {
+    if (message && textElement.current) {
+      onTypingStart?.();
+      
+      const speechString = message;
+      const typed = new Typed(textElement.current, {
+        strings: [speechString],
+        typeSpeed: 60,            // ⬅️ slower = more natural (60-80 ms is good)
+        startDelay: 0,            // delay before typing starts
+        backSpeed: 40,            // (in case you use backspacing later)
+        smartBackspace: true,     // optimize backspacing
+        showCursor: false,
+        onComplete: () => {
+          // 🔥 Add realistic delay (800–1200ms) before switching to idle
+          const delay = Math.floor(Math.random() * 400) + 800; // random between 800–1200ms
+          setTimeout(() => {
+            let action = null;
+            let existingData = localStorage.getItem("landingPageUserDetails");
+            let parsedData = existingData ? JSON.parse(existingData) : {};
+            if (!parsedData?.userRole)
+              action = "askForUserRole";
+              
+            onTypingComplete?.(action);
+          }, delay);
+        },
+      });
+
+      // Cleanup on component unmount
+      return () => {
+        typed.destroy();
+      };
+    }
+  }, [message, onTypingStart, onTypingComplete]);
 
   return (
     <Box
@@ -10,20 +48,17 @@ const AISpeechBubble = ({ message, isVisible = true }) => {
         bottom: { xs: "180px", sm: "220px", md: "260px", lg: "300px" }, // Companion mouth level
         left: { xs: "10%", sm: "15%", md: "20%", lg: "25%" },
         zIndex: 15,
-        animation: "slideInLeft 0.6s ease-out",
-        "@keyframes slideInLeft": {
-          "0%": {
-            opacity: 0,
-            transform: "translateX(-30px) scale(0.95)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translateX(0) scale(1)",
-          },
-        },
+        opacity: 1,
+        transform: "translateX(0) scale(1)",
+        transition: "opacity 0.3s ease",
+        // Remove animation to prevent upward movement
+        // animation: "slideInLeft 0.6s ease-out",
       }}
     >
-      <Box sx={{ maxWidth: { xs: "280px", sm: "320px", md: "360px" } }}>
+      <Box sx={{ 
+        maxWidth: { xs: "280px", sm: "320px", md: "360px" },
+        minWidth: { xs: "200px", sm: "240px", md: "280px" },
+      }}>
         <Box
           sx={{
             bgcolor: "#3b82f6",
@@ -41,9 +76,20 @@ const AISpeechBubble = ({ message, isVisible = true }) => {
               fontSize: { xs: "13px", sm: "14px" },
               lineHeight: 1.6,
               margin: 0,
+              minHeight: { xs: "40px", sm: "45px" },
+              display: "flex",
+              alignItems: "flex-start",
+              width: "100%",
             }}
           >
-            {message}
+            <span 
+              ref={textElement}
+              style={{ 
+                width: "100%", 
+                wordWrap: "break-word",
+                display: "block"
+              }}
+            ></span>
           </Box>
           {/* Speech bubble tail pointing to companion */}
           <Box
