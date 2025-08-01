@@ -263,87 +263,21 @@ export function MuiSignupChatContainer({ onSendMessage }) {
 
       {/* Speech Bubbles Container */}
       <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-        {/* AI Speech Bubble with Typewriter Effect */}
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: { xs: "180px", sm: "220px", md: "260px", lg: "300px" },
-            left: { xs: "10%", sm: "15%", md: "20%", lg: "25%" },
-            zIndex: 15,
-            opacity: 1,
-            transform: "translateX(0) scale(1)",
-            transition: "opacity 0.3s ease",
+        {/* AI Speech Bubble with Typed.js Effect */}
+        <AISpeechBubble
+          message={shouldStartTyping && pendingMessage ? pendingMessage : aiMessage}
+          isVisible={true}
+          onTypingStart={() => {
+            console.log("Typing started");
           }}
-        >
-          <Box sx={{
-            maxWidth: { xs: "280px", sm: "320px", md: "360px" },
-            minWidth: { xs: "200px", sm: "240px", md: "280px" },
-          }}>
-            <Box
-              sx={{
-                bgcolor: "#3b82f6",
-                color: "white",
-                p: { xs: 1.5, sm: 2 },
-                borderRadius: "16px",
-                borderBottomLeftRadius: "4px",
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                position: "relative",
-              }}
-            >
-              <Box
-                sx={{
-                  fontSize: { xs: "13px", sm: "14px" },
-                  lineHeight: 1.6,
-                  margin: 0,
-                  minHeight: { xs: "40px", sm: "45px" },
-                  display: "flex",
-                  alignItems: "flex-start",
-                  width: "100%",
-                }}
-              >
-                <Box sx={{ width: "100%", wordWrap: "break-word" }}>
-                  {shouldStartTyping && pendingMessage ? (
-                    <Typewriter
-                      options={{
-                        strings: [pendingMessage],
-                        autoStart: true,
-                        loop: false,
-                        delay: 50,
-                        deleteSpeed: Infinity,
-                        cursor: "",
-                      }}
-                      onInit={(typewriter) => {
-                        typewriter
-                          .typeString(pendingMessage)
-                          .callFunction(() => {
-                            setAiMessage(pendingMessage);
-                            handleTypingComplete();
-                          })
-                          .start();
-                      }}
-                    />
-                  ) : (
-                    aiMessage
-                  )}
-                </Box>
-              </Box>
-              {/* Speech bubble tail */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: { xs: "12px", sm: "16px" },
-                  width: 0,
-                  height: 0,
-                  borderLeft: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                  borderRight: { xs: "6px solid transparent", sm: "8px solid transparent" },
-                  borderTop: { xs: "6px solid #3b82f6", sm: "8px solid #3b82f6" },
-                  transform: "translateY(100%)",
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
+          onTypingComplete={(action) => {
+            if (shouldStartTyping && pendingMessage) {
+              setAiMessage(pendingMessage);
+              handleTypingComplete();
+            }
+            console.log("Typing completed, action:", action);
+          }}
+        />
 
         {/* Kid Speech Bubble */}
         <KidSpeechBubble message={kidMessage} isVisible={showKidMessage} />
