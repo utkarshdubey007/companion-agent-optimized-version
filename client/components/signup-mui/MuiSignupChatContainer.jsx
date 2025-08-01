@@ -301,29 +301,31 @@ export function MuiSignupChatContainer({ onSendMessage }) {
                   width: "100%",
                 }}
               >
-                {shouldStartTyping && pendingMessage ? (
-                  <Typewriter
-                    options={{
-                      strings: [pendingMessage],
-                      autoStart: true,
-                      loop: false,
-                      delay: 50,
-                      deleteSpeed: Infinity,
-                      cursor: "",
-                    }}
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString(pendingMessage)
-                        .callFunction(() => {
-                          setAiMessage(pendingMessage);
-                          handleTypingComplete();
-                        })
-                        .start();
-                    }}
-                  />
-                ) : (
-                  aiMessage
-                )}
+                <Box sx={{ width: "100%", wordWrap: "break-word" }}>
+                  {shouldStartTyping && pendingMessage ? (
+                    <Typewriter
+                      options={{
+                        strings: [pendingMessage],
+                        autoStart: true,
+                        loop: false,
+                        delay: 50,
+                        deleteSpeed: Infinity,
+                        cursor: "",
+                      }}
+                      onInit={(typewriter) => {
+                        typewriter
+                          .typeString(pendingMessage)
+                          .callFunction(() => {
+                            setAiMessage(pendingMessage);
+                            handleTypingComplete();
+                          })
+                          .start();
+                      }}
+                    />
+                  ) : (
+                    aiMessage
+                  )}
+                </Box>
               </Box>
               {/* Speech bubble tail */}
               <Box
