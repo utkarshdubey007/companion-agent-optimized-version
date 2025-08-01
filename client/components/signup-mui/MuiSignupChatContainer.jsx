@@ -275,7 +275,10 @@ export function MuiSignupChatContainer({ onSendMessage }) {
             transition: "opacity 0.3s ease",
           }}
         >
-          <Box sx={{ maxWidth: { xs: "280px", sm: "320px", md: "360px" } }}>
+          <Box sx={{
+            maxWidth: { xs: "280px", sm: "320px", md: "360px" },
+            minWidth: { xs: "200px", sm: "240px", md: "280px" },
+          }}>
             <Box
               sx={{
                 bgcolor: "#3b82f6",
