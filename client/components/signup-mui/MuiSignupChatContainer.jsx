@@ -270,17 +270,9 @@ export function MuiSignupChatContainer({ onSendMessage }) {
             bottom: { xs: "180px", sm: "220px", md: "260px", lg: "300px" },
             left: { xs: "10%", sm: "15%", md: "20%", lg: "25%" },
             zIndex: 15,
-            animation: shouldStartTyping ? "slideInLeft 0.6s ease-out" : "none",
-            "@keyframes slideInLeft": {
-              "0%": {
-                opacity: 0,
-                transform: "translateX(-30px) scale(0.95)",
-              },
-              "100%": {
-                opacity: 1,
-                transform: "translateX(0) scale(1)",
-              },
-            },
+            opacity: 1,
+            transform: "translateX(0) scale(1)",
+            transition: "opacity 0.3s ease",
           }}
         >
           <Box sx={{ maxWidth: { xs: "280px", sm: "320px", md: "360px" } }}>
