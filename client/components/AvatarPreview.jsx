@@ -11,7 +11,8 @@ const AvatarPreview = ({ config, onReset, onExport }) => {
   // Generate avatar SVG
   const generateAvatarSvg = () => {
     try {
-      const avatar = createAvatar(avataaars, {
+      console.log('Avatar config:', config);
+      const avatarOptions = {
         seed: config.seed || 'default',
         top: [config.hair],
         eyes: [config.eyes],
@@ -19,8 +20,11 @@ const AvatarPreview = ({ config, onReset, onExport }) => {
         clothingType: [config.clothes],
         accessoriesType: [config.accessories],
         backgroundColor: ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf'],
-      });
-      
+      };
+      console.log('Dicebear options:', avatarOptions);
+
+      const avatar = createAvatar(avataaars, avatarOptions);
+
       return avatar.toString();
     } catch (error) {
       console.error('Error generating avatar:', error);
