@@ -20,6 +20,7 @@ import VerticalArchDemo from "./pages/VerticalArchDemo";
 import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 import TaleTreeLanding from "./pages/TaleTreeLanding";
 import TaleTreeExact from "./pages/TaleTreeExact";
+import AvatarCreatorDemo from "./pages/AvatarCreatorDemo";
 
 const queryClient = new QueryClient();
 
