@@ -14,12 +14,13 @@ const AvatarPreview = ({ config, onReset, onExport }) => {
       console.log('Avatar config:', config);
       const avatarOptions = {
         seed: config.seed || 'default',
-        top: [config.hair],
-        eyes: [config.eyes],
-        mouth: [config.mouth],
-        clothingType: [config.clothes],
-        accessoriesType: [config.accessories],
-        backgroundColor: ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf'],
+        // Use simple object properties instead of arrays
+        top: config.hair,
+        eyes: config.eyes,
+        mouth: config.mouth,
+        clothingType: config.clothes,
+        accessoriesType: config.accessories,
+        backgroundColor: 'b6e3f4',
       };
       console.log('Dicebear options:', avatarOptions);
 
