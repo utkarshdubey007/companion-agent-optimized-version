@@ -13,11 +13,11 @@ const AvatarPreview = ({ config, onReset, onExport }) => {
     try {
       const avatar = createAvatar(avataaars, {
         seed: config.seed || 'default',
-        hair: [config.hair],
+        top: [config.hair],
         eyes: [config.eyes],
         mouth: [config.mouth],
-        clothing: [config.clothes],
-        accessories: [config.accessories],
+        clothingType: [config.clothes],
+        accessoriesType: [config.accessories],
         backgroundColor: ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf'],
       });
       
