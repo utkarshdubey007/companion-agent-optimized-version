@@ -233,7 +233,7 @@ const SidebarItem = ({
             animationDelay: `${delay}ms`,
             '&:hover': {
               '& .icon-content': {
-                transform: isCompanion ? 'scale(1.1) rotateY(10deg)' : 'scale(1)',
+                transform: isCompanion ? 'scale(1.1)' : 'scale(1)',
               }
             },
             '&:active': {
