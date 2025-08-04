@@ -285,7 +285,7 @@ const SidebarItem = ({
               justifyContent: 'center',
               width: '100%',
               height: '100%',
-              transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              transition: isCompanion ? 'transform 0.2s ease' : 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
               filter: isActive ? 'brightness(1.2)' : 'brightness(1)',
             }}
           >
