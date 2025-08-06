@@ -175,7 +175,7 @@ const AvatarBuilder = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={isMobile ? 2 : 3}>
           {/* Controls Panel */}
           <Grid item xs={12} md={4} lg={3}>
             <motion.div
@@ -186,12 +186,12 @@ const AvatarBuilder = () => {
               <Paper
                 elevation={3}
                 sx={{
-                  p: 3,
+                  p: isMobile ? 2 : 3,
                   borderRadius: '20px',
                   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   color: 'white',
-                  position: 'sticky',
-                  top: 20
+                  position: isMobile ? 'relative' : 'sticky',
+                  top: isMobile ? 'auto' : 20
                 }}
               >
                 {/* Category Tabs */}
