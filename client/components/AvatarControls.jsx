@@ -270,12 +270,12 @@ const AvatarControls = ({ activeCategory, currentAvatar, assets, onUpdateAvatar 
     <Paper
       elevation={3}
       sx={{
-        p: 3,
+        p: { xs: 2, sm: 3 },
         borderRadius: '20px',
         background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-        minHeight: '600px',
-        position: 'sticky',
-        top: 20
+        minHeight: { xs: '500px', sm: '600px' },
+        position: { xs: 'relative', sm: 'sticky' },
+        top: { xs: 'auto', sm: 20 }
       }}
     >
       {/* Header */}
