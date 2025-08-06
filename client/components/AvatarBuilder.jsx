@@ -200,30 +200,64 @@ const AvatarBuilder = () => {
                 </Typography>
                 
                 <Box sx={{ mb: 3 }}>
-                  {categories.map((category) => (
-                    <Button
-                      key={category.id}
-                      fullWidth
-                      variant={activeCategory === category.id ? 'contained' : 'outlined'}
-                      onClick={() => setActiveCategory(category.id)}
-                      sx={{
-                        mb: 1,
-                        borderRadius: '12px',
-                        textTransform: 'none',
-                        fontWeight: 'bold',
-                        backgroundColor: activeCategory === category.id ? category.color : 'transparent',
-                        borderColor: category.color,
-                        color: activeCategory === category.id ? 'white' : category.color,
-                        '&:hover': {
-                          backgroundColor: category.color,
-                          color: 'white'
-                        }
-                      }}
-                      startIcon={<span style={{ fontSize: '18px' }}>{category.icon}</span>}
-                    >
-                      {category.name}
-                    </Button>
-                  ))}
+                  {isMobile ? (
+                    // Mobile: Horizontal scrollable tabs
+                    <Box sx={{ display: 'flex', overflowX: 'auto', gap: 1, pb: 2, mb: 2 }}>
+                      {categories.map((category) => (
+                        <Button
+                          key={category.id}
+                          variant={activeCategory === category.id ? 'contained' : 'outlined'}
+                          onClick={() => setActiveCategory(category.id)}
+                          sx={{
+                            minWidth: 80,
+                            borderRadius: '12px',
+                            textTransform: 'none',
+                            fontWeight: 'bold',
+                            fontSize: '12px',
+                            backgroundColor: activeCategory === category.id ? category.color : 'transparent',
+                            borderColor: category.color,
+                            color: activeCategory === category.id ? 'white' : category.color,
+                            flexShrink: 0,
+                            '&:hover': {
+                              backgroundColor: category.color,
+                              color: 'white'
+                            }
+                          }}
+                        >
+                          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <span style={{ fontSize: '16px' }}>{category.icon}</span>
+                            <span>{category.name}</span>
+                          </Box>
+                        </Button>
+                      ))}
+                    </Box>
+                  ) : (
+                    // Desktop: Vertical buttons
+                    categories.map((category) => (
+                      <Button
+                        key={category.id}
+                        fullWidth
+                        variant={activeCategory === category.id ? 'contained' : 'outlined'}
+                        onClick={() => setActiveCategory(category.id)}
+                        sx={{
+                          mb: 1,
+                          borderRadius: '12px',
+                          textTransform: 'none',
+                          fontWeight: 'bold',
+                          backgroundColor: activeCategory === category.id ? category.color : 'transparent',
+                          borderColor: category.color,
+                          color: activeCategory === category.id ? 'white' : category.color,
+                          '&:hover': {
+                            backgroundColor: category.color,
+                            color: 'white'
+                          }
+                        }}
+                        startIcon={<span style={{ fontSize: '18px' }}>{category.icon}</span>}
+                      >
+                        {category.name}
+                      </Button>
+                    ))
+                  )}
                 </Box>
 
                 {/* Action Buttons */}
