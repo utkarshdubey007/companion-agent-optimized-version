@@ -21,6 +21,7 @@ import MagicalPortalNewDemo from "./pages/MagicalPortalNewDemo";
 import TaleTreeLanding from "./pages/TaleTreeLanding";
 import TaleTreeExact from "./pages/TaleTreeExact";
 import AvatarCreatorDemo from "./pages/AvatarCreatorDemo";
+import AvatarBuilderDemo from "./pages/AvatarBuilderDemo";
 
 const queryClient = new QueryClient();
 
