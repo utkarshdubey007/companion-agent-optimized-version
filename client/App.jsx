@@ -22,6 +22,7 @@ import TaleTreeLanding from "./pages/TaleTreeLanding";
 import TaleTreeExact from "./pages/TaleTreeExact";
 import AvatarCreatorDemo from "./pages/AvatarCreatorDemo";
 import AvatarBuilderDemo from "./pages/AvatarBuilderDemo";
+import AvataaarsCreatorDemo from "./pages/AvataaarsCreatorDemo";
 
 const queryClient = new QueryClient();
 
