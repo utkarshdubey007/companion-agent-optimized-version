@@ -81,7 +81,7 @@ const AvataaarsCreatorDemo = () => {
           backgroundAttachment: 'fixed'
         }}
       >
-        <AvataaarsCreator />
+        <AvataaarsCreatorFixed />
       </Box>
     </ThemeProvider>
   );
