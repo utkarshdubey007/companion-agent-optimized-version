@@ -274,61 +274,87 @@ const AvatarBuilder = () => {
                 </Box>
 
                 {/* Action Buttons */}
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={saveAvatar}
-                    startIcon={<SaveIcon />}
-                    sx={{
-                      backgroundColor: '#4CAF50',
-                      borderRadius: '12px',
-                      py: 1.5,
-                      fontWeight: 'bold',
-                      textTransform: 'none',
-                      '&:hover': { backgroundColor: '#45a049' }
-                    }}
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 1.5 : 2 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Save Avatar
-                  </Button>
-                  
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      onClick={saveAvatar}
+                      startIcon={<SaveIcon />}
+                      sx={{
+                        backgroundColor: '#4CAF50',
+                        borderRadius: '12px',
+                        py: isMobile ? 1.2 : 1.5,
+                        fontWeight: 'bold',
+                        textTransform: 'none',
+                        fontSize: isMobile ? '14px' : '16px',
+                        '&:hover': { backgroundColor: '#45a049' }
+                      }}
+                    >
+                      Save Avatar
+                    </Button>
+                  </motion.div>
+
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      onClick={undoLastChange}
-                      disabled={avatarHistory.length <= 1}
-                      startIcon={<UndoIcon />}
-                      sx={{
-                        borderColor: '#FFC107',
-                        color: '#FFC107',
-                        borderRadius: '12px',
-                        '&:hover': {
-                          backgroundColor: '#FFC107',
-                          color: 'white'
-                        }
-                      }}
+                    <motion.div
+                      style={{ flex: 1 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      Undo
-                    </Button>
-                    
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      onClick={resetAvatar}
-                      startIcon={<ResetIcon />}
-                      sx={{
-                        borderColor: '#FF5722',
-                        color: '#FF5722',
-                        borderRadius: '12px',
-                        '&:hover': {
-                          backgroundColor: '#FF5722',
-                          color: 'white'
-                        }
-                      }}
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        onClick={undoLastChange}
+                        disabled={avatarHistory.length <= 1}
+                        startIcon={<UndoIcon />}
+                        sx={{
+                          borderColor: '#FFC107',
+                          color: '#FFC107',
+                          borderRadius: '12px',
+                          py: isMobile ? 1 : 1.2,
+                          fontSize: isMobile ? '12px' : '14px',
+                          '&:hover': {
+                            backgroundColor: '#FFC107',
+                            color: 'white'
+                          },
+                          '&:disabled': {
+                            borderColor: 'rgba(255, 193, 7, 0.3)',
+                            color: 'rgba(255, 193, 7, 0.3)'
+                          }
+                        }}
+                      >
+                        {isMobile ? 'Undo' : 'Undo'}
+                      </Button>
+                    </motion.div>
+
+                    <motion.div
+                      style={{ flex: 1 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      Reset
-                    </Button>
+                      <Button
+                        variant="outlined"
+                        fullWidth
+                        onClick={resetAvatar}
+                        startIcon={<ResetIcon />}
+                        sx={{
+                          borderColor: '#FF5722',
+                          color: '#FF5722',
+                          borderRadius: '12px',
+                          py: isMobile ? 1 : 1.2,
+                          fontSize: isMobile ? '12px' : '14px',
+                          '&:hover': {
+                            backgroundColor: '#FF5722',
+                            color: 'white'
+                          }
+                        }}
+                      >
+                        {isMobile ? 'Reset' : 'Reset'}
+                      </Button>
+                    </motion.div>
                   </Box>
                 </Box>
               </Paper>
