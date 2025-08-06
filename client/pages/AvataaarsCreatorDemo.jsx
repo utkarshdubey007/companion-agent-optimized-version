@@ -5,7 +5,7 @@ import {
   CssBaseline,
   Box
 } from '@mui/material';
-import AvataaarsCreator from '../components/AvataaarsCreator';
+import AvataaarsCreatorFixed from '../components/AvataaarsCreatorFixed';
 
 // Create a vibrant theme for the Avataaars creator
 const theme = createTheme({
