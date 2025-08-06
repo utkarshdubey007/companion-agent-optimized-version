@@ -81,7 +81,7 @@ const AvataaarsCreatorDemo = () => {
           backgroundAttachment: 'fixed'
         }}
       >
-        <AvataaarsCreatorFixed />
+        <DiceBearAvatarCreator />
       </Box>
     </ThemeProvider>
   );
