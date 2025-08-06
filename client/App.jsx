@@ -49,6 +49,7 @@ const App = () => (
           <Route path="/taletree" element={<TaleTreeLanding />} />
           <Route path="/taletree-exact" element={<TaleTreeExact />} />
           <Route path="/avatar-creator" element={<AvatarCreatorDemo />} />
+          <Route path="/avatar-builder" element={<AvatarBuilderDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
