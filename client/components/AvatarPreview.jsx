@@ -420,12 +420,14 @@ const AvatarPreview = ({ avatar, assets }) => {
         }}
       >
         <svg
-          width="300"
-          height="420"
+          width="100%"
+          height="auto"
           viewBox="0 0 300 420"
           style={{
             background: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
-            borderRadius: '15px'
+            borderRadius: '15px',
+            maxWidth: '300px',
+            maxHeight: '420px'
           }}
         >
           {/* Background decorations */}
