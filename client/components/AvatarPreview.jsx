@@ -384,10 +384,10 @@ const AvatarPreview = ({ avatar, assets }) => {
     <Paper
       elevation={3}
       sx={{
-        p: 3,
+        p: { xs: 2, sm: 3 },
         borderRadius: '20px',
         background: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)',
-        minHeight: '600px',
+        minHeight: { xs: '500px', sm: '600px' },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
