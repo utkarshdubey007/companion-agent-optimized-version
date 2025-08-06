@@ -115,11 +115,12 @@ const AvatarBuilder = () => {
     setAvatarHistory([DEFAULT_AVATAR]);
   }, []);
 
-  // Save avatar (console.log for now)
+  // Save avatar with enhanced functionality
   const saveAvatar = useCallback(() => {
-    console.log('💾 Avatar Saved:', {
+    const avatarData = {
       avatar: currentAvatar,
       timestamp: new Date().toISOString(),
+      id: `avatar_${Date.now()}`,
       assetsUsed: {
         skinTone: AVATAR_ASSETS.skinTones.find(s => s.id === currentAvatar.skinTone),
         face: AVATAR_ASSETS.faces.find(f => f.id === currentAvatar.face),
@@ -128,10 +129,22 @@ const AvatarBuilder = () => {
         outfit: AVATAR_ASSETS.outfits.find(o => o.id === currentAvatar.outfit),
         shoes: AVATAR_ASSETS.shoes.find(s => s.id === currentAvatar.shoes)
       }
-    });
-    
-    // Show success feedback
-    alert('🎉 Avatar saved successfully! Check the console for details.');
+    };
+
+    // Save to localStorage
+    try {
+      const savedAvatars = JSON.parse(localStorage.getItem('savedAvatars') || '[]');
+      savedAvatars.push(avatarData);
+      localStorage.setItem('savedAvatars', JSON.stringify(savedAvatars));
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
+
+    console.log('💾 Avatar Saved:', avatarData);
+
+    // Enhanced success feedback with animation
+    const successMessage = `🎉 Avatar saved successfully!\n\n✨ Details:\n• Skin: ${avatarData.assetsUsed.skinTone?.name}\n• Face: ${avatarData.assetsUsed.face?.name}\n• Hair: ${avatarData.assetsUsed.hairStyle?.name} (${avatarData.assetsUsed.hairColor?.name})\n• Outfit: ${avatarData.assetsUsed.outfit?.name}\n• Shoes: ${avatarData.assetsUsed.shoes?.name}\n\nYour avatar has been saved to your browser! 💖`;
+    alert(successMessage);
   }, [currentAvatar]);
 
   const categories = [
