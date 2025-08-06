@@ -1,217 +1,394 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Paper,
-  Tabs,
-  Tab,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
   Typography,
-  Chip,
+  Button,
+  ButtonGroup,
   Grid,
+  Avatar,
+  Chip,
+  Collapse,
   IconButton,
   Tooltip,
+  Stack
 } from '@mui/material';
 import {
-  Face,
-  Visibility,
-  SentimentSatisfied,
-  Checkroom,
-  Palette,
-  Shuffle,
+  Palette as PaletteIcon,
+  Face as FaceIcon,
+  Style as StyleIcon,
+  Checkroom as CheckroomIcon,
+  RunningWithErrors as ShoesIcon
 } from '@mui/icons-material';
-import { avatarOptions } from '../utils/avatarOptions.js';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const TabPanel = ({ children, value, index, ...other }) => (
-  <div
-    role="tabpanel"
-    hidden={value !== index}
-    id={`avatar-tabpanel-${index}`}
-    aria-labelledby={`avatar-tab-${index}`}
-    {...other}
-  >
-    {value === index && <Box sx={{ pt: 3 }}>{children}</Box>}
-  </div>
-);
-
-const OptionSelector = ({ label, value, options, onChange, icon }) => (
-  <FormControl fullWidth sx={{ mb: 2 }}>
-    <InputLabel id={`${label.toLowerCase()}-label`}>{label}</InputLabel>
-    <Select
-      labelId={`${label.toLowerCase()}-label`}
-      value={value}
-      label={label}
-      onChange={(e) => onChange(e.target.value)}
-      startAdornment={icon}
-    >
-      {options.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <span>{option.emoji}</span>
-            <span>{option.label}</span>
-          </Box>
-        </MenuItem>
-      ))}
-    </Select>
-  </FormControl>
-);
-
-const OptionGrid = ({ options, value, onChange, columns = 4 }) => (
-  <Grid container spacing={1}>
-    {options.map((option) => (
-      <Grid item xs={12 / columns} key={option.value}>
-        <Tooltip title={option.label} arrow>
-          <Chip
-            label={option.emoji}
-            variant={value === option.value ? 'filled' : 'outlined'}
-            color={value === option.value ? 'primary' : 'default'}
-            onClick={() => onChange(option.value)}
-            sx={{
-              width: '100%',
-              fontSize: '1.2rem',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                boxShadow: 2,
-              },
-            }}
-          />
-        </Tooltip>
+const AvatarControls = ({ activeCategory, currentAvatar, assets, onUpdateAvatar }) => {
+  
+  // Color picker component for skin tones and hair colors
+  const ColorPicker = ({ colors, selectedId, onSelect, title }) => (
+    <Box>
+      <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}>
+        {title}
+      </Typography>
+      <Grid container spacing={1}>
+        {colors.map((color) => (
+          <Grid item key={color.id}>
+            <Tooltip title={color.name} arrow>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <IconButton
+                  onClick={() => onSelect(color.id)}
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: color.color,
+                    border: selectedId === color.id ? '3px solid #333' : '2px solid #fff',
+                    margin: 0.5,
+                    '&:hover': {
+                      backgroundColor: color.color,
+                      filter: 'brightness(1.1)'
+                    }
+                  }}
+                >
+                  {selectedId === color.id && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      style={{
+                        width: 16,
+                        height: 16,
+                        backgroundColor: '#333',
+                        borderRadius: '50%'
+                      }}
+                    />
+                  )}
+                </IconButton>
+              </motion.div>
+            </Tooltip>
+          </Grid>
+        ))}
       </Grid>
-    ))}
-  </Grid>
-);
+    </Box>
+  );
 
-const AvatarControls = ({ config, onChange }) => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'dropdown'
+  // Selection grid for faces, hair styles, outfits, shoes
+  const SelectionGrid = ({ items, selectedId, onSelect, title, showEmoji = false, showColor = false }) => (
+    <Box>
+      <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}>
+        {title}
+      </Typography>
+      <Grid container spacing={1}>
+        {items.map((item) => (
+          <Grid item xs={6} sm={4} key={item.id}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                variant={selectedId === item.id ? 'contained' : 'outlined'}
+                fullWidth
+                onClick={() => onSelect(item.id)}
+                sx={{
+                  minHeight: 60,
+                  borderRadius: '12px',
+                  textTransform: 'none',
+                  flexDirection: 'column',
+                  gap: 0.5,
+                  backgroundColor: selectedId === item.id ? 
+                    (showColor && item.color ? item.color : '#4CAF50') : 
+                    'transparent',
+                  borderColor: showColor && item.color ? item.color : '#ddd',
+                  color: selectedId === item.id ? '#fff' : '#333',
+                  '&:hover': {
+                    backgroundColor: showColor && item.color ? item.color : '#4CAF50',
+                    color: '#fff'
+                  }
+                }}
+              >
+                {showEmoji && (
+                  <span style={{ fontSize: '24px' }}>{item.emoji}</span>
+                )}
+                {showColor && item.color && (
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      backgroundColor: item.color,
+                      borderRadius: '50%',
+                      border: '2px solid #fff',
+                      mb: 0.5
+                    }}
+                  />
+                )}
+                <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                  {item.name}
+                </Typography>
+              </Button>
+            </motion.div>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
 
-  const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue);
+  // Category-specific controls
+  const renderCategoryControls = () => {
+    switch (activeCategory) {
+      case 'skinTone':
+        return (
+          <motion.div
+            key="skinTone"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ColorPicker
+              colors={assets.skinTones}
+              selectedId={currentAvatar.skinTone}
+              onSelect={(id) => onUpdateAvatar('skinTone', id)}
+              title="Choose Your Skin Tone"
+            />
+          </motion.div>
+        );
+
+      case 'face':
+        return (
+          <motion.div
+            key="face"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <SelectionGrid
+              items={assets.faces}
+              selectedId={currentAvatar.face}
+              onSelect={(id) => onUpdateAvatar('face', id)}
+              title="Pick Your Expression"
+              showEmoji={true}
+            />
+          </motion.div>
+        );
+
+      case 'hairStyle':
+        return (
+          <motion.div
+            key="hairStyle"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Box sx={{ mb: 3 }}>
+              <SelectionGrid
+                items={assets.hairStyles}
+                selectedId={currentAvatar.hairStyle}
+                onSelect={(id) => onUpdateAvatar('hairStyle', id)}
+                title="Choose Hair Style"
+              />
+            </Box>
+            
+            {currentAvatar.hairStyle !== 'bald' && (
+              <ColorPicker
+                colors={assets.hairColors}
+                selectedId={currentAvatar.hairColor}
+                onSelect={(id) => onUpdateAvatar('hairColor', id)}
+                title="Pick Hair Color"
+              />
+            )}
+          </motion.div>
+        );
+
+      case 'outfit':
+        return (
+          <motion.div
+            key="outfit"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <SelectionGrid
+              items={assets.outfits}
+              selectedId={currentAvatar.outfit}
+              onSelect={(id) => onUpdateAvatar('outfit', id)}
+              title="Select Your Outfit"
+              showColor={true}
+            />
+          </motion.div>
+        );
+
+      case 'shoes':
+        return (
+          <motion.div
+            key="shoes"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <SelectionGrid
+              items={assets.shoes}
+              selectedId={currentAvatar.shoes}
+              onSelect={(id) => onUpdateAvatar('shoes', id)}
+              title="Pick Your Footwear"
+            />
+          </motion.div>
+        );
+
+      default:
+        return null;
+    }
   };
 
-  const handleConfigChange = (key, value) => {
-    onChange(key, value);
+  const getCategoryIcon = (category) => {
+    const icons = {
+      skinTone: <PaletteIcon />,
+      face: <FaceIcon />,
+      hairStyle: <StyleIcon />,
+      outfit: <CheckroomIcon />,
+      shoes: <ShoesIcon />
+    };
+    return icons[category] || <PaletteIcon />;
   };
 
-  const generateRandomSeed = () => {
-    const randomWords = ['Happy', 'Sunny', 'Magic', 'Dream', 'Star', 'Cloud', 'River', 'Ocean', 'Forest', 'Mountain'];
-    const randomSeed = randomWords[Math.floor(Math.random() * randomWords.length)] + Math.floor(Math.random() * 1000);
-    handleConfigChange('seed', randomSeed);
+  const getCategoryColor = (category) => {
+    const colors = {
+      skinTone: '#FF9800',
+      face: '#4CAF50',
+      hairStyle: '#9C27B0',
+      outfit: '#2196F3',
+      shoes: '#FF5722'
+    };
+    return colors[category] || '#4CAF50';
   };
-
-  const tabs = [
-    { label: 'Hair', icon: <Face />, key: 'hair', options: avatarOptions.hair },
-    { label: 'Eyes', icon: <Visibility />, key: 'eyes', options: avatarOptions.eyes },
-    { label: 'Mouth', icon: <SentimentSatisfied />, key: 'mouth', options: avatarOptions.mouth },
-    { label: 'Clothes', icon: <Checkroom />, key: 'clothes', options: avatarOptions.clothes },
-    { label: 'Accessories', icon: <Palette />, key: 'accessories', options: avatarOptions.accessories },
-  ];
 
   return (
-    <Paper elevation={3} sx={{ borderRadius: 3, overflow: 'hidden' }}>
+    <Paper
+      elevation={3}
+      sx={{
+        p: 3,
+        borderRadius: '20px',
+        background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        minHeight: '600px',
+        position: 'sticky',
+        top: 20
+      }}
+    >
       {/* Header */}
-      <Box sx={{ p: 2, backgroundColor: 'primary.main', color: 'white' }}>
-        <Typography variant="h6" sx={{ fontWeight: 600 }}>
-          🎨 Avatar Customizer
-        </Typography>
-        <Typography variant="body2" sx={{ opacity: 0.9 }}>
-          Create your unique avatar
-        </Typography>
-      </Box>
-
-      {/* Seed Input */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-end' }}>
-          <TextField
-            label="Avatar Seed"
-            value={config.seed}
-            onChange={(e) => handleConfigChange('seed', e.target.value)}
-            size="small"
-            fullWidth
-            helperText="Change this to generate different base avatars"
-          />
-          <Tooltip title="Generate Random Seed">
-            <IconButton onClick={generateRandomSeed} color="primary">
-              <Shuffle />
-            </IconButton>
-          </Tooltip>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+        <Box
+          sx={{
+            width: 48,
+            height: 48,
+            borderRadius: '12px',
+            backgroundColor: getCategoryColor(activeCategory),
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            mr: 2
+          }}
+        >
+          {getCategoryIcon(activeCategory)}
+        </Box>
+        <Box>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'white' }}>
+            Customize
+          </Typography>
+          <Typography variant="subtitle2" sx={{ color: 'rgba(255,255,255,0.8)' }}>
+            {activeCategory === 'skinTone' && 'Skin Tone'}
+            {activeCategory === 'face' && 'Face Expression'}
+            {activeCategory === 'hairStyle' && 'Hair Style'}
+            {activeCategory === 'outfit' && 'Outfit Style'}
+            {activeCategory === 'shoes' && 'Footwear'}
+          </Typography>
         </Box>
       </Box>
 
-      {/* View Mode Toggle */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-        <Chip
-          label={viewMode === 'grid' ? '🎯 Grid View' : '📋 Dropdown View'}
-          onClick={() => setViewMode(viewMode === 'grid' ? 'dropdown' : 'grid')}
-          color="primary"
-          variant="outlined"
-          sx={{ cursor: 'pointer' }}
-        />
+      {/* Controls Content */}
+      <Box
+        sx={{
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          borderRadius: '16px',
+          p: 2,
+          backdropFilter: 'blur(10px)'
+        }}
+      >
+        <AnimatePresence mode="wait">
+          {renderCategoryControls()}
+        </AnimatePresence>
       </Box>
 
-      {/* Tabs */}
-      <Tabs
-        value={activeTab}
-        onChange={handleTabChange}
-        variant="scrollable"
-        scrollButtons="auto"
-        sx={{ borderBottom: 1, borderColor: 'divider' }}
-      >
-        {tabs.map((tab, index) => (
-          <Tab
-            key={tab.key}
-            label={tab.label}
-            icon={tab.icon}
-            iconPosition="start"
-            id={`avatar-tab-${index}`}
-            aria-controls={`avatar-tabpanel-${index}`}
-            sx={{ minHeight: 48 }}
+      {/* Quick Stats */}
+      <Box sx={{ mt: 3 }}>
+        <Typography variant="subtitle2" sx={{ color: 'white', mb: 1, fontWeight: 'bold' }}>
+          🎨 Customization Progress
+        </Typography>
+        <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 0.5 }}>
+          <Chip
+            size="small"
+            label="Skin ✓"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.2)', 
+              color: 'white',
+              fontWeight: 'bold'
+            }}
           />
-        ))}
-      </Tabs>
+          <Chip
+            size="small"
+            label="Face ✓"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.2)', 
+              color: 'white',
+              fontWeight: 'bold'
+            }}
+          />
+          <Chip
+            size="small"
+            label="Hair ✓"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.2)', 
+              color: 'white',
+              fontWeight: 'bold'
+            }}
+          />
+          <Chip
+            size="small"
+            label="Outfit ✓"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.2)', 
+              color: 'white',
+              fontWeight: 'bold'
+            }}
+          />
+          <Chip
+            size="small"
+            label="Shoes ✓"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.2)', 
+              color: 'white',
+              fontWeight: 'bold'
+            }}
+          />
+        </Stack>
+      </Box>
 
-      {/* Tab Panels */}
-      <Box sx={{ minHeight: 300 }}>
-        {tabs.map((tab, index) => (
-          <TabPanel key={tab.key} value={activeTab} index={index}>
-            <Box sx={{ p: 2 }}>
-              <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
-                Choose {tab.label}
-              </Typography>
-              
-              {viewMode === 'dropdown' ? (
-                <OptionSelector
-                  label={tab.label}
-                  value={config[tab.key]}
-                  options={tab.options}
-                  onChange={(value) => handleConfigChange(tab.key, value)}
-                  icon={tab.icon}
-                />
-              ) : (
-                <OptionGrid
-                  options={tab.options}
-                  value={config[tab.key]}
-                  onChange={(value) => handleConfigChange(tab.key, value)}
-                  columns={tab.key === 'hair' ? 3 : 4}
-                />
-              )}
-
-              {/* Current Selection Info */}
-              <Box sx={{ mt: 2, p: 2, backgroundColor: 'grey.50', borderRadius: 2 }}>
-                <Typography variant="body2" color="text.secondary">
-                  Selected: <strong>
-                    {tab.options.find(opt => opt.value === config[tab.key])?.label || 'Unknown'}
-                  </strong>
-                </Typography>
-              </Box>
-            </Box>
-          </TabPanel>
-        ))}
+      {/* Fun Facts */}
+      <Box sx={{ mt: 3, p: 2, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '12px' }}>
+        <Typography variant="subtitle2" sx={{ color: 'white', fontWeight: 'bold', mb: 1 }}>
+          💡 Did you know?
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+          {activeCategory === 'skinTone' && "Your avatar can represent anyone from around the world! 🌍"}
+          {activeCategory === 'face' && "Facial expressions show how you're feeling today! 😊"}
+          {activeCategory === 'hairStyle' && "Hair styles can completely change your look! ✨"}
+          {activeCategory === 'outfit' && "Different outfits are perfect for different activities! 👕"}
+          {activeCategory === 'shoes' && "The right shoes can take you anywhere! 👟"}
+        </Typography>
       </Box>
     </Paper>
   );
